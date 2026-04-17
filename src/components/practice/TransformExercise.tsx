@@ -16,11 +16,18 @@ import type { Exercise } from '@/data/curriculum';
 // still gets credit — the rule being drilled is morphology, not
 // vocalization. We compare on bare consonants.
 const HARAKAT = /[\u0610-\u061A\u064B-\u065F\u06D6-\u06ED\u0670]/g;
+// iOS Arabic keyboards and the Web Speech API frequently inject
+// invisible bidi/joiner characters that sabotage a literal string
+// compare. Scrub them before anything else. U+0640 (tatweel) is the
+// elongation kashida — a cosmetic stretch that also must go.
+const INVISIBLES =
+  /[\u200B-\u200F\u202A-\u202E\u2066-\u2069\uFEFF\u061C\u0640]/g;
 // Also fold common variants of alif so "أ", "إ", "آ" all match "ا".
 // The learner shouldn't lose a point because they forgot the hamza
 // seat in a transformation drill.
 const normalize = (s: string): string =>
   s
+    .replace(INVISIBLES, '')
     .replace(HARAKAT, '')
     .replace(/[\u0623\u0625\u0622]/g, '\u0627') // أ إ آ → ا
     .replace(/\u0649/g, '\u064A') // ى → ي
@@ -276,12 +283,12 @@ export function TransformExercise({
               if (status === 'wrong' || status === 'correct') setStatus('idle');
             }}
             onKeyDown={handleKey}
-            placeholder={listening ? '…po dëgjoj' : 'اكتب هنا…'}
+            placeholder={listening ? '' : 'اكتب هنا…'}
             className={`w-full font-amiri text-2xl text-right rounded-xl border py-3 outline-none transition
               ${speechSupported ? 'pr-4 pl-14' : 'px-4'}
               ${
                 listening
-                  ? 'border-red-300 bg-red-50/40 ring-2 ring-red-200 animate-pulse'
+                  ? 'border-red-300 bg-red-50/40 ring-2 ring-red-200'
                   : status === 'correct'
                     ? 'border-emerald-400 bg-emerald-50/40 ring-2 ring-emerald-200'
                     : status === 'wrong'
@@ -309,6 +316,30 @@ export function TransformExercise({
             >
               {listening ? <MicOff size={16} /> : <Mic size={16} />}
             </button>
+          )}
+
+          {/* Equalizer overlay — shown while listening and the input
+              is still empty. Sits on the right side of the RTL input
+              so it occupies the same spot where text will start to
+              appear; as soon as transcript bytes arrive, we hide it
+              so the letters take over without visual fight. */}
+          {listening && !value && (
+            <div
+              aria-hidden="true"
+              className="absolute inset-y-0 right-4 flex items-center gap-[3px] pointer-events-none"
+            >
+              {[0, 1, 2, 3, 4].map((i) => (
+                <span
+                  key={i}
+                  className="block w-[3px] rounded-full bg-red-500/80"
+                  style={{
+                    animation: `mic-equalizer 0.9s ease-in-out ${
+                      i * 0.12
+                    }s infinite`,
+                  }}
+                />
+              ))}
+            </div>
           )}
         </div>
 
@@ -345,6 +376,25 @@ export function TransformExercise({
             </span>
           )}
         </div>
+
+        {/* Expected-answer reference: shown when the student is wrong
+            so they can compare harakat-for-harakat. The normalize()
+            comparator is forgiving, but the DISPLAY here is faithful,
+            which is what the student needs to actually learn the
+            vocalization. */}
+        {status === 'wrong' && (
+          <div className="mt-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2">
+            <div className="text-[10px] uppercase tracking-wide text-slate-400 mb-1">
+              Përgjigjja e pritur
+            </div>
+            <div
+              dir="rtl"
+              className="font-amiri text-xl text-slate-800 leading-relaxed"
+            >
+              {exercise.answer}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Hint */}
