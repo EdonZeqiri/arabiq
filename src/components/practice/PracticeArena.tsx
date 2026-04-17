@@ -1,9 +1,22 @@
 import { useEffect, useMemo, useState } from 'react';
-import { BookOpen, CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Target } from 'lucide-react';
+import {
+  BookOpen,
+  CheckCircle2,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  ChevronUp,
+  Languages,
+  MessageCircle,
+  Target,
+} from 'lucide-react';
 import { getChapter } from '@/data/curriculum';
 import { useStore } from '@/store/useStore';
 import { Flashcard } from './Flashcard';
 import { StoryCard } from './StoryCard';
+import { ChapterVocabulary } from './ChapterVocabulary';
+
+type SectionKey = 'goals' | 'vocab' | 'dialogues' | 'stories';
 
 export function PracticeArena() {
   const currentChapterId = useStore((s) => s.currentChapterId);
@@ -14,20 +27,35 @@ export function PracticeArena() {
   const chapter = getChapter(currentChapterId);
   const dialogues = useMemo(() => chapter?.dialogues ?? [], [chapter]);
   const stories = useMemo(() => chapter?.stories ?? [], [chapter]);
+  const vocabulary = useMemo(() => chapter?.vocabulary ?? [], [chapter]);
 
   const [index, setIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
   const [sessionStarted, setSessionStarted] = useState(false);
-  const [storyOpen, setStoryOpen] = useState(true);
-  const [goalsOpen, setGoalsOpen] = useState(true);
+
+  // Accordion state — goals is collapsed by default (reference info),
+  // while vocab and dialogues are open so the reader lands straight on
+  // the work. Stories also expand so they are visible after scrolling.
+  const [sections, setSections] = useState<Record<SectionKey, boolean>>({
+    goals: false,
+    vocab: true,
+    dialogues: true,
+    stories: true,
+  });
+  const toggle = (key: SectionKey) =>
+    setSections((s) => ({ ...s, [key]: !s[key] }));
 
   // Reset whenever the chapter changes.
   useEffect(() => {
     setIndex(0);
     setRevealed(false);
     setSessionStarted(false);
-    setStoryOpen(true);
-    setGoalsOpen(true);
+    setSections({
+      goals: false,
+      vocab: true,
+      dialogues: true,
+      stories: true,
+    });
   }, [currentChapterId]);
 
   if (!chapter) {
@@ -70,7 +98,7 @@ export function PracticeArena() {
 
   return (
     <div className="max-w-3xl mx-auto space-y-5">
-      {/* Chapter header */}
+      {/* ── Chapter header ───────────────────────────────────────── */}
       <div className="min-w-0">
         <div className="text-xs uppercase tracking-wide text-brand-600 font-semibold">
           Kapitulli {chapter.id}
@@ -84,132 +112,215 @@ export function PracticeArena() {
         <div className="text-sm text-slate-500">{chapter.titleAl}</div>
       </div>
 
-      {/* "What you'll learn" — structured learning goals card */}
-      <div className="card overflow-hidden">
-        <button
-          onClick={() => setGoalsOpen((o) => !o)}
-          className="w-full flex items-center justify-between px-5 py-3 border-b border-slate-100 bg-gradient-to-r from-brand-50 to-white hover:from-brand-100/70 transition-colors"
-        >
-          <div className="flex items-center gap-2 text-sm font-semibold text-slate-700">
-            <Target size={16} className="text-brand-600" />
-            Çfarë do të mësojmë në këtë kapitull
-          </div>
-          {goalsOpen ? (
-            <ChevronUp size={16} className="text-slate-500" />
-          ) : (
-            <ChevronDown size={16} className="text-slate-500" />
-          )}
-        </button>
-        {goalsOpen && (
-          <div className="p-5 grid gap-3 sm:grid-cols-2">
-            <div>
-              <div className="text-xs uppercase tracking-wide text-slate-400 font-semibold mb-2">
-                Pika gramatikore
-              </div>
-              <ul className="space-y-2">
-                {chapter.grammarFocus.map((g) => (
-                  <li key={g} className="flex items-start gap-2 text-sm text-slate-700">
-                    <CheckCircle2 size={16} className="text-brand-600 mt-0.5 shrink-0" />
-                    <span>{g}</span>
-                  </li>
-                ))}
-              </ul>
+      {/* ── Section 1: Learning goals ────────────────────────────── */}
+      <AccordionCard
+        open={sections.goals}
+        onToggle={() => toggle('goals')}
+        accent="brand"
+        icon={<Target size={16} className="text-brand-600" />}
+        title="Çfarë do të mësojmë në këtë kapitull"
+        meta={
+          <span className="hidden sm:inline text-[11px] text-slate-500">
+            Objektiva & përmbajtje
+          </span>
+        }
+      >
+        <div className="p-5 grid gap-4 sm:grid-cols-2">
+          <div>
+            <div className="text-xs uppercase tracking-wide text-slate-400 font-semibold mb-2">
+              Pika gramatikore
             </div>
-            <div className="flex flex-wrap gap-2 content-start">
-              <div className="w-full text-xs uppercase tracking-wide text-slate-400 font-semibold mb-1">
-                Përmbajtja
-              </div>
+            <ul className="space-y-2">
+              {chapter.grammarFocus.map((g) => (
+                <li
+                  key={g}
+                  className="flex items-start gap-2 text-sm text-slate-700"
+                >
+                  <CheckCircle2
+                    size={16}
+                    className="text-brand-600 mt-0.5 shrink-0"
+                  />
+                  <span>{g}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <div className="text-xs uppercase tracking-wide text-slate-400 font-semibold mb-2">
+              Përmbajtja
+            </div>
+            <div className="flex flex-wrap gap-2">
               <span className="pill border border-slate-200 bg-slate-50 text-slate-600">
                 {dialogues.length} dialogje
               </span>
               {stories.length > 0 && (
                 <span className="pill border border-amber-200 bg-amber-50 text-amber-700">
-                  {stories.length} {stories.length === 1 ? 'tregim' : 'tregime'}
+                  {stories.length}{' '}
+                  {stories.length === 1 ? 'tregim' : 'tregime'}
                 </span>
               )}
-              <span className="pill border border-slate-200 bg-slate-50 text-slate-600">
-                {chapter.vocabulary.length} fjalë
+              <span className="pill border border-blue-200 bg-blue-50 text-blue-700">
+                {vocabulary.length} fjalë
               </span>
             </div>
           </div>
-        )}
-      </div>
-
-      {/* Flashcard */}
-      {current && (
-        <Flashcard
-          dialogue={current}
-          revealed={revealed}
-          onReveal={() => setRevealed(true)}
-          onKnown={handleKnown}
-          onRetry={handleRetry}
-          index={index}
-          total={dialogues.length}
-        />
-      )}
-
-      {/* Manual nav */}
-      <div className="flex items-center justify-between">
-        <button onClick={goPrev} className="btn-outline">
-          <ChevronLeft size={16} /> Para
-        </button>
-        <div className="flex items-center gap-1">
-          {dialogues.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => {
-                setIndex(i);
-                setRevealed(false);
-              }}
-              className={`h-2 rounded-full transition-all ${
-                i === index
-                  ? 'bg-brand-600 w-6'
-                  : 'bg-slate-300 w-2 hover:bg-slate-400'
-              }`}
-              aria-label={`Dialogu ${i + 1}`}
-            />
-          ))}
         </div>
-        <button onClick={goNext} className="btn-outline">
-          {isLast ? 'Nga fillimi' : 'Tjetri'} <ChevronRight size={16} />
-        </button>
-      </div>
+      </AccordionCard>
 
-      {/* Stories (paragraph-style reading practice) — placed after the
-          dialogue flashcards so the user practices short phrases first,
-          then reads a longer connected text. */}
-      {stories.length > 0 && (
-        <div className="card overflow-hidden">
-          <button
-            onClick={() => setStoryOpen((o) => !o)}
-            className="w-full flex items-center justify-between px-5 py-3 border-b border-slate-100 bg-gradient-to-r from-amber-50 to-white hover:from-amber-100/70 transition-colors"
-          >
-            <div className="flex items-center gap-2 text-sm font-semibold text-slate-700">
-              <BookOpen size={16} className="text-amber-600" />
-              Tregime të kapitullit
-              <span className="pill bg-amber-100 text-amber-700 border border-amber-200">
-                {stories.length}
-              </span>
-            </div>
-            {storyOpen ? (
-              <ChevronUp size={16} className="text-slate-500" />
-            ) : (
-              <ChevronDown size={16} className="text-slate-500" />
-            )}
-          </button>
-          {storyOpen && (
-            <div className="divide-y divide-slate-100">
-              {stories.map((story) => (
-                <StoryCard
-                  key={story.id}
-                  story={story}
-                  showHarakat={showHarakat}
+      {/* ── Section 2: Vocabulary ────────────────────────────────── */}
+      <AccordionCard
+        open={sections.vocab}
+        onToggle={() => toggle('vocab')}
+        accent="blue"
+        icon={<Languages size={16} className="text-blue-600" />}
+        title="Fjalori i kapitullit"
+        meta={
+          <span className="pill bg-blue-100 text-blue-700 border border-blue-200">
+            {vocabulary.length}
+          </span>
+        }
+      >
+        <ChapterVocabulary words={vocabulary} />
+      </AccordionCard>
+
+      {/* ── Section 3: Dialogues (flashcards) ────────────────────── */}
+      <AccordionCard
+        open={sections.dialogues}
+        onToggle={() => toggle('dialogues')}
+        accent="emerald"
+        icon={<MessageCircle size={16} className="text-emerald-600" />}
+        title="Dialogjet"
+        meta={
+          <span className="pill bg-emerald-100 text-emerald-700 border border-emerald-200">
+            {index + 1}/{dialogues.length}
+          </span>
+        }
+      >
+        <div className="p-5 space-y-4">
+          {current && (
+            <Flashcard
+              dialogue={current}
+              revealed={revealed}
+              onReveal={() => setRevealed(true)}
+              onKnown={handleKnown}
+              onRetry={handleRetry}
+              index={index}
+              total={dialogues.length}
+            />
+          )}
+
+          {/* Manual nav */}
+          <div className="flex items-center justify-between">
+            <button onClick={goPrev} className="btn-outline">
+              <ChevronLeft size={16} /> Para
+            </button>
+            <div className="flex items-center gap-1">
+              {dialogues.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => {
+                    setIndex(i);
+                    setRevealed(false);
+                  }}
+                  className={`h-2 rounded-full transition-all ${
+                    i === index
+                      ? 'bg-brand-600 w-6'
+                      : 'bg-slate-300 w-2 hover:bg-slate-400'
+                  }`}
+                  aria-label={`Dialogu ${i + 1}`}
                 />
               ))}
             </div>
-          )}
+            <button onClick={goNext} className="btn-outline">
+              {isLast ? 'Nga fillimi' : 'Tjetri'} <ChevronRight size={16} />
+            </button>
+          </div>
         </div>
+      </AccordionCard>
+
+      {/* ── Section 4: Stories (long-form reading) ───────────────── */}
+      {stories.length > 0 && (
+        <AccordionCard
+          open={sections.stories}
+          onToggle={() => toggle('stories')}
+          accent="amber"
+          icon={<BookOpen size={16} className="text-amber-600" />}
+          title="Tregime të kapitullit"
+          meta={
+            <span className="pill bg-amber-100 text-amber-700 border border-amber-200">
+              {stories.length}
+            </span>
+          }
+        >
+          <div className="divide-y divide-slate-100">
+            {stories.map((story) => (
+              <StoryCard
+                key={story.id}
+                story={story}
+                showHarakat={showHarakat}
+              />
+            ))}
+          </div>
+        </AccordionCard>
       )}
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────
+// AccordionCard — one reusable collapsible panel used for every
+// section on the page. Supports a colored accent gradient for the
+// header so each section stays visually distinct.
+// ─────────────────────────────────────────────────────────────────────
+
+const ACCENTS: Record<
+  'brand' | 'blue' | 'emerald' | 'amber',
+  { from: string; hover: string }
+> = {
+  brand: { from: 'from-brand-50', hover: 'hover:from-brand-100/70' },
+  blue: { from: 'from-blue-50', hover: 'hover:from-blue-100/70' },
+  emerald: { from: 'from-emerald-50', hover: 'hover:from-emerald-100/70' },
+  amber: { from: 'from-amber-50', hover: 'hover:from-amber-100/70' },
+};
+
+interface AccordionCardProps {
+  open: boolean;
+  onToggle: () => void;
+  accent: keyof typeof ACCENTS;
+  icon: React.ReactNode;
+  title: string;
+  meta?: React.ReactNode;
+  children: React.ReactNode;
+}
+
+function AccordionCard({
+  open,
+  onToggle,
+  accent,
+  icon,
+  title,
+  meta,
+  children,
+}: AccordionCardProps) {
+  const a = ACCENTS[accent];
+  return (
+    <div className="card overflow-hidden">
+      <button
+        onClick={onToggle}
+        className={`w-full flex items-center justify-between gap-3 px-5 py-3 border-b border-slate-100 bg-gradient-to-r ${a.from} to-white ${a.hover} transition-colors`}
+      >
+        <div className="flex items-center gap-2 text-sm font-semibold text-slate-700 min-w-0">
+          {icon}
+          <span className="truncate">{title}</span>
+          {meta}
+        </div>
+        {open ? (
+          <ChevronUp size={16} className="text-slate-500 shrink-0" />
+        ) : (
+          <ChevronDown size={16} className="text-slate-500 shrink-0" />
+        )}
+      </button>
+      {open && <div>{children}</div>}
     </div>
   );
 }
