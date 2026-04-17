@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
 import {
+  BookA,
   BookOpen,
-  CheckCircle2,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
   ChevronUp,
-  Languages,
   MessageCircle,
+  PencilLine,
   Target,
 } from 'lucide-react';
 import { getChapter } from '@/data/curriculum';
@@ -15,8 +15,10 @@ import { useStore } from '@/store/useStore';
 import { Flashcard } from './Flashcard';
 import { StoryCard } from './StoryCard';
 import { ChapterVocabulary } from './ChapterVocabulary';
+import { TransformExercise } from './TransformExercise';
+import { GrammarBullet } from './GrammarBullet';
 
-type SectionKey = 'goals' | 'vocab' | 'dialogues' | 'stories';
+type SectionKey = 'goals' | 'vocab' | 'dialogues' | 'exercises' | 'stories';
 
 export function PracticeArena() {
   const currentChapterId = useStore((s) => s.currentChapterId);
@@ -28,19 +30,25 @@ export function PracticeArena() {
   const dialogues = useMemo(() => chapter?.dialogues ?? [], [chapter]);
   const stories = useMemo(() => chapter?.stories ?? [], [chapter]);
   const vocabulary = useMemo(() => chapter?.vocabulary ?? [], [chapter]);
+  const exercises = useMemo(() => chapter?.exercises ?? [], [chapter]);
 
   const [index, setIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
   const [sessionStarted, setSessionStarted] = useState(false);
+  const [exerciseIndex, setExerciseIndex] = useState(0);
 
   // Accordion state — goals is collapsed by default (reference info),
   // while vocab and dialogues are open so the reader lands straight on
   // the work. Stories also expand so they are visible after scrolling.
+  // Every accordion is collapsed by default — the reader opens the
+  // section they want to work on. Keeps the page short and scannable
+  // on first landing, especially on mobile.
   const [sections, setSections] = useState<Record<SectionKey, boolean>>({
     goals: false,
-    vocab: true,
-    dialogues: true,
-    stories: true,
+    vocab: false,
+    dialogues: false,
+    exercises: false,
+    stories: false,
   });
   const toggle = (key: SectionKey) =>
     setSections((s) => ({ ...s, [key]: !s[key] }));
@@ -50,11 +58,13 @@ export function PracticeArena() {
     setIndex(0);
     setRevealed(false);
     setSessionStarted(false);
+    setExerciseIndex(0);
     setSections({
       goals: false,
-      vocab: true,
-      dialogues: true,
-      stories: true,
+      vocab: false,
+      dialogues: false,
+      exercises: false,
+      stories: false,
     });
   }, [currentChapterId]);
 
@@ -134,16 +144,7 @@ export function PracticeArena() {
             </div>
             <ul className="space-y-2">
               {chapter.grammarFocus.map((g) => (
-                <li
-                  key={g}
-                  className="flex items-start gap-2 text-sm text-slate-700"
-                >
-                  <CheckCircle2
-                    size={16}
-                    className="text-brand-600 mt-0.5 shrink-0"
-                  />
-                  <span>{g}</span>
-                </li>
+                <GrammarBullet key={g} text={g} />
               ))}
             </ul>
           </div>
@@ -164,6 +165,11 @@ export function PracticeArena() {
               <span className="pill border border-blue-200 bg-blue-50 text-blue-700">
                 {vocabulary.length} fjalë
               </span>
+              {exercises.length > 0 && (
+                <span className="pill border border-indigo-200 bg-indigo-50 text-indigo-700">
+                  {exercises.length} ushtrime
+                </span>
+              )}
             </div>
           </div>
         </div>
@@ -174,7 +180,7 @@ export function PracticeArena() {
         open={sections.vocab}
         onToggle={() => toggle('vocab')}
         accent="blue"
-        icon={<Languages size={16} className="text-blue-600" />}
+        icon={<BookA size={16} className="text-blue-600" />}
         title="Fjalori i kapitullit"
         meta={
           <span className="pill bg-blue-100 text-blue-700 border border-blue-200">
@@ -240,7 +246,57 @@ export function PracticeArena() {
         </div>
       </AccordionCard>
 
-      {/* ── Section 4: Stories (long-form reading) ───────────────── */}
+      {/* ── Section 4: Exercises (transform drills) ──────────────── */}
+      {exercises.length > 0 && (
+        <AccordionCard
+          open={sections.exercises}
+          onToggle={() => toggle('exercises')}
+          accent="indigo"
+          icon={<PencilLine size={16} className="text-indigo-600" />}
+          title="Ushtrime të kapitullit"
+          meta={
+            <span className="pill bg-indigo-100 text-indigo-700 border border-indigo-200">
+              {exerciseIndex + 1}/{exercises.length}
+            </span>
+          }
+        >
+          <div className="p-5">
+            <TransformExercise
+              exercise={exercises[exerciseIndex]}
+              index={exerciseIndex}
+              total={exercises.length}
+              onNext={() =>
+                setExerciseIndex((i) =>
+                  i + 1 < exercises.length ? i + 1 : 0,
+                )
+              }
+              onPrev={() =>
+                setExerciseIndex((i) =>
+                  i - 1 >= 0 ? i - 1 : exercises.length - 1,
+                )
+              }
+            />
+
+            {/* Dots navigation, mirrors the dialogues section */}
+            <div className="mt-5 flex items-center justify-center gap-1">
+              {exercises.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setExerciseIndex(i)}
+                  className={`h-2 rounded-full transition-all ${
+                    i === exerciseIndex
+                      ? 'bg-indigo-600 w-6'
+                      : 'bg-slate-300 w-2 hover:bg-slate-400'
+                  }`}
+                  aria-label={`Ushtrimi ${i + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+        </AccordionCard>
+      )}
+
+      {/* ── Section 5: Stories (long-form reading) ───────────────── */}
       {stories.length > 0 && (
         <AccordionCard
           open={sections.stories}
@@ -276,13 +332,14 @@ export function PracticeArena() {
 // ─────────────────────────────────────────────────────────────────────
 
 const ACCENTS: Record<
-  'brand' | 'blue' | 'emerald' | 'amber',
+  'brand' | 'blue' | 'emerald' | 'amber' | 'indigo',
   { from: string; hover: string }
 > = {
   brand: { from: 'from-brand-50', hover: 'hover:from-brand-100/70' },
   blue: { from: 'from-blue-50', hover: 'hover:from-blue-100/70' },
   emerald: { from: 'from-emerald-50', hover: 'hover:from-emerald-100/70' },
   amber: { from: 'from-amber-50', hover: 'hover:from-amber-100/70' },
+  indigo: { from: 'from-indigo-50', hover: 'hover:from-indigo-100/70' },
 };
 
 interface AccordionCardProps {

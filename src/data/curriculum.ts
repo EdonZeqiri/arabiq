@@ -30,6 +30,24 @@ export interface Story {
   transliteration: string;
 }
 
+/**
+ * A "Tahwiil" (تَحْوِيل) transformation exercise — the workhorse drill
+ * in Al-Arabiya Bayna Yadayk. Student is shown a source sentence and
+ * must produce a transformed version (change gender, number, tense…).
+ *
+ * Only a single `type` for now to keep v1 focused; new shapes (cloze,
+ * Q&A) can be added later without migrating existing data.
+ */
+export interface Exercise {
+  id: string;
+  type: 'transform';
+  prompt: string; // what the student is asked to do (Albanian)
+  source: { arabic: string; albanian?: string };
+  answer: string; // arabic, with harakat
+  hint?: string; // short nudge shown on wrong / reveal
+  grammarPoint: string; // short label e.g. "Gjinia (ة)"
+}
+
 export interface Chapter {
   id: number;
   titleAr: string;
@@ -39,6 +57,7 @@ export interface Chapter {
   vocabulary: VocabWord[];
   grammarFocus: string[];
   stories?: Story[];
+  exercises?: Exercise[];
 }
 
 export const CHAPTERS: Chapter[] = [
@@ -201,6 +220,75 @@ export const CHAPTERS: Chapter[] = [
       'Idafa (lidhja pronësore): وَالِدُ مُوسَى (babai i Musait)',
       'Dualë (muthenna): أَخَوَانِ (dy vëllezër), بِنْتَانِ (dy bija)',
       'هَيَّا بِنَا + folje: Hajde të…',
+    ],
+    // Proof-of-concept: transformation drills pulled from Bayna Yadayk
+    // ch.2 "At-Tarakib an-Nahwiyya". Each exercise asks the student to
+    // rewrite one structure into another (gender, pronoun, pronouncement)
+    // so the rule becomes muscle memory rather than a flashcard fact.
+    exercises: [
+      {
+        id: 'ex2-1',
+        type: 'transform',
+        prompt: 'Ndërro në femërore (përdor هَذِهِ dhe ـَة)',
+        source: { arabic: 'هَذَا طَالِبٌ.', albanian: 'Ky është student.' },
+        answer: 'هَذِهِ طَالِبَةٌ.',
+        hint: 'Hadha → Hadhihi, dhe shto tā marbūṭa (ة) në fund të طَالِب.',
+        grammarPoint: 'Gjinia (ة)',
+      },
+      {
+        id: 'ex2-2',
+        type: 'transform',
+        prompt: 'Ndërro në femërore',
+        source: { arabic: 'هَذَا مُدَرِّسٌ.', albanian: 'Ky është mësues.' },
+        answer: 'هَذِهِ مُدَرِّسَةٌ.',
+        hint: 'مُدَرِّس → مُدَرِّسَة',
+        grammarPoint: 'Gjinia (ة)',
+      },
+      {
+        id: 'ex2-3',
+        type: 'transform',
+        prompt: 'Zëvendëso هُوَ me هِيَ dhe rregullo mbiemrin',
+        source: { arabic: 'هُوَ طَبِيبٌ جَدِيدٌ.', albanian: 'Ai është mjek i ri.' },
+        answer: 'هِيَ طَبِيبَةٌ جَدِيدَةٌ.',
+        hint: 'Si emri edhe mbiemri marrin ة në femërore.',
+        grammarPoint: 'Përputhja M/F',
+      },
+      {
+        id: 'ex2-4',
+        type: 'transform',
+        prompt: 'Shto përemrin pronor "im" (ـِي) te fjala',
+        source: { arabic: 'كِتَاب', albanian: 'libër' },
+        answer: 'كِتَابِي',
+        hint: 'ـي ngjitet drejtpërdrejt; pa "AL" përpara.',
+        grammarPoint: 'Mbaresa ـِي',
+      },
+      {
+        id: 'ex2-5',
+        type: 'transform',
+        prompt: 'Shto mbaresën "i tij" (ـهُ)',
+        source: { arabic: 'بَيْت', albanian: 'shtëpi' },
+        answer: 'بَيْتُهُ',
+        hint: 'Mbaresa pronore bën emrin të caktuar — s\'duhet "AL".',
+        grammarPoint: 'Mbaresa ـهُ',
+      },
+      {
+        id: 'ex2-6',
+        type: 'transform',
+        prompt: 'Ndërro në dyjës (dy sende — mbaresa ـَانِ)',
+        source: { arabic: 'أَخٌ', albanian: 'vëlla' },
+        answer: 'أَخَوَانِ',
+        hint: 'Dyjësi i أَخ ka bashkëtingëlloren wāw të brendshme: أَخَوَانِ.',
+        grammarPoint: 'Dyjësi (المثنى)',
+      },
+      {
+        id: 'ex2-7',
+        type: 'transform',
+        prompt: 'Ndërto idafën: "babai i Musait"',
+        source: { arabic: 'وَالِد + مُوسَى', albanian: 'babai + Musa' },
+        answer: 'وَالِدُ مُوسَى',
+        hint: 'Emri i parë humbet "AL" dhe merr damme (ـُ) pa tenvin.',
+        grammarPoint: 'Idafa',
+      },
     ],
     stories: [
       {

@@ -1,4 +1,4 @@
-import { Menu, Eye, EyeOff, Languages, FileType } from 'lucide-react';
+import { Menu, Eye, EyeOff, CaseSensitive, FileType } from 'lucide-react';
 import { useStore } from '@/store/useStore';
 import { getChapter } from '@/data/curriculum';
 
@@ -57,7 +57,7 @@ export function TopBar({ onToggleMobileSidebar }: TopBarProps) {
           }`}
           title="Transliterimi on/off"
         >
-          <Languages size={14} />
+          <CaseSensitive size={14} />
           <span className="hidden sm:inline">Translit.</span>
           {showTransliteration ? <Eye size={12} /> : <EyeOff size={12} />}
         </button>
