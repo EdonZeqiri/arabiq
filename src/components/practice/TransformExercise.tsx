@@ -130,6 +130,14 @@ export function TransformExercise({
     if (!candidate.trim()) return;
     if (normalize(candidate) === normalize(exercise.answer)) {
       setStatus('correct');
+      // Swap the bare consonants the student typed/spoke with the
+      // fully-vocalized reference answer. Web Speech API never
+      // returns harakat, and most learners also skip them while
+      // typing, so this is the only moment where the student sees
+      // the canonical form side-by-side with what they just said —
+      // and that visual flip is where the vocalization actually
+      // gets learned.
+      setValue(exercise.answer);
     } else {
       setStatus('wrong');
     }
