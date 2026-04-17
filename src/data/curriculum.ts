@@ -11,12 +11,15 @@ export interface Dialogue {
 
 export interface VocabWord {
   id: string;
-  arabic: string;
+  arabic: string; // past tense (الماضي) for verbs; base form otherwise
   albanian: string;
   root: string;
   type: 'noun' | 'verb' | 'particle' | 'adjective';
   gender?: 'M' | 'F';
   plural?: string;
+  // Verb-only fields — the 3 canonical forms used in Bayna Yadayk:
+  present?: string; // المضارع (هو) — e.g. يَذْهَبُ
+  imperative?: string; // الأمر (أنتَ) — e.g. اِذْهَبْ
 }
 
 export interface Story {
@@ -168,7 +171,7 @@ export const CHAPTERS: Chapter[] = [
         id: 'd2-6',
         albanian: 'Hajde, le ta falim namazin bashkë.',
         arabic: 'هَيَّا بِنَا نُصَلِّي جَمَاعَةً.',
-        transliteration: 'Hejja bina nusalli xhema‘aten.',
+        transliteration: 'Hejja bina nusal-li xhema‘aten.',
       },
     ],
     vocabulary: [
@@ -189,8 +192,8 @@ export const CHAPTERS: Chapter[] = [
       { id: 'v2-15', arabic: 'مُعَلِّمَة', albanian: 'Mësuese', root: 'ع-ل-م', type: 'noun', gender: 'F', plural: 'مُعَلِّمَات' },
       { id: 'v2-16', arabic: 'صُورَة', albanian: 'Fotografi', root: 'ص-و-ر', type: 'noun', gender: 'F', plural: 'صُوَر' },
       { id: 'v2-17', arabic: 'رَسُول', albanian: 'I dërguar', root: 'ر-س-ل', type: 'noun', gender: 'M', plural: 'رُسُل' },
-      { id: 'v2-18', arabic: 'صَلَّى', albanian: 'U fal', root: 'ص-ل-و', type: 'verb' },
-      { id: 'v2-19', arabic: 'قَرَأَ', albanian: 'Lexoi', root: 'ق-ر-أ', type: 'verb' },
+      { id: 'v2-18', arabic: 'صَلَّى', present: 'يُصَلِّي', imperative: 'صَلِّ', albanian: 'U fal', root: 'ص-ل-و', type: 'verb' },
+      { id: 'v2-19', arabic: 'قَرَأَ', present: 'يَقْرَأُ', imperative: 'اِقْرَأْ', albanian: 'Lexoi', root: 'ق-ر-أ', type: 'verb' },
       { id: 'v2-20', arabic: 'مَنْ', albanian: 'Kush', root: '-', type: 'particle' },
     ],
     grammarFocus: [
@@ -208,7 +211,7 @@ export const CHAPTERS: Chapter[] = [
         arabic:
           'أُسْرَتِي كَبِيرَةٌ وَحَبِيبَةٌ. وَالِدِي طَبِيبٌ وَيَعْمَلُ فِي المُسْتَشْفَى، وَوَالِدَتِي مُعَلِّمَةٌ فِي المَدْرَسَةِ. لِي أَخَوَانِ كَبِيرَانِ وَأُخْتٌ صَغِيرَةٌ. جَدِّي وَجَدَّتِي يَسْكُنَانِ مَعَنَا فِي البَيْتِ. كُلَّ مَسَاءٍ نَأْكُلُ جَمِيعاً، ثُمَّ نُصَلِّي جَمَاعَةً. الحَمْدُ لِلَّهِ، أَعْطَانَا اللَّهُ أُسْرَةً مُبَارَكَةً.',
         transliteration:
-          "Usreti kebire ve habibe. Walidi tabib ve ja'melu fil mustashfa, ve walideti mu'allime fil medrese. Li ekhevani kebirani ve ukhtun sagire. Xheddi ve xheddeti jeskunani ma'ana fil bejt. Kulle mesa'in ne'kulu xhemi'an, thumme nusalli xhema'aten. Elhamdulilah, e'tanallahu usreten mubareke.",
+          "Usreti kebire ve habibe. Walidi tabib ve ja'melu fil mustashfa, ve walideti mu'al-lime fil medrese. Li ekhevani kebirani ve ukhtun sagire. Xheddi ve xheddeti jeskunani ma'ana fil bejt. Kul-le mesa'in ne'kulu xhemi'an, thumme nusal-li xhema'aten. Elhamdulilah, e'tanallahu usreten mubareke.",
       },
     ],
   },
@@ -275,9 +278,9 @@ export const CHAPTERS: Chapter[] = [
       { id: 'v3-15', arabic: 'ثَلَّاجَة', albanian: 'Frigorifer', root: 'ث-ل-ج', type: 'noun', gender: 'F', plural: 'ثَلَّاجَات' },
       { id: 'v3-16', arabic: 'فُرْن', albanian: 'Furrë', root: 'ف-ر-ن', type: 'noun', gender: 'M', plural: 'أَفْرَان' },
       { id: 'v3-17', arabic: 'مِرْآة', albanian: 'Pasqyrë', root: 'ر-أ-ي', type: 'noun', gender: 'F', plural: 'مَرَايَا' },
-      { id: 'v3-18', arabic: 'سَكَنَ', albanian: 'Banoi', root: 'س-ك-ن', type: 'verb' },
-      { id: 'v3-19', arabic: 'اسْتَأْجَرَ', albanian: 'Mori me qira', root: 'أ-ج-ر', type: 'verb' },
-      { id: 'v3-20', arabic: 'دَخَلَ', albanian: 'Hyri', root: 'د-خ-ل', type: 'verb' },
+      { id: 'v3-18', arabic: 'سَكَنَ', present: 'يَسْكُنُ', imperative: 'اُسْكُنْ', albanian: 'Banoi', root: 'س-ك-ن', type: 'verb' },
+      { id: 'v3-19', arabic: 'اسْتَأْجَرَ', present: 'يَسْتَأْجِرُ', imperative: 'اِسْتَأْجِرْ', albanian: 'Mori me qira', root: 'أ-ج-ر', type: 'verb' },
+      { id: 'v3-20', arabic: 'دَخَلَ', present: 'يَدْخُلُ', imperative: 'اُدْخُلْ', albanian: 'Hyri', root: 'د-خ-ل', type: 'verb' },
       { id: 'v3-21', arabic: 'جَمِيل', albanian: 'I bukur', root: 'ج-م-ل', type: 'adjective', gender: 'M' },
       { id: 'v3-22', arabic: 'قَبِيح', albanian: 'I shëmtuar', root: 'ق-ب-ح', type: 'adjective', gender: 'M' },
       { id: 'v3-23', arabic: 'كَمْ', albanian: 'Sa', root: '-', type: 'particle' },
@@ -361,13 +364,13 @@ export const CHAPTERS: Chapter[] = [
       { id: 'v4-11', arabic: 'مَلَابِس', albanian: 'Rroba', root: 'ل-ب-س', type: 'noun', gender: 'M' },
       { id: 'v4-12', arabic: 'تِلْفَاز', albanian: 'Televizor', root: '-', type: 'noun', gender: 'M' },
       { id: 'v4-13', arabic: 'صَحِيفَة', albanian: 'Gazetë', root: 'ص-ح-ف', type: 'noun', gender: 'F', plural: 'صُحُف' },
-      { id: 'v4-14', arabic: 'اِسْتَيْقَظَ', albanian: 'U zgjua', root: 'ي-ق-ظ', type: 'verb' },
-      { id: 'v4-15', arabic: 'نَامَ', albanian: 'Fjeti', root: 'ن-و-م', type: 'verb' },
-      { id: 'v4-16', arabic: 'ذَهَبَ', albanian: 'Shkoi', root: 'ذ-ه-ب', type: 'verb' },
-      { id: 'v4-17', arabic: 'كَنَسَ', albanian: 'Fshiu', root: 'ك-ن-س', type: 'verb' },
-      { id: 'v4-18', arabic: 'غَسَلَ', albanian: 'Lau', root: 'غ-س-ل', type: 'verb' },
-      { id: 'v4-19', arabic: 'كَوَى', albanian: 'Hekurosi', root: 'ك-و-ي', type: 'verb' },
-      { id: 'v4-20', arabic: 'شَاهَدَ', albanian: 'Shikoi', root: 'ش-ه-د', type: 'verb' },
+      { id: 'v4-14', arabic: 'اِسْتَيْقَظَ', present: 'يَسْتَيْقِظُ', imperative: 'اِسْتَيْقِظْ', albanian: 'U zgjua', root: 'ي-ق-ظ', type: 'verb' },
+      { id: 'v4-15', arabic: 'نَامَ', present: 'يَنَامُ', imperative: 'نَمْ', albanian: 'Fjeti', root: 'ن-و-م', type: 'verb' },
+      { id: 'v4-16', arabic: 'ذَهَبَ', present: 'يَذْهَبُ', imperative: 'اِذْهَبْ', albanian: 'Shkoi', root: 'ذ-ه-ب', type: 'verb' },
+      { id: 'v4-17', arabic: 'كَنَسَ', present: 'يَكْنُسُ', imperative: 'اُكْنُسْ', albanian: 'Fshiu', root: 'ك-ن-س', type: 'verb' },
+      { id: 'v4-18', arabic: 'غَسَلَ', present: 'يَغْسِلُ', imperative: 'اِغْسِلْ', albanian: 'Lau', root: 'غ-س-ل', type: 'verb' },
+      { id: 'v4-19', arabic: 'كَوَى', present: 'يَكْوِي', imperative: 'اِكْوِ', albanian: 'Hekurosi', root: 'ك-و-ي', type: 'verb' },
+      { id: 'v4-20', arabic: 'شَاهَدَ', present: 'يُشَاهِدُ', imperative: 'شَاهِدْ', albanian: 'Shikoi', root: 'ش-ه-د', type: 'verb' },
       { id: 'v4-21', arabic: 'مُبَكِّراً', albanian: 'Herët', root: 'ب-ك-ر', type: 'particle' },
       { id: 'v4-22', arabic: 'مُتَأَخِّراً', albanian: 'Vonë', root: 'أ-خ-ر', type: 'particle' },
       { id: 'v4-23', arabic: 'قَبْلَ', albanian: 'Para', root: 'ق-ب-ل', type: 'particle' },
@@ -391,7 +394,7 @@ export const CHAPTERS: Chapter[] = [
         arabic:
           'يَسْتَيْقِظُ مُوسَى مُبَكِّراً كُلَّ يَوْمٍ، قَبْلَ صَلَاةِ الفَجْرِ. بَعْدَ الصَّلَاةِ يَأْكُلُ الفَطُورَ مَعَ الأُسْرَةِ وَيَشْرَبُ الحَلِيبَ مَعَ الشَّايِ. فِي السَّاعَةِ السَّابِعَةِ يَذْهَبُ إِلَى المَدْرَسَةِ بِالحَافِلَةِ، لِأَنَّ المَدْرَسَةَ بَعِيدَةٌ. بَعْدَ الدَّرْسِ يَرْجِعُ إِلَى البَيْتِ، وَيُسَاعِدُ وَالِدَتَهُ فِي كَنْسِ الغُرَفِ وَغَسْلِ المَلَابِسِ. فِي المَسَاءِ يُشَاهِدُ التِّلْفَازَ مَعَ وَالِدِهِ وَيَقْرَأُ الصَّحِيفَةَ. فِي يَوْمِ العُطْلَةِ لَا يَسْتَيْقِظُ مُبَكِّراً، وَلَكِنْ يَسْتَرِيحُ مَعَ أُسْرَتِهِ فِي البَيْتِ. هُوَ لَا يَتَأَخَّرُ أَبَداً وَيَنَامُ مُبَكِّراً لِيَكُونَ نَشِيطاً فِي الغَدِ.',
         transliteration:
-          "Jestejkizu Musa mubekkiren kulle jewm, kable salatil fexhr. Ba'des-salati je'kulul fatur ma'al usre ve jeshrebul halibe ma'ash-shaj. Fis-sa'atis-sabi'a jedhhebu ilel medrese bil hafile, li ennel medrese be‘ide. Ba'ded-dersi jerxhi‘u ilel bejt, ve jusa‘idu walidetehu fi kensil gurefi ve gaslil melabis. Fil mesa jushahidut-tilfaze ma‘a walidihi ve jakrau es-sahife. Fi jewmil ‘utle la jestejkizu mubekkiren, ve lakin jesterihu ma‘a usretihi fil bejt. Huwe la jete’ekhkheru ebeden ve jenamu mubekkiren li jekune neshitan fil gad.",
+          "Jestejkizu Musa mubekkiren kul-le jewm, kable salatil fexhr. Ba'des-salati je'kulul fatur ma'al usre ve jeshrebul halibe ma'ash-shaj. Fis-sa'atis-sabi'a jedhhebu ilel medrese bil hafile, li ennel medrese be‘ide. Ba'ded-dersi jerxhi‘u ilel bejt, ve jusa‘idu walidetehu fi kensil gurefi ve gaslil melabis. Fil mesa jushahidut-tilfaze ma‘a walidihi ve jakrau es-sahife. Fi jewmil ‘utle la jestejkizu mubekkiren, ve lakin jesterihu ma‘a usretihi fil bejt. Huwe la jete’ekhkheru ebeden ve jenamu mubekkiren li jekune neshitan fil gad.",
       },
     ],
   },
@@ -461,10 +464,10 @@ export const CHAPTERS: Chapter[] = [
       { id: 'v5-18', arabic: 'قَهْوَة', albanian: 'Kafe', root: 'ق-ه-و', type: 'noun', gender: 'F' },
       { id: 'v5-19', arabic: 'مَائِدَة', albanian: 'Tryezë e ushqimit', root: 'م-و-د', type: 'noun', gender: 'F' },
       { id: 'v5-20', arabic: 'ضَيْف', albanian: 'Mysafir', root: 'ض-ي-ف', type: 'noun', gender: 'M', plural: 'ضُيُوف' },
-      { id: 'v5-21', arabic: 'أَكَلَ', albanian: 'Hëngri', root: 'أ-ك-ل', type: 'verb' },
-      { id: 'v5-22', arabic: 'شَرِبَ', albanian: 'Piu', root: 'ش-ر-ب', type: 'verb' },
-      { id: 'v5-23', arabic: 'طَلَبَ', albanian: 'Kërkoi', root: 'ط-ل-ب', type: 'verb' },
-      { id: 'v5-24', arabic: 'فَضَّلَ', albanian: 'Preferoi', root: 'ف-ض-ل', type: 'verb' },
+      { id: 'v5-21', arabic: 'أَكَلَ', present: 'يَأْكُلُ', imperative: 'كُلْ', albanian: 'Hëngri', root: 'أ-ك-ل', type: 'verb' },
+      { id: 'v5-22', arabic: 'شَرِبَ', present: 'يَشْرَبُ', imperative: 'اِشْرَبْ', albanian: 'Piu', root: 'ش-ر-ب', type: 'verb' },
+      { id: 'v5-23', arabic: 'طَلَبَ', present: 'يَطْلُبُ', imperative: 'اُطْلُبْ', albanian: 'Kërkoi', root: 'ط-ل-ب', type: 'verb' },
+      { id: 'v5-24', arabic: 'فَضَّلَ', present: 'يُفَضِّلُ', imperative: 'فَضِّلْ', albanian: 'Preferoi', root: 'ف-ض-ل', type: 'verb' },
       { id: 'v5-25', arabic: 'جَائِع', albanian: 'I uritur', root: 'ج-و-ع', type: 'adjective', gender: 'M' },
       { id: 'v5-26', arabic: 'شَبْعَان', albanian: 'I ngopur', root: 'ش-ب-ع', type: 'adjective', gender: 'M' },
       { id: 'v5-27', arabic: 'كَثِير', albanian: 'Shumë', root: 'ك-ث-ر', type: 'adjective', gender: 'M' },
@@ -487,7 +490,7 @@ export const CHAPTERS: Chapter[] = [
         arabic:
           'كُلَّ صَبَاحٍ يَأْكُلُ مُوسَى الخُبْزَ بِالتَّمْرِ وَيَشْرَبُ الحَلِيبَ مَعَ الشَّايِ. فِي الغَدَاءِ تَطْبُخُ الوَالِدَةُ الأَرُزَّ مَعَ اللَّحْمِ وَسَلَطَةً طَازَجَةً. الوَالِدُ يُفَضِّلُ القَهْوَةَ بِدُونِ سُكَّرٍ، وَالأُخْتُ الصَّغِيرَةُ تَطْلُبُ الفَاكِهَةَ بَعْدَ الطَّعَامِ. فِي المَسَاءِ نَتَنَاوَلُ عَشَاءً خَفِيفاً — سَمَكاً أَوْ دَجَاجاً مَعَ الخُضَارِ. الضُّيُوفُ يَأْتُونَ كَثِيراً إِلَى بَيْتِنَا، فَتُعِدُّ الوَالِدَةُ مَائِدَةً جَمِيلَةً لَهُمْ. المَاءُ أَنْفَعُ شَرَابٍ، وَلَا نَأْكُلُ كَثِيراً حَتَّى لَا نَكُونَ ثِقَالاً.',
         transliteration:
-          "Kulle sabahin je'kulu Musa el-khubze bit-temri ve jeshrebul halibe ma'ash-shaj. Fil gada tetbukhul walide el-erruzze ma'al lahm ve selete tazexhe. El-walid jufeddilul kahwe bi dunis-sukker, vel ukht es-sagire tetlubul fakihe ba'det-ta'am. Fil mesa netenewelu ‘asha’en khafifen — semeken ev dexhaxhen ma‘al khudar. Ed-dujuf je’tune kethiren ila bejtina, fe tu‘iddul walide maideten xhemile lehum. El-mau enfe‘u sharabin, ve la ne’kulu kethiren hatta la nekune thikalen.",
+          "Kul-le sabahin je'kulu Musa el-khubze bit-temri ve jeshrebul halibe ma'ash-shaj. Fil gada tetbukhul walide el-erruzze ma‘al-lahm ve selete tazexhe. El-walid jufeddilul kahwe bi dunis-sukker, vel ukht es-sagire tetlubul fakihe ba'det-ta'am. Fil mesa netenewelu ‘asha’en khafifen — semeken ev dexhaxhen ma‘al khudar. Ed-dujuf je’tune kethiren ila bejtina, fe tu‘iddul walide maideten xhemile lehum. El-mau enfe‘u sharabin, ve la ne’kulu kethiren hatta la nekune thikalen.",
       },
     ],
   },
@@ -555,11 +558,11 @@ export const CHAPTERS: Chapter[] = [
       { id: 'v6-16', arabic: 'مَرِيض', albanian: 'I sëmurë', root: 'م-ر-ض', type: 'adjective', gender: 'M', plural: 'مَرْضَى' },
       { id: 'v6-17', arabic: 'كَسْلَان', albanian: 'Dembel', root: 'ك-س-ل', type: 'adjective', gender: 'M', plural: 'كُسَالَى' },
       { id: 'v6-18', arabic: 'نَشِيط', albanian: 'Aktiv', root: 'ن-ش-ط', type: 'adjective', gender: 'M' },
-      { id: 'v6-19', arabic: 'سَمِعَ', albanian: 'Dëgjoi', root: 'س-م-ع', type: 'verb' },
-      { id: 'v6-20', arabic: 'اسْتَطَاعَ', albanian: 'Mundi', root: 'ط-و-ع', type: 'verb' },
-      { id: 'v6-21', arabic: 'رَكِبَ', albanian: 'Hipi', root: 'ر-ك-ب', type: 'verb' },
-      { id: 'v6-22', arabic: 'انْتَظَرَ', albanian: 'Priti', root: 'ن-ظ-ر', type: 'verb' },
-      { id: 'v6-23', arabic: 'وَضَعَ', albanian: 'Vendosi', root: 'و-ض-ع', type: 'verb' },
+      { id: 'v6-19', arabic: 'سَمِعَ', present: 'يَسْمَعُ', imperative: 'اِسْمَعْ', albanian: 'Dëgjoi', root: 'س-م-ع', type: 'verb' },
+      { id: 'v6-20', arabic: 'اسْتَطَاعَ', present: 'يَسْتَطِيعُ', imperative: 'اِسْتَطِعْ', albanian: 'Mundi', root: 'ط-و-ع', type: 'verb' },
+      { id: 'v6-21', arabic: 'رَكِبَ', present: 'يَرْكَبُ', imperative: 'اِرْكَبْ', albanian: 'Hipi', root: 'ر-ك-ب', type: 'verb' },
+      { id: 'v6-22', arabic: 'انْتَظَرَ', present: 'يَنْتَظِرُ', imperative: 'اِنْتَظِرْ', albanian: 'Priti', root: 'ن-ظ-ر', type: 'verb' },
+      { id: 'v6-23', arabic: 'وَضَعَ', present: 'يَضَعُ', imperative: 'ضَعْ', albanian: 'Vendosi', root: 'و-ض-ع', type: 'verb' },
       { id: 'v6-24', arabic: 'قَرِيب', albanian: 'I afërt', root: 'ق-ر-ب', type: 'adjective', gender: 'M' },
       { id: 'v6-25', arabic: 'بَعِيد', albanian: 'I largët', root: 'ب-ع-د', type: 'adjective', gender: 'M' },
       { id: 'v6-26', arabic: 'بِجَانِبِ', albanian: 'Pranë', root: 'ج-ن-ب', type: 'particle' },
@@ -581,7 +584,7 @@ export const CHAPTERS: Chapter[] = [
         arabic:
           'يَضَعُ مُوسَى المُنَبِّهَ قَبْلَ النَّوْمِ، لِئَلَّا يَتَأَخَّرَ عَنْ صَلَاةِ الفَجْرِ. عِنْدَمَا يَسْمَعُ الأَذَانَ يَقُومُ سَرِيعاً وَيَتَوَضَّأُ. المَسْجِدُ قَرِيبٌ مِنْ بَيْتِهِ، بِجَانِبِ الحَدِيقَةِ، وَلَكِنَّهُ يَرْكَبُ السَّيَّارَةَ أَحْيَاناً حِينَ يَنْزِلُ مَطَرٌ كَثِيرٌ. فِي المَسْجِدِ يَلْتَقِي بِأَصْدِقَائِهِ وَيَتَعَلَّمُ الآيَاتِ مِنَ الإِمَامِ. إِنْ شَاءَ اللَّهُ يَوْماً مَا سَيُصَلِّي فِي المَسْجِدِ النَّبَوِيِّ بِالمَدِينَةِ وَفِي المَسْجِدِ الحَرَامِ بِمَكَّةَ. الصَّلَاةُ لَيْسَتْ لِلْكُسَالَى، بَلْ لِلْمُؤْمِنِينَ النَّشِيطِينَ الَّذِينَ يُحِبُّونَ اللَّهَ.',
         transliteration:
-          "Jeda‘u Musa el-munebbihe kabled-nevm, li’ella jete’ekhkhare ‘an salatil fexhr. ‘Indema jesme‘ul edhan jekumu seri‘an ve jetevedda. El-mesxhidu karibun min bejtihi, bi xhanibil hadika, ve lakinnehu jerkebus-sejjare ehjanen hine jenzilu meterun kethir. Fil mesxhid jeltaki bi asdikaihi ve jete‘allemul ajati minel imam. Inshallah jewmen ma sejusalli fil mesxhidin-nebevijj bil medine ve fil mesxhidil harami bi Mekke. Es-salatu lejset lil kusala, bel lil mu’minin en-neshitin elledhine juhibbunAllah.",
+          "Jeda‘u Musa el-munebbihe kabled-nevm, li’ella jete’ekhkhare ‘an salatil fexhr. ‘Indema jesme‘ul edhan jekumu seri‘an ve jetevedda. El-mesxhidu karibun min bejtihi, bi xhanibil hadika, ve lakinnehu jerkebus-sejjare ehjanen hine jenzilu meterun kethir. Fil mesxhid jeltaki bi asdikaihi ve jete‘al-lemul ajati minel imam. Inshallah jewmen ma sejusal-li fil mesxhidin-nebevijj bil medine ve fil mesxhidil harami bi Mekke. Es-salatu lejset lil kusala, bel lil mu’minin en-neshitin el-ledhine juhibbunAllah.",
       },
     ],
   },
@@ -651,12 +654,12 @@ export const CHAPTERS: Chapter[] = [
       { id: 'v7-18', arabic: 'لُغَة', albanian: 'Gjuhë', root: 'ل-غ-و', type: 'noun', gender: 'F', plural: 'لُغَات' },
       { id: 'v7-19', arabic: 'عِلْم', albanian: 'Shkencë / dije', root: 'ع-ل-م', type: 'noun', gender: 'M', plural: 'عُلُوم' },
       { id: 'v7-20', arabic: 'رِيَاضِيَّات', albanian: 'Matematikë', root: 'ر-و-ض', type: 'noun', gender: 'F' },
-      { id: 'v7-21', arabic: 'بَدَأَ', albanian: 'Filloi', root: 'ب-د-ء', type: 'verb' },
-      { id: 'v7-22', arabic: 'انْتَهَى', albanian: 'Mbaroi', root: 'ن-ه-ي', type: 'verb' },
-      { id: 'v7-23', arabic: 'كَتَبَ', albanian: 'Shkroi', root: 'ك-ت-ب', type: 'verb' },
-      { id: 'v7-24', arabic: 'دَرَسَ', albanian: 'Studioi', root: 'د-ر-س', type: 'verb' },
-      { id: 'v7-25', arabic: 'كَانَ', albanian: 'Ishte', root: 'ك-و-ن', type: 'verb' },
-      { id: 'v7-26', arabic: 'نَظَرَ', albanian: 'Shikoi', root: 'ن-ظ-ر', type: 'verb' },
+      { id: 'v7-21', arabic: 'بَدَأَ', present: 'يَبْدَأُ', imperative: 'اِبْدَأْ', albanian: 'Filloi', root: 'ب-د-ء', type: 'verb' },
+      { id: 'v7-22', arabic: 'انْتَهَى', present: 'يَنْتَهِي', imperative: 'اِنْتَهِ', albanian: 'Mbaroi', root: 'ن-ه-ي', type: 'verb' },
+      { id: 'v7-23', arabic: 'كَتَبَ', present: 'يَكْتُبُ', imperative: 'اُكْتُبْ', albanian: 'Shkroi', root: 'ك-ت-ب', type: 'verb' },
+      { id: 'v7-24', arabic: 'دَرَسَ', present: 'يَدْرُسُ', imperative: 'اُدْرُسْ', albanian: 'Studioi', root: 'د-ر-س', type: 'verb' },
+      { id: 'v7-25', arabic: 'كَانَ', present: 'يَكُونُ', imperative: 'كُنْ', albanian: 'Ishte', root: 'ك-و-ن', type: 'verb' },
+      { id: 'v7-26', arabic: 'نَظَرَ', present: 'يَنْظُرُ', imperative: 'اُنْظُرْ', albanian: 'Shikoi', root: 'ن-ظ-ر', type: 'verb' },
       { id: 'v7-27', arabic: 'طَوِيل', albanian: 'I gjatë', root: 'ط-و-ل', type: 'adjective', gender: 'M' },
       { id: 'v7-28', arabic: 'قَصِير', albanian: 'I shkurtër', root: 'ق-ص-ر', type: 'adjective', gender: 'M' },
     ],
@@ -676,7 +679,7 @@ export const CHAPTERS: Chapter[] = [
         arabic:
           'يَدْرُسُ مُوسَى فِي الجَامِعَةِ الإِسْلَامِيَّةِ مُنْذُ عَامَيْنِ. يَبْدَأُ الدَّرْسُ فِي السَّاعَةِ الثَّامِنَةِ صَبَاحاً وَيَنْتَهِي فِي السَّاعَةِ الثَّانِيَةِ ظُهْراً. بَعْدَ الحِصَّةِ الأُولَى اسْتِرَاحَةٌ نِصْفُ سَاعَةٍ، يَشْرَبُ فِيهَا الطُّلَّابُ الشَّايَ وَيَتَكَلَّمُونَ عَنِ الجَدْوَلِ. مَادَّتُهُ المُفَضَّلَةُ هِيَ اللُّغَةُ العَرَبِيَّةُ، ثُمَّ الرِّيَاضِيَّاتُ وَالعُلُومُ. فِي المَكْتَبَةِ يَكْتُبُ الوَاجِبَاتِ وَيَقْرَأُ الكُتُبَ الجَدِيدَةَ كُلَّ يَوْمٍ. فِي المُخْتَبَرِ يَسْتَخْدِمُ الحَاسُوبَ لِتَعَلُّمِ الإِمْلَاءِ. الاخْتِبَارَاتُ يَوْمَ السَّبْتِ، فَيَدْرُسُ مُوسَى كَثِيراً فِي المَسَاءِ. بَارَكَ اللَّهُ لَهُ فِي العِلْمِ الَّذِي يَأْخُذُهُ.',
         transliteration:
-          "Jedrusu Musa fil xhami‘atil islamijje mundhu ‘amejn. Jebdeud-dersu fis-sa‘atith-thamine sabahan ve jentehi fis-sa‘atith-thanije zuhren. Ba‘del hissetil ula istiraha nisfu sa‘a, jeshrebu fihet-tullabush-shaj ve jetekellemun ‘anil xhedvel. Maddetuhul mufaddale hijel lugatul ‘arabijje, thummer-rijadijjat vel ‘ulum. Fil mektebe jektubul vaxhibat ve jakraul kutubel xhedide kulle jewm. Fil mukhtebar jestakhdimul hasub li te‘allumil imla. El-ikhtibaratu jewmes-sebt, fejedrusu Musa kethiren fil mesa. BarekAllahu lehu fil ‘ilmilledhi je’khudhuh.",
+          "Jedrusu Musa fil xhami‘atil islamijje mundhu ‘amejn. Jebdeud-dersu fis-sa‘atith-thamine sabahan ve jentehi fis-sa‘atith-thanije zuhren. Ba‘del hissetil ula istiraha nisfu sa‘a, jeshrebu fihet-tullabush-shaj ve jetekel-lemun ‘anil xhedvel. Maddetuhul mufaddale hijel lugatul ‘arabijje, thummer-rijadijjat vel ‘ulum. Fil mektebe jektubul vaxhibat ve jakraul kutubel xhedide kul-le jewm. Fil mukhtebar jestakhdimul hasub li te‘al-lumil imla. El-ikhtibaratu jewmes-sebt, fejedrusu Musa kethiren fil mesa. BarekAllahu lehu fil ‘ilmil-ledhi je’khudhuh.",
       },
     ],
   },
@@ -710,7 +713,7 @@ export const CHAPTERS: Chapter[] = [
         id: 'd8-4',
         albanian: 'Motra ime studion në Fakultetin e Farmacisë.',
         arabic: 'أُخْتِي تَدْرُسُ فِي كُلِّيَّةِ الصَّيْدَلَةِ.',
-        transliteration: 'Ukhti tedrusu fi kullijjetis-sajdele.',
+        transliteration: 'Ukhti tedrusu fi kul-lijjetis-sajdele.',
       },
       {
         id: 'd8-5',
@@ -722,7 +725,7 @@ export const CHAPTERS: Chapter[] = [
         id: 'd8-6',
         albanian: 'E dua punën time dhe i dua fëmijët që mësoj.',
         arabic: 'أُحِبُّ عَمَلِي وَأُحِبُّ الأَطْفَالَ الَّذِينَ أُدَرِّسُهُمْ.',
-        transliteration: 'Uhibbu ‘ameli ve uhibbul etfale elledhine uderrisuhum.',
+        transliteration: 'Uhibbu ‘ameli ve uhibbul etfale el-ledhine uderrisuhum.',
       },
     ],
     vocabulary: [
@@ -746,9 +749,9 @@ export const CHAPTERS: Chapter[] = [
       { id: 'v8-18', arabic: 'كُلِّيَّةُ الصَّيْدَلَة', albanian: 'Fakulteti i Farmacisë', root: 'ص-ي-د-ل', type: 'noun', gender: 'F' },
       { id: 'v8-19', arabic: 'كُلِّيَّةُ التَّمْرِيض', albanian: 'Fakulteti i Infermierisë', root: 'م-ر-ض', type: 'noun', gender: 'F' },
       { id: 'v8-20', arabic: 'كُلِّيَّةُ الطَّيَرَان', albanian: 'Fakulteti i Aviacionit', root: 'ط-ي-ر', type: 'noun', gender: 'F' },
-      { id: 'v8-21', arabic: 'طَارَ', albanian: 'Fluturoi', root: 'ط-ي-ر', type: 'verb' },
-      { id: 'v8-22', arabic: 'أَحَبَّ', albanian: 'E deshi', root: 'ح-ب-ب', type: 'verb' },
-      { id: 'v8-23', arabic: 'دَرَّسَ', albanian: 'Mësoi (dikë)', root: 'د-ر-س', type: 'verb' },
+      { id: 'v8-21', arabic: 'طَارَ', present: 'يَطِيرُ', imperative: 'طِرْ', albanian: 'Fluturoi', root: 'ط-ي-ر', type: 'verb' },
+      { id: 'v8-22', arabic: 'أَحَبَّ', present: 'يُحِبُّ', imperative: 'أَحْبِبْ', albanian: 'E deshi', root: 'ح-ب-ب', type: 'verb' },
+      { id: 'v8-23', arabic: 'دَرَّسَ', present: 'يُدَرِّسُ', imperative: 'دَرِّسْ', albanian: 'Mësoi (dikë)', root: 'د-ر-س', type: 'verb' },
       { id: 'v8-24', arabic: 'سَنَة', albanian: 'Vit', root: 'س-ن-و', type: 'noun', gender: 'F', plural: 'سَنَوَات' },
     ],
     grammarFocus: [
@@ -767,7 +770,7 @@ export const CHAPTERS: Chapter[] = [
         arabic:
           'أُسْرَةُ مُوسَى مَلِيئَةٌ بِالمِهَنِ النَّافِعَةِ. الوَالِدُ طَبِيبٌ فِي المُسْتَشْفَى وَيَعْمَلُ سَاعَاتٍ طَوِيلَةً. الوَالِدَةُ تَخَرَّجَتْ مِنْ كُلِّيَّةِ التَّرْبِيَةِ وَتُدَرِّسُ الأَطْفَالَ فِي المَرْحَلَةِ الابْتِدَائِيَّةِ. الأُخْتُ تَدْرُسُ الصَّيْدَلَةَ وَتُرِيدُ أَنْ تَفْتَحَ صَيْدَلِيَّةً خَاصَّةً. الأَخُ الصَّغِيرُ يَحْلُمُ أَنْ يَكُونَ طَيَّاراً وَأَنْ يَطِيرَ فِي السَّمَاءِ. يُفَكِّرُ مُوسَى أَنْ يَكُونَ مُهَنْدِساً بَعْدَ المَرْحَلَةِ الثَّانَوِيَّةِ، وَلَكِنَّهُ سَيُكْمِلُ الدِّرَاسَةَ بِتَفَوُّقٍ أَوَّلاً. كُلُّ مِهْنَةٍ نِعْمَةٌ مِنَ اللَّهِ إِذَا كَانَتْ بِنِيَّةٍ صَالِحَةٍ وَإِخْلَاصٍ.',
         transliteration:
-          "Usretu Musa meli’e bil mihenin-nafi‘a. El-walid tabibun fil mustashfa ve ja‘melu sa‘atin tavile. El-walide tekharrexhet min kullijjetit-terbije ve tuderrisul etfal fil merhaletil ibtida’ijje. El-ukht tedrusus-sajdele ve turidu en teftaha sajdelijjeten khasse. El-akhus-sagir jehlumu en jekune tajjaren ve en jetire fis-sema’. Jufekkiru Musa en jekune muhendisen ba‘del merhaletith-thanevijje, ve lakinnehu sejukmilud-dirase bi tefevvukin evvelen. Kullu mihnetin ni‘metun minAllahi idha kanet bi nijjetin saliha ve ikhlas.",
+          "Usretu Musa meli’e bil mihenin-nafi‘a. El-walid tabibun fil mustashfa ve ja‘melu sa‘atin tavile. El-walide tekharrexhet min kul-lijjetit-terbije ve tuderrisul etfal fil merhaletil ibtida’ijje. El-ukht tedrusus-sajdele ve turidu en teftaha sajdelijjeten khasse. El-akhus-sagir jehlumu en jekune tajjaren ve en jetire fis-sema’. Jufekkiru Musa en jekune muhendisen ba‘del merhaletith-thanevijje, ve lakinnehu sejukmilud-dirase bi tefevvukin evvelen. Kul-lu mihnetin ni‘metun minAllahi idha kanet bi nijjetin saliha ve ikhlas.",
       },
     ],
   },
@@ -837,10 +840,10 @@ export const CHAPTERS: Chapter[] = [
       { id: 'v9-18', arabic: 'لَوْ سَمَحْتَ', albanian: 'Të lutem', root: 'س-م-ح', type: 'particle' },
       { id: 'v9-19', arabic: 'مَطْلُوب', albanian: 'I kërkuar', root: 'ط-ل-ب', type: 'adjective' },
       { id: 'v9-20', arabic: 'مُعْجَم', albanian: 'Fjalor', root: 'ع-ج-م', type: 'noun', gender: 'M', plural: 'مَعَاجِم' },
-      { id: 'v9-21', arabic: 'اشْتَرَى', albanian: 'Bleu', root: 'ش-ر-ي', type: 'verb' },
-      { id: 'v9-22', arabic: 'بَاعَ', albanian: 'Shiti', root: 'ب-ي-ع', type: 'verb' },
-      { id: 'v9-23', arabic: 'دَفَعَ', albanian: 'Pagoi', root: 'د-ف-ع', type: 'verb' },
-      { id: 'v9-24', arabic: 'أَعْطَى', albanian: 'Dha', root: 'ع-ط-و', type: 'verb' },
+      { id: 'v9-21', arabic: 'اشْتَرَى', present: 'يَشْتَرِي', imperative: 'اِشْتَرِ', albanian: 'Bleu', root: 'ش-ر-ي', type: 'verb' },
+      { id: 'v9-22', arabic: 'بَاعَ', present: 'يَبِيعُ', imperative: 'بِعْ', albanian: 'Shiti', root: 'ب-ي-ع', type: 'verb' },
+      { id: 'v9-23', arabic: 'دَفَعَ', present: 'يَدْفَعُ', imperative: 'اِدْفَعْ', albanian: 'Pagoi', root: 'د-ف-ع', type: 'verb' },
+      { id: 'v9-24', arabic: 'أَعْطَى', present: 'يُعْطِي', imperative: 'أَعْطِ', albanian: 'Dha', root: 'ع-ط-و', type: 'verb' },
       { id: 'v9-25', arabic: 'بِكَمْ', albanian: 'Për sa? (çmimi)', root: 'ك-م', type: 'particle' },
       { id: 'v9-26', arabic: 'عِشْرُونَ', albanian: 'Njëzet (20)', root: 'ع-ش-ر', type: 'particle' },
       { id: 'v9-27', arabic: 'ثَلَاثُونَ', albanian: 'Tridhjetë (30)', root: 'ث-ل-ث', type: 'particle' },
@@ -908,7 +911,7 @@ export const CHAPTERS: Chapter[] = [
         id: 'd10-6',
         albanian: 'Moti është i butë; merr ombrellë.',
         arabic: 'الْجَوُّ مُعْتَدِلٌ؛ خُذْ مِظَلَّةً.',
-        transliteration: 'El-xhevvu mu‘tedil; khudh mizalleten.',
+        transliteration: 'El-xhevvu mu‘tedil; khudh mizal-leten.',
       },
     ],
     vocabulary: [
@@ -927,8 +930,8 @@ export const CHAPTERS: Chapter[] = [
       { id: 'v10-13', arabic: 'مُعْتَدِل', albanian: 'I butë (mot)', root: 'ع-د-ل', type: 'adjective', gender: 'M' },
       { id: 'v10-14', arabic: 'دَرَجَةُ الْحَرَارَة', albanian: 'Temperatura', root: 'ح-ر-ر', type: 'noun', gender: 'F' },
       { id: 'v10-15', arabic: 'مِظَلَّة', albanian: 'Ombrellë', root: 'ظ-ل-ل', type: 'noun', gender: 'F' },
-      { id: 'v10-16', arabic: 'أَمْطَرَ', albanian: 'Ra shi', root: 'م-ط-ر', type: 'verb' },
-      { id: 'v10-17', arabic: 'يُمْطِر', albanian: 'Bie shi (tash)', root: 'م-ط-ر', type: 'verb' },
+      { id: 'v10-16', arabic: 'أَمْطَرَ', present: 'يُمْطِرُ', imperative: '—', albanian: 'Ra shi / Bie shi', root: 'م-ط-ر', type: 'verb' },
+      { id: 'v10-17', arabic: 'لَبِسَ', present: 'يَلْبَسُ', imperative: 'اِلْبَسْ', albanian: 'Veshi (rroba)', root: 'ل-ب-س', type: 'verb' },
       { id: 'v10-18', arabic: 'أَبْيَض', albanian: 'I bardhë', root: 'ب-ي-ض', type: 'adjective', gender: 'M' },
       { id: 'v10-19', arabic: 'أَسْوَد', albanian: 'I zi', root: 'س-و-د', type: 'adjective', gender: 'M' },
       { id: 'v10-20', arabic: 'أَحْمَر', albanian: 'I kuq', root: 'ح-م-ر', type: 'adjective', gender: 'M' },
@@ -1018,11 +1021,11 @@ export const CHAPTERS: Chapter[] = [
       { id: 'v11-15', arabic: 'مُشْكِلَة', albanian: 'Problem', root: 'ش-ك-ل', type: 'noun', gender: 'F', plural: 'مَشَاكِل' },
       { id: 'v11-16', arabic: 'صَدِيق', albanian: 'Shok', root: 'ص-د-ق', type: 'noun', gender: 'M', plural: 'أَصْدِقَاء' },
       { id: 'v11-17', arabic: 'سُوق', albanian: 'Treg', root: 'س-و-ق', type: 'noun', gender: 'M', plural: 'أَسْوَاق' },
-      { id: 'v11-18', arabic: 'سَافَرَ', albanian: 'Udhëtoi', root: 'س-ف-ر', type: 'verb' },
-      { id: 'v11-19', arabic: 'رَكِبَ', albanian: 'Hipi (mjet)', root: 'ر-ك-ب', type: 'verb' },
-      { id: 'v11-20', arabic: 'زَارَ', albanian: 'Vizitoi', root: 'ز-و-ر', type: 'verb' },
-      { id: 'v11-21', arabic: 'اِسْتَغْرَقَ', albanian: 'Zgjati (kohë)', root: 'غ-ر-ق', type: 'verb' },
-      { id: 'v11-22', arabic: 'اِنْتَقَلَ', albanian: 'U zhvendos', root: 'ن-ق-ل', type: 'verb' },
+      { id: 'v11-18', arabic: 'سَافَرَ', present: 'يُسَافِرُ', imperative: 'سَافِرْ', albanian: 'Udhëtoi', root: 'س-ف-ر', type: 'verb' },
+      { id: 'v11-19', arabic: 'رَكِبَ', present: 'يَرْكَبُ', imperative: 'اِرْكَبْ', albanian: 'Hipi (mjet)', root: 'ر-ك-ب', type: 'verb' },
+      { id: 'v11-20', arabic: 'زَارَ', present: 'يَزُورُ', imperative: 'زُرْ', albanian: 'Vizitoi', root: 'ز-و-ر', type: 'verb' },
+      { id: 'v11-21', arabic: 'اِسْتَغْرَقَ', present: 'يَسْتَغْرِقُ', imperative: 'اِسْتَغْرِقْ', albanian: 'Zgjati (kohë)', root: 'غ-ر-ق', type: 'verb' },
+      { id: 'v11-22', arabic: 'اِنْتَقَلَ', present: 'يَنْتَقِلُ', imperative: 'اِنْتَقِلْ', albanian: 'U zhvendos', root: 'ن-ق-ل', type: 'verb' },
       { id: 'v11-23', arabic: 'وَلَكِنْ', albanian: 'Por / Mirëpo', root: 'ل-ك-ن', type: 'particle' },
     ],
     grammarFocus: [
@@ -1080,7 +1083,7 @@ export const CHAPTERS: Chapter[] = [
         id: 'd12-5',
         albanian: 'Çdo javë lexoj një revistë dhe një libër islamik.',
         arabic: 'كُلَّ أُسْبُوعٍ أَقْرَأُ مَجَلَّةً وَكِتَاباً إِسْلَامِيّاً.',
-        transliteration: "Kulle usbu‘in akrau mexhelleten ve kitaben islamijjen.",
+        transliteration: "Kul-le usbu‘in akrau mexhel-leten ve kitaben islamijjen.",
       },
       {
         id: 'd12-6',
@@ -1110,9 +1113,9 @@ export const CHAPTERS: Chapter[] = [
       { id: 'v12-18', arabic: 'مُرَاسَلَة', albanian: 'Korrespondencë', root: 'ر-س-ل', type: 'noun', gender: 'F' },
       { id: 'v12-19', arabic: 'تَدْبِيرُ الْمَنْزِل', albanian: 'Menaxhim shtëpie', root: 'د-ب-ر', type: 'noun', gender: 'M' },
       { id: 'v12-20', arabic: 'مُفِيد', albanian: 'I dobishëm', root: 'ف-ي-د', type: 'adjective', gender: 'M' },
-      { id: 'v12-21', arabic: 'اِخْتَارَ', albanian: 'Zgjodhi', root: 'خ-ي-ر', type: 'verb' },
-      { id: 'v12-22', arabic: 'جَمَعَ', albanian: 'Mblodhi', root: 'ج-م-ع', type: 'verb' },
-      { id: 'v12-23', arabic: 'فَضَّلَ', albanian: 'Preferoi', root: 'ف-ض-ل', type: 'verb' },
+      { id: 'v12-21', arabic: 'اِخْتَارَ', present: 'يَخْتَارُ', imperative: 'اِخْتَرْ', albanian: 'Zgjodhi', root: 'خ-ي-ر', type: 'verb' },
+      { id: 'v12-22', arabic: 'جَمَعَ', present: 'يَجْمَعُ', imperative: 'اِجْمَعْ', albanian: 'Mblodhi', root: 'ج-م-ع', type: 'verb' },
+      { id: 'v12-23', arabic: 'فَضَّلَ', present: 'يُفَضِّلُ', imperative: 'فَضِّلْ', albanian: 'Preferoi', root: 'ف-ض-ل', type: 'verb' },
     ],
     grammarFocus: [
       'Dualis (muthenna): رِيَاضَتَانِ مُفِيدَتَانِ — "dy sporte të dobishme"',
@@ -1129,7 +1132,7 @@ export const CHAPTERS: Chapter[] = [
         arabic:
           'لِكُلِّ فَرْدٍ مِنْ أُسْرَةِ مُوسَى هِوَايَةٌ مُفَضَّلَةٌ. مُوسَى يُحِبُّ كُرَةَ الْقَدَمِ وَالسِّبَاحَةَ لِأَنَّهُمَا رِيَاضَتَانِ مُفِيدَتَانِ لِلْجِسْمِ. أُخْتُهُ آمِنَةُ تَتَدَرَّبُ عَلَى الْخَطِّ الْعَرَبِيِّ — خَطِّ الرُّقْعَةِ وَخَطِّ النَّسْخِ — وَتَكْتُبُ آيَاتٍ جَمِيلَةً لِمَعْرِضِ الْمَدْرَسَةِ. الْعَمُّ يَجْمَعُ الطَّوَابِعَ مِنْ بِلَادٍ كَثِيرَةٍ، وَعِنْدَهُ أَكْثَرُ مِنْ مِئَةِ طَابِعٍ. الأُمُّ تَقْرَأُ الْكُتُبَ الإِسْلَامِيَّةَ وَالْمَجَلَّاتِ كُلَّ أُسْبُوعٍ، وَتُحَدِّثُ الأَوْلَادَ عَنِ الْقِصَصِ الَّتِي تَجِدُهَا فِيهَا. وَقَدْ بَدَأَ مُوسَى مُرَاسَلَةً مَعَ صَدِيقٍ مِنْ مِصْرَ لِيَتَدَرَّبَ عَلَى الْعَرَبِيَّةِ. الْهِوَايَاتُ مُفِيدَةٌ حِينَ تُعَلِّمُنَا شَيْئاً جَدِيداً.',
         transliteration:
-          "Li kulli ferdin min usreti Musa hiwajetun mufaddale. Musa juhibbu kuret el-kadem ves-sibahate li ennehuma rijadetani mufidetani lil xhism. Ukhtuhu Amine tetederrebu alel khatt el-arabijj — khatt er-rukati ve khatt en-neskh — ve tektubu ajatin xhemileten li ma‘ridil medrese. El-ammu jexhmeu et-tevabia min biladin kethire, ve indehu ektheru min mi‘eti tabi‘. El-ummu tekrau el-kutubel islamijjete vel mexhellati kulle usbu‘, ve tuhaddithul evlade anil kisesil leti texhiduha fiha. Ve kad bedee Musa muraseleten me‘a sadikin min Misr li jetederrebe alel arabijje. El-hiwajatu mufidetun hine tu‘allimuna shej’en xhedida.",
+          "Li kul-li ferdin min usreti Musa hiwajetun mufaddale. Musa juhibbu kuret el-kadem ves-sibahate li ennehuma rijadetani mufidetani lil xhism. Ukhtuhu Amine tetederrebu alel khatt el-arabijj — khatt er-rukati ve khatt en-neskh — ve tektubu ajatin xhemileten li ma‘ridil medrese. El-ammu jexhmeu et-tevabia min biladin kethire, ve indehu ektheru min mi‘eti tabi‘. El-ummu tekrau el-kutubel islamijjete vel mexhel-lati kul-le usbu‘, ve tuhaddithul evlade anil kisesil-leti texhiduha fiha. Ve kad bedee Musa muraseleten me‘a sadikin min Misr li jetederrebe alel arabijje. El-hiwajatu mufidetun hine tu‘al-limuna shej’en xhedida.",
       },
     ],
   },
@@ -1196,13 +1199,13 @@ export const CHAPTERS: Chapter[] = [
       { id: 'v13-15', arabic: 'جَنُوب', albanian: 'Jug', root: 'ج-ن-ب', type: 'noun', gender: 'M' },
       { id: 'v13-16', arabic: 'شَمَال', albanian: 'Veri', root: 'ش-م-ل', type: 'noun', gender: 'M' },
       { id: 'v13-17', arabic: 'قَادِم', albanian: 'I ardhshëm', root: 'ق-د-م', type: 'adjective', gender: 'M' },
-      { id: 'v13-18', arabic: 'أَقَامَ', albanian: 'Qëndroi (banoi)', root: 'ق-و-م', type: 'verb' },
+      { id: 'v13-18', arabic: 'أَقَامَ', present: 'يُقِيمُ', imperative: 'أَقِمْ', albanian: 'Qëndroi (banoi)', root: 'ق-و-م', type: 'verb' },
       { id: 'v13-19', arabic: 'إِقَامَة', albanian: 'Qëndrim / Leje qëndrimi', root: 'ق-و-م', type: 'noun', gender: 'F' },
-      { id: 'v13-20', arabic: 'فَتَحَ', albanian: 'Hapi', root: 'ف-ت-ح', type: 'verb' },
-      { id: 'v13-21', arabic: 'فَقَدَ', albanian: 'Humbi', root: 'ف-ق-د', type: 'verb' },
+      { id: 'v13-20', arabic: 'فَتَحَ', present: 'يَفْتَحُ', imperative: 'اِفْتَحْ', albanian: 'Hapi', root: 'ف-ت-ح', type: 'verb' },
+      { id: 'v13-21', arabic: 'فَقَدَ', present: 'يَفْقِدُ', imperative: 'اِفْقِدْ', albanian: 'Humbi', root: 'ف-ق-د', type: 'verb' },
       { id: 'v13-22', arabic: 'مَقْبُولَة', albanian: 'E pranuar (f.)', root: 'ق-ب-ل', type: 'adjective', gender: 'F' },
-      { id: 'v13-23', arabic: 'سَافَرَ', albanian: 'Udhëtoi', root: 'س-ف-ر', type: 'verb' },
-      { id: 'v13-24', arabic: 'وَصَلَ', albanian: 'Arriti', root: 'و-ص-ل', type: 'verb' },
+      { id: 'v13-23', arabic: 'سَافَرَ', present: 'يُسَافِرُ', imperative: 'سَافِرْ', albanian: 'Udhëtoi', root: 'س-ف-ر', type: 'verb' },
+      { id: 'v13-24', arabic: 'وَصَلَ', present: 'يَصِلُ', imperative: 'صِلْ', albanian: 'Arriti', root: 'و-ص-ل', type: 'verb' },
     ],
     grammarFocus: [
       'E ardhmja me سَـ / سَوْفَ: سَأُسَافِر, سَوْفَ أَزُور',
@@ -1293,12 +1296,12 @@ export const CHAPTERS: Chapter[] = [
       { id: 'v14-22', arabic: 'اِثْنَا عَشَرَ', albanian: 'Dymbëdhjetë (12)', root: 'ع-ش-ر', type: 'particle' },
       { id: 'v14-23', arabic: 'ثَلَاثَةَ عَشَرَ', albanian: 'Trembëdhjetë (13)', root: 'ع-ش-ر', type: 'particle' },
       { id: 'v14-24', arabic: 'تِسْعَةَ عَشَرَ', albanian: 'Nëntëmbëdhjetë (19)', root: 'ع-ش-ر', type: 'particle' },
-      { id: 'v14-25', arabic: 'أَدَّى', albanian: 'Kreu / përmbushi', root: 'أ-د-ي', type: 'verb' },
-      { id: 'v14-26', arabic: 'طَافَ', albanian: 'Bëri tavaf', root: 'ط-و-ف', type: 'verb' },
-      { id: 'v14-27', arabic: 'سَعَى', albanian: 'Bëri sai', root: 'س-ع-ي', type: 'verb' },
-      { id: 'v14-28', arabic: 'رَمَى', albanian: 'Hodhi (gurët)', root: 'ر-م-ي', type: 'verb' },
-      { id: 'v14-29', arabic: 'ذَبَحَ', albanian: 'Preu', root: 'ذ-ب-ح', type: 'verb' },
-      { id: 'v14-30', arabic: 'حَلَقَ', albanian: 'Rruajti kokën', root: 'ح-ل-ق', type: 'verb' },
+      { id: 'v14-25', arabic: 'أَدَّى', present: 'يُؤَدِّي', imperative: 'أَدِّ', albanian: 'Kreu / përmbushi', root: 'أ-د-ي', type: 'verb' },
+      { id: 'v14-26', arabic: 'طَافَ', present: 'يَطُوفُ', imperative: 'طُفْ', albanian: 'Bëri tavaf', root: 'ط-و-ف', type: 'verb' },
+      { id: 'v14-27', arabic: 'سَعَى', present: 'يَسْعَى', imperative: 'اِسْعَ', albanian: 'Bëri sai', root: 'س-ع-ي', type: 'verb' },
+      { id: 'v14-28', arabic: 'رَمَى', present: 'يَرْمِي', imperative: 'اِرْمِ', albanian: 'Hodhi (gurët)', root: 'ر-م-ي', type: 'verb' },
+      { id: 'v14-29', arabic: 'ذَبَحَ', present: 'يَذْبَحُ', imperative: 'اِذْبَحْ', albanian: 'Preu', root: 'ذ-ب-ح', type: 'verb' },
+      { id: 'v14-30', arabic: 'حَلَقَ', present: 'يَحْلِقُ', imperative: 'اِحْلِقْ', albanian: 'Rruajti kokën', root: 'ح-ل-ق', type: 'verb' },
     ],
     grammarFocus: [
       'Numrat 11–19: أَحَدَ عَشَر, اِثْنَا عَشَر, … — të dy pjesët mbi fetha',
@@ -1315,7 +1318,7 @@ export const CHAPTERS: Chapter[] = [
         arabic:
           'فِي الْعَامِ الْمَاضِي أَدَّى مُوسَى الْحَجَّ مَعَ أَبِيهِ. فِي الْمِيقَاتِ لَبِسَا ثَوْبَ الإِحْرَامِ وَبَدَآ التَّلْبِيَةَ: «لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ». وَلَمَّا وَصَلَا إِلَى مَكَّةَ، طَافَا طَوَافَ الإِفَاضَةِ سَبْعَةَ أَشْوَاطٍ حَوْلَ الْكَعْبَةِ وَصَلَّيَا رَكْعَتَيْنِ عِنْدَ مَقَامِ إِبْرَاهِيمَ. ثُمَّ سَعَيَا بَيْنَ الصَّفَا وَالْمَرْوَةِ. فِي يَوْمِ عَرَفَةَ وَقَفَا حَتَّى غُرُوبِ الشَّمْسِ وَدَعَوَا اللَّهَ بِقَلْبٍ خَاشِعٍ. وَبَاتَا فِي مُزْدَلِفَةَ وَجَمَعَا الْحَصَى. فِي الْيَوْمِ التَّالِي فِي مِنًى رَمَيَا الْجَمْرَةَ الْكُبْرَى وَذَبَحَا الْهَدْيَ وَحَلَقَا رُؤُوسَهُمَا. الْحَجُّ الْمَبْرُورُ جَزَاؤُهُ الْجَنَّةُ.',
         transliteration:
-          "Fil amil madi edda Musa el-haxhxhe me‘a ebih. Fil mikati lebisa thewbel ihrami ve bedeaet-telbije: «Lebbejkallahumme lebbejk». Ve lemma vesala ila Mekke, tafa tevafel ifadati seb‘ate eshwat hevlel ka‘be ve sallaja rek‘atejni inde mekami Ibrahim. Thumme se‘aja bejnes-safa vel merve. Fi jewmi Arafe vekafa hatta gurubish-shems ve de‘aallahe bi kalbin khashi‘. Ve bata fi Muzdelife ve xheme‘al haa. Fil jewmit-tali fi Mina remejal xhemretel kubra ve dhebehaal hedje ve halaka ru‘usehuma. El-haxhxhul mebruru xhezauhul xhenne.",
+          "Fil amil madi edda Musa el-haxhxhe me‘a ebih. Fil mikati lebisa thewbel ihrami ve bedeaet-telbije: «Lebbejkallahumme lebbejk». Ve lemma vesala ila Mekke, tafa tevafel ifadati seb‘ate eshwat hevlel ka‘be ve sal-laja rek‘atejni inde mekami Ibrahim. Thumme se‘aja bejnes-safa vel merve. Fi jewmi Arafe vekafa hatta gurubish-shems ve de‘aallahe bi kalbin khashi‘. Ve bata fi Muzdelife ve xheme‘al haa. Fil jewmit-tali fi Mina remejal xhemretel kubra ve dhebehaal hedje ve halaka ru‘usehuma. El-haxhxhul mebruru xhezauhul xhenne.",
       },
     ],
   },
@@ -1355,7 +1358,7 @@ export const CHAPTERS: Chapter[] = [
         id: 'd15-5',
         albanian: 'Ju këshilloj të hani perime, të pushoni dhe të pini pak kripë.',
         arabic: 'أَنْصَحُكَ بِأَكْلِ الْخُضْرَوَاتِ وَالرَّاحَةِ وَقِلَّةِ الْمِلْحِ.',
-        transliteration: 'Ensahuke bi ekli el-khudraveti verr-raha ve killetil milh.',
+        transliteration: 'Ensahuke bi ekli el-khudraveti verr-raha ve kil-letil milh.',
       },
       {
         id: 'd15-6',
@@ -1388,9 +1391,9 @@ export const CHAPTERS: Chapter[] = [
       { id: 'v15-21', arabic: 'خُضْرَوَات', albanian: 'Perime', root: 'خ-ض-ر', type: 'noun', gender: 'F' },
       { id: 'v15-22', arabic: 'مِلْح', albanian: 'Kripë', root: 'م-ل-ح', type: 'noun', gender: 'M' },
       { id: 'v15-23', arabic: 'مُمَارَسَة', albanian: 'Ushtrim / Praktikë', root: 'م-ر-س', type: 'noun', gender: 'F' },
-      { id: 'v15-24', arabic: 'أَصَابَ', albanian: 'E goditi (sëmundja)', root: 'ص-و-ب', type: 'verb' },
-      { id: 'v15-25', arabic: 'فَحَصَ', albanian: 'Ekzaminoi', root: 'ف-ح-ص', type: 'verb' },
-      { id: 'v15-26', arabic: 'نَصَحَ', albanian: 'Këshilloi', root: 'ن-ص-ح', type: 'verb' },
+      { id: 'v15-24', arabic: 'أَصَابَ', present: 'يُصِيبُ', imperative: 'أَصِبْ', albanian: 'E goditi (sëmundja)', root: 'ص-و-ب', type: 'verb' },
+      { id: 'v15-25', arabic: 'فَحَصَ', present: 'يَفْحَصُ', imperative: 'اِفْحَصْ', albanian: 'Ekzaminoi', root: 'ف-ح-ص', type: 'verb' },
+      { id: 'v15-26', arabic: 'نَصَحَ', present: 'يَنْصَحُ', imperative: 'اِنْصَحْ', albanian: 'Këshilloi', root: 'ن-ص-ح', type: 'verb' },
       { id: 'v15-27', arabic: 'السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ', albanian: 'Paqja, mëshira dhe begatia e Allahut qofshin mbi ju', root: 'س-ل-م', type: 'particle' },
     ],
     grammarFocus: [
@@ -1408,7 +1411,7 @@ export const CHAPTERS: Chapter[] = [
         arabic:
           'مُنْذُ يَوْمَيْنِ يَشْعُرُ مُوسَى بِصُدَاعٍ وَأَلَمٍ فِي الصَّدْرِ. الْيَوْمَ ذَهَبَ إِلَى الطَّبِيبِ وَقَالَ: «السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ». سَأَلَهُ الطَّبِيبُ: مُنْذُ مَتَى أَصَابَكَ الأَلَمُ؟ هَلْ عِنْدَكَ وَجَعٌ فِي الأَسْنَانِ أَوِ الأُذُنِ؟ وَهَلِ اِرْتَفَعَتِ الْحَرَارَةُ؟ فَحَصَهُ فَحْصاً سَرِيعاً، وَبَعْدَ قَلِيلٍ جَاءَتِ النَّتِيجَةُ: الضَّغْطُ مُرْتَفِعٌ قَلِيلاً وَعِنْدَهُ زِيَادَةٌ فِي الْوَزْنِ. نَصَحَهُ الطَّبِيبُ بِالرَّاحَةِ وَأَكْلِ الْخُضْرَوَاتِ وَقِلَّةِ الْمِلْحِ وَمُمَارَسَةِ الرِّيَاضَةِ كُلَّ يَوْمٍ. وَحَجَزَ مُوسَى مَوْعِداً آخَرَ عِنْدَ طَبِيبِ الأَسْنَانِ لِأَلَمٍ خَفِيفٍ فِي ضِرْسِهِ. وَلَمَّا خَرَجَ مِنَ الْعِيَادَةِ حَمِدَ اللَّهَ عَلَى الصِّحَّةِ.',
         transliteration:
-          "Mundhu jewmejn jesh‘uru Musa bi sudain ve elemin fis-sadr. El-jewme dhehebe ilet-tabibi ve kale: «Es-selamu alejkum ve rahmetullahi ve berakatuh». Seelehut-tabib: Mundhu meta esabekel elem? Hel indeke vexhaun fil esnani evil udhun? Ve helirtefe‘atil harara? Fehasahu fehsan seri‘an, ve ba‘de kalilin xha‘etin-netixhe: Ed-daghtu murtefi‘un kalilen ve indehu zijadetun fil vezn. Nesahahut-tabibu bir-rahati ve ekli el-khudraveti ve killetil milhi ve mumareseti er-rijada kulle jewm. Ve haxheze Musa mev‘iden akhare inde tabibi el-esnani li elemin khafifin fi dirsihi. Ve lemma kharexhe minel ‘ijade hamidallahe ales-sihha.",
+          "Mundhu jewmejn jesh‘uru Musa bi sudain ve elemin fis-sadr. El-jewme dhehebe ilet-tabibi ve kale: «Es-selamu alejkum ve rahmetullahi ve berakatuh». Seelehut-tabib: Mundhu meta esabekel elem? Hel indeke vexhaun fil esnani evil udhun? Ve helirtefe‘atil harara? Fehasahu fehsan seri‘an, ve ba‘de kalilin xha‘etin-netixhe: Ed-daghtu murtefi‘un kalilen ve indehu zijadetun fil vezn. Nesahahut-tabibu bir-rahati ve ekli el-khudraveti ve kil-letil milhi ve mumareseti er-rijada kul-le jewm. Ve haxheze Musa mev‘iden akhare inde tabibi el-esnani li elemin khafifin fi dirsihi. Ve lemma kharexhe minel ‘ijade hamidallahe ales-sihha.",
       },
     ],
   },
@@ -1502,7 +1505,7 @@ export const CHAPTERS: Chapter[] = [
         arabic:
           'حِينَ يَأْتِي يَوْمُ عِيدِ الْفِطْرِ، يَسْتَيْقِظُ مُوسَى مُبَكِّراً وَيَغْتَسِلُ وَيَلْبَسُ أَجْمَلَ الثِّيَابِ. يُخْرِجُ أَبُوهُ زَكَاةَ الْفِطْرِ — صَاعاً مِنَ الْقَمْحِ عَنْ كُلِّ فَرْدٍ مِنَ الأُسْرَةِ — قَبْلَ صَلَاةِ الْعِيدِ. ثُمَّ يَذْهَبُونَ جَمِيعاً إِلَى الْمَسْجِدِ لِصَلَاةِ الْعِيدِ، وَبَعْدَ الْخُطْبَةِ يُبَارِكُونَ لِبَعْضِهِمُ الْبَعْضَ: «تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُمْ». وَفِي عِيدِ الأَضْحَى يَذْبَحُ الأَبُ الأُضْحِيَةَ وَيَقْسِمُ اللَّحْمَ لِلْأُسْرَةِ وَالْجِيرَانِ وَالْفُقَرَاءِ. يَقْضُونَ عُطْلَةَ الْعِيدِ فِي مَزْرَعَةِ الْجَدِّ قُرْبَ النَّهْرِ، يَرَوْنَ الْجِبَالَ وَالْبَحْرَ الْبَعِيدَ، وَيَزُورُونَ مَتْحَفاً فِي الْعَاصِمَةِ. وَالأَشْهُرُ الْهِجْرِيَّةُ اِثْنَا عَشَرَ شَهْراً: الْمُحَرَّم، صَفَر، رَبِيعٌ الأَوَّل، رَبِيعٌ الآخِر، جُمَادَى الأُولَى، جُمَادَى الآخِرَة، رَجَب، شَعْبَان، رَمَضَان، شَوَّال، ذُو الْقَعْدَة، وَذُو الْحِجَّة — شَهْرُ الْحَجِّ.',
         transliteration:
-          "Hine jeetij jewmu idil fitr, jestejkizu Musa mubekkiren ve jagtesilu ve jelbesu exhmelath-thijab. Juhrixhu ebuhu zekatel fitri — sa‘an minel kamhi an kulli ferdin minel usre — kable salatil ‘id. Thumme jedhhebune xhemian ilel mesxhidi li salatil ‘id, ve ba‘delkhutbeti jubarikune li ba‘dihimul ba‘d: «Tekabbelallahu minna ve minkum». Ve fi idil ad-ha jedhbehul ebul ud-hijete ve jaksimul lahme lil usre vel xhirani vel fukara. Jakdune utletel idi fi mezra‘atil xheddi kurben nehr, jerewnel xhibale vel bahrel ba‘id, ve jezurune methafen fil asime. Vel eshhurul hixhrijjetu ithna ashare shehra: el-muharrem, safer, rebi‘ul evvel, rebi‘ul ahir, xhumadel ula, xhumadel ahire, rexheb, sha‘ban, ramadan, shevval, dhul ka‘de, ve dhul hixhxhe — shehrul haxhxh.",
+          "Hine jeetij jewmu idil fitr, jestejkizu Musa mubekkiren ve jagtesilu ve jelbesu exhmelath-thijab. Juhrixhu ebuhu zekatel fitri — sa‘an minel kamhi an kul-li ferdin minel usre — kable salatil ‘id. Thumme jedhhebune xhemian ilel mesxhidi li salatil ‘id, ve ba‘delkhutbeti jubarikune li ba‘dihimul ba‘d: «Tekabbelallahu minna ve minkum». Ve fi idil ad-ha jedhbehul ebul ud-hijete ve jaksimul lahme lil usre vel xhirani vel fukara. Jakdune utletel idi fi mezra‘atil xheddi kurben nehr, jerewnel xhibale vel bahrel ba‘id, ve jezurune methafen fil asime. Vel eshhurul hixhrijjetu ithna ashare shehra: el-muharrem, safer, rebi‘ul evvel, rebi‘ul ahir, xhumadel ula, xhumadel ahire, rexheb, sha‘ban, ramadan, shevval, dhul ka‘de, ve dhul hixhxhe — shehrul haxhxh.",
       },
     ],
   },

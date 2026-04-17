@@ -1,6 +1,9 @@
 import { HARFU_JARR } from '@/data/grammar';
+import { useStore } from '@/store/useStore';
 
 export function HarfuJarr() {
+  const showTransliteration = useStore((s) => s.showTransliteration);
+
   return (
     <div className="space-y-2 text-sm">
       <p className="text-slate-500 text-xs uppercase tracking-wide">
@@ -12,19 +15,24 @@ export function HarfuJarr() {
             key={h.translit}
             className="rounded-lg border border-slate-200 px-2 py-1.5"
           >
-            <div className="flex items-center justify-between gap-2">
-              <span className="font-amiri text-lg" dir="rtl">
+            <div className="flex items-center justify-between gap-2 min-w-0">
+              <span className="font-amiri text-lg shrink-0" dir="rtl">
                 {h.arabic}
               </span>
-              <span className="text-xs font-semibold text-slate-600">
-                {h.translit} — {h.albanian}
+              <span className="text-xs font-semibold text-slate-600 text-right min-w-0 truncate">
+                {showTransliteration ? `${h.translit} — ${h.albanian}` : h.albanian}
               </span>
             </div>
-            <div className="mt-1 flex items-center justify-between text-xs text-slate-500">
-              <span dir="rtl" className="font-amiri text-sm text-slate-700">
+            <div className="mt-1 flex items-center justify-between gap-2 text-xs text-slate-500 min-w-0">
+              <span
+                dir="rtl"
+                className="font-amiri text-sm text-slate-700 shrink-0"
+              >
                 {h.example}
               </span>
-              <span>{h.exampleAl}</span>
+              <span className="text-right min-w-0 truncate">
+                {h.exampleAl}
+              </span>
             </div>
           </li>
         ))}

@@ -4,11 +4,22 @@ import { GrammarCodes } from '@/components/grammar/GrammarCodes';
 import { PointingWords } from '@/components/grammar/PointingWords';
 import { HarfuJarr } from '@/components/grammar/HarfuJarr';
 import { CheatSheet } from '@/components/grammar/CheatSheet';
+import { PossessiveSuffixes } from '@/components/grammar/PossessiveSuffixes';
+import { RelativePronouns } from '@/components/grammar/RelativePronouns';
 
-type Tab = 'pronouns' | 'codes' | 'pointers' | 'jarr' | 'mudari';
+type Tab =
+  | 'pronouns'
+  | 'codes'
+  | 'pointers'
+  | 'jarr'
+  | 'mudari'
+  | 'possessive'
+  | 'relative';
 
 const TABS: { id: Tab; label: string }[] = [
   { id: 'pronouns', label: 'Përemra' },
+  { id: 'possessive', label: 'Pronore' },
+  { id: 'relative', label: 'Relativë' },
   { id: 'codes', label: 'Kodet' },
   { id: 'pointers', label: 'Tregues' },
   { id: 'jarr', label: 'Jarr' },
@@ -45,6 +56,8 @@ export function GrammarPanel() {
 
       <div className="flex-1 overflow-y-auto scroll-thin p-3">
         {tab === 'pronouns' && <PronounsTable />}
+        {tab === 'possessive' && <PossessiveSuffixes />}
+        {tab === 'relative' && <RelativePronouns />}
         {tab === 'codes' && <GrammarCodes />}
         {tab === 'pointers' && <PointingWords />}
         {tab === 'jarr' && <HarfuJarr />}

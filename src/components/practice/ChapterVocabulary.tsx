@@ -142,14 +142,26 @@ export function ChapterVocabulary({ words }: ChapterVocabularyProps) {
 function VocabTile({ word }: { word: VocabWord }) {
   return (
     <li className="rounded-xl border border-slate-200 bg-white p-3 hover:border-brand-300 hover:shadow-sm transition">
-      {/* Top: Arabic + type pill */}
+      {/* Top: Arabic singular (+ inline plural) and type pill.
+          Plural sits right next to the singular like in a dictionary
+          entry — smaller, faded, and separated by a subtle arrow. It
+          stays noticeable thanks to its indigo tint, but the eye still
+          lands on the singular first. */}
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0 flex-1">
           <div
             dir="rtl"
-            className="font-amiri text-[22px] leading-snug text-slate-900"
+            className="flex items-baseline gap-2 flex-wrap font-amiri leading-snug"
           >
-            {word.arabic}
+            <span className="text-[22px] text-slate-900">{word.arabic}</span>
+            {word.plural && (
+              <span className="flex items-baseline gap-1 text-indigo-700">
+                <span className="text-[11px] font-sans uppercase tracking-wider text-indigo-400">
+                  ج
+                </span>
+                <span className="text-[17px]">{word.plural}</span>
+              </span>
+            )}
           </div>
           <div className="mt-0.5 text-[13px] text-slate-700">
             {word.albanian}
@@ -163,33 +175,91 @@ function VocabTile({ word }: { word: VocabWord }) {
         </span>
       </div>
 
-      {/* Details row */}
-      <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-slate-500">
-        {word.root && word.root !== '-' && (
-          <span className="flex items-center gap-1">
-            <span className="uppercase tracking-wide text-slate-400">Rrënja</span>
-            <span dir="rtl" className="font-mono text-slate-600">
-              {word.root}
-            </span>
+      {/* Verb conjugation: three canonical forms side by side.
+          Bayna Yadayk teaches them as a unit — past (madi), present
+          (mudari') and imperative (amr). We render them as a compact
+          3-column strip: the labels stay small and muted, while each
+          form takes center stage in Amiri. The strip sits between the
+          header and the root so the eye flows top→down: meaning,
+          conjugation, etymology. */}
+      {word.type === 'verb' && (word.present || word.imperative) && (
+        <div className="mt-2 grid grid-cols-3 gap-1 rounded-lg bg-slate-50 p-1.5 ring-1 ring-slate-200/60">
+          <ConjugationCell
+            label="Madi"
+            sublabel="هو"
+            form={word.arabic}
+            tone="slate"
+          />
+          <ConjugationCell
+            label="Mudariʿ"
+            sublabel="هو"
+            form={word.present}
+            tone="emerald"
+          />
+          <ConjugationCell
+            label="Amr"
+            sublabel="أنتَ"
+            form={word.imperative}
+            tone="amber"
+          />
+        </div>
+      )}
+
+      {/* Root — always last, smallest, stays out of the way. */}
+      {word.root && word.root !== '-' && (
+        <div className="mt-2 flex items-center gap-1 text-[11px] text-slate-500">
+          <span className="uppercase tracking-wide text-slate-400">Rrënja</span>
+          <span dir="rtl" className="font-mono text-slate-600">
+            {word.root}
           </span>
-        )}
-        {word.plural && (
-          <span className="flex items-center gap-1">
-            <span className="uppercase tracking-wide text-slate-400">Sh.</span>
-            <span dir="rtl" className="font-amiri text-[14px] text-slate-700">
-              {word.plural}
-            </span>
-          </span>
-        )}
-        {word.type === 'verb' && (
-          <span className="flex items-center gap-1">
-            <span className="uppercase tracking-wide text-slate-400">Sh.p.</span>
-            <span dir="rtl" className="font-amiri text-[14px] text-slate-700">
-              هُوَ {word.arabic}
-            </span>
-          </span>
-        )}
-      </div>
+        </div>
+      )}
     </li>
+  );
+}
+
+// Individual conjugation column. Kept tiny and neutral so the trio
+// reads as a single block rather than three competing pills.
+function ConjugationCell({
+  label,
+  sublabel,
+  form,
+  tone,
+}: {
+  label: string;
+  sublabel: string;
+  form?: string;
+  tone: 'slate' | 'emerald' | 'amber';
+}) {
+  const tones: Record<typeof tone, string> = {
+    slate: 'text-slate-500',
+    emerald: 'text-emerald-600',
+    amber: 'text-amber-600',
+  };
+  return (
+    <div className="flex flex-col items-center rounded-md bg-white px-1.5 py-2 text-center">
+      <div className="flex items-baseline gap-1 leading-none">
+        <span
+          className={`text-[9px] uppercase tracking-wider font-semibold ${tones[tone]}`}
+        >
+          {label}
+        </span>
+        <span
+          dir="rtl"
+          className="font-amiri text-[10px] text-slate-400 leading-none"
+        >
+          {sublabel}
+        </span>
+      </div>
+      {/* Extra top padding so harakat above the letters (fatha, damma)
+          never collide with the label. Line-height is relaxed for the
+          same reason — tight leading clips diacritics. */}
+      <div
+        dir="rtl"
+        className="mt-2.5 font-amiri text-[17px] text-slate-800 leading-[1.7]"
+      >
+        {form || '—'}
+      </div>
+    </div>
   );
 }

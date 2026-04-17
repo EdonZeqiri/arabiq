@@ -1,17 +1,22 @@
 import { PRONOUNS } from '@/data/grammar';
+import { useStore } from '@/store/useStore';
 
 export function PronounsTable() {
+  const showTransliteration = useStore((s) => s.showTransliteration);
+
   return (
     <div className="space-y-2 text-sm">
       <p className="text-slate-500 text-xs uppercase tracking-wide">
         12 përemra vetorë (الضَّمَائِر)
       </p>
       <div className="overflow-hidden rounded-lg border border-slate-200">
-        <table className="w-full text-left">
+        <table className="w-full text-left table-fixed">
           <thead className="bg-slate-50 text-xs uppercase text-slate-500">
             <tr>
-              <th className="px-2 py-1.5">Arabisht</th>
-              <th className="px-2 py-1.5">Translit.</th>
+              <th className="px-2 py-1.5 w-[38%]">Arabisht</th>
+              {showTransliteration && (
+                <th className="px-2 py-1.5 w-[26%]">Translit.</th>
+              )}
               <th className="px-2 py-1.5">Shqip</th>
             </tr>
           </thead>
@@ -24,8 +29,14 @@ export function PronounsTable() {
                 <td className="px-2 py-1.5 text-right" dir="rtl">
                   <span className="font-amiri text-lg">{p.arabic}</span>
                 </td>
-                <td className="px-2 py-1.5 text-slate-700">{p.translit}</td>
-                <td className="px-2 py-1.5 text-slate-600">{p.albanian}</td>
+                {showTransliteration && (
+                  <td className="px-2 py-1.5 text-slate-700 truncate">
+                    {p.translit}
+                  </td>
+                )}
+                <td className="px-2 py-1.5 text-slate-600 truncate">
+                  {p.albanian}
+                </td>
               </tr>
             ))}
           </tbody>

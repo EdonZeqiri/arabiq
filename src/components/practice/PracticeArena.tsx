@@ -105,11 +105,13 @@ export function PracticeArena() {
         </div>
         <h1
           dir="rtl"
-          className="font-amiri text-3xl md:text-4xl text-slate-900 leading-tight"
+          className="font-amiri text-2xl sm:text-3xl md:text-4xl text-slate-900 leading-tight break-words"
         >
           {chapter.titleAr}
         </h1>
-        <div className="text-sm text-slate-500">{chapter.titleAl}</div>
+        <div className="text-sm text-slate-500 break-words">
+          {chapter.titleAl}
+        </div>
       </div>
 
       {/* ── Section 1: Learning goals ────────────────────────────── */}

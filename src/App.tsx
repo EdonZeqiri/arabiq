@@ -10,6 +10,8 @@ import { GrammarCodes } from '@/components/grammar/GrammarCodes';
 import { PointingWords } from '@/components/grammar/PointingWords';
 import { HarfuJarr } from '@/components/grammar/HarfuJarr';
 import { CheatSheet } from '@/components/grammar/CheatSheet';
+import { PossessiveSuffixes } from '@/components/grammar/PossessiveSuffixes';
+import { RelativePronouns } from '@/components/grammar/RelativePronouns';
 import { useStore } from '@/store/useStore';
 
 function GrammarView() {
@@ -31,12 +33,24 @@ function GrammarView() {
           <PronounsTable />
         </section>
         <section className="card p-4">
-          <h2 className="font-semibold text-slate-800 mb-3">Kodet</h2>
-          <GrammarCodes />
+          <h2 className="font-semibold text-slate-800 mb-3">
+            Prapashtesat pronore
+          </h2>
+          <PossessiveSuffixes />
+        </section>
+        <section className="card p-4 lg:col-span-2">
+          <h2 className="font-semibold text-slate-800 mb-3">
+            Përemrat relativë
+          </h2>
+          <RelativePronouns />
         </section>
         <section className="card p-4">
           <h2 className="font-semibold text-slate-800 mb-3">Emrat tregues</h2>
           <PointingWords />
+        </section>
+        <section className="card p-4">
+          <h2 className="font-semibold text-slate-800 mb-3">Kodet</h2>
+          <GrammarCodes />
         </section>
         <section className="card p-4">
           <h2 className="font-semibold text-slate-800 mb-3">Parafjalët (Jarr)</h2>

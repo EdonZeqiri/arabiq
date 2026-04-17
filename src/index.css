@@ -11,6 +11,12 @@
 
   body {
     @apply bg-white text-slate-800 font-sans;
+    /* Defensive guard for mobile: if any nested flex/grid child ever
+       overflows horizontally (long Arabic phrase, wide table row,
+       etc.) the page should clip, not pan. Paired with `min-w-0` on
+       flex containers, this keeps the viewport stable on phones. */
+    overflow-x: hidden;
+    overscroll-behavior-y: contain;
   }
 
   [dir='rtl'] {
