@@ -23,6 +23,9 @@ type SectionKey = 'goals' | 'vocab' | 'dialogues' | 'exercises' | 'stories';
 export function PracticeArena() {
   const currentChapterId = useStore((s) => s.currentChapterId);
   const markDialogueMastered = useStore((s) => s.markDialogueMastered);
+  const markExerciseCompleted = useStore((s) => s.markExerciseCompleted);
+  const completedDialogues = useStore((s) => s.completedDialogues);
+  const completedExercises = useStore((s) => s.completedExercises);
   const recordSession = useStore((s) => s.recordSession);
   const showHarakat = useStore((s) => s.showHarakat);
 
@@ -223,21 +226,32 @@ export function PracticeArena() {
               <ChevronLeft size={16} /> Para
             </button>
             <div className="flex items-center gap-1">
-              {dialogues.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => {
-                    setIndex(i);
-                    setRevealed(false);
-                  }}
-                  className={`h-2 rounded-full transition-all ${
-                    i === index
-                      ? 'bg-brand-600 w-6'
-                      : 'bg-slate-300 w-2 hover:bg-slate-400'
-                  }`}
-                  aria-label={`Dialogu ${i + 1}`}
-                />
-              ))}
+              {dialogues.map((d, i) => {
+                const done = completedDialogues.includes(d.id);
+                const active = i === index;
+                // Green takes priority over brand when a dialogue is
+                // already marked mastered, so progress stays visible
+                // even after the reader moves on.
+                const cls = active
+                  ? done
+                    ? 'bg-emerald-500 w-6'
+                    : 'bg-brand-600 w-6'
+                  : done
+                    ? 'bg-emerald-500 w-2 hover:bg-emerald-600'
+                    : 'bg-slate-300 w-2 hover:bg-slate-400';
+                return (
+                  <button
+                    key={d.id}
+                    onClick={() => {
+                      setIndex(i);
+                      setRevealed(false);
+                    }}
+                    className={`h-2 rounded-full transition-all ${cls}`}
+                    aria-label={`Dialogu ${i + 1}${done ? ' — i mësuar' : ''}`}
+                    title={done ? 'I mësuar' : undefined}
+                  />
+                );
+              })}
             </div>
             <button onClick={goNext} className="btn-outline">
               {isLast ? 'Nga fillimi' : 'Tjetri'} <ChevronRight size={16} />
@@ -275,22 +289,33 @@ export function PracticeArena() {
                   i - 1 >= 0 ? i - 1 : exercises.length - 1,
                 )
               }
+              onCorrect={markExerciseCompleted}
             />
 
-            {/* Dots navigation, mirrors the dialogues section */}
+            {/* Dots navigation — same logic as dialogues, but the
+                active-and-unsolved dot picks up the indigo accent of
+                the exercises section. */}
             <div className="mt-5 flex items-center justify-center gap-1">
-              {exercises.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setExerciseIndex(i)}
-                  className={`h-2 rounded-full transition-all ${
-                    i === exerciseIndex
-                      ? 'bg-indigo-600 w-6'
-                      : 'bg-slate-300 w-2 hover:bg-slate-400'
-                  }`}
-                  aria-label={`Ushtrimi ${i + 1}`}
-                />
-              ))}
+              {exercises.map((ex, i) => {
+                const done = completedExercises.includes(ex.id);
+                const active = i === exerciseIndex;
+                const cls = active
+                  ? done
+                    ? 'bg-emerald-500 w-6'
+                    : 'bg-indigo-600 w-6'
+                  : done
+                    ? 'bg-emerald-500 w-2 hover:bg-emerald-600'
+                    : 'bg-slate-300 w-2 hover:bg-slate-400';
+                return (
+                  <button
+                    key={ex.id}
+                    onClick={() => setExerciseIndex(i)}
+                    className={`h-2 rounded-full transition-all ${cls}`}
+                    aria-label={`Ushtrimi ${i + 1}${done ? ' — i plotësuar' : ''}`}
+                    title={done ? 'I plotësuar' : undefined}
+                  />
+                );
+              })}
             </div>
           </div>
         </AccordionCard>

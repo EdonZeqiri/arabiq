@@ -79,6 +79,7 @@ interface TransformExerciseProps {
   total: number;
   onNext: () => void;
   onPrev: () => void;
+  onCorrect?: (id: string) => void;
 }
 
 export function TransformExercise({
@@ -87,6 +88,7 @@ export function TransformExercise({
   total,
   onNext,
   onPrev,
+  onCorrect,
 }: TransformExerciseProps) {
   const [value, setValue] = useState('');
   const [status, setStatus] = useState<Status>('idle');
@@ -138,6 +140,7 @@ export function TransformExercise({
       // and that visual flip is where the vocalization actually
       // gets learned.
       setValue(exercise.answer);
+      onCorrect?.(exercise.id);
     } else {
       setStatus('wrong');
     }

@@ -10,6 +10,7 @@ interface AppState {
 
   // Progress tracking
   completedDialogues: string[]; // dialogue IDs
+  completedExercises: string[]; // transform-exercise IDs passed
   vocabularyMastery: Record<string, number>; // wordId -> 0..5
   chapterNotes: Record<number, string>; // chapterId -> note
 
@@ -27,6 +28,7 @@ interface AppState {
   setView: (view: AppView) => void;
   markDialogueMastered: (id: string) => void;
   unmarkDialogue: (id: string) => void;
+  markExerciseCompleted: (id: string) => void;
   updateVocabMastery: (wordId: string, level: number) => void;
   saveNote: (chapterId: number, note: string) => void;
   toggleHarakat: () => void;
@@ -50,6 +52,7 @@ export const useStore = create<AppState>()(
       currentView: 'practice',
 
       completedDialogues: [],
+      completedExercises: [],
       vocabularyMastery: {},
       chapterNotes: {},
 
@@ -75,6 +78,13 @@ export const useStore = create<AppState>()(
         set((s) => ({
           completedDialogues: s.completedDialogues.filter((d) => d !== id),
         })),
+
+      markExerciseCompleted: (id) =>
+        set((s) =>
+          s.completedExercises.includes(id)
+            ? s
+            : { completedExercises: [...s.completedExercises, id] },
+        ),
 
       updateVocabMastery: (wordId, level) =>
         set((s) => ({
