@@ -2,11 +2,7 @@ import { AlertCircle, Eye, EyeOff, Mic, RotateCcw, Square, Trash2 } from 'lucide
 import type { Story } from '@/data/curriculum';
 import { useVoiceRecorder } from '@/hooks/useVoiceRecorder';
 import { useState } from 'react';
-
-// Strip Arabic harakat (short vowel diacritics) so the reader can
-// toggle between vocalized and bare Arabic text.
-const HARAKAT_REGEX = /[\u0610-\u061A\u064B-\u065F\u06D6-\u06ED\u0670]/g;
-const stripHarakat = (s: string) => s.replace(HARAKAT_REGEX, '');
+import { stripHarakat } from '@/lib/arabicText';
 
 interface StoryCardProps {
   story: Story;

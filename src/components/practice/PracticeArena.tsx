@@ -8,6 +8,7 @@ import {
   ChevronUp,
   MessageCircle,
   PencilLine,
+  Sparkles,
   Target,
 } from 'lucide-react';
 import { getChapter } from '@/data/curriculum';
@@ -17,8 +18,15 @@ import { StoryCard } from './StoryCard';
 import { ChapterVocabulary } from './ChapterVocabulary';
 import { TransformExercise } from './TransformExercise';
 import { GrammarBullet } from './GrammarBullet';
+import { AyatSection } from './AyatSection';
 
-type SectionKey = 'goals' | 'vocab' | 'dialogues' | 'exercises' | 'stories';
+type SectionKey =
+  | 'goals'
+  | 'vocab'
+  | 'dialogues'
+  | 'exercises'
+  | 'stories'
+  | 'ayat';
 
 export function PracticeArena() {
   const currentChapterId = useStore((s) => s.currentChapterId);
@@ -34,6 +42,7 @@ export function PracticeArena() {
   const stories = useMemo(() => chapter?.stories ?? [], [chapter]);
   const vocabulary = useMemo(() => chapter?.vocabulary ?? [], [chapter]);
   const exercises = useMemo(() => chapter?.exercises ?? [], [chapter]);
+  const ayat = useMemo(() => chapter?.ayat ?? [], [chapter]);
 
   const [index, setIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
@@ -52,6 +61,7 @@ export function PracticeArena() {
     dialogues: false,
     exercises: false,
     stories: false,
+    ayat: false,
   });
   const toggle = (key: SectionKey) =>
     setSections((s) => ({ ...s, [key]: !s[key] }));
@@ -68,6 +78,7 @@ export function PracticeArena() {
       dialogues: false,
       exercises: false,
       stories: false,
+      ayat: false,
     });
   }, [currentChapterId]);
 
@@ -253,7 +264,22 @@ export function PracticeArena() {
                 );
               })}
             </div>
-            <button onClick={goNext} className="btn-outline">
+            {/* Forward nav is gated on mastering the current dialogue —
+                either via a voice-check pass in this session, or from
+                a previous session already in `completedDialogues`.
+                This makes the voice drill the only valid exit, which
+                is what we want now that "E dita" has been retired.
+                "← Para" remains free so the reader can always review. */}
+            <button
+              onClick={goNext}
+              disabled={!completedDialogues.includes(current.id)}
+              title={
+                completedDialogues.includes(current.id)
+                  ? undefined
+                  : 'Shqipto frazën saktë për të vazhduar'
+              }
+              className="btn-outline"
+            >
               {isLast ? 'Nga fillimi' : 'Tjetri'} <ChevronRight size={16} />
             </button>
           </div>
@@ -343,6 +369,30 @@ export function PracticeArena() {
                 showHarakat={showHarakat}
               />
             ))}
+          </div>
+        </AccordionCard>
+      )}
+
+      {/* ── Section 6: Qur'anic ayat reachable with this vocabulary ─
+          Placed at the end so it reads as a reward after the working
+          sections above, not as a homework item. Only rendered when
+          the chapter has curated verses — other chapters will get it
+          as the dataset grows. */}
+      {ayat.length > 0 && (
+        <AccordionCard
+          open={sections.ayat}
+          onToggle={() => toggle('ayat')}
+          accent="emerald"
+          icon={<Sparkles size={16} className="text-emerald-600" />}
+          title="Ajete që mund t'i kuptosh"
+          meta={
+            <span className="pill bg-emerald-100 text-emerald-700 border border-emerald-200">
+              {ayat.length}
+            </span>
+          }
+        >
+          <div className="p-5">
+            <AyatSection ayat={ayat} />
           </div>
         </AccordionCard>
       )}
