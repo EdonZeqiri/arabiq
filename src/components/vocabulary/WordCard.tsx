@@ -42,7 +42,11 @@ export function WordCard({ word, chapterLabel }: WordCardProps) {
               {word.arabic}
             </span>
             <span
-              className={`pill border text-[10px] shrink-0 ${TYPE_STYLE[word.type]}`}
+              className={`pill border text-[10px] shrink-0 ${
+                word.type === 'noun' && word.gender === 'F'
+                  ? 'bg-pink-50 text-pink-700 border-pink-200'
+                  : TYPE_STYLE[word.type]
+              }`}
               title={TYPE_LABEL[word.type]}
             >
               {TYPE_LABEL[word.type]}

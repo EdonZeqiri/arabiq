@@ -19,6 +19,10 @@ export function VocabVault() {
   );
   const [typeFilter, setTypeFilter] = useState<TypeFilter>('all');
   const [search, setSearch] = useState('');
+  // Optional sub-grouping of nouns by grammatical gender (M then F).
+  // Off by default so the normal chapter/type flow is preserved; users
+  // who want the drill-by-gender view opt into it via the checkbox.
+  const [groupNounsByGender, setGroupNounsByGender] = useState(false);
 
   const words = useMemo(() => {
     let pool: { word: VocabWord; chapterId: number }[] = [];
@@ -106,23 +110,107 @@ export function VocabVault() {
             <option value="particle">Parafjalë</option>
           </select>
         </div>
+
+        {/* Gender grouping — surfaced only when the result set contains
+            nouns (either the Nouns filter or the All filter). */}
+        {(typeFilter === 'noun' ||
+          (typeFilter === 'all' &&
+            words.some(({ word }) => word.type === 'noun'))) && (
+          <label className="flex items-center gap-2 text-xs text-slate-600 cursor-pointer select-none pt-1">
+            <input
+              type="checkbox"
+              checked={groupNounsByGender}
+              onChange={(e) => setGroupNounsByGender(e.target.checked)}
+              className="h-3.5 w-3.5 rounded border-slate-300 text-brand-600 focus:ring-brand-500"
+            />
+            <span>Grupo emrat sipas gjinisë (M / F)</span>
+          </label>
+        )}
       </div>
 
       {/* Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-        {words.map(({ word, chapterId }) => (
-          <WordCard
-            key={`${chapterId}-${word.id}`}
-            word={word}
-            chapterLabel={chapterFilter === 'all' ? `Kap. ${chapterId}` : undefined}
-          />
-        ))}
-        {words.length === 0 && (
-          <div className="card p-6 text-center text-sm text-slate-500 col-span-full">
-            Asnjë fjalë nuk përputhet me filtrat.
-          </div>
-        )}
+      {groupNounsByGender ? (
+        <GroupedByGender
+          words={words}
+          chapterFilter={chapterFilter}
+        />
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {words.map(({ word, chapterId }) => (
+            <WordCard
+              key={`${chapterId}-${word.id}`}
+              word={word}
+              chapterLabel={chapterFilter === 'all' ? `Kap. ${chapterId}` : undefined}
+            />
+          ))}
+          {words.length === 0 && (
+            <div className="card p-6 text-center text-sm text-slate-500 col-span-full">
+              Asnjë fjalë nuk përputhet me filtrat.
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// When the gender-grouping toggle is on we split the pool into three
+// ordered sections — Masculine nouns, Feminine nouns, then everything
+// else (verbs, adjectives, particles, and any gender-less nouns). The
+// non-noun bucket is shown last and only if it has items, so the view
+// stays empty-section-free.
+function GroupedByGender({
+  words,
+  chapterFilter,
+}: {
+  words: { word: VocabWord; chapterId: number }[];
+  chapterFilter: ChapterFilter;
+}) {
+  const male = words.filter(({ word }) => word.type === 'noun' && word.gender === 'M');
+  const female = words.filter(({ word }) => word.type === 'noun' && word.gender === 'F');
+  const rest = words.filter(
+    ({ word }) => !(word.type === 'noun' && (word.gender === 'M' || word.gender === 'F')),
+  );
+  const sections: {
+    key: string;
+    label: string;
+    tone: string;
+    items: { word: VocabWord; chapterId: number }[];
+  }[] = [];
+  if (male.length)
+    sections.push({ key: 'M', label: 'Emër — M (مُذَكَّر)', tone: 'text-blue-600', items: male });
+  if (female.length)
+    sections.push({ key: 'F', label: 'Emër — F (مُؤَنَّث)', tone: 'text-pink-600', items: female });
+  if (rest.length)
+    sections.push({ key: 'X', label: 'Të tjera', tone: 'text-slate-500', items: rest });
+
+  if (sections.length === 0) {
+    return (
+      <div className="card p-6 text-center text-sm text-slate-500">
+        Asnjë fjalë nuk përputhet me filtrat.
       </div>
+    );
+  }
+
+  return (
+    <div className="space-y-5">
+      {sections.map((s) => (
+        <section key={s.key}>
+          <div className={`mb-2 text-[11px] uppercase tracking-wide font-semibold ${s.tone}`}>
+            {s.label}{' '}
+            <span className="text-slate-400 font-normal">· {s.items.length}</span>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            {s.items.map(({ word, chapterId }) => (
+              <WordCard
+                key={`${chapterId}-${word.id}`}
+                word={word}
+                chapterLabel={chapterFilter === 'all' ? `Kap. ${chapterId}` : undefined}
+              />
+            ))}
+          </div>
+        </section>
+      ))}
     </div>
   );
 }
