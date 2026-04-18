@@ -46,6 +46,11 @@ interface ChapterVocabularyProps {
 
 export function ChapterVocabulary({ words }: ChapterVocabularyProps) {
   const [bucket, setBucket] = useState<Bucket>('all');
+  // When true, nouns are sub-grouped by gender (M then F) inside their
+  // section. A subtle affordance for learners who want to drill the
+  // masculine/feminine split visually; off by default so the normal
+  // curriculum order is preserved.
+  const [groupNounsByGender, setGroupNounsByGender] = useState(false);
 
   const counts = useMemo(() => {
     const base: Record<Bucket, number> = {
@@ -106,6 +111,21 @@ export function ChapterVocabulary({ words }: ChapterVocabularyProps) {
         })}
       </div>
 
+      {/* Noun-specific option: sub-group by gender. Only surfaced when
+          the current view contains nouns (either the Nouns bucket or
+          the All bucket). */}
+      {(bucket === 'noun' || (bucket === 'all' && counts.noun > 0)) && (
+        <label className="inline-flex items-center gap-2 text-xs text-slate-600 cursor-pointer select-none">
+          <input
+            type="checkbox"
+            checked={groupNounsByGender}
+            onChange={(e) => setGroupNounsByGender(e.target.checked)}
+            className="h-3.5 w-3.5 rounded border-slate-300 text-brand-600 focus:ring-brand-500"
+          />
+          <span>Grupo emrat sipas gjinisë (M / F)</span>
+        </label>
+      )}
+
       {/* Grouped word grids */}
       <div className="space-y-5">
         {grouped.map((group) => (
@@ -119,11 +139,15 @@ export function ChapterVocabulary({ words }: ChapterVocabularyProps) {
                 </span>
               </div>
             )}
-            <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-              {group.items.map((w) => (
-                <VocabTile key={w.id} word={w} />
-              ))}
-            </ul>
+            {group.type === 'noun' && groupNounsByGender ? (
+              <NounsByGender items={group.items} />
+            ) : (
+              <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                {group.items.map((w) => (
+                  <VocabTile key={w.id} word={w} />
+                ))}
+              </ul>
+            )}
           </section>
         ))}
       </div>
@@ -133,6 +157,36 @@ export function ChapterVocabulary({ words }: ChapterVocabularyProps) {
           Nuk ka fjalë në këtë kategori.
         </div>
       )}
+    </div>
+  );
+}
+
+// ─── Nouns sub-grouped by gender ──────────────────────────────────────
+// When the "Grupo sipas gjinisë" toggle is on, we split nouns into
+// Masculine then Feminine. Nouns without a declared gender go at the
+// end under "Të pacaktuara" so nothing silently disappears.
+function NounsByGender({ items }: { items: VocabWord[] }) {
+  const male = items.filter((w) => w.gender === 'M');
+  const female = items.filter((w) => w.gender === 'F');
+  const rest = items.filter((w) => w.gender !== 'M' && w.gender !== 'F');
+  const groups: { key: string; label: string; items: VocabWord[]; tone: string }[] = [];
+  if (male.length) groups.push({ key: 'M', label: 'Emër — M (مُذَكَّر)', items: male, tone: 'text-blue-600' });
+  if (female.length) groups.push({ key: 'F', label: 'Emër — F (مُؤَنَّث)', items: female, tone: 'text-pink-600' });
+  if (rest.length) groups.push({ key: 'X', label: 'Të pacaktuara', items: rest, tone: 'text-slate-500' });
+  return (
+    <div className="space-y-4">
+      {groups.map((g) => (
+        <div key={g.key}>
+          <div className={`mb-1.5 text-[11px] uppercase tracking-wide font-semibold ${g.tone}`}>
+            {g.label} <span className="text-slate-400 font-normal">· {g.items.length}</span>
+          </div>
+          <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            {g.items.map((w) => (
+              <VocabTile key={w.id} word={w} />
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
   );
 }
@@ -168,7 +222,11 @@ function VocabTile({ word }: { word: VocabWord }) {
           </div>
         </div>
         <span
-          className={`pill border text-[10px] shrink-0 ${TYPE_BADGE[word.type]}`}
+          className={`pill border text-[10px] shrink-0 ${
+            word.type === 'noun' && word.gender === 'F'
+              ? 'bg-pink-50 text-pink-700 border-pink-200'
+              : TYPE_BADGE[word.type]
+          }`}
         >
           {TYPE_LABEL[word.type]}
           {word.gender && <span className="opacity-70 ml-1">{word.gender}</span>}

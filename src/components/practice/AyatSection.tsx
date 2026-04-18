@@ -172,7 +172,7 @@ export function AyatSection({ ayat }: AyatSectionProps) {
               >
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
                 {a.knownWords.length}{' '}
-                {a.knownWords.length === 1 ? 'fjalë' : 'fjalë'} që i njeh
+                {a.knownWords.length === 1 ? 'fjalë e mësuar' : 'fjalë të mësuara'} nga ajeti
                 {isOpen ? ' ▾' : ' ▸'}
               </button>
               {isOpen && (

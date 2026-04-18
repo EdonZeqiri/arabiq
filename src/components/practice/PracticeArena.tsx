@@ -272,15 +272,9 @@ export function PracticeArena() {
                 "← Para" remains free so the reader can always review. */}
             <button
               onClick={goNext}
-              disabled={!completedDialogues.includes(current.id)}
-              title={
-                completedDialogues.includes(current.id)
-                  ? undefined
-                  : 'Shqipto frazën saktë për të vazhduar'
-              }
               className="btn-outline"
             >
-              {isLast ? 'Nga fillimi' : 'Tjetri'} <ChevronRight size={16} />
+              {isLast ? 'Nga fillimi' : 'Pas'} <ChevronRight size={16} />
             </button>
           </div>
         </div>
@@ -384,7 +378,7 @@ export function PracticeArena() {
           onToggle={() => toggle('ayat')}
           accent="emerald"
           icon={<Sparkles size={16} className="text-emerald-600" />}
-          title="Ajete që mund t'i kuptosh"
+          title="Fjalët që i kupton nga ajetet e Kuranit"
           meta={
             <span className="pill bg-emerald-100 text-emerald-700 border border-emerald-200">
               {ayat.length}
