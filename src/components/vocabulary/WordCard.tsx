@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { ChevronDown, Minus, Plus } from 'lucide-react';
+import { SpeakButton } from '@/components/ui/SpeakButton';
 import type { VocabWord } from '@/data/curriculum';
 import { useStore } from '@/store/useStore';
+import { useArabicSpell } from '@/hooks/useArabicSpell';
 
 const TYPE_STYLE: Record<VocabWord['type'], string> = {
   noun: 'bg-blue-50 text-blue-700 border-blue-200',
@@ -24,6 +26,7 @@ interface WordCardProps {
 
 export function WordCard({ word, chapterLabel }: WordCardProps) {
   const [open, setOpen] = useState(false);
+  const { spelling, toggle } = useArabicSpell();
   const mastery = useStore((s) => s.vocabularyMastery[word.id] ?? 0);
   const updateVocabMastery = useStore((s) => s.updateVocabMastery);
 
@@ -52,6 +55,14 @@ export function WordCard({ word, chapterLabel }: WordCardProps) {
             </span>
             {word.gender && (
               <span className="text-slate-400">· {word.gender}</span>
+            )}
+            {(word.type === 'noun' || word.type === 'particle') && (
+              <SpeakButton
+                active={spelling}
+                onClick={() => toggle(word.arabic)}
+                size={11}
+                className="p-1 text-slate-400"
+              />
             )}
             {chapterLabel && (
               <span className="text-slate-400">· {chapterLabel}</span>

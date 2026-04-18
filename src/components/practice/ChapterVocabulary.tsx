@@ -1,5 +1,7 @@
 import { useMemo, useState } from 'react';
+import { SpeakButton } from '@/components/ui/SpeakButton';
 import type { VocabWord } from '@/data/curriculum';
+import { useArabicSpell } from '@/hooks/useArabicSpell';
 
 /**
  * Chapter-level vocabulary viewer rendered inside the Practice arena.
@@ -140,13 +142,18 @@ export function ChapterVocabulary({ words }: ChapterVocabularyProps) {
 // ─── Single word tile ─────────────────────────────────────────────────
 
 function VocabTile({ word }: { word: VocabWord }) {
+  const { spelling, toggle } = useArabicSpell();
+  const toSpeak = [word.arabic, word.plural].filter((w): w is string => Boolean(w));
+
   return (
-    <li className="rounded-xl border border-slate-200 bg-white p-3 hover:border-brand-300 hover:shadow-sm transition">
-      {/* Top: Arabic singular (+ inline plural) and type pill.
-          Plural sits right next to the singular like in a dictionary
-          entry — smaller, faded, and separated by a subtle arrow. It
-          stays noticeable thanks to its indigo tint, but the eye still
-          lands on the singular first. */}
+    <li className="relative rounded-xl border border-slate-200 bg-white p-3 hover:border-brand-300 hover:shadow-sm transition">
+      {(word.type === 'noun' || word.type === 'particle') && (
+        <SpeakButton
+          active={spelling}
+          onClick={() => toggle(toSpeak)}
+          className="absolute top-2 left-2 p-1 text-slate-300"
+        />
+      )}
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0 flex-1">
           <div
