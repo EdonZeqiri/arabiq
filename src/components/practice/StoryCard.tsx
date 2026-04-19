@@ -1,7 +1,7 @@
-import { AlertCircle, Eye, EyeOff, Mic, RotateCcw, Square, Trash2 } from 'lucide-react';
+import { AlertCircle, Eye, EyeOff, Mic, RotateCcw, Shuffle, Square, Trash2 } from 'lucide-react';
 import type { Story } from '@/data/curriculum';
 import { useVoiceRecorder } from '@/hooks/useVoiceRecorder';
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { stripHarakat } from '@/lib/arabicText';
 
 interface StoryCardProps {
@@ -32,14 +32,40 @@ export function StoryCard({ story, showHarakat }: StoryCardProps) {
     clearRecording,
   } = useVoiceRecorder();
 
+  // Canonical phrasing plus curated re-tellings. Cycling resets both
+  // reveal state and any in-progress recording so the user re-reads
+  // the new Albanian prompt with fresh eyes.
+  const phrasings = useMemo(
+    () => [
+      {
+        albanian: story.albanian,
+        arabic: story.arabic,
+        transliteration: story.transliteration,
+      },
+      ...(story.variants ?? []),
+    ],
+    [story],
+  );
+  const [variantIndex, setVariantIndex] = useState(0);
+  useEffect(() => {
+    setVariantIndex(0);
+  }, [story.id]);
+  const active = phrasings[variantIndex] ?? phrasings[0];
+
   const reset = () => {
+    setRevealed(false);
+    clearRecording();
+  };
+
+  const cycleVariant = () => {
+    setVariantIndex((i) => (i + 1) % phrasings.length);
     setRevealed(false);
     clearRecording();
   };
 
   return (
     <article className="p-5 space-y-4">
-      <header className="flex items-center justify-between gap-2">
+      <header className="flex items-center justify-between gap-2 flex-wrap">
         <div className="flex items-center gap-2">
           <span className="text-xs uppercase tracking-wide text-amber-600 font-semibold">
             Tregim
@@ -48,20 +74,31 @@ export function StoryCard({ story, showHarakat }: StoryCardProps) {
             {story.titleAl}
           </h3>
         </div>
-        {(revealed || audioURL) && (
-          <button
-            onClick={reset}
-            className="btn-ghost !px-2 !py-1 text-xs"
-            title="Rifillo"
-          >
-            <RotateCcw size={14} /> Rifillo
-          </button>
-        )}
+        <div className="flex items-center gap-2">
+          {phrasings.length > 1 && (
+            <button
+              onClick={cycleVariant}
+              className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-2 py-0.5 text-[11px] text-slate-600 hover:border-amber-300 hover:text-amber-700"
+              title="Provo një formulim tjetër me të njëjtat fjalë"
+            >
+              <Shuffle size={11} /> Variant {variantIndex + 1}/{phrasings.length}
+            </button>
+          )}
+          {(revealed || audioURL) && (
+            <button
+              onClick={reset}
+              className="btn-ghost !px-2 !py-1 text-xs"
+              title="Rifillo"
+            >
+              <RotateCcw size={14} /> Rifillo
+            </button>
+          )}
+        </div>
       </header>
 
       {/* Albanian paragraph — always visible, this is the prompt */}
       <p className="text-[15px] text-slate-700 leading-relaxed bg-slate-50 border border-slate-100 rounded-lg p-4">
-        {story.albanian}
+        {active.albanian}
       </p>
 
       {/* Voice recorder row */}
@@ -139,7 +176,7 @@ export function StoryCard({ story, showHarakat }: StoryCardProps) {
             className="font-amiri text-2xl md:text-[28px] text-slate-900"
             style={{ lineHeight: 2.4 }}
           >
-            {showHarakat ? story.arabic : stripHarakat(story.arabic)}
+            {showHarakat ? active.arabic : stripHarakat(active.arabic)}
           </p>
         </div>
       )}

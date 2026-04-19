@@ -1,5 +1,5 @@
-import { Eye, Check, ArrowRight } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { Eye, Check, ArrowRight, Shuffle } from 'lucide-react';
+import { useEffect, useMemo, useState } from 'react';
 import type { Dialogue } from '@/data/curriculum';
 import { useStore } from '@/store/useStore';
 import { PronunciationCheck } from './PronunciationCheck';
@@ -43,7 +43,27 @@ export function Flashcard({
     setVoicePassed(false);
   }, [dialogue.id]);
 
-  const arabic = showHarakat ? dialogue.arabic : stripHarakat(dialogue.arabic);
+  // Cycle through the canonical phrasing and any curated variants. The
+  // canonical text sits at index 0 so first-time readers see the same
+  // thing they always have; clicking 🔀 advances modulo the total.
+  const phrasings = useMemo(
+    () => [
+      {
+        albanian: dialogue.albanian,
+        arabic: dialogue.arabic,
+        transliteration: dialogue.transliteration,
+      },
+      ...(dialogue.variants ?? []),
+    ],
+    [dialogue],
+  );
+  const [variantIndex, setVariantIndex] = useState(0);
+  useEffect(() => {
+    setVariantIndex(0);
+  }, [dialogue.id]);
+  const active = phrasings[variantIndex] ?? phrasings[0];
+
+  const arabic = showHarakat ? active.arabic : stripHarakat(active.arabic);
 
   // The Arabic reference card appears either when the student taps
   // reveal, or when they pronounce the phrase well enough to pass —
@@ -66,11 +86,23 @@ export function Flashcard({
 
       {/* Step 1 — Albanian prompt */}
       <div className="text-center">
-        <div className="text-[11px] uppercase tracking-wide text-slate-400 mb-2">
-          Përkthe në arabisht
+        <div className="flex items-center justify-center gap-2 text-[11px] uppercase tracking-wide text-slate-400 mb-2">
+          <span>Përkthe në arabisht</span>
+          {phrasings.length > 1 && (
+            <button
+              onClick={() => {
+                setVariantIndex((i) => (i + 1) % phrasings.length);
+                setVoicePassed(false);
+              }}
+              className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-2 py-0.5 text-[10px] normal-case tracking-normal text-slate-600 hover:border-brand-300 hover:text-brand-700"
+              title="Provo një formulim tjetër me të njëjtat fjalë"
+            >
+              <Shuffle size={10} /> Variant {variantIndex + 1}/{phrasings.length}
+            </button>
+          )}
         </div>
         <p className="text-xl md:text-2xl font-semibold text-slate-800 leading-relaxed">
-          {dialogue.albanian}
+          {active.albanian}
         </p>
       </div>
 
@@ -84,7 +116,8 @@ export function Flashcard({
           form; harakat are stripped during comparison anyway, but the
           target text renders cleaner with them. */}
       <PronunciationCheck
-        expected={dialogue.arabic}
+        key={`${dialogue.id}-${variantIndex}`}
+        expected={active.arabic}
         onPass={() => {
           markDialogueMastered(dialogue.id);
           setVoicePassed(true);
@@ -110,7 +143,7 @@ export function Flashcard({
           </p>
           {showTransliteration && (
             <p className="text-xs italic text-brand-700">
-              {dialogue.transliteration}
+              {active.transliteration}
             </p>
           )}
         </div>

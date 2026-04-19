@@ -2,11 +2,29 @@
 // Chapters 1–5 carry the richest datasets; 6–16 are stocked with real titles,
 // at least 3 dialogues and ~10 vocabulary words each.
 
+/**
+ * A single rephrasing of the same underlying "scene". The student sees
+ * one variant at a time; clicking 🔀 rotates through them. Keeping the
+ * shape identical to the canonical fields lets the UI render either the
+ * original `Dialogue`/`Story` or any variant without a special path.
+ */
+export interface TextVariant {
+  albanian: string;
+  arabic: string;
+  transliteration: string;
+}
+
 export interface Dialogue {
   id: string;
   albanian: string;
   arabic: string;
   transliteration: string;
+  /**
+   * Optional alternative phrasings that reuse the same core vocabulary.
+   * The student can cycle through them to avoid memorising one fixed
+   * surface form. Rendered via the 🔀 "Variant tjetër" control.
+   */
+  variants?: TextVariant[];
 }
 
 export interface VocabWord {
@@ -28,6 +46,8 @@ export interface Story {
   albanian: string;
   arabic: string;
   transliteration: string;
+  /** Alternative re-tellings using the same vocabulary. See `Dialogue.variants`. */
+  variants?: TextVariant[];
 }
 
 /**
@@ -106,12 +126,36 @@ export const CHAPTERS: Chapter[] = [
         albanian: 'Përshëndetje! Si je?',
         arabic: 'السَّلامُ عَلَيْكُم! كَيْفَ حَالُكَ؟',
         transliteration: 'Es-selamu alejkum! Kejfe haluk?',
+        variants: [
+          {
+            albanian: 'Paqja qoftë mbi ju! Si jeni sot?',
+            arabic: 'السَّلامُ عَلَيْكُم! كَيْفَ حَالُكُم الْيَوْم؟',
+            transliteration: 'Es-selamu alejkum! Kejfe halukum el-jeum?',
+          },
+          {
+            albanian: 'Mirëmëngjes! A jeni mirë?',
+            arabic: 'صَبَاحَ الْخَيْر! هَلْ أَنْتَ بِخَيْر؟',
+            transliteration: 'Sabahal-khajr! Hel ente bikhajr?',
+          },
+        ],
       },
       {
         id: 'd1-2',
         albanian: 'Emri im është Ahmed. Nga vjen ti?',
         arabic: 'اِسْمِي أَحْمَد. مِنْ أَيْنَ أَنْتَ؟',
         transliteration: 'Ismi Ahmed. Min eyne ente?',
+        variants: [
+          {
+            albanian: 'Unë jam Ahmedi. Nga cili vend je?',
+            arabic: 'أَنَا أَحْمَد. مِنْ أَيِّ بَلَدٍ أَنْتَ؟',
+            transliteration: 'Ene Ahmed. Min ejji beledin ente?',
+          },
+          {
+            albanian: 'Mua më quajnë Ahmed. Po ti nga je?',
+            arabic: 'اِسْمِي أَحْمَد. وَأَنْتَ، مِنْ أَيْنَ أَنْتَ؟',
+            transliteration: 'Ismi Ahmed. We ente, min eyne ente?',
+          },
+        ],
       },
       {
         id: 'd1-3',
@@ -266,6 +310,31 @@ export const CHAPTERS: Chapter[] = [
           'السَّلامُ عَلَيْكُم! اِسْمِي مُوسَى. أَنَا مِنْ كُوسُوفُو، أَنَا طَالِب. هَذَا كِتَابِي الْجَدِيد وَذَلِكَ صَدِيقِي أَحْمَد. أَحْمَد مِنْ مِصْر، هُوَ أَيْضاً طَالِب. أَهْلاً وَسَهْلاً! مَعَ السَّلامَة!',
         transliteration:
           "Es-selamu alejkum! Ismi Musa. Ene min Kosofo, ene talib. Hadha kitabil xhedid ve dhalike sadiki Ahmed. Ahmed min Misr, huwe ejden talib. Ehlen we sehlen! Ma'a es-selame!",
+        variants: [
+          {
+            // Same "Musa prezanton veten dhe një shok nga Egjipti" — core
+            // vocab (ism, talib, kitab, sadik, min, hadha/dhalike) retained,
+            // but sentence structure flipped and ordering reshuffled so
+            // the student hears the same meaning with different scaffolding.
+            albanian:
+              'Përshëndetje! Unë quhem Musa, jam student nga Kosova. Shoku im Ahmedi është gjithashtu student; ai vjen nga Egjipti. Ky është libri i tij, ndërsa ai atje është libri im. Mirë se erdhët!',
+            arabic:
+              'السَّلامُ عَلَيْكُم! اِسْمِي مُوسَى، أَنَا طَالِب مِنْ كُوسُوفُو. صَدِيقِي أَحْمَد طَالِب أَيْضاً؛ هُوَ مِنْ مِصْر. هَذَا كِتَابُهُ، وَذَلِكَ كِتَابِي. أَهْلاً وَسَهْلاً!',
+            transliteration:
+              'Es-selamu alejkum! Ismi Musa, ene talib min Kosofo. Sadiki Ahmed talib ejden; huwe min Misr. Hadha kitabuhu, we dhalike kitabi. Ehlen we sehlen!',
+          },
+          {
+            // Third retelling, dialogue-leaning: Musa addresses the reader
+            // directly with questions. Reuses the same vocab set but
+            // introduces the learner to a conversational rhythm.
+            albanian:
+              'Përshëndetje shoku im! Emri im është Musa dhe unë jam student. Ky është libri im. Ky është Ahmedi, ai është shoku im nga Egjipti; edhe ai është student. Unë jam nga Kosova. Mirupafshim!',
+            arabic:
+              'السَّلامُ عَلَيْكُم يَا صَدِيقِي! اِسْمِي مُوسَى وَأَنَا طَالِب. هَذَا كِتَابِي. هَذَا أَحْمَد، هُوَ صَدِيقِي مِنْ مِصْر؛ هُوَ أَيْضاً طَالِب. أَنَا مِنْ كُوسُوفُو. مَعَ السَّلامَة!',
+            transliteration:
+              "Es-selamu alejkum ja sadiki! Ismi Musa we ene talib. Hadha kitabi. Hadha Ahmed, huwe sadiki min Misr; huwe ejden talib. Ene min Kosofo. Ma'a es-selame!",
+          },
+        ],
       },
     ],
     ayat: [
