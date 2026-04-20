@@ -162,30 +162,90 @@ export const CHAPTERS: Chapter[] = [
         albanian: 'Unë jam nga Kosova. Jam student.',
         arabic: 'أَنَا مِنْ كوسوفو. أَنَا طَالِب.',
         transliteration: 'Ene min Kosofo. Ene thalib.',
+        variants: [
+          {
+            albanian: 'Unë jam student dhe vij nga Kosova.',
+            arabic: 'أَنَا طَالِبٌ وَأَنَا مِنْ كُوسُوفُو.',
+            transliteration: 'Ene talibun ve ene min Kosofo.',
+          },
+          {
+            albanian: 'Kosovarja nga vjen? Unë jam student atje.',
+            arabic: 'مِنْ كُوسُوفُو أَنَا؛ أَنَا طَالِبٌ هُنَاكَ.',
+            transliteration: 'Min Kosofo ene; ene talibun hunake.',
+          },
+        ],
       },
       {
         id: 'd1-4',
         albanian: 'Ky është libri im. Ai është i ri.',
         arabic: 'هَذَا كِتَابِي. هُوَ جَدِيد.',
         transliteration: 'Hadha kitabi. Huwe xhedid.',
+        variants: [
+          {
+            albanian: 'Libri im është i ri. Shiko, ky është ai.',
+            arabic: 'كِتَابِي جَدِيدٌ. اُنْظُرْ، هَذَا هُوَ.',
+            transliteration: 'Kitabi xhedid. Undhur, hadha huwe.',
+          },
+          {
+            albanian: 'A është ky një libër i ri? Po, është imi.',
+            arabic: 'هَلْ هَذَا كِتَابٌ جَدِيدٌ؟ نَعَمْ، هُوَ كِتَابِي.',
+            transliteration: 'Hel hadha kitabun xhedid? Ne‘am, huwe kitabi.',
+          },
+        ],
       },
       {
         id: 'd1-5',
         albanian: 'Mirë se të gjeta. Mirupafshim!',
         arabic: 'أَهْلاً وَسَهْلاً. مَعَ السَّلامَةِ!',
         transliteration: "Ehlen we sehlen. Ma'a es-selame!",
+        variants: [
+          {
+            albanian: 'Mirë se erdhe, o shok! Paqja qoftë mbi ty.',
+            arabic: 'أَهْلاً وَسَهْلاً يَا صَدِيقِي! السَّلامُ عَلَيْكَ.',
+            transliteration: 'Ehlen we sehlen ja sadiki! Es-selamu alejke.',
+          },
+          {
+            albanian: 'Paqja qoftë mbi ju! Mirupafshim.',
+            arabic: 'السَّلامُ عَلَيْكُمْ! مَعَ السَّلامَةِ.',
+            transliteration: "Es-selamu alejkum! Ma'a es-selame.",
+          },
+        ],
       },
       {
         id: 'd1-6',
         albanian: 'Nga cila kombësi je? Unë jam shqiptar.',
         arabic: 'مَا جِنْسِيَّتُكَ؟ أَنَا أَلْبَانِيٌّ.',
         transliteration: 'Ma xhinsijjetuke? Ene albanijj.',
+        variants: [
+          {
+            albanian: 'Unë jam shqiptare. Po ti, nga cila kombësi je?',
+            arabic: 'أَنَا أَلْبَانِيَّةٌ. وَأَنْتَ، مَا جِنْسِيَّتُكَ؟',
+            transliteration: 'Ene albanijje. We ente, ma xhinsijjetuke?',
+          },
+          {
+            albanian: 'A je shqiptar? Po, kombësia ime është shqiptare.',
+            arabic: 'هَلْ أَنْتَ أَلْبَانِيٌّ؟ نَعَمْ، جِنْسِيَّتِي أَلْبَانِيَّةٌ.',
+            transliteration: 'Hel ente albanijj? Ne‘am, xhinsijjeti albanijje.',
+          },
+        ],
       },
       {
         id: 'd1-7',
         albanian: 'Ai është inxhinier dhe ajo është mjeke.',
         arabic: 'هُوَ مُهَنْدِسٌ وَهِيَ طَبِيبَةٌ.',
         transliteration: 'Huwe muhendis ve hije tabibe.',
+        variants: [
+          {
+            albanian: 'Ajo është mjeke, ndërsa ai është inxhinier.',
+            arabic: 'هِيَ طَبِيبَةٌ، وَهُوَ مُهَنْدِسٌ.',
+            transliteration: 'Hije tabibe, ve huwe muhendis.',
+          },
+          {
+            albanian: 'A është ai mjek? Jo, ai është inxhinier; ajo është mjeke.',
+            arabic: 'هَلْ هُوَ طَبِيبٌ؟ لَا، هُوَ مُهَنْدِسٌ؛ هِيَ طَبِيبَةٌ.',
+            transliteration: 'Hel huwe tabib? La, huwe muhendis; hije tabibe.',
+          },
+        ],
       },
     ],
     vocabulary: [
@@ -433,36 +493,108 @@ export const CHAPTERS: Chapter[] = [
         albanian: 'Ky është babai im. Ai është mjek.',
         arabic: 'هَذَا وَالِدِي. هُوَ طَبِيبٌ.',
         transliteration: 'Hadha walidi. Huwe tabib.',
+        variants: [
+          {
+            albanian: 'Babai im është mjek. Ja ku është.',
+            arabic: 'وَالِدِي طَبِيبٌ. هَذَا هُوَ.',
+            transliteration: 'Walidi tabib. Hadha huwe.',
+          },
+          {
+            albanian: 'A është babai yt mjek? Po, ai është mjek.',
+            arabic: 'هَلْ وَالِدُكَ طَبِيبٌ؟ نَعَمْ، هُوَ طَبِيبٌ.',
+            transliteration: 'Hel waliduke tabib? Ne‘am, huwe tabib.',
+          },
+        ],
       },
       {
         id: 'd2-2',
         albanian: 'Kjo është nëna ime. Ajo është mësuese.',
         arabic: 'هَذِهِ وَالِدَتِي. هِيَ مُعَلِّمَةٌ.',
         transliteration: "Hadhihi walideti. Hije mu'allime.",
+        variants: [
+          {
+            albanian: 'Nëna ime është mësuese.',
+            arabic: 'وَالِدَتِي مُعَلِّمَةٌ.',
+            transliteration: "Walideti mu'allime.",
+          },
+          {
+            albanian: 'Kush është kjo? Kjo është nëna ime, mësuesja.',
+            arabic: 'مَنْ هَذِهِ؟ هَذِهِ وَالِدَتِي، الْمُعَلِّمَةُ.',
+            transliteration: "Men hadhihi? Hadhihi walideti, el-mu'allime.",
+          },
+        ],
       },
       {
         id: 'd2-3',
         albanian: 'Kush është ky djalë? Ai është vëllai im.',
         arabic: 'مَنْ هَذَا الوَلَدُ؟ هُوَ أَخِي.',
         transliteration: 'Men hadhel veled? Huwe ekhi.',
+        variants: [
+          {
+            albanian: 'Ky djalë është vëllai im.',
+            arabic: 'هَذَا الوَلَدُ أَخِي.',
+            transliteration: 'Hadhel veled ekhi.',
+          },
+          {
+            albanian: 'A është ky vëllai yt? Po, ai është vëllai im.',
+            arabic: 'هَلْ هَذَا أَخُوكَ؟ نَعَمْ، هُوَ أَخِي.',
+            transliteration: 'Hel hadha ekhuke? Ne‘am, huwe ekhi.',
+          },
+        ],
       },
       {
         id: 'd2-4',
         albanian: 'Kam dy vëllezër dhe një motër.',
         arabic: 'لِي أَخَوَانِ وَأُخْتٌ وَاحِدَةٌ.',
         transliteration: 'Li ekhevani ve ukhtun wahide.',
+        variants: [
+          {
+            albanian: 'Unë kam një motër dhe dy vëllezër.',
+            arabic: 'لِي أُخْتٌ وَاحِدَةٌ وَأَخَوَانِ.',
+            transliteration: 'Li ukhtun wahide ve ekhevani.',
+          },
+          {
+            albanian: 'A ke ti vëllezër? Po, kam dy vëllezër dhe një motër.',
+            arabic: 'هَلْ لَكَ إِخْوَةٌ؟ نَعَمْ، لِي أَخَوَانِ وَأُخْتٌ.',
+            transliteration: 'Hel leke ikhwe? Ne‘am, li ekhevani ve ukht.',
+          },
+        ],
       },
       {
         id: 'd2-5',
         albanian: 'Gjyshi dhe gjyshja janë në shtëpi.',
         arabic: 'الجَدُّ وَالجَدَّةُ فِي البَيْتِ.',
         transliteration: 'El-xhedd vel xhedde fil bejt.',
+        variants: [
+          {
+            albanian: 'Në shtëpi janë gjyshi dhe gjyshja.',
+            arabic: 'فِي البَيْتِ الجَدُّ وَالجَدَّةُ.',
+            transliteration: 'Fil bejt el-xhedd vel xhedde.',
+          },
+          {
+            albanian: 'Ku janë gjyshi dhe gjyshja? Ata janë në shtëpi.',
+            arabic: 'أَيْنَ الجَدُّ وَالجَدَّةُ؟ هُمَا فِي البَيْتِ.',
+            transliteration: 'Ejnel xhedd vel xhedde? Huma fil bejt.',
+          },
+        ],
       },
       {
         id: 'd2-6',
         albanian: 'Hajde, le ta falim namazin bashkë.',
         arabic: 'هَيَّا بِنَا نُصَلِّي جَمَاعَةً.',
         transliteration: 'Hejja bina nusal-li xhema‘aten.',
+        variants: [
+          {
+            albanian: 'Le të falemi bashkë në shtëpi.',
+            arabic: 'هَيَّا نُصَلِّي جَمَاعَةً فِي البَيْتِ.',
+            transliteration: 'Hejja nusal-li xhema‘aten fil bejt.',
+          },
+          {
+            albanian: 'A do të falesh me mua? Hajde së bashku.',
+            arabic: 'هَلْ تُصَلِّي مَعِي؟ هَيَّا بِنَا.',
+            transliteration: 'Hel tusal-li me‘i? Hejja bina.',
+          },
+        ],
       },
     ],
     vocabulary: [
@@ -581,6 +713,24 @@ export const CHAPTERS: Chapter[] = [
           'أُسْرَتِي كَبِيرَةٌ وَحَبِيبَةٌ. وَالِدِي طَبِيبٌ وَيَعْمَلُ فِي المُسْتَشْفَى، وَوَالِدَتِي مُعَلِّمَةٌ فِي المَدْرَسَةِ. لِي أَخَوَانِ كَبِيرَانِ وَأُخْتٌ صَغِيرَةٌ. جَدِّي وَجَدَّتِي يَسْكُنَانِ مَعَنَا فِي البَيْتِ. كُلَّ مَسَاءٍ نَأْكُلُ جَمِيعاً، ثُمَّ نُصَلِّي جَمَاعَةً. الحَمْدُ لِلَّهِ، أَعْطَانَا اللَّهُ أُسْرَةً مُبَارَكَةً.',
         transliteration:
           "Usreti kebire ve habibe. Walidi tabib ve ja'melu fil mustashfa, ve walideti mu'al-lime fil medrese. Li ekhevani kebirani ve ukhtun sagire. Xheddi ve xheddeti jeskunani ma'ana fil bejt. Kul-le mesa'in ne'kulu xhemi'an, thumme nusal-li xhema'aten. Elhamdulilah, e'tanallahu usreten mubareke.",
+        variants: [
+          {
+            albanian:
+              'Babai im punon si mjek në spital, ndërsa nëna ime mëson fëmijët në shkollë. Kam dy vëllezër të mëdhenj dhe një motër të vogël, si dhe gjyshin e gjyshen që banojnë me ne. Çdo mbrëmje falemi bashkë si xhemat dhe hamë në një tryezë. Falënderuar qoftë Allahu, familja ime është e bekuar.',
+            arabic:
+              'وَالِدِي يَعْمَلُ طَبِيباً فِي الْمُسْتَشْفَى، وَوَالِدَتِي تُعَلِّمُ الأَوْلَادَ فِي الْمَدْرَسَةِ. لِي أَخَوَانِ كَبِيرَانِ وَأُخْتٌ صَغِيرَةٌ، وَجَدِّي وَجَدَّتِي يَسْكُنَانِ مَعَنَا. كُلَّ مَسَاءٍ نُصَلِّي جَمَاعَةً وَنَأْكُلُ عَلَى مَائِدَةٍ وَاحِدَةٍ. الْحَمْدُ لِلَّهِ، أُسْرَتِي مُبَارَكَةٌ.',
+            transliteration:
+              "Walidi ja'melu tabiben fil mustashfa, ve walideti tu'al-limul evlade fil medrese. Li ekhevani kebirani ve ukhtun sagire, ve xheddi ve xheddeti jeskunani ma'ana. Kul-le mesa'in nusal-li xhema'aten ve ne'kulu ala maideten wahide. Elhamdulilah, usreti mubareke.",
+          },
+          {
+            albanian:
+              'Familja ime është e madhe: babai mjek, nëna mësuese, dy vëllezër, një motër, gjyshi dhe gjyshja. Në shtëpi të gjithë ndihmojmë njëri-tjetrin. Pas darkës ngrihemi dhe falim namazin bashkë. Allahu na dhashtë gjithmonë një familje të dashur.',
+            arabic:
+              'أُسْرَتِي كَبِيرَةٌ: وَالِدٌ طَبِيبٌ، وَوَالِدَةٌ مُعَلِّمَةٌ، وَأَخَوَانِ، وَأُخْتٌ، وَجَدٌّ وَجَدَّةٌ. فِي الْبَيْتِ كُلُّنَا يُسَاعِدُ بَعْضُنَا بَعْضاً. بَعْدَ الْعَشَاءِ نَقُومُ وَنُصَلِّي جَمَاعَةً. أَعْطَانَا اللَّهُ دَائِماً أُسْرَةً حَبِيبَةً.',
+            transliteration:
+              "Usreti kebire: walidun tabib, ve walidetun mu'al-lime, ve ekhevani, ve ukht, ve xheddun ve xhedde. Fil bejt kul-luna jusa'idu ba'duna ba'da. Ba'del 'asha nekumu ve nusal-li xhema'aten. E'tanallahu daimen usreten habibe.",
+          },
+        ],
       },
     ],
     ayat: [
@@ -684,36 +834,108 @@ export const CHAPTERS: Chapter[] = [
         albanian: 'Mirësevini! Urdhëroni brenda.',
         arabic: 'أَهْلاً وَسَهْلاً! تَفَضَّلْ، اُدْخُلْ.',
         transliteration: 'Ehlen we sehlen! Tefaddal, udkhul.',
+        variants: [
+          {
+            albanian: 'Urdhëroni, hyni në shtëpi!',
+            arabic: 'تَفَضَّلْ، اُدْخُلِ البَيْتَ!',
+            transliteration: 'Tefaddal, udkhulil bejt!',
+          },
+          {
+            albanian: 'Mirë se erdhe! Të lutem, hyr brenda.',
+            arabic: 'أَهْلاً بِكَ! مِنْ فَضْلِكَ، اُدْخُلْ.',
+            transliteration: 'Ehlen bike! Min fadlike, udkhul.',
+          },
+        ],
       },
       {
         id: 'd3-2',
         albanian: 'A ke banesë të re në këtë lagje?',
         arabic: 'هَلْ لَدَيْكَ شَقَّةٌ جَدِيدَةٌ فِي هَذَا الحَيِّ؟',
         transliteration: 'Hel ledejke shakketun xhedide fi hadhel hajj?',
+        variants: [
+          {
+            albanian: 'A keni banesë të re në këtë lagje?',
+            arabic: 'هَلْ لَدَيْكُمْ شَقَّةٌ جَدِيدَةٌ فِي هَذَا الحَيِّ؟',
+            transliteration: 'Hel ledejkum shakketun xhedide fi hadhel hajj?',
+          },
+          {
+            albanian: 'Në këtë lagje ke një banesë të re?',
+            arabic: 'فِي هَذَا الحَيِّ لَدَيْكَ شَقَّةٌ جَدِيدَةٌ؟',
+            transliteration: 'Fi hadhel hajj ledejke shakketun xhedide?',
+          },
+        ],
       },
       {
         id: 'd3-3',
         albanian: 'Po, në katin e tretë, numër pesë.',
         arabic: 'نَعَمْ، فِي الدَّوْرِ الثَّالِثِ، رَقْمُ خَمْسَةَ.',
         transliteration: 'Ne‘am, fid-devrith-thalith, rakmu khamse.',
+        variants: [
+          {
+            albanian: 'Banesa numër pesë është në katin e tretë.',
+            arabic: 'الشَّقَّةُ رَقْمُ خَمْسَةَ فِي الدَّوْرِ الثَّالِثِ.',
+            transliteration: 'Esh-shakketu rakmu khamse fid-devrith-thalith.',
+          },
+          {
+            albanian: 'Po, kati është i treti; banesa është numër pesë.',
+            arabic: 'نَعَمْ، الدَّوْرُ ثَالِثٌ؛ الشَّقَّةُ رَقْمُهَا خَمْسَةٌ.',
+            transliteration: 'Ne‘am, ed-devru thalith; esh-shakketu rakmuha khamse.',
+          },
+        ],
       },
       {
         id: 'd3-4',
         albanian: 'Sa dhoma ka shtëpia juaj?',
         arabic: 'كَمْ غُرْفَةً فِي بَيْتِكُمْ؟',
         transliteration: 'Kem gurfeten fi bejtikum?',
+        variants: [
+          {
+            albanian: 'Sa dhoma ka banesa jote?',
+            arabic: 'كَمْ غُرْفَةً فِي شَقَّتِكَ؟',
+            transliteration: 'Kem gurfeten fi shakketike?',
+          },
+          {
+            albanian: 'A ka shumë dhoma shtëpia juaj?',
+            arabic: 'هَلْ فِي بَيْتِكُمْ غُرَفٌ كَثِيرَةٌ؟',
+            transliteration: 'Hel fi bejtikum gurefun kethire?',
+          },
+        ],
       },
       {
         id: 'd3-5',
         albanian: 'Ne duam të marrim me qira një shtëpi.',
         arabic: 'نُرِيدُ أَنْ نَسْتَأْجِرَ بَيْتاً.',
         transliteration: "Nuridu en neste'xhire bejten.",
+        variants: [
+          {
+            albanian: 'Dua të marr me qira një banesë të re.',
+            arabic: 'أُرِيدُ أَنْ أَسْتَأْجِرَ شَقَّةً جَدِيدَةً.',
+            transliteration: "Uridu en este'xhire shakketen xhedide.",
+          },
+          {
+            albanian: 'A mund të marrim një shtëpi me qira këtu?',
+            arabic: 'هَلْ نَسْتَطِيعُ أَنْ نَسْتَأْجِرَ بَيْتاً هُنَا؟',
+            transliteration: "Hel nestetiu en neste'xhire bejten huna?",
+          },
+        ],
       },
       {
         id: 'd3-6',
         albanian: 'Në lagjen e universitetit, ju lutem.',
         arabic: 'فِي حَيِّ الجَامِعَةِ، مِنْ فَضْلِكَ.',
         transliteration: 'Fi hajjil xhami‘a, min fadlik.',
+        variants: [
+          {
+            albanian: 'Të lutem, afër universitetit.',
+            arabic: 'مِنْ فَضْلِكَ، قَرِيباً مِنَ الجَامِعَةِ.',
+            transliteration: 'Min fadlike, kariben minel xhami‘a.',
+          },
+          {
+            albanian: 'Dëshirojmë një shtëpi në lagjen pranë universitetit.',
+            arabic: 'نُرِيدُ بَيْتاً فِي الحَيِّ قُرْبَ الجَامِعَةِ.',
+            transliteration: 'Nuridu bejten fil hajj kurbel xhami‘a.',
+          },
+        ],
       },
     ],
     vocabulary: [
@@ -818,6 +1040,24 @@ export const CHAPTERS: Chapter[] = [
           'اليَوْمَ دَخَلَ مُوسَى وَأُسْرَتُهُ الشَّقَّةَ الجَدِيدَةَ فِي حَيِّ الجَامِعَةِ. الشَّقَّةُ فِي الدَّوْرِ الثَّالِثِ وَفِيهَا خَمْسُ غُرَفٍ. فِي غُرْفَةِ الجُلُوسِ أَرِيكَةٌ وَسَتَائِرُ جَمِيلَةٌ وَسَجَّادَةٌ خَضْرَاءُ. فِي المَطْبَخِ ثَلَّاجَةٌ جَدِيدَةٌ وَفُرْنٌ. قَالَ وَالِدُ مُوسَى: «الحَمْدُ لِلَّهِ، بَيْتُنَا جَمِيلٌ وَهَادِئٌ». دَخَلَ مُوسَى غُرْفَتَهُ وَنَظَرَ إِلَى المِرْآةِ وَالسَّرِيرِ وَقَالَ: «شُكْراً يَا رَبِّ عَلَى هَذِهِ النِّعْمَةِ».',
         transliteration:
           "El-jewme dekhale Musa ve usretuhu esh-shakketel xhedide fi hajjil xhami‘a. Esh-shakketu fid-devrith-thalith ve fiha khamsu gurefin. Fi gurfetil xhulus erike ve setairun xhemile ve sexhxhadetun khadra. Fil matbakh thelxhetun xhedide ve furn. Kale walidu Musa: «Elhamdulilah, bejtuna xhemil ve hadi». Dekhale Musa gurfetehu ve nezare ilel mir'a ves-serir ve kale: «Shukren ja Rabbi ala hadhihi ni'meh».",
+        variants: [
+          {
+            albanian:
+              'Musa hyri në banesën e re në lagjen e universitetit. Në katin e tretë janë pesë dhoma të bukura, një kuzhinë me frigorifer të ri dhe një furrë, si dhe banja me pasqyrë. Babai tha: «Shtëpia jonë është e qetë dhe e bukur». Musa pa shtratin dhe perdet dhe falënderoi Allahun për këtë banesë.',
+            arabic:
+              'دَخَلَ مُوسَى الشَّقَّةَ الجَدِيدَةَ فِي حَيِّ الجَامِعَةِ. فِي الدَّوْرِ الثَّالِثِ خَمْسُ غُرَفٍ جَمِيلَةٍ، وَمَطْبَخٌ فِيهِ ثَلَّاجَةٌ جَدِيدَةٌ وَفُرْنٌ، وَحَمَّامٌ فِيهِ مِرْآةٌ. قَالَ وَالِدُهُ: «بَيْتُنَا هَادِئٌ وَجَمِيلٌ». نَظَرَ مُوسَى إِلَى السَّرِيرِ وَالسَّتَائِرِ وَشَكَرَ اللَّهَ عَلَى هَذِهِ الشَّقَّةِ.',
+            transliteration:
+              "Dekhale Musa esh-shakketel xhedide fi hajjil xhami‘a. Fid-devrith-thalith khamsu gurefin xhemile, ve matbakhun fihi thel-laxhetun xhedide ve furn, ve hemmamun fihi mir'a. Kale waliduhu: «Bejtuna hadi ve xhemil». Nezare Musa ilas-seriri ves-setairi ve shekerallahe ala hadhihish-shakke.",
+          },
+          {
+            albanian:
+              'Banesa e re e Musait është në katin e tretë, në lagjen pranë universitetit. Në dhomën e ndenjës ka një divan të gjelbër dhe një qilim. Në dhomën e gjumit janë shtrati dhe pasqyra. Musa i tha babait: «Shtëpia jonë është e qetë dhe e bukur, elhamdulilah». Familja hyri dhe u gëzua.',
+            arabic:
+              'شَقَّةُ مُوسَى الجَدِيدَةُ فِي الدَّوْرِ الثَّالِثِ، فِي الحَيِّ قُرْبَ الجَامِعَةِ. فِي غُرْفَةِ الجُلُوسِ أَرِيكَةٌ خَضْرَاءُ وَسَجَّادَةٌ. فِي غُرْفَةِ النَّوْمِ سَرِيرٌ وَمِرْآةٌ. قَالَ مُوسَى لِوَالِدِهِ: «بَيْتُنَا جَمِيلٌ وَهَادِئٌ، الْحَمْدُ لِلَّهِ». دَخَلَتِ الأُسْرَةُ وَفَرِحَتْ.',
+            transliteration:
+              "Shakketu Musal xhedide fid-devrith-thalith, fil hajj kurbel xhami‘a. Fi gurfetil xhulus erike khadra ve sexhxhade. Fi gurfetin-nevm serir ve mir'a. Kale Musa li walidihi: «Bejtuna xhemil ve hadi, elhamdulilah». Dekhaletil usre ve feriha.",
+          },
+        ],
       },
     ],
     ayat: [
@@ -925,36 +1165,108 @@ export const CHAPTERS: Chapter[] = [
         albanian: 'Kur zgjohesh në mëngjes?',
         arabic: 'مَتَى تَسْتَيْقِظُ فِي الصَّبَاحِ؟',
         transliteration: 'Meta testejkizu fis-sabah?',
+        variants: [
+          {
+            albanian: 'Në cilën orë zgjohesh ti?',
+            arabic: 'فِي أَيِّ سَاعَةٍ تَسْتَيْقِظُ؟',
+            transliteration: 'Fi ejji sa‘atin testejkizu?',
+          },
+          {
+            albanian: 'A zgjohesh herët në mëngjes?',
+            arabic: 'هَلْ تَسْتَيْقِظُ مُبَكِّراً فِي الصَّبَاحِ؟',
+            transliteration: 'Hel testejkizu mubekkiren fis-sabah?',
+          },
+        ],
       },
       {
         id: 'd4-2',
         albanian: 'Zgjohem herët, para namazit të sabahut.',
         arabic: 'أَسْتَيْقِظُ مُبَكِّراً قَبْلَ صَلَاةِ الفَجْرِ.',
         transliteration: 'Estejkizu mubekkiren kable salatil fexhr.',
+        variants: [
+          {
+            albanian: 'Para namazit të sabahut unë zgjohem.',
+            arabic: 'قَبْلَ صَلَاةِ الفَجْرِ أَسْتَيْقِظُ أَنَا.',
+            transliteration: 'Kable salatil fexhr estejkizu ene.',
+          },
+          {
+            albanian: 'Unë nuk vonohem; zgjohem në kohën e sabahut.',
+            arabic: 'لَا أَتَأَخَّرُ؛ أَسْتَيْقِظُ فِي وَقْتِ الفَجْرِ.',
+            transliteration: 'La ete’ekhkheru; estejkizu fi waktil fexhr.',
+          },
+        ],
       },
       {
         id: 'd4-3',
         albanian: 'Pas namazit shkoj në shkollë me autobus.',
         arabic: 'بَعْدَ الصَّلَاةِ أَذْهَبُ إِلَى المَدْرَسَةِ بِالحَافِلَةِ.',
         transliteration: 'Ba‘des-salati edhhebu ilel medrese bil hafile.',
+        variants: [
+          {
+            albanian: 'Në shkollë shkoj me autobus pas namazit.',
+            arabic: 'أَذْهَبُ إِلَى المَدْرَسَةِ بِالحَافِلَةِ بَعْدَ الصَّلَاةِ.',
+            transliteration: 'Edhhebu ilel medrese bil hafile ba‘des-sala.',
+          },
+          {
+            albanian: 'A shkon në shkollë me makinë apo me autobus?',
+            arabic: 'هَلْ تَذْهَبُ إِلَى المَدْرَسَةِ بِالسَّيَّارَةِ أَمْ بِالحَافِلَةِ؟',
+            transliteration: 'Hel tedhhebu ilel medrese bis-sejjare em bil hafile?',
+          },
+        ],
       },
       {
         id: 'd4-4',
         albanian: 'Ajo pastron shtëpinë dhe lan rrobat.',
         arabic: 'هِيَ تَكْنُسُ البَيْتَ وَتَغْسِلُ المَلَابِسَ.',
         transliteration: 'Hije teknusul bejt ve tegsilul melabis.',
+        variants: [
+          {
+            albanian: 'Nëna e lan rrobat dhe e fshin shtëpinë.',
+            arabic: 'الوَالِدَةُ تَغْسِلُ المَلَابِسَ وَتَكْنُسُ البَيْتَ.',
+            transliteration: 'El-walide tegsilul melabis ve teknusul bejt.',
+          },
+          {
+            albanian: 'A e pastron ajo shtëpinë çdo ditë?',
+            arabic: 'هَلْ تَكْنُسُ البَيْتَ كُلَّ يَوْمٍ؟',
+            transliteration: 'Hel teknusul bejte kul-le jewm?',
+          },
+        ],
       },
       {
         id: 'd4-5',
         albanian: 'Në ditën e pushimit shikoj televizorin dhe lexoj gazetën.',
         arabic: 'فِي يَوْمِ العُطْلَةِ أُشَاهِدُ التِّلْفَازَ وَأَقْرَأُ الصَّحِيفَةَ.',
         transliteration: "Fi jewmil 'utle ushahidut-tilfaz ve akrausa-sahife.",
+        variants: [
+          {
+            albanian: 'Gazetën e lexoj dhe televizorin e shikoj në pushim.',
+            arabic: 'أَقْرَأُ الصَّحِيفَةَ وَأُشَاهِدُ التِّلْفَازَ فِي العُطْلَةِ.',
+            transliteration: "Akraus-sahife ve ushahidut-tilfaz fil 'utle.",
+          },
+          {
+            albanian: 'Çfarë bën në ditën e pushimit?',
+            arabic: 'مَاذَا تَفْعَلُ فِي يَوْمِ العُطْلَةِ؟',
+            transliteration: "Madha tef‘alu fi jewmil 'utle?",
+          },
+        ],
       },
       {
         id: 'd4-6',
         albanian: 'Nuk vonohem, flej herët mbrëmjeve.',
         arabic: 'لَا أَتَأَخَّرُ، أَنَامُ مُبَكِّراً فِي المَسَاءِ.',
         transliteration: 'La ete’ekhkheru, enamu mubekkiren fil mesa.',
+        variants: [
+          {
+            albanian: 'Flej herët, që të zgjohem herët.',
+            arabic: 'أَنَامُ مُبَكِّراً لِأَسْتَيْقِظَ مُبَكِّراً.',
+            transliteration: 'Enamu mubekkiren li estejkiza mubekkiren.',
+          },
+          {
+            albanian: 'A flen vonë në mbrëmje? Jo, unë nuk vonohem.',
+            arabic: 'هَلْ تَنَامُ مُتَأَخِّراً فِي المَسَاءِ؟ لَا، لَا أَتَأَخَّرُ.',
+            transliteration: 'Hel tenamu mute’ekhkhiren fil mesa? La, la ete’ekhkheru.',
+          },
+        ],
       },
     ],
     vocabulary: [
@@ -1060,6 +1372,24 @@ export const CHAPTERS: Chapter[] = [
           'يَسْتَيْقِظُ مُوسَى مُبَكِّراً كُلَّ يَوْمٍ، قَبْلَ صَلَاةِ الفَجْرِ. بَعْدَ الصَّلَاةِ يَأْكُلُ الفَطُورَ مَعَ الأُسْرَةِ وَيَشْرَبُ الحَلِيبَ مَعَ الشَّايِ. فِي السَّاعَةِ السَّابِعَةِ يَذْهَبُ إِلَى المَدْرَسَةِ بِالحَافِلَةِ، لِأَنَّ المَدْرَسَةَ بَعِيدَةٌ. بَعْدَ الدَّرْسِ يَرْجِعُ إِلَى البَيْتِ، وَيُسَاعِدُ وَالِدَتَهُ فِي كَنْسِ الغُرَفِ وَغَسْلِ المَلَابِسِ. فِي المَسَاءِ يُشَاهِدُ التِّلْفَازَ مَعَ وَالِدِهِ وَيَقْرَأُ الصَّحِيفَةَ. فِي يَوْمِ العُطْلَةِ لَا يَسْتَيْقِظُ مُبَكِّراً، وَلَكِنْ يَسْتَرِيحُ مَعَ أُسْرَتِهِ فِي البَيْتِ. هُوَ لَا يَتَأَخَّرُ أَبَداً وَيَنَامُ مُبَكِّراً لِيَكُونَ نَشِيطاً فِي الغَدِ.',
         transliteration:
           "Jestejkizu Musa mubekkiren kul-le jewm, kable salatil fexhr. Ba'des-salati je'kulul fatur ma'al usre ve jeshrebul halibe ma'ash-shaj. Fis-sa'atis-sabi'a jedhhebu ilel medrese bil hafile, li ennel medrese be‘ide. Ba'ded-dersi jerxhi‘u ilel bejt, ve jusa‘idu walidetehu fi kensil gurefi ve gaslil melabis. Fil mesa jushahidut-tilfaze ma‘a walidihi ve jakrau es-sahife. Fi jewmil ‘utle la jestejkizu mubekkiren, ve lakin jesterihu ma‘a usretihi fil bejt. Huwe la jete’ekhkheru ebeden ve jenamu mubekkiren li jekune neshitan fil gad.",
+        variants: [
+          {
+            albanian:
+              'Musa zgjohet herët para namazit të sabahut, pastaj shkon në shkollë me autobus. Pas mësimit e ndihmon nënën të pastrojë dhomat dhe të lajë rrobat. Në mbrëmje lexon gazetën dhe shikon televizorin me babanë. Ai fle herët, prandaj nuk vonohet kurrë.',
+            arabic:
+              'يَسْتَيْقِظُ مُوسَى مُبَكِّراً قَبْلَ صَلَاةِ الفَجْرِ، ثُمَّ يَذْهَبُ إِلَى المَدْرَسَةِ بِالحَافِلَةِ. بَعْدَ الدَّرْسِ يُسَاعِدُ وَالِدَتَهُ فِي كَنْسِ الغُرَفِ وَغَسْلِ المَلَابِسِ. فِي المَسَاءِ يَقْرَأُ الصَّحِيفَةَ وَيُشَاهِدُ التِّلْفَازَ مَعَ وَالِدِهِ. يَنَامُ مُبَكِّراً، فَلَا يَتَأَخَّرُ أَبَداً.',
+            transliteration:
+              "Jestejkizu Musa mubekkiren kable salatil fexhr, thumme jedhhebu ilel medrese bil hafile. Ba‘ded-dersi jusa‘idu walidetehu fi kensil gurefi ve gaslil melabis. Fil mesa jakraus-sahife ve jushahidut-tilfaze ma‘a walidih. Jenamu mubekkiren, fela jete’ekhkheru ebeda.",
+          },
+          {
+            albanian:
+              'Çdo ditë Musa zgjohet në kohën e sabahut dhe fal namazin. Pastaj ha mëngjesin me familjen dhe shkon në shkollë me autobus. Në mbrëmje nuk shikon televizorin shumë; lexon gazetën pak dhe fle herët. Në ditën e pushimit pushon me familjen në shtëpi.',
+            arabic:
+              'كُلَّ يَوْمٍ يَسْتَيْقِظُ مُوسَى فِي وَقْتِ الفَجْرِ وَيُصَلِّي. ثُمَّ يَأْكُلُ الفَطُورَ مَعَ الأُسْرَةِ وَيَذْهَبُ إِلَى المَدْرَسَةِ بِالحَافِلَةِ. فِي المَسَاءِ لَا يُشَاهِدُ التِّلْفَازَ كَثِيراً؛ يَقْرَأُ الصَّحِيفَةَ قَلِيلاً وَيَنَامُ مُبَكِّراً. فِي يَوْمِ العُطْلَةِ يَسْتَرِيحُ مَعَ أُسْرَتِهِ فِي البَيْتِ.',
+            transliteration:
+              "Kul-le jewmin jestejkizu Musa fi waktil fexhr ve jusal-li. Thumme je’kulul fatur ma‘al usre ve jedhhebu ilel medrese bil hafile. Fil mesa la jushahidut-tilfaze kethiren; jakraus-sahife kalilen ve jenamu mubekkiren. Fi jewmil ‘utle jesterihu ma‘a usretihi fil bejt.",
+          },
+        ],
       },
     ],
     ayat: [
@@ -1165,36 +1495,108 @@ export const CHAPTERS: Chapter[] = [
         albanian: 'Çfarë hëngre në mëngjes?',
         arabic: 'مَاذَا أَكَلْتَ فِي الفَطُورِ؟',
         transliteration: 'Madha ekelte fil fetur?',
+        variants: [
+          {
+            albanian: 'A hëngre mëngjes sot?',
+            arabic: 'هَلْ أَكَلْتَ الفَطُورَ الْيَوْمَ؟',
+            transliteration: 'Hel ekeltel fetur el-jewm?',
+          },
+          {
+            albanian: 'Çfarë hëngre ti dhe çfarë pive?',
+            arabic: 'مَاذَا أَكَلْتَ وَمَاذَا شَرِبْتَ؟',
+            transliteration: 'Madha ekelte ve madha sharibte?',
+          },
+        ],
       },
       {
         id: 'd5-2',
         albanian: 'Hëngra bukë me hurma dhe piva qumësht.',
         arabic: 'أَكَلْتُ خُبْزاً وَتَمْراً وَشَرِبْتُ حَلِيباً.',
         transliteration: 'Ekeltu khubzen ve temren ve sharibtu haliben.',
+        variants: [
+          {
+            albanian: 'Piva qumësht dhe hëngra pak bukë me hurma.',
+            arabic: 'شَرِبْتُ حَلِيباً وَأَكَلْتُ قَلِيلاً مِنَ الخُبْزِ مَعَ التَّمْرِ.',
+            transliteration: 'Sharibtu haliben ve ekeltu kalilen minel khubz ma‘at-temr.',
+          },
+          {
+            albanian: 'Hurmat me qumësht janë mëngjesi im.',
+            arabic: 'التَّمْرُ مَعَ الحَلِيبِ فَطُورِي.',
+            transliteration: 'Et-temru ma‘al halib feturi.',
+          },
+        ],
       },
       {
         id: 'd5-3',
         albanian: 'Për drekë dua oriz me mish dhe sallatë.',
         arabic: 'أُرِيدُ فِي الغَدَاءِ أَرُزّاً مَعَ اللَّحْمِ وَسَلَطَةً.',
         transliteration: 'Uridu fil geda erruzzen ma‘al lahm ve selete.',
+        variants: [
+          {
+            albanian: 'Në drekë preferoj mish me oriz.',
+            arabic: 'أُفَضِّلُ فِي الغَدَاءِ اللَّحْمَ مَعَ الأَرُزِّ.',
+            transliteration: 'Ufeddilu fil geda el-lahme ma‘al erruzz.',
+          },
+          {
+            albanian: 'Unë hëngra oriz me pulë dhe sallatë.',
+            arabic: 'أَكَلْتُ أَرُزّاً مَعَ الدَّجَاجِ وَسَلَطَةً.',
+            transliteration: 'Ekeltu erruzzen ma‘ad-dexhaxh ve selete.',
+          },
+        ],
       },
       {
         id: 'd5-4',
         albanian: 'A do çaj apo kafe?',
         arabic: 'هَلْ تُرِيدُ شَاياً أَمْ قَهْوَةً؟',
         transliteration: 'Hel turidu shajen em kahwe?',
+        variants: [
+          {
+            albanian: 'Çaj dhe kafe — cilën preferon?',
+            arabic: 'الشَّايُ وَالقَهْوَةُ — أَيَّهُمَا تُفَضِّلُ؟',
+            transliteration: 'Esh-shaju vel kahwe — ejjehuma tufeddilu?',
+          },
+          {
+            albanian: 'Më jep një gotë çaj ose kafe, të lutem.',
+            arabic: 'أَعْطِنِي شَاياً أَوْ قَهْوَةً مِنْ فَضْلِكَ.',
+            transliteration: 'Atini shajen ev kahweten min fadlik.',
+          },
+        ],
       },
       {
         id: 'd5-5',
         albanian: 'Çaj me qumësht, ju lutem. Falemnderit.',
         arabic: 'شَاياً بِالحَلِيبِ مِنْ فَضْلِكَ. شُكْراً.',
         transliteration: 'Shajen bil halib, min fadlik. Shukren.',
+        variants: [
+          {
+            albanian: 'Të lutem një çaj; e preferoj me qumësht.',
+            arabic: 'مِنْ فَضْلِكَ شَايٌ؛ أُفَضِّلُهُ بِالحَلِيبِ.',
+            transliteration: 'Min fadlike shaj; ufeddiluhu bil halib.',
+          },
+          {
+            albanian: 'Dua një kafe me pak qumësht, faleminderit.',
+            arabic: 'أُرِيدُ قَهْوَةً بِقَلِيلٍ مِنَ الحَلِيبِ، شُكْراً.',
+            transliteration: 'Uridu kahweten bi kalilin minel halib, shukren.',
+          },
+        ],
       },
       {
         id: 'd5-6',
         albanian: 'Jam i ngopur, uji mjafton. Mos shto më.',
         arabic: 'أَنَا شَبْعَانُ، المَاءُ يَكْفِي. لَا تَزِدْ.',
         transliteration: 'Ene shebane, el-mau jekfi. La tezid.',
+        variants: [
+          {
+            albanian: 'Mos më shto ushqim, jam i ngopur — vetëm pak ujë.',
+            arabic: 'لَا تَزِدْ لِي طَعَاماً، أَنَا شَبْعَانُ — قَلِيلاً مِنَ المَاءِ فَقَطْ.',
+            transliteration: 'La tezid li ta‘amen, ene shebane — kalilen minel ma’i fekat.',
+          },
+          {
+            albanian: 'Falemnderit, mjafton. Uji më mjafton.',
+            arabic: 'شُكْراً، يَكْفِي. المَاءُ يَكْفِينِي.',
+            transliteration: 'Shukren, jekfi. El-mau jekfini.',
+          },
+        ],
       },
     ],
     vocabulary: [
@@ -1312,6 +1714,24 @@ export const CHAPTERS: Chapter[] = [
           'كُلَّ صَبَاحٍ يَأْكُلُ مُوسَى الخُبْزَ بِالتَّمْرِ وَيَشْرَبُ الحَلِيبَ مَعَ الشَّايِ. فِي الغَدَاءِ تَطْبُخُ الوَالِدَةُ الأَرُزَّ مَعَ اللَّحْمِ وَسَلَطَةً طَازَجَةً. الوَالِدُ يُفَضِّلُ القَهْوَةَ بِدُونِ سُكَّرٍ، وَالأُخْتُ الصَّغِيرَةُ تَطْلُبُ الفَاكِهَةَ بَعْدَ الطَّعَامِ. فِي المَسَاءِ نَتَنَاوَلُ عَشَاءً خَفِيفاً — سَمَكاً أَوْ دَجَاجاً مَعَ الخُضَارِ. الضُّيُوفُ يَأْتُونَ كَثِيراً إِلَى بَيْتِنَا، فَتُعِدُّ الوَالِدَةُ مَائِدَةً جَمِيلَةً لَهُمْ. المَاءُ أَنْفَعُ شَرَابٍ، وَلَا نَأْكُلُ كَثِيراً حَتَّى لَا نَكُونَ ثِقَالاً.',
         transliteration:
           "Kul-le sabahin je'kulu Musa el-khubze bit-temri ve jeshrebul halibe ma'ash-shaj. Fil gada tetbukhul walide el-erruzze ma‘al-lahm ve selete tazexhe. El-walid jufeddilul kahwe bi dunis-sukker, vel ukht es-sagire tetlubul fakihe ba'det-ta'am. Fil mesa netenewelu ‘asha’en khafifen — semeken ev dexhaxhen ma‘al khudar. Ed-dujuf je’tune kethiren ila bejtina, fe tu‘iddul walide maideten xhemile lehum. El-mau enfe‘u sharabin, ve la ne’kulu kethiren hatta la nekune thikalen.",
+        variants: [
+          {
+            albanian:
+              'Në mëngjes Musa ha bukë me hurma dhe pi qumësht. Për drekë nëna gatuan oriz me mish dhe sallatë. Në mbrëmje familja ha darkë të lehtë — peshk ose pulë. Kur vijnë mysafirë, nëna përgatit tryezë të madhe. Uji është pija më e dobishme.',
+            arabic:
+              'فِي الصَّبَاحِ يَأْكُلُ مُوسَى الخُبْزَ بِالتَّمْرِ وَيَشْرَبُ الحَلِيبَ. فِي الغَدَاءِ تَطْبُخُ الوَالِدَةُ الأَرُزَّ مَعَ اللَّحْمِ وَسَلَطَةً. فِي المَسَاءِ تَأْكُلُ الأُسْرَةُ عَشَاءً خَفِيفاً — سَمَكاً أَوْ دَجَاجاً. وَإِذَا جَاءَ الضَّيْفُ، تُعِدُّ الوَالِدَةُ مَائِدَةً كَبِيرَةً. المَاءُ أَنْفَعُ شَرَابٍ.',
+            transliteration:
+              "Fis-sabah je'kulu Musa el-khubze bit-temri ve jeshrebul halib. Fil geda tetbukhul walidetul erruzze ma‘al-lahm ve selete. Fil mesa te’kulul usre ‘asha’en khafifen — semeken ev dexhaxhen. Ve idha xha‘ed-dajf, tu‘iddul walide maideten kebire. El-mau enfe‘u sharab.",
+          },
+          {
+            albanian:
+              'Babai e preferon kafen pa sheqer dhe nëna çajin me qumësht. Motra e vogël kërkon fruta dhe hurma pas çdo vakti. Musa është i uritur në drekë, prandaj ha shumë oriz me mish. Mbrëmjeve ha pak dhe pi ujë, që të mos jetë i ngopur para gjumit.',
+            arabic:
+              'الوَالِدُ يُفَضِّلُ القَهْوَةَ بِدُونِ سُكَّرٍ وَالوَالِدَةُ الشَّايَ بِالحَلِيبِ. الأُخْتُ الصَّغِيرَةُ تَطْلُبُ الفَاكِهَةَ وَالتَّمْرَ بَعْدَ كُلِّ وَجْبَةٍ. مُوسَى جَائِعٌ فِي الغَدَاءِ، فَيَأْكُلُ أَرُزّاً كَثِيراً مَعَ اللَّحْمِ. فِي المَسَاءِ يَأْكُلُ قَلِيلاً وَيَشْرَبُ المَاءَ، حَتَّى لَا يَكُونَ شَبْعَاناً قَبْلَ النَّوْمِ.',
+            transliteration:
+              "El-walid jufeddilul kahwe bi dunis-sukker vel walide esh-shaje bil halib. El-ukhtus-sagire tetlubul fakihe vet-temre ba‘de kul-li vexhbe. Musa xhaiun fil geda, fe je’kulu erruzzen kethiren ma‘al-lahm. Fil mesa je’kulu kalilen ve jeshrebul ma’e, hatta la jekune shebanen kablen-nevm.",
+          },
+        ],
       },
     ],
     ayat: [
@@ -1408,36 +1828,108 @@ export const CHAPTERS: Chapter[] = [
         albanian: 'A mund të shkoj në xhami me ty?',
         arabic: 'هَلْ أَسْتَطِيعُ أَنْ أَذْهَبَ مَعَكَ إِلَى المَسْجِدِ؟',
         transliteration: 'Hel estetiu en edhhebe ma‘ake ilel mesxhid?',
+        variants: [
+          {
+            albanian: 'A mund të shkojmë bashkë në namaz?',
+            arabic: 'هَلْ نَسْتَطِيعُ أَنْ نَذْهَبَ مَعاً إِلَى الصَّلَاةِ؟',
+            transliteration: 'Hel nestetiu en nedhhebe ma‘an iles-salati?',
+          },
+          {
+            albanian: 'Unë dua të shkoj me ty në xhami.',
+            arabic: 'أُرِيدُ أَنْ أَذْهَبَ مَعَكَ إِلَى المَسْجِدِ.',
+            transliteration: 'Uridu en edhhebe ma‘ake ilel mesxhid.',
+          },
+        ],
       },
       {
         id: 'd6-2',
         albanian: 'Patjetër, po hipim në makinë. Jemi afër.',
         arabic: 'بِالتَّأْكِيدِ، سَنَرْكَبُ السَّيَّارَةَ. نَحْنُ قَرِيبُونَ.',
         transliteration: 'Bit-te’kid, senerkebus-sejjare. Nahnu karibun.',
+        variants: [
+          {
+            albanian: 'Xhamia është afër; do të hipim në makinë.',
+            arabic: 'المَسْجِدُ قَرِيبٌ؛ سَنَرْكَبُ السَّيَّارَةَ.',
+            transliteration: 'El-mesxhidu karibun; senerkebus-sejjare.',
+          },
+          {
+            albanian: 'A jemi të afërt apo të largët nga xhamia?',
+            arabic: 'هَلْ نَحْنُ قَرِيبُونَ أَمْ بَعِيدُونَ مِنَ المَسْجِدِ؟',
+            transliteration: 'Hel nahnu karibun em be‘idun minel mesxhid?',
+          },
+        ],
       },
       {
         id: 'd6-3',
         albanian: 'A e dëgjove ezanin? Ja erdhi koha e namazit.',
         arabic: 'هَلْ سَمِعْتَ الأَذَانَ؟ حَانَ وَقْتُ الصَّلَاةِ.',
         transliteration: 'Hel semi‘tel edhan? Hane waktus-salati.',
+        variants: [
+          {
+            albanian: 'Ezani u dëgjua; kjo është koha e sabahut.',
+            arabic: 'سُمِعَ الأَذَانُ؛ هَذَا وَقْتُ الفَجْرِ.',
+            transliteration: 'Sumi‘al edhan; hadha waktul fexhr.',
+          },
+          {
+            albanian: 'A e dëgjon ezanin e akshamit?',
+            arabic: 'هَلْ تَسْمَعُ أَذَانَ المَغْرِبِ؟',
+            transliteration: 'Hel tesme‘u edhanel megrib?',
+          },
+        ],
       },
       {
         id: 'd6-4',
         albanian: 'Të presim ty te xhamia e Profetit insh’Allah.',
         arabic: 'نَنْتَظِرُكَ عِنْدَ المَسْجِدِ النَّبَوِيِّ إِنْ شَاءَ اللَّهُ.',
         transliteration: 'Nentazirukee ‘indel mesxhidin-nebevijj, inshallah.',
+        variants: [
+          {
+            albanian: 'Insh’Allah do të të pres pranë Xhamisë së Profetit.',
+            arabic: 'إِنْ شَاءَ اللَّهُ سَأَنْتَظِرُكَ بِجَانِبِ المَسْجِدِ النَّبَوِيِّ.',
+            transliteration: 'Inshallah seentazirukee bi xhanibil mesxhidin-nebevijj.',
+          },
+          {
+            albanian: 'Të presim në Medinë, te xhamia e Profetit.',
+            arabic: 'نَنْتَظِرُكَ فِي المَدِينَةِ، عِنْدَ المَسْجِدِ النَّبَوِيِّ.',
+            transliteration: 'Nentazirukee fil medine, ‘indel mesxhidin-nebevijj.',
+          },
+        ],
       },
       {
         id: 'd6-5',
         albanian: 'Allahu të shpërbleftë me të mirë, o vëlla.',
         arabic: 'جَزَاكَ اللَّهُ خَيْراً يَا أَخِي.',
         transliteration: 'Xhezakellahu khajren, ja ekhi.',
+        variants: [
+          {
+            albanian: 'O vëllai im, Allahu të shpërbleftë me të mirë.',
+            arabic: 'يَا أَخِي، جَزَاكَ اللَّهُ خَيْراً.',
+            transliteration: 'Ja ekhi, xhezakellahu khajren.',
+          },
+          {
+            albanian: 'Allahu ju shpërbleftë të gjithëve me të mirë.',
+            arabic: 'جَزَاكُمُ اللَّهُ جَمِيعاً خَيْراً.',
+            transliteration: 'Xhezakumullahu xhemi‘an khajren.',
+          },
+        ],
       },
       {
         id: 'd6-6',
         albanian: 'Ai që flen pas Jacisë është i plogët; unë s’jam dembel.',
         arabic: 'الذَّاهِبُ لِلنَّوْمِ بَعْدَ العِشَاءِ كَسْلَانُ؛ أَنَا لَسْتُ كَسْلَاناً.',
         transliteration: 'Edh-dhahibu lin-nevmi ba‘del ‘isha keslan; ene lestu keslanen.',
+        variants: [
+          {
+            albanian: 'Unë nuk jam dembel, unë jam aktiv.',
+            arabic: 'أَنَا لَسْتُ كَسْلَاناً، أَنَا نَشِيطٌ.',
+            transliteration: 'Ene lestu keslanen, ene neshitun.',
+          },
+          {
+            albanian: 'Besimtari aktiv nuk vonohet nga namazi i sabahut.',
+            arabic: 'المُؤْمِنُ النَّشِيطُ لَا يَتَأَخَّرُ عَنْ صَلَاةِ الفَجْرِ.',
+            transliteration: 'El-mu’minun-neshitu la jete’ekhkharu ‘an salatil fexhr.',
+          },
+        ],
       },
     ],
     vocabulary: [
@@ -1546,6 +2038,22 @@ export const CHAPTERS: Chapter[] = [
           'يَضَعُ مُوسَى المُنَبِّهَ قَبْلَ النَّوْمِ، لِئَلَّا يَتَأَخَّرَ عَنْ صَلَاةِ الفَجْرِ. عِنْدَمَا يَسْمَعُ الأَذَانَ يَقُومُ سَرِيعاً وَيَتَوَضَّأُ. المَسْجِدُ قَرِيبٌ مِنْ بَيْتِهِ، بِجَانِبِ الحَدِيقَةِ، وَلَكِنَّهُ يَرْكَبُ السَّيَّارَةَ أَحْيَاناً حِينَ يَنْزِلُ مَطَرٌ كَثِيرٌ. فِي المَسْجِدِ يَلْتَقِي بِأَصْدِقَائِهِ وَيَتَعَلَّمُ الآيَاتِ مِنَ الإِمَامِ. إِنْ شَاءَ اللَّهُ يَوْماً مَا سَيُصَلِّي فِي المَسْجِدِ النَّبَوِيِّ بِالمَدِينَةِ وَفِي المَسْجِدِ الحَرَامِ بِمَكَّةَ. الصَّلَاةُ لَيْسَتْ لِلْكُسَالَى، بَلْ لِلْمُؤْمِنِينَ النَّشِيطِينَ الَّذِينَ يُحِبُّونَ اللَّهَ.',
         transliteration:
           "Jeda‘u Musa el-munebbihe kabled-nevm, li’ella jete’ekhkhare ‘an salatil fexhr. ‘Indema jesme‘ul edhan jekumu seri‘an ve jetevedda. El-mesxhidu karibun min bejtihi, bi xhanibil hadika, ve lakinnehu jerkebus-sejjare ehjanen hine jenzilu meterun kethir. Fil mesxhid jeltaki bi asdikaihi ve jete‘al-lemul ajati minel imam. Inshallah jewmen ma sejusal-li fil mesxhidin-nebevijj bil medine ve fil mesxhidil harami bi Mekke. Es-salatu lejset lil kusala, bel lil mu’minin en-neshitin el-ledhine juhibbunAllah.",
+        variants: [
+          {
+            albanian: 'Musa ngrihet për sabah, merr avdes dhe shkon në xhaminë pranë parkut. Ezani i dëgjuar e bën aktiv, kurse dembelët flenë gjatë. Ndonjëherë hipën në makinë kur është shi, por xhamia është e afërt. Ai e do Medinën dhe do të udhëtojë me aeroplan për të falur namaz në Xhaminë e Profetit.',
+            arabic:
+              'يَقُومُ مُوسَى لِلْفَجْرِ، يَتَوَضَّأُ وَيَذْهَبُ إِلَى المَسْجِدِ بِجَانِبِ الحَدِيقَةِ. الأَذَانُ الَّذِي يَسْمَعُهُ يَجْعَلُهُ نَشِيطاً، أَمَّا الكُسَالَى فَيَنَامُونَ طَوِيلاً. أَحْيَاناً يَرْكَبُ السَّيَّارَةَ حِينَ يَنْزِلُ المَطَرُ، وَلَكِنَّ المَسْجِدَ قَرِيبٌ. يُحِبُّ المَدِينَةَ وَسَيُسَافِرُ بِالطَّائِرَةِ لِيُصَلِّيَ فِي المَسْجِدِ النَّبَوِيِّ.',
+            transliteration:
+              'Jekumu Musa lil fexhr, jetevedda ve jedhhebu ilel mesxhidi bi xhanibil hadika. El-edhanul-ledhi jesme‘uhu jexh‘aluhu neshitan, emmel kusala fe jenamune tavilen. Ehjanen jerkebus-sejjare hine jenzilul meter, ve lakinnel mesxhide karibun. Juhibbul medine ve sejusafiru bit-ta’irati lijusal-lije fil mesxhidin-nebevijj.',
+          },
+          {
+            albanian: 'Kur dëgjon ezanin e akshamit, Musa lë gjithçka dhe shkon në xhami. Ai e vendos orën e alarmit natën që të mos e humbasë sabahun. Udhëtari i sëmurë mund të falet ulur, por Musa është i shëndetshëm dhe aktiv. Insh’Allah një ditë do të shkojë edhe në Qabe me aeroplan.',
+            arabic:
+              'عِنْدَمَا يَسْمَعُ أَذَانَ المَغْرِبِ، يَتْرُكُ مُوسَى كُلَّ شَيْءٍ وَيَذْهَبُ إِلَى المَسْجِدِ. يَضَعُ المُنَبِّهَ فِي اللَّيْلِ لِئَلَّا يَفُوتَهُ الفَجْرُ. المُسَافِرُ المَرِيضُ يُصَلِّي جَالِساً، وَلَكِنَّ مُوسَى صَحِيحٌ وَنَشِيطٌ. إِنْ شَاءَ اللَّهُ يَوْماً مَا سَيَذْهَبُ إِلَى المَسْجِدِ الحَرَامِ بِالطَّائِرَةِ.',
+            transliteration:
+              'Indema jesme‘u edhanel megrib, jetruku Musa kulle shej’in ve jedhhebu ilel mesxhid. Jeda‘ul munebbihe fil lejli li’ella jefutehul fexhr. El-musafirul meridu jusal-li xhalisen, ve lakinne Musa sahihun ve neshit. Inshallah jewmen ma sejedhhebu ilel mesxhidil harami bit-ta’ira.',
+          },
+        ],
       },
     ],
     ayat: [
@@ -1653,36 +2161,108 @@ export const CHAPTERS: Chapter[] = [
         albanian: 'Sa është ora? Ka filluar mësimi?',
         arabic: 'كَمِ السَّاعَةُ؟ هَلْ بَدَأَ الدَّرْسُ؟',
         transliteration: 'Kemis-sa‘a? Hel bede’ed-ders?',
+        variants: [
+          {
+            albanian: 'Sa është ora tani? A ka mbaruar klasa?',
+            arabic: 'كَمِ السَّاعَةُ الآنَ؟ هَلِ انْتَهَتِ الحِصَّةُ؟',
+            transliteration: 'Kemis-sa‘atul an? Hel intehetil hissa?',
+          },
+          {
+            albanian: 'Mësimi fillon herët në shkollë.',
+            arabic: 'الدَّرْسُ يَبْدَأُ مُبَكِّراً فِي المَدْرَسَةِ.',
+            transliteration: 'Ed-dersu jebdeu mubekkiren fil medrese.',
+          },
+        ],
       },
       {
         id: 'd7-2',
         albanian: 'Ora është tetë, klasa fillon tani.',
         arabic: 'السَّاعَةُ الثَّامِنَةُ، الحِصَّةُ تَبْدَأُ الآنَ.',
         transliteration: 'Es-sa‘atuth-thamine, el-hissa tebdeul an.',
+        variants: [
+          {
+            albanian: 'Tani fillon klasa; ora është tetë.',
+            arabic: 'الآنَ تَبْدَأُ الحِصَّةُ؛ السَّاعَةُ الثَّامِنَةُ.',
+            transliteration: 'El-ane tebdeul hissa; es-sa‘atuth-thamine.',
+          },
+          {
+            albanian: 'Klasa mbaron në orën dy pasdite.',
+            arabic: 'تَنْتَهِي الحِصَّةُ فِي السَّاعَةِ الثَّانِيَةِ ظُهْراً.',
+            transliteration: 'Tentehil hissa fis-sa‘atith-thanije zuhren.',
+          },
+        ],
       },
       {
         id: 'd7-3',
         albanian: 'Cila është lënda jote e preferuar?',
         arabic: 'مَا مَادَّتُكَ المُفَضَّلَةُ؟',
         transliteration: 'Ma maddetukel mufaddale?',
+        variants: [
+          {
+            albanian: 'A është gjuha arabe lënda jote e preferuar?',
+            arabic: 'هَلِ اللُّغَةُ العَرَبِيَّةُ مَادَّتُكَ المُفَضَّلَةُ؟',
+            transliteration: 'Helil lugatul arabijje maddetukel mufaddale?',
+          },
+          {
+            albanian: 'Cila lëndë të pëlqen ty?',
+            arabic: 'أَيُّ مَادَّةٍ تُعْجِبُكَ؟',
+            transliteration: 'Ejju maddetin tu‘xhibuke?',
+          },
+        ],
       },
       {
         id: 'd7-4',
         albanian: 'Matematika, gjuha arabe dhe shkencat.',
         arabic: 'الرِّيَاضِيَّاتُ وَاللُّغَةُ العَرَبِيَّةُ وَالعُلُومُ.',
         transliteration: 'Er-rijadijat vel lugatul arabijje vel ‘ulum.',
+        variants: [
+          {
+            albanian: 'Unë studioj gjuhën arabe dhe matematikën.',
+            arabic: 'أَنَا أَدْرُسُ اللُّغَةَ العَرَبِيَّةَ وَالرِّيَاضِيَّاتِ.',
+            transliteration: 'Ene edrusul lugatel ‘arabijje ver-rijadijjati.',
+          },
+          {
+            albanian: 'Në fakultet lëndët janë gjuha, shkenca dhe kultura.',
+            arabic: 'فِي الكُلِّيَّةِ، المَوَادُّ هِيَ اللُّغَةُ وَالعُلُومُ وَالثَّقَافَةُ.',
+            transliteration: 'Fil kullijje, el-mevaddu hijel luga vel ‘ulum veth-thekafe.',
+          },
+        ],
       },
       {
         id: 'd7-5',
         albanian: 'A ke provim të shtunën?',
         arabic: 'هَلْ لَدَيْكَ اخْتِبَارٌ يَوْمَ السَّبْتِ؟',
         transliteration: 'Hel ledejke ikhtibarun jewmes-sebt?',
+        variants: [
+          {
+            albanian: 'Provimi im është ditën e premte.',
+            arabic: 'اخْتِبَارِي يَوْمَ الجُمُعَةِ.',
+            transliteration: 'Ikhtibari jewmel xhumu‘a.',
+          },
+          {
+            albanian: 'Kur është provimi, të shtunën apo të dielën?',
+            arabic: 'مَتَى الاخْتِبَارُ، يَوْمَ السَّبْتِ أَمْ يَوْمَ الأَحَدِ؟',
+            transliteration: 'Meta-likhtibar, jewmes-sebt em jewmel ehad?',
+          },
+        ],
       },
       {
         id: 'd7-6',
         albanian: 'Po, dhe pushimi është vetëm gjysmë ore.',
         arabic: 'نَعَمْ، وَالاسْتِرَاحَةُ نِصْفُ سَاعَةٍ فَقَطْ.',
         transliteration: 'Ne‘am, vel istiraha nisfu sa‘atin fekat.',
+        variants: [
+          {
+            albanian: 'Pushimi është i shkurtër, vetëm gjysmë ore.',
+            arabic: 'الاسْتِرَاحَةُ قَصِيرَةٌ، نِصْفُ سَاعَةٍ فَقَطْ.',
+            transliteration: 'El-istiraha kasire, nisfu sa‘atin fekat.',
+          },
+          {
+            albanian: 'A është pushimi i gjatë sot?',
+            arabic: 'هَلِ الاسْتِرَاحَةُ طَوِيلَةٌ اليَوْمَ؟',
+            transliteration: 'Helil istiraha tavile el-jewm?',
+          },
+        ],
       },
     ],
     vocabulary: [
@@ -1792,6 +2372,22 @@ export const CHAPTERS: Chapter[] = [
           'يَدْرُسُ مُوسَى فِي الجَامِعَةِ الإِسْلَامِيَّةِ مُنْذُ عَامَيْنِ. يَبْدَأُ الدَّرْسُ فِي السَّاعَةِ الثَّامِنَةِ صَبَاحاً وَيَنْتَهِي فِي السَّاعَةِ الثَّانِيَةِ ظُهْراً. بَعْدَ الحِصَّةِ الأُولَى اسْتِرَاحَةٌ نِصْفُ سَاعَةٍ، يَشْرَبُ فِيهَا الطُّلَّابُ الشَّايَ وَيَتَكَلَّمُونَ عَنِ الجَدْوَلِ. مَادَّتُهُ المُفَضَّلَةُ هِيَ اللُّغَةُ العَرَبِيَّةُ، ثُمَّ الرِّيَاضِيَّاتُ وَالعُلُومُ. فِي المَكْتَبَةِ يَكْتُبُ الوَاجِبَاتِ وَيَقْرَأُ الكُتُبَ الجَدِيدَةَ كُلَّ يَوْمٍ. فِي المُخْتَبَرِ يَسْتَخْدِمُ الحَاسُوبَ لِتَعَلُّمِ الإِمْلَاءِ. الاخْتِبَارَاتُ يَوْمَ السَّبْتِ، فَيَدْرُسُ مُوسَى كَثِيراً فِي المَسَاءِ. بَارَكَ اللَّهُ لَهُ فِي العِلْمِ الَّذِي يَأْخُذُهُ.',
         transliteration:
           "Jedrusu Musa fil xhami‘atil islamijje mundhu ‘amejn. Jebdeud-dersu fis-sa‘atith-thamine sabahan ve jentehi fis-sa‘atith-thanije zuhren. Ba‘del hissetil ula istiraha nisfu sa‘a, jeshrebu fihet-tullabush-shaj ve jetekel-lemun ‘anil xhedvel. Maddetuhul mufaddale hijel lugatul ‘arabijje, thummer-rijadijjat vel ‘ulum. Fil mektebe jektubul vaxhibat ve jakraul kutubel xhedide kul-le jewm. Fil mukhtebar jestakhdimul hasub li te‘al-lumil imla. El-ikhtibaratu jewmes-sebt, fejedrusu Musa kethiren fil mesa. BarekAllahu lehu fil ‘ilmil-ledhi je’khudhuh.",
+        variants: [
+          {
+            albanian: 'Musa vjen në universitet në orën tetë dhe shikon orarin e ri. Ai shkruan në tabelë dhe korrigjon gabimet me mësuesin. Muaji i ri ka filluar dhe java ka pesë ditë mësimi. Në bibliotekë mbaron detyrat e gjata, kurse në pushim flet me shokët për kulturën arabe.',
+            arabic:
+              'يَأْتِي مُوسَى إِلَى الجَامِعَةِ فِي السَّاعَةِ الثَّامِنَةِ وَيَنْظُرُ إِلَى الجَدْوَلِ الجَدِيدِ. يَكْتُبُ عَلَى اللَّوْحَةِ وَيُصَحِّحُ الأَخْطَاءَ مَعَ المُعَلِّمِ. بَدَأَ الشَّهْرُ الجَدِيدُ وَالأُسْبُوعُ فِيهِ خَمْسَةُ أَيَّامِ دِرَاسَةٍ. فِي المَكْتَبَةِ يُكْمِلُ الوَاجِبَاتِ الطَّوِيلَةَ، وَفِي الاسْتِرَاحَةِ يَتَكَلَّمُ مَعَ أَصْدِقَائِهِ عَنِ الثَّقَافَةِ العَرَبِيَّةِ.',
+            transliteration:
+              'Je’ti Musa ilel xhami‘ati fis-sa‘atith-thamine ve jenzuru ilel xhedvelil xhedid. Jektubu ‘alel levha ve jusahhihul ekhtae me‘al mu‘allim. Bede’esh-shehrul xhedid vel usbu‘u fihi khamsetu ejjami dirase. Fil mektebe jukmilul vaxhibatit-tavile, ve fil istiraha jetekel-lemu me‘a asdikaihi ‘anith-thekafetil ‘arabijje.',
+          },
+          {
+            albanian: 'Ishte Musa nxënës i shkurtër në klasë, por shkoi në fakultet dhe u bë student aktiv. Koha e studimit është e gjatë, prandaj orari ka pushim pas çdo ore mësimi. Gjuha, matematika dhe shkenca janë tri lëndët e tij. Viti kalon shpejt, por dija mbetet.',
+            arabic:
+              'كَانَ مُوسَى طَالِباً قَصِيراً فِي الصَّفِّ، وَلَكِنَّهُ ذَهَبَ إِلَى الكُلِّيَّةِ وَصَارَ طَالِباً نَشِيطاً. وَقْتُ الدِّرَاسَةِ طَوِيلٌ، لِذَلِكَ فِي الجَدْوَلِ اسْتِرَاحَةٌ بَعْدَ كُلِّ حِصَّةٍ. اللُّغَةُ وَالرِّيَاضِيَّاتُ وَالعِلْمُ ثَلَاثُ مَوَادِّهِ. العَامُ يَمُرُّ سَرِيعاً، وَلَكِنَّ العِلْمَ يَبْقَى.',
+            transliteration:
+              'Kane Musa taliben kasiren fis-saf, ve lakinnehu dhehebe ilel kullijje ve sare taliben neshitan. Waktud-dirase tavil, li dhalike fil xhedvel istiraha ba‘de kul-li hissa. El-luga ver-rijadijjat vel ‘ilm thelathu mevaddihi. El-‘amu jemurru seri‘an, ve lakinnel ‘ilme jebka.',
+          },
+        ],
       },
     ],
     ayat: [
@@ -1896,36 +2492,108 @@ export const CHAPTERS: Chapter[] = [
         albanian: 'Çfarë profesioni ke? Ku punon?',
         arabic: 'مَا مِهْنَتُكَ؟ أَيْنَ تَعْمَلُ؟',
         transliteration: 'Ma mihnetuke? Ejne ta‘melu?',
+        variants: [
+          {
+            albanian: 'Ku punon ti, në spital apo në kompani?',
+            arabic: 'أَيْنَ تَعْمَلُ، فِي المُسْتَشْفَى أَمْ فِي الشَّرِكَةِ؟',
+            transliteration: 'Ejne ta‘melu, fil mustashfa em fish-sharike?',
+          },
+          {
+            albanian: 'Profesioni im është mjek, po ty?',
+            arabic: 'مِهْنَتِي طَبِيبٌ، وَأَنْتَ؟',
+            transliteration: 'Mihneti tabib, ve ente?',
+          },
+        ],
       },
       {
         id: 'd8-2',
         albanian: 'Unë punoj si inxhinier në një kompani.',
         arabic: 'أَعْمَلُ مُهَنْدِساً فِي شَرِكَةٍ.',
         transliteration: 'A‘melu muhendisen fi sharike.',
+        variants: [
+          {
+            albanian: 'Në kompani punoj si inxhinier.',
+            arabic: 'فِي الشَّرِكَةِ أَعْمَلُ مُهَنْدِساً.',
+            transliteration: 'Fish-sharike a‘melu muhendisen.',
+          },
+          {
+            albanian: 'Unë e dua punën time si inxhinier.',
+            arabic: 'أُحِبُّ عَمَلِي مُهَنْدِساً.',
+            transliteration: 'Uhibbu ‘ameli muhendisen.',
+          },
+        ],
       },
       {
         id: 'd8-3',
         albanian: 'Babai im është mjek në spital.',
         arabic: 'وَالِدِي طَبِيبٌ فِي المُسْتَشْفَى.',
         transliteration: 'Walidi tabibun fil mustashfa.',
+        variants: [
+          {
+            albanian: 'Në spital, babai im punon si mjek.',
+            arabic: 'فِي المُسْتَشْفَى، وَالِدِي يَعْمَلُ طَبِيباً.',
+            transliteration: 'Fil mustashfa, walidi ja‘melu tabiben.',
+          },
+          {
+            albanian: 'Nëna ime është mjeke, babai im është inxhinier.',
+            arabic: 'وَالِدَتِي طَبِيبَةٌ، وَوَالِدِي مُهَنْدِسٌ.',
+            transliteration: 'Walideti tabibe, ve walidi muhendis.',
+          },
+        ],
       },
       {
         id: 'd8-4',
         albanian: 'Motra ime studion në Fakultetin e Farmacisë.',
         arabic: 'أُخْتِي تَدْرُسُ فِي كُلِّيَّةِ الصَّيْدَلَةِ.',
         transliteration: 'Ukhti tedrusu fi kul-lijjetis-sajdele.',
+        variants: [
+          {
+            albanian: 'Motra ime dëshiron të bëhet farmaciste.',
+            arabic: 'أُخْتِي تُرِيدُ أَنْ تَكُونَ صَيْدَلِيَّةً.',
+            transliteration: 'Ukhti turidu en tekune sajdelijje.',
+          },
+          {
+            albanian: 'Vëllai im studion në Fakultetin e Inxhinierisë.',
+            arabic: 'أَخِي يَدْرُسُ فِي كُلِّيَّةِ الهَنْدَسَةِ.',
+            transliteration: 'Ekhi jedrusu fi kul-lijjetil hendese.',
+          },
+        ],
       },
       {
         id: 'd8-5',
         albanian: 'Vëllai i vogël ëndërron të bëhet pilot.',
         arabic: 'أَخِي الصَّغِيرُ يَحْلُمُ أَنْ يَكُونَ طَيَّاراً.',
         transliteration: 'Ekhis-sagir jehlumu en jekune tajjaren.',
+        variants: [
+          {
+            albanian: 'Piloti fluturon në qiell me aeroplan.',
+            arabic: 'الطَّيَّارُ يَطِيرُ فِي السَّمَاءِ بِالطَّائِرَةِ.',
+            transliteration: 'Et-tajjaru jetiru fis-sema bit-ta’ira.',
+          },
+          {
+            albanian: 'Vëllai i vogël ka zgjedhur Fakultetin e Aviacionit.',
+            arabic: 'أَخِي الصَّغِيرُ اخْتَارَ كُلِّيَّةَ الطَّيَرَانِ.',
+            transliteration: 'Ekhis-sagir ikhtare kul-lijjetet-tajeran.',
+          },
+        ],
       },
       {
         id: 'd8-6',
         albanian: 'E dua punën time dhe i dua fëmijët që mësoj.',
         arabic: 'أُحِبُّ عَمَلِي وَأُحِبُّ الأَطْفَالَ الَّذِينَ أُدَرِّسُهُمْ.',
         transliteration: 'Uhibbu ‘ameli ve uhibbul etfale el-ledhine uderrisuhum.',
+        variants: [
+          {
+            albanian: 'Fëmijët që mësoj janë në shkollën fillore.',
+            arabic: 'الأَطْفَالُ الَّذِينَ أُدَرِّسُهُمْ فِي المَرْحَلَةِ الابْتِدَائِيَّةِ.',
+            transliteration: 'El-etfalu el-ledhine uderrisuhum fil merhaletil ibtida’ijje.',
+          },
+          {
+            albanian: 'Unë dua të bëhem mësuese dhe t’i dua fëmijët.',
+            arabic: 'أُرِيدُ أَنْ أَكُونَ مُعَلِّمَةً وَأُحِبَّ الأَطْفَالَ.',
+            transliteration: 'Uridu en ekune mu‘al-limeten ve uhibbel etfal.',
+          },
+        ],
       },
     ],
     vocabulary: [
@@ -2037,6 +2705,22 @@ export const CHAPTERS: Chapter[] = [
           'أُسْرَةُ مُوسَى مَلِيئَةٌ بِالمِهَنِ النَّافِعَةِ. الوَالِدُ طَبِيبٌ فِي المُسْتَشْفَى وَيَعْمَلُ سَاعَاتٍ طَوِيلَةً. الوَالِدَةُ تَخَرَّجَتْ مِنْ كُلِّيَّةِ التَّرْبِيَةِ وَتُدَرِّسُ الأَطْفَالَ فِي المَرْحَلَةِ الابْتِدَائِيَّةِ. الأُخْتُ تَدْرُسُ الصَّيْدَلَةَ وَتُرِيدُ أَنْ تَفْتَحَ صَيْدَلِيَّةً خَاصَّةً. الأَخُ الصَّغِيرُ يَحْلُمُ أَنْ يَكُونَ طَيَّاراً وَأَنْ يَطِيرَ فِي السَّمَاءِ. يُفَكِّرُ مُوسَى أَنْ يَكُونَ مُهَنْدِساً بَعْدَ المَرْحَلَةِ الثَّانَوِيَّةِ، وَلَكِنَّهُ سَيُكْمِلُ الدِّرَاسَةَ بِتَفَوُّقٍ أَوَّلاً. كُلُّ مِهْنَةٍ نِعْمَةٌ مِنَ اللَّهِ إِذَا كَانَتْ بِنِيَّةٍ صَالِحَةٍ وَإِخْلَاصٍ.',
         transliteration:
           "Usretu Musa meli’e bil mihenin-nafi‘a. El-walid tabibun fil mustashfa ve ja‘melu sa‘atin tavile. El-walide tekharrexhet min kul-lijjetit-terbije ve tuderrisul etfal fil merhaletil ibtida’ijje. El-ukht tedrusus-sajdele ve turidu en teftaha sajdelijjeten khasse. El-akhus-sagir jehlumu en jekune tajjaren ve en jetire fis-sema’. Jufekkiru Musa en jekune muhendisen ba‘del merhaletith-thanevijje, ve lakinnehu sejukmilud-dirase bi tefevvukin evvelen. Kul-lu mihnetin ni‘metun minAllahi idha kanet bi nijjetin saliha ve ikhlas.",
+        variants: [
+          {
+            albanian: 'Musa ka zgjedhur profesionin e inxhinierit. Babai i tij është mjek në spital, motra studion farmacinë, vëllai i vogël dëshiron të bëhet pilot. Çdo person në familje mbush listën e profesioneve të dobishme. Në kohën e lirë, Musa vizaton aeroplanë dhe pushon pranë vëllait të vogël.',
+            arabic:
+              'اِخْتَارَ مُوسَى مِهْنَةَ المُهَنْدِسِ. وَالِدُهُ طَبِيبٌ فِي المُسْتَشْفَى، أُخْتُهُ تَدْرُسُ الصَّيْدَلَةَ، وَأَخُوهُ الصَّغِيرُ يُرِيدُ أَنْ يَكُونَ طَيَّاراً. كُلُّ شَخْصٍ فِي الأُسْرَةِ يَمْلَأُ قَائِمَةَ المِهَنِ النَّافِعَةِ. فِي وَقْتِ الفَرَاغِ، يَرْسُمُ مُوسَى الطَّائِرَاتِ وَيَسْتَرِيحُ بِجَانِبِ أَخِيهِ الصَّغِيرِ.',
+            transliteration:
+              'Ikhtare Musa mihnetel muhendis. Waliduhu tabibun fil mustashfa, ukhtuhu tedrusus-sajdele, ve ekhuhus-sagir juridu en jekune tajjaren. Kul-lu shakhsin fil usreti jemleu kaimetel mihenin-nafi‘a. Fi vaktil fereg, jersumu Musa et-ta’irati ve jesterihu bi xhanibi ekhihis-sagir.',
+          },
+          {
+            albanian: 'Në vend të spitalit, Musa punon në kompaninë e inxhinierisë. Ai u bë inxhinier pas shumë vitesh studimi. Vëllezërit dhe motrat e tij ndjekin profesione të ndryshme: mjek, infermier, farmacist, pilot. Familja e tij e duket kurdoherë si një shprehje e bukur: çdo punë është nderim nëse bëhet me sinqeritet.',
+            arabic:
+              'بَدَلَ المُسْتَشْفَى، يَعْمَلُ مُوسَى فِي شَرِكَةِ الهَنْدَسَةِ. أَصْبَحَ مُهَنْدِساً بَعْدَ سَنَوَاتٍ كَثِيرَةٍ مِنَ الدِّرَاسَةِ. إِخْوَتُهُ وَأَخَوَاتُهُ يَتَّبِعُونَ مِهَناً مُخْتَلِفَةً: طَبِيبٌ، مُمَرِّضٌ، صَيْدَلِيٌّ، طَيَّارٌ. أُسْرَتُهُ دَائِماً كَعِبَارَةٍ جَمِيلَةٍ: كُلُّ عَمَلٍ شَرَفٌ إِذَا كَانَ بِإِخْلَاصٍ.',
+            transliteration:
+              'Bedelel mustashfa, ja‘melu Musa fi sharikeetil hendese. Asbeha muhendisen ba‘de senewatin kethiretin mined-dirase. Ikhvetuhu ve akhavatuhu jettebi‘une mihenen mukhtelife: tabib, mumerrid, sajdelijj, tajjar. Usretuhu daimen ke ‘ibaretin xhemile: kul-lu ‘amelin sheref idha kane bi ikhlas.',
+          },
+        ],
       },
     ],
     ayat: [
@@ -2147,36 +2831,108 @@ export const CHAPTERS: Chapter[] = [
         albanian: 'Çfarë do të blesh sot?',
         arabic: 'مَاذَا تُرِيدُ أَنْ تَشْتَرِيَ الْيَوْمَ؟',
         transliteration: 'Madha turidu en teshterijel jewm?',
+        variants: [
+          {
+            albanian: 'Çfarë blen ti në treg?',
+            arabic: 'مَاذَا تَشْتَرِي فِي السُّوقِ؟',
+            transliteration: 'Madha teshteri fis-suk?',
+          },
+          {
+            albanian: 'A do të shkosh sot në dyqan?',
+            arabic: 'هَلْ تَذْهَبُ إِلَى الْمَتْجَرِ الْيَوْمَ؟',
+            transliteration: 'Hel tedhhebu ilel metxheril jewm?',
+          },
+        ],
       },
       {
         id: 'd9-2',
         albanian: 'Dua një këmishë të bardhë dhe një fustan për nënën.',
         arabic: 'أُرِيدُ قَمِيصاً أَبْيَضَ وَثَوْباً لِلأُمِّ.',
         transliteration: 'Uridu kamisan ebjeda ve thewben lil umm.',
+        variants: [
+          {
+            albanian: 'Nëna dëshiron një fustan dhe unë dua një këmishë.',
+            arabic: 'الأُمُّ تُرِيدُ ثَوْباً وَأَنَا أُرِيدُ قَمِيصاً.',
+            transliteration: 'El-ummu turidu thewben ve ene uridu kamisan.',
+          },
+          {
+            albanian: 'Do të blej një këmishë të re për vëllain.',
+            arabic: 'سَأَشْتَرِي قَمِيصاً جَدِيداً لِلأَخِ.',
+            transliteration: 'Se’eshteri kamisan xhediden lil akh.',
+          },
+        ],
       },
       {
         id: 'd9-3',
         albanian: 'Sa kushton kjo këmishë, të lutem?',
         arabic: 'بِكَمْ هَذَا الْقَمِيصُ، لَوْ سَمَحْتَ؟',
         transliteration: 'Bikem hadhal kamis, lew semaht?',
+        variants: [
+          {
+            albanian: 'Sa kushton ky fustan, të lutem?',
+            arabic: 'بِكَمْ هَذَا الثَّوْبُ، لَوْ سَمَحْتَ؟',
+            transliteration: 'Bikem hadhath-thewb, lew semaht?',
+          },
+          {
+            albanian: 'Me sa rijal shitet kjo këmishë?',
+            arabic: 'بِكَمْ رِيَالاً يُبَاعُ هَذَا الْقَمِيصُ؟',
+            transliteration: 'Bikem rijalen jubau hadhal kamis?',
+          },
+        ],
       },
       {
         id: 'd9-4',
         albanian: 'Njëzet rijal. Pagesa te arka, në të djathtë.',
         arabic: 'عِشْرُونَ رِيَالاً. الدَّفْعُ عِنْدَ الصُّنْدُوقِ، عَلَى الْيَمِينِ.',
         transliteration: "Ishrune rijalen. Ed-deful indes-sunduk, alel jemin.",
+        variants: [
+          {
+            albanian: 'Paguaj pesëdhjetë rijal te arka në të majtë.',
+            arabic: 'اِدْفَعْ خَمْسِينَ رِيَالاً عِنْدَ الصُّنْدُوقِ عَلَى الشَّمَالِ.',
+            transliteration: 'Idfa‘ khamsine rijalen ‘indes-sunduk ‘alesh-shemal.',
+          },
+          {
+            albanian: 'Arka është prapa derës, jo përpara.',
+            arabic: 'الصُّنْدُوقُ خَلْفَ الْبَابِ، لَيْسَ أَمَامَهُ.',
+            transliteration: 'Es-sunduku khalfel bab, lejse emameh.',
+          },
+        ],
       },
       {
         id: 'd9-5',
         albanian: 'Më jep, të lutem, një kilogram qepë dhe gjysmë kile tranguj.',
         arabic: 'أَعْطِنِي لَوْ سَمَحْتَ كِيلُو بَصَلٍ وَنِصْفَ كِيلُو خِيَارٍ.',
         transliteration: 'Atini lew semaht kilu basal ve nisfe kilu khijar.',
+        variants: [
+          {
+            albanian: 'Të lutem, më jep pak domate dhe spec.',
+            arabic: 'لَوْ سَمَحْتَ، أَعْطِنِي قَلِيلاً مِنَ الطَّمَاطِمِ وَالْفُلْفُلِ.',
+            transliteration: 'Lew semaht, atini kalilen minet-tamatim vel fulful.',
+          },
+          {
+            albanian: 'Shitësi më dha qepën dhe trangujt.',
+            arabic: 'الْبَائِعُ أَعْطَانِي الْبَصَلَ وَالْخِيَارَ.',
+            transliteration: 'El-bai‘u atanil basale vel khijar.',
+          },
+        ],
       },
       {
         id: 'd9-6',
         albanian: 'A ka fjalor arabisht-shqip në këtë librari?',
         arabic: 'هَلْ يُوجَدُ مُعْجَمٌ عَرَبِيٌّ فِي هَذِهِ الْمَكْتَبَةِ؟',
         transliteration: 'Hel juxhedu mu‘xhemun arabijjun fi hadhihil mektebe?',
+        variants: [
+          {
+            albanian: 'Dua një fletore dhe një stilolaps nga dyqani.',
+            arabic: 'أُرِيدُ دَفْتَراً وَقَلَماً مِنَ الْمَتْجَرِ.',
+            transliteration: 'Uridu defteren ve kalemen minel metxher.',
+          },
+          {
+            albanian: 'Fjalori është mbi rafin, jo poshtë tij.',
+            arabic: 'الْمُعْجَمُ فَوْقَ الرَّفِّ، لَيْسَ تَحْتَهُ.',
+            transliteration: 'El-mu‘xhemu fewka er-reff, lejse tahtehu.',
+          },
+        ],
       },
     ],
     vocabulary: [
@@ -2285,6 +3041,22 @@ export const CHAPTERS: Chapter[] = [
           'يَوْمَ السَّبْتِ ذَهَبَ مُوسَى إِلَى السُّوقِ الْمَرْكَزِيِّ مَعَ أَبِيهِ. فِي مَتْجَرِ الْمَلَابِسِ اشْتَرَى قَمِيصاً أَبْيَضَ بِعِشْرِينَ رِيَالاً وَثَوْباً لِأُمِّهِ. كَانَ الصُّنْدُوقُ عَلَى الْيَمِينِ، أَمَامَ الْبَابِ. ثُمَّ ذَهَبَا إِلَى بَائِعِ الْخُضْرَوَاتِ وَأَخَذَا كِيلُو بَصَلٍ وَنِصْفَ كِيلُو خِيَارٍ وَقَلِيلاً مِنَ الطَّمَاطِمِ. فِي النِّهَايَةِ دَخَلَ مُوسَى مَكْتَبَةً وَطَلَبَ مُعْجَماً عَرَبِيّاً أَلْبَانِيّاً. أَخَذَهُ الْبَائِعُ مِنَ الرَّفِّ فَوْقَ الطَّاوِلَةِ وَقَالَ: «خَمْسُونَ رِيَالاً، لَوْ سَمَحْتَ.»',
         transliteration:
           "Jewmes-sebt dhehebe Musa iles-sukil merkezij-ji me‘a ebih. Fi metxheril melabis ishtera kamisan ebjeda bi‘ishrine rijalen ve thewben li ummih. Kanes-sunduku alel jemin, emamel bab. Thumme dhehebe ile bai‘il khudreveat ve ekhadhe kilu basal ve nisfe kilu khijar ve kalilen minet-tamatim. Fin-nihaje dekhale Musa mektebeten ve talebe mu‘xhemen arabijjen albanijjen. Ekhadhehul bai‘u miner-reffi fewka et-tavile ve kale: «Khamsune rijalen, lew semaht.»",
+        variants: [
+          {
+            albanian: 'Musa i bleu nënës një fustan të bukur për tridhjetë rijal. Shitësi i dha edhe një këmishë të bardhë pa pagesë. Përpara arkës takoi një tregtar që shiste qepë, tranguj e domate. Musa pagoi dhe doli nga dyqani i kënaqur. Në librari bleu një fletore dhe një laps për shkollën.',
+            arabic:
+              'اِشْتَرَى مُوسَى لِأُمِّهِ ثَوْباً جَمِيلاً بِثَلَاثِينَ رِيَالاً. أَعْطَاهُ الْبَائِعُ قَمِيصاً أَبْيَضَ بِدُونِ دَفْعٍ. أَمَامَ الصُّنْدُوقِ قَابَلَ تَاجِراً يَبِيعُ الْبَصَلَ وَالْخِيَارَ وَالطَّمَاطِمَ. دَفَعَ مُوسَى وَخَرَجَ مِنَ الْمَتْجَرِ سَعِيداً. فِي الْمَكْتَبَةِ اشْتَرَى دَفْتَراً وَقَلَماً لِلْمَدْرَسَةِ.',
+            transliteration:
+              'Ishtera Musa li ummihi thewben xhemilen bi thelathine rijalen. Atahul bai‘u kamisan ebjeda bi duni def‘in. Emames-sunduk kabele taxhiren jebi‘ul basale vel khijar vet-tamatim. Defe‘a Musa ve khareje minel metxheri se‘iden. Fil mektebe ishtera defteren ve kalemen lil medrese.',
+          },
+          {
+            albanian: 'Në fillim Musa kërkoi një fjalor arabisht-shqip. Librari i tha: "Është mbi rafin, lart." Ai pagoi njëqind rijal dhe bleu edhe pak stilolapsa. Pastaj doli nga librari dhe shkoi në tregun e perimeve. Atje kërkoi qepë, domate e spec, dhe tregtari ia dha të gjitha.',
+            arabic:
+              'فِي الْبِدَايَةِ طَلَبَ مُوسَى مُعْجَماً عَرَبِيّاً أَلْبَانِيّاً. قَالَ لَهُ صَاحِبُ الْمَكْتَبَةِ: «هُوَ فَوْقَ الرَّفِّ، فِي الأَعْلَى.» دَفَعَ مِئَةَ رِيَالٍ وَاشْتَرَى أَيْضاً قَلِيلاً مِنَ الأَقْلَامِ. ثُمَّ خَرَجَ مِنَ الْمَكْتَبَةِ وَذَهَبَ إِلَى سُوقِ الْخُضْرَوَاتِ. هُنَاكَ طَلَبَ الْبَصَلَ وَالطَّمَاطِمَ وَالْفُلْفُلَ، فَأَعْطَاهُ الْبَائِعُ كُلَّ شَيْءٍ.',
+            transliteration:
+              'Fil bidaje talebe Musa mu‘xhemen arabijjen albanijjen. Kale lehu sahibul mektebe: «Huwe fewka er-reff, fil a‘la.» Defe‘a mi’ete rijalin ve ishtera ejdan kalilen minel aklam. Thumme khareje minel mektebe ve dhehebe ila suki-l khudreveat. Hunake talebel basale vet-tamatim vel fulful, fe atahul bai‘u kul-le shej.',
+          },
+        ],
       },
     ],
     ayat: [
@@ -2396,36 +3168,108 @@ export const CHAPTERS: Chapter[] = [
         albanian: 'Si është moti sot?',
         arabic: 'كَيْفَ الطَّقْسُ الْيَوْمَ؟',
         transliteration: "Kejfe et-takses el-jewm?",
+        variants: [
+          {
+            albanian: 'Si është ajri sot, i ngrohtë apo i ftohtë?',
+            arabic: 'كَيْفَ الْجَوُّ الْيَوْمَ، حَارٌّ أَمْ بَارِدٌ؟',
+            transliteration: 'Kejfel xhevvul jewm, harr em barid?',
+          },
+          {
+            albanian: 'Moti sot është i butë.',
+            arabic: 'الطَّقْسُ الْيَوْمَ مُعْتَدِلٌ.',
+            transliteration: 'Et-takses el-jewme mu‘tedil.',
+          },
+        ],
       },
       {
         id: 'd10-2',
         albanian: 'Bën ftohtë dhe bie shi.',
         arabic: 'الْجَوُّ بَارِد وَتُمْطِر.',
         transliteration: 'El-xhevvu barid we tumtir.',
+        variants: [
+          {
+            albanian: 'Bie shi, prandaj merr ombrellën.',
+            arabic: 'تُمْطِرُ، لِذَلِكَ خُذِ الْمِظَلَّةَ.',
+            transliteration: 'Tumtiru, li dhalike khudhil mizal-le.',
+          },
+          {
+            albanian: 'Dimri është i ftohtë dhe bie borë.',
+            arabic: 'الشِّتَاءُ بَارِدٌ وَيَنْزِلُ الثَّلْجُ.',
+            transliteration: 'Esh-shita baridun ve jenziluth-thelxh.',
+          },
+        ],
       },
       {
         id: 'd10-3',
         albanian: 'Në verë bën shumë nxehtë.',
         arabic: 'فِي الصَّيْفِ الْجَوُّ حَارّ جِدّاً.',
         transliteration: 'Fis-sajf el-xhevvu harr xhidden.',
+        variants: [
+          {
+            albanian: 'Në vjeshtë moti është i butë dhe i këndshëm.',
+            arabic: 'فِي الْخَرِيفِ الطَّقْسُ مُعْتَدِلٌ وَجَمِيلٌ.',
+            transliteration: 'Fil kharif et-takses mu‘tedil ve xhemil.',
+          },
+          {
+            albanian: 'Dielli në verë është shumë i nxehtë.',
+            arabic: 'الشَّمْسُ فِي الصَّيْفِ حَارَّةٌ جِدّاً.',
+            transliteration: 'Esh-shemsu fis-sajf harretun xhidden.',
+          },
+        ],
       },
       {
         id: 'd10-4',
         albanian: 'Më pëlqen pranvera sepse është e këndshme.',
         arabic: 'أُحِبُّ الرَّبِيعَ لِأَنَّهُ جَمِيل.',
         transliteration: 'Uhibbu er-rebia lienne-hu xhemil.',
+        variants: [
+          {
+            albanian: 'Unë e dua dimrin sepse bie borë e bardhë.',
+            arabic: 'أُحِبُّ الشِّتَاءَ لِأَنَّهُ يَنْزِلُ ثَلْجٌ أَبْيَضُ.',
+            transliteration: 'Uhibbush-shita lienne-hu jenzilu thelxhun ebjed.',
+          },
+          {
+            albanian: 'Ajo e do vjeshtën sepse moti është i butë.',
+            arabic: 'تُحِبُّ الْخَرِيفَ لِأَنَّ الْجَوَّ مُعْتَدِلٌ.',
+            transliteration: 'Tuhibbul kharif lienne el-xhevve mu‘tedilun.',
+          },
+        ],
       },
       {
         id: 'd10-5',
         albanian: 'Sa është temperatura sot?',
         arabic: 'كَمْ دَرَجَةُ الْحَرَارَةِ الْيَوْمَ؟',
         transliteration: "Kem derexhetul hararetil jewm?",
+        variants: [
+          {
+            albanian: 'Sa gradë ka në verë?',
+            arabic: 'كَمْ دَرَجَةً فِي الصَّيْفِ؟',
+            transliteration: 'Kem derexheten fis-sajf?',
+          },
+          {
+            albanian: 'Temperatura sot nuk është e nxehtë.',
+            arabic: 'دَرَجَةُ الْحَرَارَةِ الْيَوْمَ لَيْسَتْ حَارَّةً.',
+            transliteration: 'Derexhetul hararatil jewme lejset harra.',
+          },
+        ],
       },
       {
         id: 'd10-6',
         albanian: 'Moti është i butë; merr ombrellë.',
         arabic: 'الْجَوُّ مُعْتَدِلٌ؛ خُذْ مِظَلَّةً.',
         transliteration: 'El-xhevvu mu‘tedil; khudh mizal-leten.',
+        variants: [
+          {
+            albanian: 'Vesh një rrobë të zezë sepse bën ftohtë.',
+            arabic: 'الْبَسْ ثَوْباً أَسْوَدَ لِأَنَّ الْجَوَّ بَارِدٌ.',
+            transliteration: 'Ilbes thewben esveda lienne el-xhevve baridun.',
+          },
+          {
+            albanian: 'Merr ombrellën sepse bie shi.',
+            arabic: 'خُذِ الْمِظَلَّةَ لِأَنَّ الْمَطَرَ يَنْزِلُ.',
+            transliteration: 'Khudhil mizal-le lienne el-metere jenzilu.',
+          },
+        ],
       },
     ],
     vocabulary: [
@@ -2538,6 +3382,22 @@ export const CHAPTERS: Chapter[] = [
           'فِي كُوسُوفُو الْفُصُولُ الأَرْبَعَة وَاضِحَة وَجَمِيلَة. فِي الرَّبِيعِ تُمْطِر وَتَتَفَتَّحُ الْوُرُود فِي الْحَدَائِقِ. فِي الصَّيْفِ الْجَوُّ حَارّ جِدّاً وَنَذْهَبُ إِلَى الْبَحْرِ أَوْ إِلَى الْجِبَالِ. فِي الْخَرِيفِ تَسْقُطُ الأَوْرَاقُ مِنَ الأَشْجَارِ وَتَهُبُّ رِيحٌ بَارِدَة. الشِّتَاءُ بَارِدٌ وَيَنْزِلُ ثَلْجٌ كَثِير، فَنَلْعَبُ بِالثَّلْجِ وَنَصْنَعُ رَجُلَ الثَّلْجِ.',
         transliteration:
           "Fi Kosofo el-fusul el-erba'a vadiha ve xhemile. Fir-rebia tumtir ve tetefettehul vurud fil hada'ik. Fis-sajf el-xhevvu harr xhidden ve nedhhebu ilel bahr ev ilel xhibal. Fil kharif teskutul evraku minel eshxhar ve tehubbu rihun baride. Esh-shita baridun ve jenzilu thelxhun kethir, fe nel'abu bith-thelxh ve nesne'u rexhule eth-thelxh.",
+        variants: [
+          {
+            albanian: 'Pranvera në Kosovë është e këndshme: bie shi, dielli shkëlqen, dhe moti mbetet i butë. Në verë, bashkëshortja ime dhe fëmijët kalojnë ditë pranë tregut. Në vjeshtë veshim rroba të verdha dhe të gjelbra. Në dimër vesh ato të zeza dhe merr ombrellë kur bie shi. Allahu i bekoftë të gjitha stinët që i ka krijuar.',
+            arabic:
+              'الرَّبِيعُ فِي كُوسُوفُو جَمِيلٌ: تُمْطِرُ، وَتُشْرِقُ الشَّمْسُ، وَالْجَوُّ يَبْقَى مُعْتَدِلاً. فِي الصَّيْفِ، زَوْجَتِي وَالأَطْفَالُ يَقْضُونَ الْأَيَّامَ قُرْبَ السُّوقِ. فِي الْخَرِيفِ نَلْبَسُ ثِيَاباً صَفْرَاءَ وَخَضْرَاءَ. فِي الشِّتَاءِ نَلْبَسُ السَّوْدَاءَ وَنَأْخُذُ الْمِظَلَّةَ حِينَ يَنْزِلُ الْمَطَرُ. بَارَكَ اللَّهُ الْفُصُولَ الَّتِي خَلَقَهَا.',
+            transliteration:
+              'Er-rebi‘u fi Kosofo xhemil: tumtir, ve tushrikush-shems, vel xhevvu jebka mu‘tedilen. Fis-sajf, zewxheti vel etfalu jekdunel ejjame kurbes-suk. Fil kharif nelbesu thijaben safrae ve khadrae. Fish-shita nelbesus-sevdae ve ne’khudhul mizal-le hine jenzilul mater. BarekAllahul fusulel-leti khalekaha.',
+          },
+          {
+            albanian: 'Temperaturat ndryshojnë shumë gjatë vitit: në verë ajri është i nxehtë, në dimër është i ftohtë. Musa kalon netët e dimrit brenda tendës me bashkëshorten, kur bie borë e bardhë. Në pranverë del në kopsht dhe sjell lule të kuqe. Ai flet me të afërmit për motin dhe i lejon fëmijët të luajnë me borë.',
+            arabic:
+              'دَرَجَاتُ الْحَرَارَةِ تَتَغَيَّرُ كَثِيراً خِلَالَ الْعَامِ: فِي الصَّيْفِ الْجَوُّ حَارٌّ، وَفِي الشِّتَاءِ بَارِدٌ. يَقْضِي مُوسَى لَيَالِيَ الشِّتَاءِ دَاخِلَ الْخَيْمَةِ مَعَ زَوْجَتِهِ حِينَ يَنْزِلُ الثَّلْجُ الْأَبْيَضُ. فِي الرَّبِيعِ يَخْرُجُ إِلَى الْحَدِيقَةِ وَيُحْضِرُ وُرُوداً حَمْرَاءَ. يَتَكَلَّمُ مَعَ الْأَقَارِبِ عَنِ الطَّقْسِ وَيَتْرُكُ الْأَطْفَالَ يَلْعَبُونَ بِالثَّلْجِ.',
+            transliteration:
+              'Derexhatul hararati tetegajjeru kethiren khilalel ‘am: fis-sajfil xhevvu harr, ve fish-shita barid. Jekdi Musa lejalijesh-shita dakhilel khajmeti me‘a zewxhetihi hine jenziluth-thelxhul ebjed. Fir-rebi‘i jekhruxhu ilel hadika ve juhdiru vuruden hamrae. Jetekel-lemu me‘al ekaribi ‘anit-takses ve jetrukul etfale jel‘abune bith-thelxh.',
+          },
+        ],
       },
     ],
     ayat: [
@@ -2640,36 +3500,108 @@ export const CHAPTERS: Chapter[] = [
         albanian: 'Ku po shkon, o Musa?',
         arabic: 'إِلَى أَيْنَ تَذْهَبُ يَا مُوسَى؟',
         transliteration: 'Ila ejne tedhhebu ja Musa?',
+        variants: [
+          {
+            albanian: 'O Musa, ku do të udhëtosh sot?',
+            arabic: 'يَا مُوسَى، إِلَى أَيْنَ سَتُسَافِرُ الْيَوْمَ؟',
+            transliteration: 'Ja Musa, ila ejne setusafirul jewm?',
+          },
+          {
+            albanian: 'Po shkon në qytet apo në fshat?',
+            arabic: 'هَلْ تَذْهَبُ إِلَى الْمَدِينَةِ أَمْ إِلَى الْقَرْيَةِ؟',
+            transliteration: 'Hel tedhhebu ilel medine em ilel karje?',
+          },
+        ],
       },
       {
         id: 'd11-2',
         albanian: 'Po vizitoj gjyshin tim në një fshat të qetë.',
         arabic: 'أَزُورُ جَدِّي فِي قَرْيَةٍ هَادِئَةٍ.',
         transliteration: 'Ezuru xheddi fi karjetin hadie.',
+        variants: [
+          {
+            albanian: 'Do të vizitoj shokun tim në qytet.',
+            arabic: 'سَأَزُورُ صَدِيقِي فِي الْمَدِينَةِ.',
+            transliteration: 'Se ezuru sadiki fil medine.',
+          },
+          {
+            albanian: 'Fshati i qetë është vendi im i preferuar.',
+            arabic: 'الْقَرْيَةُ الْهَادِئَةُ بَلَدِي الْمُفَضَّلُ.',
+            transliteration: 'El-karjetul hadie beledil mufaddal.',
+          },
+        ],
       },
       {
         id: 'd11-3',
         albanian: 'A do të udhëtosh me tren apo me avion?',
         arabic: 'هَلْ سَتُسَافِرُ بِالْقِطَارِ أَمْ بِالطَّائِرَةِ؟',
         transliteration: 'Hel setusafiru bil kitar em bit-taire?',
+        variants: [
+          {
+            albanian: 'A do të hipësh në autobus apo në makinë?',
+            arabic: 'هَلْ سَتَرْكَبُ الْحَافِلَةَ أَمِ السَّيَّارَةَ؟',
+            transliteration: 'Hel seterkebul hafile emis-sejjare?',
+          },
+          {
+            albanian: 'Unë do të udhëtoj me avion, jo me tren.',
+            arabic: 'سَأُسَافِرُ بِالطَّائِرَةِ، لَا بِالْقِطَارِ.',
+            transliteration: 'Se usafiru bit-taire, la bil kitar.',
+          },
+        ],
       },
       {
         id: 'd11-4',
         albanian: 'Me tren. Udhëtimi zgjat tri orë.',
         arabic: 'بِالْقِطَارِ. تَسْتَغْرِقُ الرِّحْلَةُ ثَلَاثَ سَاعَاتٍ.',
         transliteration: "Bil kitar. Testegriku er-rihletu theltha sa'at.",
+        variants: [
+          {
+            albanian: 'Udhëtimi me avion zgjat një orë.',
+            arabic: 'تَسْتَغْرِقُ الرِّحْلَةُ بِالطَّائِرَةِ سَاعَةً وَاحِدَةً.',
+            transliteration: 'Testegriku er-rihletu bit-taire sa‘aten vahide.',
+          },
+          {
+            albanian: 'Tri orë me tren; koha kalon shpejt.',
+            arabic: 'ثَلَاثُ سَاعَاتٍ بِالْقِطَارِ؛ يَمُرُّ الْوَقْتُ سَرِيعاً.',
+            transliteration: 'Thelathu sa‘atin bil kitar; jemurrul waktu seri‘an.',
+          },
+        ],
       },
       {
         id: 'd11-5',
         albanian: 'A ke pasaportën? Trafiku është i madh sot.',
         arabic: 'هَلْ مَعَكَ جَوَازُ السَّفَرِ؟ الاِزْدِحَامُ شَدِيدٌ الْيَوْمَ.',
         transliteration: 'Hel me‘ake xhevazus-sefer? El-izdihamu shedidun el-jewm.',
+        variants: [
+          {
+            albanian: 'Trafiku është problem i madh në qytet.',
+            arabic: 'الاِزْدِحَامُ مُشْكِلَةٌ كَبِيرَةٌ فِي الْمَدِينَةِ.',
+            transliteration: 'El-izdihamu mushkiletun kebiretun fil medine.',
+          },
+          {
+            albanian: 'Pasaporta ime është në çantë.',
+            arabic: 'جَوَازُ سَفَرِي فِي الْحَقِيبَةِ.',
+            transliteration: 'Xhevazu seferi fil hakibe.',
+          },
+        ],
       },
       {
         id: 'd11-6',
         albanian: 'Ajri në qytet është i ndotur, por në fshat është i pastër.',
         arabic: 'الْهَوَاءُ فِي الْمَدِينَةِ مُلَوَّثٌ، وَلَكِنْ فِي الْقَرْيَةِ نَقِيٌّ.',
         transliteration: 'El-hevau fil medine mulevveth, ve lakin fil karje nakijj.',
+        variants: [
+          {
+            albanian: 'Mendimi im: fshati është i qetë, qyteti i zhurmshëm.',
+            arabic: 'رَأْيِي: الْقَرْيَةُ هَادِئَةٌ، وَالْمَدِينَةُ مُزْدَحِمَةٌ.',
+            transliteration: 'Re’ji: el-karjetu hadie, vel medinetu muzdehime.',
+          },
+          {
+            albanian: 'Në fshat ajri është i pastër, por tregu është larg.',
+            arabic: 'فِي الْقَرْيَةِ الْهَوَاءُ نَقِيٌّ، وَلَكِنَّ السُّوقَ بَعِيدٌ.',
+            transliteration: 'Fil karjetil hevau nakijj, ve lakinnes-suka be‘id.',
+          },
+        ],
       },
     ],
     vocabulary: [
@@ -2777,6 +3709,22 @@ export const CHAPTERS: Chapter[] = [
           'يَوْمَ الْجُمُعَةِ صَبَاحاً خَرَجَ مُوسَى لِزِيَارَةِ جَدِّهِ فِي قَرْيَةٍ هَادِئَةٍ قَرِيبَةٍ مِنَ الْجِبَالِ. أَخَذَ حَقِيبَتَهُ وَجَوَازَ سَفَرِهِ وَهَدِيَّةً صَغِيرَةً لِجَدَّتِهِ. كَانَ الاِزْدِحَامُ شَدِيداً فِي الْمَدِينَةِ، فَرَكِبَ الْقِطَارَ وَلَمْ يَرْكَبِ الْحَافِلَةَ. اِسْتَغْرَقَتِ الرِّحْلَةُ ثَلَاثَ سَاعَاتٍ. فِي الْقَرْيَةِ كَانَ الْهَوَاءُ نَقِيّاً صَافِياً، بِخِلَافِ الْهَوَاءِ الْمُلَوَّثِ فِي الْمَدِينَةِ. اِلْتَقَى مُوسَى بِأَصْدِقَاءِ الطُّفُولَةِ، وَجَلَسُوا تَحْتَ شَجَرَةٍ كَبِيرَةٍ وَتَحَدَّثُوا عَنِ الدِّرَاسَةِ وَالْعَمَلِ وَعَنْ رِحْلَتِهِمُ الْقَادِمَةِ إِلَى الْعُمْرَةِ.',
         transliteration:
           "Jewmel xhumu‘ati sabahan kharexhe Musa li zijareti xheddihi fi karjetin hadietin karibetin minel xhibal. Ekhadhe hakibetehu ve xhevaze seferihi ve hedijjeten sagireten li xheddetih. Kanel izdihamu shediden fil medine, fe rekibel kitare ve lem jerkebil hafile. Istegrekatir-rihletu theltha sa‘at. Fil karje kanel hevau nakijjen safien, bi khilafil hevail mulevvethi fil medine. Iltaka Musa bi asdika‘it-tufule, ve xhelesu tehte shexheretin kebire ve tehaddethu anid-dirase vel ‘amel ve an rihletihimul kadimeti ilel umra.",
+        variants: [
+          {
+            albanian: 'Musa vendosi të udhëtojë me avion për në një vend të largët. Në qytet trafiku ishte shumë i madh, por në fshatin e gjyshit ajri ishte i pastër. Udhëtimi zgjati dy orë. Ai i tha drejtorit: "Unë po udhëtoj me pasaportë, mos u shqetëso." Në fshat takoi shokët dhe pa profesorin e vjetër.',
+            arabic:
+              'قَرَّرَ مُوسَى أَنْ يُسَافِرَ بِالطَّائِرَةِ إِلَى بَلَدٍ بَعِيدٍ. فِي الْمَدِينَةِ كَانَ الاِزْدِحَامُ شَدِيداً، وَلَكِنَّ فِي قَرْيَةِ جَدِّهِ كَانَ الْهَوَاءُ نَقِيّاً. اِسْتَغْرَقَتِ الرِّحْلَةُ سَاعَتَيْنِ. قَالَ لِلْمُدِيرِ: «أَنَا أُسَافِرُ بِجَوَازِ السَّفَرِ، لَا تَقْلَقْ.» فِي الْقَرْيَةِ قَابَلَ الْأَصْدِقَاءَ وَرَأَى الْأُسْتَاذَ الْقَدِيمَ.',
+            transliteration:
+              'Karrere Musa en jusafire bit-taire ila beledin be‘id. Fil medineti kanel izdihamu shediden, ve lakinne fi karjeti xheddihi kanel hevau nakijj. Istegrekat er-rihletu sa‘atejn. Kale lil mudir: «Ene usafiru bi xhevazis-sefer, la taklek.» Fil karje kabelel esdikae ve rael ustadhel kadim.',
+          },
+          {
+            albanian: 'Ishte hera e parë që Musa udhëtonte me tren. Trafiku në rrugë ishte problem, prandaj zgjodhi trenin, jo autobusin. Në fshatin e vogël vizitoi shokun dhe hëngrën së bashku. Ajri ishte i pastër, pa ndotje. Pastaj hipi në makinë për t’u kthyer në qytet, por trafiku i qytetit i zgjati udhëtimin dy orë më shumë.',
+            arabic:
+              'كَانَتْ أَوَّلَ مَرَّةٍ يُسَافِرُ فِيهَا مُوسَى بِالْقِطَارِ. كَانَ الاِزْدِحَامُ فِي الطَّرِيقِ مُشْكِلَةً، فَاخْتَارَ الْقِطَارَ لَا الْحَافِلَةَ. فِي الْقَرْيَةِ الصَّغِيرَةِ زَارَ صَدِيقَهُ وَأَكَلَا مَعاً. كَانَ الْهَوَاءُ نَقِيّاً بِلَا تَلَوُّثٍ. ثُمَّ رَكِبَ السَّيَّارَةَ لِيَعُودَ إِلَى الْمَدِينَةِ، وَلَكِنَّ اِزْدِحَامَ الْمَدِينَةِ جَعَلَ الرِّحْلَةَ أَطْوَلَ بِسَاعَتَيْنِ.',
+            transliteration:
+              'Kanet evvele merretin jusafiru fiha Musa bil kitar. Kanel izdihamu fit-tarik mushkileten, fe ikhtarel kitare la el-hafile. Fil karjetis-sagire zare sadikahu ve ekela me‘an. Kanel hevau nakijjen bi la televvuth. Thumme rekibes-sejjare lije‘ude ilel medine, ve lakinne izdihamel medineti xhe‘aler-rihlete atvele bi sa‘atejn.',
+          },
+        ],
       },
     ],
     ayat: [
@@ -2881,36 +3829,108 @@ export const CHAPTERS: Chapter[] = [
         albanian: 'Cili është hobi yt i preferuar?',
         arabic: 'مَا هِوَايَتُكَ الْمُفَضَّلَةُ؟',
         transliteration: 'Ma hiwajetukel mufaddale?',
+        variants: [
+          {
+            albanian: 'A ke hobi të dobishëm?',
+            arabic: 'هَلْ عِنْدَكَ هِوَايَةٌ مُفِيدَةٌ؟',
+            transliteration: 'Hel ‘indeke hiwajetun mufide?',
+          },
+          {
+            albanian: 'Hobi im i preferuar është leximi.',
+            arabic: 'هِوَايَتِي الْمُفَضَّلَةُ هِيَ الْقِرَاءَةُ.',
+            transliteration: 'Hiwajetil mufaddaletu hijel kira’a.',
+          },
+        ],
       },
       {
         id: 'd12-2',
         albanian: 'Më pëlqen futbolli dhe noti sepse janë sporte të dobishme.',
         arabic: 'أُحِبُّ كُرَةَ الْقَدَمِ وَالسِّبَاحَةَ لِأَنَّهُمَا رِيَاضَتَانِ مُفِيدَتَانِ.',
         transliteration: "Uhibbu kuret el-kadem ves-sibahate li ennehuma rijadetani mufidetan.",
+        variants: [
+          {
+            albanian: 'Kalërimi dhe futbolli janë dy sporte të bukura.',
+            arabic: 'الْفُرُوسِيَّةُ وَكُرَةُ الْقَدَمِ رِيَاضَتَانِ جَمِيلَتَانِ.',
+            transliteration: 'El-furusijjetu ve kuretul kadem rijadetani xhemiletan.',
+          },
+          {
+            albanian: 'Preferoj notin sepse është i dobishëm.',
+            arabic: 'أُفَضِّلُ السِّبَاحَةَ لِأَنَّهَا مُفِيدَةٌ.',
+            transliteration: 'Ufeddilus-sibahate li ennehe mufide.',
+          },
+        ],
       },
       {
         id: 'd12-3',
         albanian: 'Motra ime e preferon kaligrafinë arabe; praktikon shkronjat Rukaa dhe Nes’h.',
         arabic: 'أُخْتِي تُفَضِّلُ الْخَطَّ الْعَرَبِيَّ؛ تَتَدَرَّبُ عَلَى خَطِّ الرُّقْعَةِ وَخَطِّ النَّسْخِ.',
         transliteration: "Ukhti tufeddilul khattal arabijj; tetederrebu ala khatt er-rukati ve khatt en-neskh.",
+        variants: [
+          {
+            albanian: 'Ajo shkruan ajete të bukura me stilin Nes’h.',
+            arabic: 'تَكْتُبُ آيَاتٍ جَمِيلَةً بِخَطِّ النَّسْخِ.',
+            transliteration: 'Tektubu ajatin xhemile bi khattin-neskh.',
+          },
+          {
+            albanian: 'Kaligrafia arabe është letërsi e bukur.',
+            arabic: 'الْخَطُّ الْعَرَبِيُّ أَدَبٌ جَمِيلٌ.',
+            transliteration: 'El-khattul arabijj edebun xhemil.',
+          },
+        ],
       },
       {
         id: 'd12-4',
         albanian: 'Axha im mbledh pulla; ka një koleksion të madh.',
         arabic: 'عَمِّي يَجْمَعُ الطَّوَابِعَ؛ عِنْدَهُ مَجْمُوعَةٌ كَبِيرَةٌ.',
         transliteration: "Ammi jexhmeu et-tevabia; indehu mexhmu‘atun kebire.",
+        variants: [
+          {
+            albanian: 'Mbledhja e pullave është hobi i dobishëm.',
+            arabic: 'جَمْعُ الطَّوَابِعِ هِوَايَةٌ مُفِيدَةٌ.',
+            transliteration: 'Xhem‘ut-tevabi‘i hiwajetun mufide.',
+          },
+          {
+            albanian: 'Babai im mbledh revista dhe libra islamikë.',
+            arabic: 'وَالِدِي يَجْمَعُ الْمَجَلَّاتِ وَالْكُتُبَ الْإِسْلَامِيَّةَ.',
+            transliteration: 'Walidi jexhme‘ul mexhel-lati vel kutubel islamijje.',
+          },
+        ],
       },
       {
         id: 'd12-5',
         albanian: 'Çdo javë lexoj një revistë dhe një libër islamik.',
         arabic: 'كُلَّ أُسْبُوعٍ أَقْرَأُ مَجَلَّةً وَكِتَاباً إِسْلَامِيّاً.',
         transliteration: "Kul-le usbu‘in akrau mexhel-leten ve kitaben islamijjen.",
+        variants: [
+          {
+            albanian: 'Çdo ditë lexoj një gazetë të re.',
+            arabic: 'كُلَّ يَوْمٍ أَقْرَأُ صَحِيفَةً جَدِيدَةً.',
+            transliteration: 'Kul-le jewmin akrau sahifeten xhedide.',
+          },
+          {
+            albanian: 'Lexova një tregim për një ajet të bukur.',
+            arabic: 'قَرَأْتُ قِصَّةً عَنْ آيَةٍ جَمِيلَةٍ.',
+            transliteration: 'Kare’tu kissatan ‘an ajetin xhemile.',
+          },
+        ],
       },
       {
         id: 'd12-6',
         albanian: 'A je korrespondent me shokë nga vende të tjera?',
         arabic: 'هَلْ لَكَ مُرَاسَلَةٌ مَعَ أَصْدِقَاءَ مِنْ بِلَادٍ أُخْرَى؟',
         transliteration: 'Hel leke muraseletun me‘a asdika‘e min biladin ukhra?',
+        variants: [
+          {
+            albanian: 'Korrespondenca me shokët nga vende të tjera është e dobishme.',
+            arabic: 'الْمُرَاسَلَةُ مَعَ الْأَصْدِقَاءِ مِنْ بِلَادٍ أُخْرَى مُفِيدَةٌ.',
+            transliteration: 'El-muraseletu me‘al esdikai min biladin ukhra mufide.',
+          },
+          {
+            albanian: 'Unë i shkruaj shokut tim një letër çdo muaj.',
+            arabic: 'أَكْتُبُ لِصَدِيقِي رِسَالَةً كُلَّ شَهْرٍ.',
+            transliteration: 'Ektubu li sadiki risaleten kul-le shehrin.',
+          },
+        ],
       },
     ],
     vocabulary: [
@@ -3013,6 +4033,22 @@ export const CHAPTERS: Chapter[] = [
           'لِكُلِّ فَرْدٍ مِنْ أُسْرَةِ مُوسَى هِوَايَةٌ مُفَضَّلَةٌ. مُوسَى يُحِبُّ كُرَةَ الْقَدَمِ وَالسِّبَاحَةَ لِأَنَّهُمَا رِيَاضَتَانِ مُفِيدَتَانِ لِلْجِسْمِ. أُخْتُهُ آمِنَةُ تَتَدَرَّبُ عَلَى الْخَطِّ الْعَرَبِيِّ — خَطِّ الرُّقْعَةِ وَخَطِّ النَّسْخِ — وَتَكْتُبُ آيَاتٍ جَمِيلَةً لِمَعْرِضِ الْمَدْرَسَةِ. الْعَمُّ يَجْمَعُ الطَّوَابِعَ مِنْ بِلَادٍ كَثِيرَةٍ، وَعِنْدَهُ أَكْثَرُ مِنْ مِئَةِ طَابِعٍ. الأُمُّ تَقْرَأُ الْكُتُبَ الإِسْلَامِيَّةَ وَالْمَجَلَّاتِ كُلَّ أُسْبُوعٍ، وَتُحَدِّثُ الأَوْلَادَ عَنِ الْقِصَصِ الَّتِي تَجِدُهَا فِيهَا. وَقَدْ بَدَأَ مُوسَى مُرَاسَلَةً مَعَ صَدِيقٍ مِنْ مِصْرَ لِيَتَدَرَّبَ عَلَى الْعَرَبِيَّةِ. الْهِوَايَاتُ مُفِيدَةٌ حِينَ تُعَلِّمُنَا شَيْئاً جَدِيداً.',
         transliteration:
           "Li kul-li ferdin min usreti Musa hiwajetun mufaddale. Musa juhibbu kuret el-kadem ves-sibahate li ennehuma rijadetani mufidetani lil xhism. Ukhtuhu Amine tetederrebu alel khatt el-arabijj — khatt er-rukati ve khatt en-neskh — ve tektubu ajatin xhemileten li ma‘ridil medrese. El-ammu jexhmeu et-tevabia min biladin kethire, ve indehu ektheru min mi‘eti tabi‘. El-ummu tekrau el-kutubel islamijjete vel mexhel-lati kul-le usbu‘, ve tuhaddithul evlade anil kisesil-leti texhiduha fiha. Ve kad bedee Musa muraseleten me‘a sadikin min Misr li jetederrebe alel arabijje. El-hiwajatu mufidetun hine tu‘al-limuna shej’en xhedida.",
+        variants: [
+          {
+            albanian: 'Musa dhe motra e tij kanë dy hobi të ndryshme: ai pëlqen futbollin dhe notin, ajo pëlqen kaligrafinë arabe dhe leximin e revistave. Babai mbledh pulla dhe gazeta; axha vizaton letra të vjetra. Në ekspozitën e shkollës Amina shkroi një ajet me stilin Rukaa. Edhe shoqata e nxënësve organizon takime çdo javë.',
+            arabic:
+              'لِمُوسَى وَأُخْتِهِ هِوَايَتَانِ مُخْتَلِفَتَانِ: هُوَ يُحِبُّ كُرَةَ الْقَدَمِ وَالسِّبَاحَةَ، وَهِيَ تُحِبُّ الْخَطَّ الْعَرَبِيَّ وَقِرَاءَةَ الْمَجَلَّاتِ. الْوَالِدُ يَجْمَعُ الطَّوَابِعَ وَالصُّحُفَ؛ الْعَمُّ يَرْسُمُ رَسَائِلَ قَدِيمَةً. فِي مَعْرِضِ الْمَدْرَسَةِ كَتَبَتْ آمِنَةُ آيَةً بِخَطِّ الرُّقْعَةِ. وَأَيْضاً جَمْعِيَّةُ الطُّلَّابِ تُنَظِّمُ لِقَاءَاتٍ كُلَّ أُسْبُوعٍ.',
+            transliteration:
+              'Li Musa ve ukhtihi hiwajetani mukhtelifetan: huwe juhibbu kuretel kademi ves-sibaha, ve hije tuhibbul khattal arabijje ve kira’etel mexhel-lat. El-validu jexhme‘ut-tevabi‘a ves-suhuf; el-‘ammu jersumu rasaile kadime. Fi ma‘ridil medrese ketebet Amine ajeten bi khattir-rukati. Ve ejdan xhem‘ijjetut-tul-labi tunazzimu likaatin kul-le usbu‘.',
+          },
+          {
+            albanian: 'Musa zgjodhi një hobi të ri: të mbledhë hadithet e Profetit në një fletore. Çdo ditë shkruan një hadith dhe e lexon me babain. Motra lexon libra islamikë; axha vizaton pavijone të ekspozitës. Kështu, familja ka shumë hobi të dobishme.',
+            arabic:
+              'اِخْتَارَ مُوسَى هِوَايَةً جَدِيدَةً: جَمْعَ أَحَادِيثِ النَّبِيِّ فِي دَفْتَرٍ. كُلَّ يَوْمٍ يَكْتُبُ حَدِيثاً وَيَقْرَؤُهُ مَعَ وَالِدِهِ. الْأُخْتُ تَقْرَأُ الْكُتُبَ الْإِسْلَامِيَّةَ؛ الْعَمُّ يَرْسُمُ أَجْنِحَةَ الْمَعْرِضِ. هَكَذَا، الْأُسْرَةُ لَدَيْهَا هِوَايَاتٌ كَثِيرَةٌ مُفِيدَةٌ.',
+            transliteration:
+              'Ikhtare Musa hiwajeten xhedide: xhem‘a ehadithin-nebijji fi defter. Kul-le jewmin jektubu hadithen ve jekra’uhu me‘a validih. El-ukhtu tekra’ul kutubel islamijje; el-‘ammu jersumu exhnihetel ma‘rid. Hakedha, el-usretu ledejha hiwajatun kethiretun mufide.',
+          },
+        ],
       },
     ],
     ayat: [
@@ -3123,36 +4159,108 @@ export const CHAPTERS: Chapter[] = [
         albanian: 'Ku do të udhëtosh, o Musa?',
         arabic: 'إِلَى أَيْنَ سَتُسَافِرُ يَا مُوسَى؟',
         transliteration: 'Ila ejne setusafiru ja Musa?',
+        variants: [
+          {
+            albanian: 'O Musa, kur do të udhëtosh për Umre?',
+            arabic: 'يَا مُوسَى، مَتَى سَتُسَافِرُ لِلْعُمْرَةِ؟',
+            transliteration: 'Ja Musa, meta setusafiru lil umre?',
+          },
+          {
+            albanian: 'A do të udhëtosh në Mekë apo në Medine?',
+            arabic: 'هَلْ سَتُسَافِرُ إِلَى مَكَّةَ أَمْ إِلَى الْمَدِينَةِ؟',
+            transliteration: 'Hel setusafiru ila Mekke em ilel medine?',
+          },
+        ],
       },
       {
         id: 'd13-2',
         albanian: 'Do të udhëtoj në Medinen e Ndritshme dhe pastaj në Mekë.',
         arabic: 'سَأُسَافِرُ إِلَى الْمَدِينَةِ الْمُنَوَّرَةِ ثُمَّ إِلَى مَكَّةَ الْمُكَرَّمَةِ.',
         transliteration: 'Seusafiru ilel medinetil munevvere thumme ila Mekke el-mukerreme.',
+        variants: [
+          {
+            albanian: 'Do të vizitoj Mekën dhe do të kthehem nga Medina.',
+            arabic: 'سَوْفَ أَزُورُ مَكَّةَ وَأَعُودُ مِنَ الْمَدِينَةِ.',
+            transliteration: 'Sevfe ezuru Mekke ve e‘udu minel medine.',
+          },
+          {
+            albanian: 'Udhëtimi im fillon në Medine dhe përfundon në Mekë.',
+            arabic: 'سَفَرِي يَبْدَأُ فِي الْمَدِينَةِ وَيَنْتَهِي فِي مَكَّةَ.',
+            transliteration: 'Seferi jebdeu fil medine ve jentehi fi Mekke.',
+          },
+        ],
       },
       {
         id: 'd13-3',
         albanian: 'A ke pasaportë, vizë hyrjeje dhe biletë?',
         arabic: 'هَلْ مَعَكَ جَوَازُ سَفَرٍ وَتَأْشِيرَةُ دُخُولٍ وَتَذْكِرَةٌ؟',
         transliteration: 'Hel me‘ake xhevazu seferin ve te‘shiretu dukhulin ve tedhkiretun?',
+        variants: [
+          {
+            albanian: 'A është gati pasaporta dhe viza?',
+            arabic: 'هَلْ جَوَازُ السَّفَرِ وَالتَّأْشِيرَةُ جَاهِزَانِ؟',
+            transliteration: 'Hel xhevazus-sefer vet-te’shiretu xhahizan?',
+          },
+          {
+            albanian: 'Nëpunësi do ta konfirmojë biletën.',
+            arabic: 'الْمُوَظَّفُ سَيُؤَكِّدُ التَّذْكِرَةَ.',
+            transliteration: 'El-muvezzafu sejuekkidut-tedhkire.',
+          },
+        ],
       },
       {
         id: 'd13-4',
         albanian: 'Po. Kam bërë edhe rezervimin e hotelit dhe kam valixhen në xhami lindore.',
         arabic: 'نَعَمْ. وَقَدْ حَجَزْتُ الْفُنْدُقَ، وَحَقِيبَتِي فِي الْجَنَاحِ الشَّرْقِيِّ.',
         transliteration: "Na‘am. Ve kad haxheztul funduk, ve hakibeti fil xhenahish-sharkijj.",
+        variants: [
+          {
+            albanian: 'Valixhja ime është në pavijonin perëndimor, jo lindor.',
+            arabic: 'حَقِيبَتِي فِي الْجَنَاحِ الْغَرْبِيِّ، لَا الشَّرْقِيِّ.',
+            transliteration: 'Hakibeti fil xhenahil garbijj, lesh-sharkijj.',
+          },
+          {
+            albanian: 'Kam rezervuar hotelin në pjesën jugore.',
+            arabic: 'قَدْ حَجَزْتُ الْفُنْدُقَ فِي الْجَنُوبِ.',
+            transliteration: 'Kad haxheztul funduk fil xhenub.',
+          },
+        ],
       },
       {
         id: 'd13-5',
         albanian: 'Kur është fluturimi jot ardhës?',
         arabic: 'مَتَى رِحْلَتُكَ الْقَادِمَةُ؟',
         transliteration: 'Meta rihletukel kadime?',
+        variants: [
+          {
+            albanian: 'Fluturimi im i ardhshëm është nesër.',
+            arabic: 'رِحْلَتِي الْقَادِمَةُ غَداً.',
+            transliteration: 'Rihleti el-kadimetu gaden.',
+          },
+          {
+            albanian: 'Kur do të niset aeroplani yt?',
+            arabic: 'مَتَى سَتُغَادِرُ طَائِرَتُكَ؟',
+            transliteration: 'Meta setugadiru ta’iretuk?',
+          },
+        ],
       },
       {
         id: 'd13-6',
         albanian: 'Nesër në mëngjes nga aeroporti. Në aeroplan kam humbur një herë valixhen, por më është kthyer.',
         arabic: 'غَداً صَبَاحاً مِنَ الْمَطَارِ. فَقَدْتُ حَقِيبَتِي مَرَّةً فِي الطَّائِرَةِ، ثُمَّ عَادَتْ إِلَيَّ.',
         transliteration: "Gaden sabahan minel matar. Fekadtu hakibeti merreten fit-taire, thumme adet ilejje.",
+        variants: [
+          {
+            albanian: 'Udhëtari humbi një valixhe me ngjyrë të zezë.',
+            arabic: 'الْمُسَافِرُ فَقَدَ حَقِيبَةً لَوْنُهَا أَسْوَدُ.',
+            transliteration: 'El-musafiru fekade hakibeten lewnuha esved.',
+          },
+          {
+            albanian: 'Arritja në aeroport është në orën gjashtë.',
+            arabic: 'الْوُصُولُ إِلَى الْمَطَارِ فِي السَّاعَةِ السَّادِسَةِ.',
+            transliteration: 'El-wusulu ilel matar fis-sa‘atis-sadise.',
+          },
+        ],
       },
     ],
     vocabulary: [
@@ -3262,6 +4370,22 @@ export const CHAPTERS: Chapter[] = [
           'هَذَا الصَّيْفَ إِنْ شَاءَ اللَّهُ سَأُسَافِرُ إِلَى الْمَدِينَةِ الْمُنَوَّرَةِ. سَأَذْهَبُ بِالطَّائِرَةِ مِنْ بْرِشْتِينَا إِلَى جَدَّة ثُمَّ بِالسَّيَّارَةِ إِلَى مَكَّة. عِنْدِي جَوَازُ السَّفَرِ وَالتَّذْكِرَةُ وَالْحَقِيبَةُ جَاهِزَة. سَأَبْقَى أُسْبُوعَيْنِ وَسَأَزُورُ الْمَسْجِدَ النَّبَوِيَّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ. هَذِهِ سَتَكُونُ أَجْمَلَ رِحْلَةٍ فِي حَيَاتِي وَأَنْتَظِرُهَا بِشَوْقٍ كَبِيرٍ.',
         transliteration:
           "Hadha es-sajfe inshallah seusafiru ilel medine el-munevvere. Seedhhebu bit-tajira min Prishtina ila Xhedde thumme bis-sejjara ila Mekke. Indi xhevazus-sefer vet-tedhkire vel hakibe xhahize. Se ebka usbu'ajn ve seezuru el-mesxhid en-nebevijj sallAllahu alejhi ve sellem. Hadhihi setekunu exhmele rihlatin fi hajati ve entezuruha bi shewkin kebir.",
+        variants: [
+          {
+            albanian: 'Musa konfirmoi pasaportën dhe biletën te nëpunësi i aeroportit. Do të hipë në aeroplanin e hershëm dhe do të arrijë në Medine në mëngjes. Valixhen e ka gati në pavijonin perëndimor. Pas qëndrimit dy javë, do të shkojë me makinë për në Mekë për Umre.',
+            arabic:
+              'أَكَّدَ مُوسَى جَوَازَ السَّفَرِ وَالتَّذْكِرَةَ عِنْدَ الْمُوَظَّفِ فِي الْمَطَارِ. سَيَرْكَبُ الطَّائِرَةَ الْمُبَكِّرَةَ وَسَيَصِلُ إِلَى الْمَدِينَةِ صَبَاحاً. حَقِيبَتُهُ جَاهِزَةٌ فِي الْجَنَاحِ الْغَرْبِيِّ. بَعْدَ إِقَامَةِ أُسْبُوعَيْنِ، سَيَذْهَبُ بِالسَّيَّارَةِ إِلَى مَكَّةَ لِلْعُمْرَةِ.',
+            transliteration:
+              'Ekkede Musa xhevazes-sefer vet-tedhkire ‘indel muvezzafi fil matar. Sejerkebut-ta’iretel mubekkire ve sejesilu ilel medineti sabahan. Hakibetuhu xhahize fil xhenahil garbijj. Ba‘de ikameti usbu‘ajn, sejedhhebu bis-sejjare ila Mekke lil umre.',
+          },
+          {
+            albanian: 'Ishte koha e largimit. Musa humbi një herë valixhen në aeroport, por nëpunësi ia ktheu me ngjyrën e kaltër të saj. Në Mekë do të qëndrojë në një hotel të ri, pranë Qabesë. Udhëtari i ardhshëm nuk do të udhëtojë me tren, por me aeroplan.',
+            arabic:
+              'كَانَ وَقْتَ الْمُغَادَرَةِ. فَقَدَ مُوسَى حَقِيبَتَهُ مَرَّةً فِي الْمَطَارِ، وَلَكِنَّ الْمُوَظَّفَ أَعَادَهَا بِلَوْنِهَا الْأَزْرَقِ. فِي مَكَّةَ سَيُقِيمُ فِي فُنْدُقٍ جَدِيدٍ، قَرِيبٍ مِنَ الْكَعْبَةِ. الْمُسَافِرُ الْقَادِمُ لَنْ يُسَافِرَ بِالْقِطَارِ، بَلْ بِالطَّائِرَةِ.',
+            transliteration:
+              'Kane waktel mugadere. Fekade Musa hakibetehu merreten fil matar, ve lakinnel muvezzafe e‘adeha bi lewnihal ezrak. Fi Mekke sejukimu fi funduk xhedid, karibin minel ka‘be. El-musafirul kadim len jusafire bil kitar, bel bit-ta’ira.',
+          },
+        ],
       },
     ],
     ayat: [
@@ -3372,36 +4496,108 @@ export const CHAPTERS: Chapter[] = [
         albanian: 'A e ke kryer Haxhin ndonjëherë?',
         arabic: 'هَلْ أَدَّيْتَ الْحَجَّ مِنْ قَبْلُ؟',
         transliteration: 'Hel eddejtel haxhxhe min kabl?',
+        variants: [
+          {
+            albanian: 'A bëre Umren apo Haxhin?',
+            arabic: 'هَلِ اعْتَمَرْتَ أَمْ أَدَّيْتَ الْحَجَّ؟',
+            transliteration: 'Hel i‘temerte em eddejtel haxhxh?',
+          },
+          {
+            albanian: 'Unë e kreva Haxhin vitin e kaluar.',
+            arabic: 'أَدَّيْتُ الْحَجَّ فِي الْعَامِ الْمَاضِي.',
+            transliteration: 'Eddejtul haxhxhe fil ‘amil madi.',
+          },
+        ],
       },
       {
         id: 'd14-2',
         albanian: 'Po, vitin e kaluar. Vesha rrobat e Ihramit në Mikat.',
         arabic: 'نَعَمْ، فِي الْعَامِ الْمَاضِي. لَبِسْتُ ثَوْبَ الإِحْرَامِ فِي الْمِيقَاتِ.',
         transliteration: 'Na‘am, fil amil madi. Lebistu thewbel ihrami fil mikat.',
+        variants: [
+          {
+            albanian: 'Në Mikat veshëm rrobat e Ihramit dhe u nisëm.',
+            arabic: 'فِي الْمِيقَاتِ لَبِسْنَا ثَوْبَ الإِحْرَامِ وَانْطَلَقْنَا.',
+            transliteration: 'Fil mikat lebisna thewbel ihrami ventalakna.',
+          },
+          {
+            albanian: 'Haxhxhiu e hoqi rrobën e zakonshme dhe e veshi Ihramin.',
+            arabic: 'الْحَاجُّ خَلَعَ ثَوْبَهُ الْعَادِيَّ وَلَبِسَ الإِحْرَامَ.',
+            transliteration: 'El-haxhxhu khale‘a thewbehul ‘adijje ve lebisel ihram.',
+          },
+        ],
       },
       {
         id: 'd14-3',
         albanian: 'Sa rrethrrotullime bëre rreth Qabes?',
         arabic: 'كَمْ شَوْطاً طُفْتَ حَوْلَ الْكَعْبَةِ؟',
         transliteration: 'Kem shewten tufte hevlel ka‘be?',
+        variants: [
+          {
+            albanian: 'Unë bëra tavaf shtatë rrethrrotullime rreth Qabes.',
+            arabic: 'طُفْتُ سَبْعَةَ أَشْوَاطٍ حَوْلَ الْكَعْبَةِ.',
+            transliteration: 'Tuftu seb‘ate eshwatin hevlel ka‘be.',
+          },
+          {
+            albanian: 'Tavafi i lamtumirës është shtatë rrethrrotullime.',
+            arabic: 'طَوَافُ الْوَدَاعِ سَبْعَةُ أَشْوَاطٍ.',
+            transliteration: 'Tevaful weda‘ seb‘atu eshwatin.',
+          },
+        ],
       },
       {
         id: 'd14-4',
         albanian: 'Shtatë rrethrrotullime — tavafi i ifadas — pastaj Sai mes Safas dhe Merves.',
         arabic: 'سَبْعَةُ أَشْوَاطٍ — طَوَافُ الإِفَاضَةِ — ثُمَّ سَعَيْتُ بَيْنَ الصَّفَا وَالْمَرْوَة.',
         transliteration: "Seb‘atu eshwat — tevafu el-ifada — thumme se‘ajtu bejnes-safa vel merve.",
+        variants: [
+          {
+            albanian: 'Pas tavafit, bëra saj mes Safas dhe Merves.',
+            arabic: 'بَعْدَ الطَّوَافِ سَعَيْتُ بَيْنَ الصَّفَا وَالْمَرْوَةِ.',
+            transliteration: 'Ba‘det-tavafi se‘ajtu bejnes-safa vel merve.',
+          },
+          {
+            albanian: 'Tavafi i Ifadas dhe saj janë rituale të Haxhit.',
+            arabic: 'طَوَافُ الإِفَاضَةِ وَالسَّعْيُ مِنْ أَعْمَالِ الْحَجِّ.',
+            transliteration: 'Tavaful ifada ves-se‘ju min a‘malil haxhxh.',
+          },
+        ],
       },
       {
         id: 'd14-5',
         albanian: 'Në Mina hodha gurët te Xhemreja e Madhe dhe bëra kurbanin.',
         arabic: 'فِي مِنَى رَمَيْتُ الْجَمْرَةَ الْكُبْرَى وَذَبَحْتُ الْهَدْيَ.',
         transliteration: "Fi Mina remejtul xhemretel kubra ve dhebahtul hedje.",
+        variants: [
+          {
+            albanian: 'Pas hedhjes së gurëve, preva kurbanin dhe rruajta kokën.',
+            arabic: 'بَعْدَ رَمْيِ الْجِمَارِ ذَبَحْتُ الْهَدْيَ وَحَلَقْتُ رَأْسِي.',
+            transliteration: 'Ba‘de remjil xhimar dhebahtul hedje ve halektu re’si.',
+          },
+          {
+            albanian: 'Në Muzdelife mblodhëm gurët për Xhemren.',
+            arabic: 'فِي مُزْدَلِفَةَ جَمَعْنَا الْحَصَى لِلْجَمْرَةِ.',
+            transliteration: 'Fi Muzdelife xhema‘nal hasa lil xhemre.',
+          },
+        ],
       },
       {
         id: 'd14-6',
         albanian: 'Sa e madhe është Teljija! "Labbejkallahumme labbejk."',
         arabic: 'مَا أَعْظَمَ التَّلْبِيَةَ! «لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ».',
         transliteration: 'Ma a‘zamet-telbije! «Lebbejkallahumme lebbejk.»',
+        variants: [
+          {
+            albanian: 'Haxhxhiu iu përgjigj me Teljije në ditën e Arafatit.',
+            arabic: 'الْحَاجُّ لَبَّى بِالتَّلْبِيَةِ فِي يَوْمِ عَرَفَاتَ.',
+            transliteration: 'El-haxhxhu lebba bit-telbije fi jewmi ‘arafat.',
+          },
+          {
+            albanian: 'Ndjeva bekimin kur thashë: Labbejkallahumme labbejk.',
+            arabic: 'شَعَرْتُ بِالْبَرَكَةِ حِينَ قُلْتُ: لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ.',
+            transliteration: 'Sha‘artu bil bereke hine kultu: Lebbejkallahumme lebbejk.',
+          },
+        ],
       },
     ],
     vocabulary: [
@@ -3516,6 +4712,22 @@ export const CHAPTERS: Chapter[] = [
           'فِي الْعَامِ الْمَاضِي أَدَّى مُوسَى الْحَجَّ مَعَ أَبِيهِ. فِي الْمِيقَاتِ لَبِسَا ثَوْبَ الإِحْرَامِ وَبَدَآ التَّلْبِيَةَ: «لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ». وَلَمَّا وَصَلَا إِلَى مَكَّةَ، طَافَا طَوَافَ الإِفَاضَةِ سَبْعَةَ أَشْوَاطٍ حَوْلَ الْكَعْبَةِ وَصَلَّيَا رَكْعَتَيْنِ عِنْدَ مَقَامِ إِبْرَاهِيمَ. ثُمَّ سَعَيَا بَيْنَ الصَّفَا وَالْمَرْوَةِ. فِي يَوْمِ عَرَفَةَ وَقَفَا حَتَّى غُرُوبِ الشَّمْسِ وَدَعَوَا اللَّهَ بِقَلْبٍ خَاشِعٍ. وَبَاتَا فِي مُزْدَلِفَةَ وَجَمَعَا الْحَصَى. فِي الْيَوْمِ التَّالِي فِي مِنًى رَمَيَا الْجَمْرَةَ الْكُبْرَى وَذَبَحَا الْهَدْيَ وَحَلَقَا رُؤُوسَهُمَا. الْحَجُّ الْمَبْرُورُ جَزَاؤُهُ الْجَنَّةُ.',
         transliteration:
           "Fil amil madi edda Musa el-haxhxhe me‘a ebih. Fil mikati lebisa thewbel ihrami ve bedeaet-telbije: «Lebbejkallahumme lebbejk». Ve lemma vesala ila Mekke, tafa tevafel ifadati seb‘ate eshwat hevlel ka‘be ve sal-laja rek‘atejni inde mekami Ibrahim. Thumme se‘aja bejnes-safa vel merve. Fi jewmi Arafe vekafa hatta gurubish-shems ve de‘aallahe bi kalbin khashi‘. Ve bata fi Muzdelife ve xheme‘al haa. Fil jewmit-tali fi Mina remejal xhemretel kubra ve dhebehaal hedje ve halaka ru‘usehuma. El-haxhxhul mebruru xhezauhul xhenne.",
+        variants: [
+          {
+            albanian: 'Musa veshi Ihramin në Mikat dhe bëri Teljije gjatë gjithë rrugës. Në Mekë bëri tavafin shtatë herë dhe saj mes Safas dhe Merves. Pas Arafatit dhe Muzdelifes, hodhi Xhemren e Madhe njëmbëdhjetë herë dhe preu kurbanin. Rruajtja e kokës dhe Haxhi i pranuar i dhanë paqe në zemër.',
+            arabic:
+              'لَبِسَ مُوسَى الإِحْرَامَ فِي الْمِيقَاتِ وَلَبَّى طَوَالَ الطَّرِيقِ. فِي مَكَّةَ طَافَ سَبْعَةَ أَشْوَاطٍ وَسَعَى بَيْنَ الصَّفَا وَالْمَرْوَةِ. بَعْدَ عَرَفَاتَ وَمُزْدَلِفَةَ، رَمَى الْجَمْرَةَ الْكُبْرَى أَحَدَ عَشَرَ مَرَّةً وَذَبَحَ الْهَدْيَ. حَلْقُ الرَّأْسِ وَالْحَجُّ الْمَقْبُولُ أَعْطَيَاهُ السَّكِينَةَ فِي الْقَلْبِ.',
+            transliteration:
+              'Lebise Musa el-ihrame fil mikat ve lebba tavalet-tarik. Fi Mekke tafe seb‘ate eshwat ve se‘a bejnes-safa vel merve. Ba‘de ‘arafate ve Muzdelife, rema el-xhemretel kubra ehade ‘ashere merreten ve dhebehal hedje. Halkur-re’si vel haxhxhul makbulu a‘tajahus-sekinete fil kalb.',
+          },
+          {
+            albanian: 'Në ditën e dymbëdhjetë të Dhul-hixhes, Musa bëri tavafin e lamtumirës rreth Qabes. Ai e ndjeu mëshirën e Allahut mbi vete. Haxhxhiu i ri arriti edhe te Mekami i Ibrahimit dhe u fal aty dy rekat. Kurbani dhe hedhja e gurëve janë rituale të vërteta të Haxhit. Sa i bukur është çasti kur besimtari kthehet në shtëpi si haxhxhi i pranuar!',
+            arabic:
+              'فِي الْيَوْمِ الثَّانِيَ عَشَرَ مِنْ ذِي الْحِجَّةِ، طَافَ مُوسَى طَوَافَ الْوَدَاعِ حَوْلَ الْكَعْبَةِ. شَعَرَ بِرَحْمَةِ اللَّهِ عَلَيْهِ. الْحَاجُّ الْجَدِيدُ وَصَلَ أَيْضاً إِلَى مَقَامِ إِبْرَاهِيمَ وَصَلَّى رَكْعَتَيْنِ. الذَّبْحُ وَرَمْيُ الْجِمَارِ مِنْ أَعْمَالِ الْحَجِّ الْحَقِيقِيَّةِ. مَا أَجْمَلَ اللَّحْظَةَ حِينَ يَعُودُ الْمُؤْمِنُ إِلَى بَيْتِهِ حَاجّاً مَقْبُولاً!',
+            transliteration:
+              'Fil jewmith-thanije ‘ashere min dhil-hixhxhe, tafe Musa tavafel weda‘ hevlel ka‘be. Sha‘are bi rahmetillahi alejh. El-haxhxhul xhedidu vesele ejdan ila mekami Ibrahim ve sal-la rek‘atejn. Edh-dhebhu ve remjul xhimar min a‘malil haxhxhil hakikijje. Ma exhmele-l-lahzate hine je‘udul mu’minu ila bejtihi haxhxhen makbulen!',
+          },
+        ],
       },
     ],
     ayat: [
@@ -3626,36 +4838,108 @@ export const CHAPTERS: Chapter[] = [
         albanian: 'Selamu alejkum, o doktor. Kam dhimbje koke dhe dhimbje gjoksi.',
         arabic: 'السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ. عِنْدِي صُدَاعٌ وَأَلَمٌ فِي الصَّدْرِ.',
         transliteration: 'Es-selamu alejkum ve rahmetullahi ve berakatuh. Indi sudaun ve elemun fis-sadr.',
+        variants: [
+          {
+            albanian: 'Doktor, kam dhimbje në zemër dhe në gjoks.',
+            arabic: 'يَا طَبِيبُ، عِنْدِي أَلَمٌ فِي الْقَلْبِ وَالصَّدْرِ.',
+            transliteration: 'Ja tabib, indi elemun fil kalbi ves-sadr.',
+          },
+          {
+            albanian: 'Kam dhimbje koke të fortë, o mjek.',
+            arabic: 'عِنْدِي صُدَاعٌ شَدِيدٌ يَا طَبِيبُ.',
+            transliteration: 'Indi sudaun shedid ja tabib.',
+          },
+        ],
       },
       {
         id: 'd15-2',
         albanian: 'Që kur të ka zënë? A ke dhimbje dhëmbësh apo veshi?',
         arabic: 'مُنْذُ مَتَى أَصَابَكَ؟ هَلْ عِنْدَكَ أَلَمٌ فِي الأَسْنَانِ أَوِ الأُذُنِ؟',
         transliteration: 'Mundhu meta esabek? Hel indeke elemun fil esnani evil udhun?',
+        variants: [
+          {
+            albanian: 'A ke dhimbje në hundë ose në fyt?',
+            arabic: 'هَلْ عِنْدَكَ أَلَمٌ فِي الأَنْفِ أَوِ الْحَنْجَرَةِ؟',
+            transliteration: 'Hel indeke elemun fil enfi evil hanxhere?',
+          },
+          {
+            albanian: 'Prej sa kohësh ndjen këtë dhimbje?',
+            arabic: 'مُنْذُ مَتَى تَشْعُرُ بِهَذَا الأَلَمِ؟',
+            transliteration: 'Mundhu meta tesh‘uru bi hadhel elem?',
+          },
+        ],
       },
       {
         id: 'd15-3',
         albanian: 'Prej dy ditësh. Gjithashtu kam temperaturë të lartë dhe dhimbje në fyt.',
         arabic: 'مُنْذُ يَوْمَيْنِ. وَعِنْدِي اِرْتِفَاعٌ فِي الْحَرَارَةِ وَأَلَمٌ فِي الْحَنْجَرَةِ.',
         transliteration: "Mundhu jewmejn. Ve indi irtifaun fil hararati ve elemun fil hanxhere.",
+        variants: [
+          {
+            albanian: 'Prej dy javësh mungoj në shkollë për shkak të sëmundjes.',
+            arabic: 'مُنْذُ أُسْبُوعَيْنِ تَغَيَّبْتُ عَنِ الْمَدْرَسَةِ بِسَبَبِ الْمَرَضِ.',
+            transliteration: 'Mundhu usbu‘ajn tegajjebtu ‘anil medreseti bi sebebil marad.',
+          },
+          {
+            albanian: 'Tensioni ka qenë i lartë prej tri ditësh.',
+            arabic: 'الضَّغْطُ مُرْتَفِعٌ مُنْذُ ثَلَاثَةِ أَيَّامٍ.',
+            transliteration: 'Ed-daghtu murtefi‘un mundhu thelathetil ejjam.',
+          },
+        ],
       },
       {
         id: 'd15-4',
         albanian: 'Le të bëjmë një ekzaminim të shpejtë dhe të presim rezultatin.',
         arabic: 'لِنَقُمْ بِفَحْصٍ سَرِيعٍ وَنَنْتَظِرِ النَّتِيجَةَ.',
         transliteration: "Linekum bi fehsin seri‘in ve nentezirin-netixhe.",
+        variants: [
+          {
+            albanian: 'Mjeku e ekzaminoi dhe i dha ilaçin.',
+            arabic: 'فَحَصَهُ الطَّبِيبُ وَأَعْطَاهُ الدَّوَاءَ.',
+            transliteration: 'Fehasahut-tabibu ve atahud-devae.',
+          },
+          {
+            albanian: 'Rezultati i ekzaminimit do të vijë pas pak.',
+            arabic: 'نَتِيجَةُ الْفَحْصِ سَتَأْتِي بَعْدَ قَلِيلٍ.',
+            transliteration: 'Netixhetul fehsi seteti ba‘de kalilin.',
+          },
+        ],
       },
       {
         id: 'd15-5',
         albanian: 'Ju këshilloj të hani perime, të pushoni dhe të pini pak kripë.',
         arabic: 'أَنْصَحُكَ بِأَكْلِ الْخُضْرَوَاتِ وَالرَّاحَةِ وَقِلَّةِ الْمِلْحِ.',
         transliteration: 'Ensahuke bi ekli el-khudraveti verr-raha ve kil-letil milh.',
+        variants: [
+          {
+            albanian: 'Të këshilloj për ushtrime dhe pushim.',
+            arabic: 'أَنْصَحُكَ بِالْمُمَارَسَةِ وَالرَّاحَةِ.',
+            transliteration: 'Ensahuke bil mumareseti ver-raha.',
+          },
+          {
+            albanian: 'Ilaçi dhe pushimi do të të shërojnë, insh’Allah.',
+            arabic: 'الدَّوَاءُ وَالرَّاحَةُ سَيَشْفِيَانِكَ إِنْ شَاءَ اللَّهُ.',
+            transliteration: 'Ed-devau ver-raha sejeshfijanike inshallah.',
+          },
+        ],
       },
       {
         id: 'd15-6',
         albanian: 'Faleminderit. Do të caktoj një takim tjetër te dentisti për veshin.',
         arabic: 'شُكْراً. سَأَحْجِزُ مَوْعِداً آخَرَ عِنْدَ طَبِيبِ الأَسْنَانِ لِلأُذُنِ.',
         transliteration: "Shukren. Se ahxhizu mev‘iden akhare inde tabibi el-esnani lil udhun.",
+        variants: [
+          {
+            albanian: 'Do të takoj dentistin për një dhimbje në dhëmb.',
+            arabic: 'سَأُقَابِلُ طَبِيبَ الأَسْنَانِ لِأَلَمٍ فِي السِّنِّ.',
+            transliteration: 'Seukabilu tabibel esnan li elemin fis-sinn.',
+          },
+          {
+            albanian: 'Vizita te dentisti është një takim i ri.',
+            arabic: 'زِيَارَةُ طَبِيبِ الأَسْنَانِ مَوْعِدٌ جَدِيدٌ.',
+            transliteration: 'Zijaretu tabibil esnan mev‘idun xhedid.',
+          },
+        ],
       },
     ],
     vocabulary: [
@@ -3766,6 +5050,22 @@ export const CHAPTERS: Chapter[] = [
           'مُنْذُ يَوْمَيْنِ يَشْعُرُ مُوسَى بِصُدَاعٍ وَأَلَمٍ فِي الصَّدْرِ. الْيَوْمَ ذَهَبَ إِلَى الطَّبِيبِ وَقَالَ: «السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ». سَأَلَهُ الطَّبِيبُ: مُنْذُ مَتَى أَصَابَكَ الأَلَمُ؟ هَلْ عِنْدَكَ وَجَعٌ فِي الأَسْنَانِ أَوِ الأُذُنِ؟ وَهَلِ اِرْتَفَعَتِ الْحَرَارَةُ؟ فَحَصَهُ فَحْصاً سَرِيعاً، وَبَعْدَ قَلِيلٍ جَاءَتِ النَّتِيجَةُ: الضَّغْطُ مُرْتَفِعٌ قَلِيلاً وَعِنْدَهُ زِيَادَةٌ فِي الْوَزْنِ. نَصَحَهُ الطَّبِيبُ بِالرَّاحَةِ وَأَكْلِ الْخُضْرَوَاتِ وَقِلَّةِ الْمِلْحِ وَمُمَارَسَةِ الرِّيَاضَةِ كُلَّ يَوْمٍ. وَحَجَزَ مُوسَى مَوْعِداً آخَرَ عِنْدَ طَبِيبِ الأَسْنَانِ لِأَلَمٍ خَفِيفٍ فِي ضِرْسِهِ. وَلَمَّا خَرَجَ مِنَ الْعِيَادَةِ حَمِدَ اللَّهَ عَلَى الصِّحَّةِ.',
         transliteration:
           "Mundhu jewmejn jesh‘uru Musa bi sudain ve elemin fis-sadr. El-jewme dhehebe ilet-tabibi ve kale: «Es-selamu alejkum ve rahmetullahi ve berakatuh». Seelehut-tabib: Mundhu meta esabekel elem? Hel indeke vexhaun fil esnani evil udhun? Ve helirtefe‘atil harara? Fehasahu fehsan seri‘an, ve ba‘de kalilin xha‘etin-netixhe: Ed-daghtu murtefi‘un kalilen ve indehu zijadetun fil vezn. Nesahahut-tabibu bir-rahati ve ekli el-khudraveti ve kil-letil milhi ve mumareseti er-rijada kul-le jewm. Ve haxheze Musa mev‘iden akhare inde tabibi el-esnani li elemin khafifin fi dirsihi. Ve lemma kharexhe minel ‘ijade hamidallahe ales-sihha.",
+        variants: [
+          {
+            albanian: 'Musa u sëmur prej dy ditësh me dhimbje koke dhe gjoksi. Shkoi te mjeku, u përshëndet me selam dhe i tregoi çfarë ndjente. Mjeku e ekzaminoi, i mati tensionin dhe e pa se veshka po punonte mirë, por pesha ishte e tepërt. E këshilloi për perime, pushim, pak kripë dhe ushtrime. Musa bëri edhe një takim te dentisti dhe e falënderoi mjekun.',
+            arabic:
+              'مَرِضَ مُوسَى مُنْذُ يَوْمَيْنِ بِصُدَاعٍ وَأَلَمٍ فِي الصَّدْرِ. ذَهَبَ إِلَى الطَّبِيبِ، سَلَّمَ عَلَيْهِ وَأَخْبَرَهُ بِمَا يَشْعُرُ. فَحَصَهُ الطَّبِيبُ، قَاسَ الضَّغْطَ وَرَأَى أَنَّ الْكُلْيَةَ تَعْمَلُ جَيِّداً، وَلَكِنَّ الْوَزْنَ زَائِدٌ. نَصَحَهُ بِالْخُضْرَوَاتِ وَالرَّاحَةِ وَقِلَّةِ الْمِلْحِ وَالْمُمَارَسَةِ. حَجَزَ مُوسَى مَوْعِداً آخَرَ عِنْدَ طَبِيبِ الأَسْنَانِ وَشَكَرَ الطَّبِيبَ.',
+            transliteration:
+              'Meride Musa mundhu jewmejn bi sudain ve elemin fis-sadr. Dhehebe ilet-tabib, sellame ‘alejhi ve akhberehu bi ma jesh‘uru. Fehasahut-tabib, kasel daghte ve rae enne el-kulyete ta‘melu xhejjiden, ve lakinnel vezne zaidun. Nesahahu bil khudraveti ver-rahati ve kil-letil milhi vel mumarese. Haxheze Musa mev‘iden akhare inde tabibil esnan ve shekeret-tabib.',
+          },
+          {
+            albanian: 'Në vizitën tjetër, Musa iu afrua dentistit me dhimbje në dhëmb dhe në vesh. Dentisti e ekzaminoi dhe i tha: "Do të të jap një ilaç dhe do të të shëroj, insh’Allah." Pas disa ditësh dhimbja ishte zhdukur. Familja e tij ishte e lumtur kur Musa u kthye i shëruar dhe aktiv.',
+            arabic:
+              'فِي الزِّيَارَةِ التَّالِيَةِ، اقْتَرَبَ مُوسَى مِنْ طَبِيبِ الأَسْنَانِ بِأَلَمٍ فِي السِّنِّ وَالأُذُنِ. فَحَصَهُ الطَّبِيبُ وَقَالَ: «سَأُعْطِيكَ دَوَاءً وَأَشْفِيكَ إِنْ شَاءَ اللَّهُ.» بَعْدَ بِضْعَةِ أَيَّامٍ ذَهَبَ الأَلَمُ. كَانَتْ أُسْرَتُهُ سَعِيدَةً حِينَ عَادَ مُوسَى مَشْفِيّاً وَنَشِيطاً.',
+            transliteration:
+              'Fiz-zijaretit-talije, ikterebe Musa min tabibil esnan bi elemin fis-sinni vel udhun. Fehasahut-tabibu ve kale: «Seu‘tike devaen ve eshfike inshallah.» Ba‘de bid‘ati ejjamin dhehebel elem. Kanet usretuhu se‘ide hine ‘ade Musa meshfijjen ve neshitan.',
+          },
+        ],
       },
     ],
     ayat: [
@@ -3889,36 +5189,108 @@ export const CHAPTERS: Chapter[] = [
         albanian: 'Gëzuar Festën! Kur falet Namazi i Bajramit?',
         arabic: 'عِيدٌ مُبَارَكٌ! مَتَى تُقَامُ صَلَاةُ الْعِيدِ؟',
         transliteration: "Idun mubarek! Meta tukamu salatul ‘id?",
+        variants: [
+          {
+            albanian: 'Bajram i bekuar! Në ç’kohë është Namazi i Bajramit?',
+            arabic: 'عِيدٌ مُبَارَكٌ! فِي أَيِّ وَقْتٍ صَلَاةُ الْعِيدِ؟',
+            transliteration: "Idun mubarek! Fi ejji vaktin salatul ‘id?",
+          },
+          {
+            albanian: 'Gëzuar festën! A e din kur falet Namazi i Bajramit?',
+            arabic: 'عِيدٌ مُبَارَكٌ! هَلْ تَعْرِفُ مَتَى صَلَاةُ الْعِيدِ؟',
+            transliteration: "Idun mubarek! Hel ta‘rifu meta salatul ‘id?",
+          },
+        ],
       },
       {
         id: 'd16-2',
         albanian: 'Pas lindjes së diellit, në ditën e Bajramit.',
         arabic: 'بَعْدَ شُرُوقِ الشَّمْسِ، فِي يَوْمِ الْعِيدِ.',
         transliteration: "Ba‘de shurukish-shemsi, fi jewmil ‘id.",
+        variants: [
+          {
+            albanian: 'Ditën e Bajramit, pasi të ketë lindur dielli.',
+            arabic: 'فِي يَوْمِ الْعِيدِ، بَعْدَ أَنْ تَشْرُقَ الشَّمْسُ.',
+            transliteration: "Fi jewmil ‘idi, ba‘de en teshrukash-shems.",
+          },
+          {
+            albanian: 'Në mëngjesin e ditës së Bajramit, pas lindjes së diellit.',
+            arabic: 'فِي صَبَاحِ يَوْمِ الْعِيدِ، بَعْدَ شُرُوقِ الشَّمْسِ.',
+            transliteration: "Fi sabahi jewmil ‘idi, ba‘de shurukish-shems.",
+          },
+        ],
       },
       {
         id: 'd16-3',
         albanian: 'Sot është Fitër Bajrami; a e dhe Zekatul Fitrin?',
         arabic: 'الْيَوْمَ عِيدُ الْفِطْرِ؛ هَلْ أَخْرَجْتَ زَكَاةَ الْفِطْرِ؟',
         transliteration: "El-jewme idul fitr; hel ekhraxhte zekatel fitr?",
+        variants: [
+          {
+            albanian: 'A e dhe Zekatul Fitrin? Sot është Bajrami i Fitrit.',
+            arabic: 'هَلْ أَعْطَيْتَ زَكَاةَ الْفِطْرِ؟ الْيَوْمَ عِيدُ الْفِطْرِ.',
+            transliteration: "Hel a‘tejte zekatel fitr? El-jewme idul fitr.",
+          },
+          {
+            albanian: 'Sot është dita e Fitër Bajramit; a e nxore zekatin e fitrit?',
+            arabic: 'الْيَوْمَ يَوْمُ عِيدِ الْفِطْرِ؛ هَلْ أَخْرَجْتَ زَكَاةَ الْفِطْرِ؟',
+            transliteration: "El-jewme jewmu idil fitr; hel ekhraxhte zekatel fitr?",
+          },
+        ],
       },
       {
         id: 'd16-4',
         albanian: 'Po, një sa grurë para Namazit. Në Kurban Bajram do të presim kurbanin.',
         arabic: 'نَعَمْ، صَاعاً مِنَ الْقَمْحِ قَبْلَ الصَّلَاةِ. فِي عِيدِ الأَضْحَى سَنَذْبَحُ الأُضْحِيَةَ.',
         transliteration: "Na‘am, sa‘an minel kamhi kablas-sala. Fi idil ad-ha senedhbehul ud-hije.",
+        variants: [
+          {
+            albanian: 'Po, e dhashë një sa grurë para Namazit të Bajramit; kurbanin do ta presim në Kurban Bajram.',
+            arabic: 'نَعَمْ، أَعْطَيْتُ صَاعاً مِنَ الْقَمْحِ قَبْلَ صَلَاةِ الْعِيدِ؛ وَسَنَذْبَحُ الأُضْحِيَةَ فِي عِيدِ الأَضْحَى.',
+            transliteration: "Na‘am, a‘tejtu sa‘an minel kamhi kable salatil ‘id; ve senedhbehul ud-hijete fi idil ad-ha.",
+          },
+          {
+            albanian: 'Po, një sa grurë para namazit; dhe në ditën e Kurban Bajramit do ta therim kurbanin.',
+            arabic: 'نَعَمْ، صَاعاً مِنَ الْقَمْحِ قَبْلَ الصَّلَاةِ؛ وَفِي يَوْمِ عِيدِ الأَضْحَى سَنَذْبَحُ الأُضْحِيَةَ.',
+            transliteration: "Na‘am, sa‘an minel kamhi kablas-sala; ve fi jewmi idil ad-ha senedhbehul ud-hije.",
+          },
+        ],
       },
       {
         id: 'd16-5',
         albanian: 'Muajt hixhri janë dymbëdhjetë: Muharrem, Sefer, Rebiul Evvel…',
         arabic: 'الأَشْهُرُ الْهِجْرِيَّةُ اِثْنَا عَشَرَ: الْمُحَرَّم، صَفَر، رَبِيعٌ الأَوَّل…',
         transliteration: "El-eshhurul hixhrijjetu ithna ashar: el-muharrem, safer, rebiu el-evvel…",
+        variants: [
+          {
+            albanian: 'Viti hixhri ka dymbëdhjetë muaj: i pari është Muharrem, pastaj Sefer dhe Rebiul Evvel.',
+            arabic: 'السَّنَةُ الْهِجْرِيَّةُ فِيهَا اِثْنَا عَشَرَ شَهْراً: أَوَّلُهَا الْمُحَرَّم، ثُمَّ صَفَر وَرَبِيعٌ الأَوَّل.',
+            transliteration: "Es-senetul hixhrijjetu fiha ithna ashare shehra: evveluha el-muharrem, thumme safer ve rebiu el-evvel.",
+          },
+          {
+            albanian: 'A i di muajt hixhri? Janë dymbëdhjetë: Muharrem, Sefer, Rebiul Evvel e kështu me radhë.',
+            arabic: 'هَلْ تَعْرِفُ الأَشْهُرَ الْهِجْرِيَّةَ؟ هِيَ اِثْنَا عَشَرَ: الْمُحَرَّم، صَفَر، رَبِيعٌ الأَوَّل وَهَكَذَا.',
+            transliteration: "Hel ta‘riful eshhurel hixhrijje? Hije ithna ashar: el-muharrem, safer, rebiu el-evvel ve hakedha.",
+          },
+        ],
       },
       {
         id: 'd16-6',
         albanian: 'Pushimet e Bajramit do t’i kaloj te gjyshi: do shkoj në fermë, pranë lumit Nil.',
         arabic: 'سَأَقْضِي الْعُطْلَةَ عِنْدَ جَدِّي: سَأَذْهَبُ إِلَى الْمَزْرَعَةِ قُرْبَ نَهْرِ النِّيل.',
         transliteration: "Se ekdil utlete inde xheddi: Seedhhebu ilel mezra‘ati kurbe nehri en-Nil.",
+        variants: [
+          {
+            albanian: 'Do të shkoj në fermën e gjyshit pranë lumit Nil dhe do të kaloj atje pushimet e Bajramit.',
+            arabic: 'سَأَذْهَبُ إِلَى مَزْرَعَةِ جَدِّي قُرْبَ نَهْرِ النِّيلِ وَسَأَقْضِي هُنَاكَ عُطْلَةَ الْعِيدِ.',
+            transliteration: "Se edhhebu ila mezra‘ati xheddi kurbe nehri en-Nil ve se ekdi hunake utletel ‘id.",
+          },
+          {
+            albanian: 'Pushimet e Bajramit do t’i kaloj te gjyshi, larg qytetit, afër lumit Nil e maleve.',
+            arabic: 'سَأَقْضِي عُطْلَةَ الْعِيدِ عِنْدَ جَدِّي، بَعِيداً عَنِ الْمَدِينَةِ، قُرْبَ نَهْرِ النِّيلِ وَالْجِبَالِ.',
+            transliteration: "Se ekdi utletel ‘idi inde xheddi, beiden anil medineti, kurbe nehri en-Nili vel xhibal.",
+          },
+        ],
       },
     ],
     vocabulary: [
@@ -4031,6 +5403,24 @@ export const CHAPTERS: Chapter[] = [
           'حِينَ يَأْتِي يَوْمُ عِيدِ الْفِطْرِ، يَسْتَيْقِظُ مُوسَى مُبَكِّراً وَيَغْتَسِلُ وَيَلْبَسُ أَجْمَلَ الثِّيَابِ. يُخْرِجُ أَبُوهُ زَكَاةَ الْفِطْرِ — صَاعاً مِنَ الْقَمْحِ عَنْ كُلِّ فَرْدٍ مِنَ الأُسْرَةِ — قَبْلَ صَلَاةِ الْعِيدِ. ثُمَّ يَذْهَبُونَ جَمِيعاً إِلَى الْمَسْجِدِ لِصَلَاةِ الْعِيدِ، وَبَعْدَ الْخُطْبَةِ يُبَارِكُونَ لِبَعْضِهِمُ الْبَعْضَ: «تَقَبَّلَ اللَّهُ مِنَّا وَمِنْكُمْ». وَفِي عِيدِ الأَضْحَى يَذْبَحُ الأَبُ الأُضْحِيَةَ وَيَقْسِمُ اللَّحْمَ لِلْأُسْرَةِ وَالْجِيرَانِ وَالْفُقَرَاءِ. يَقْضُونَ عُطْلَةَ الْعِيدِ فِي مَزْرَعَةِ الْجَدِّ قُرْبَ النَّهْرِ، يَرَوْنَ الْجِبَالَ وَالْبَحْرَ الْبَعِيدَ، وَيَزُورُونَ مَتْحَفاً فِي الْعَاصِمَةِ. وَالأَشْهُرُ الْهِجْرِيَّةُ اِثْنَا عَشَرَ شَهْراً: الْمُحَرَّم، صَفَر، رَبِيعٌ الأَوَّل، رَبِيعٌ الآخِر، جُمَادَى الأُولَى، جُمَادَى الآخِرَة، رَجَب، شَعْبَان، رَمَضَان، شَوَّال، ذُو الْقَعْدَة، وَذُو الْحِجَّة — شَهْرُ الْحَجِّ.',
         transliteration:
           "Hine jeetij jewmu idil fitr, jestejkizu Musa mubekkiren ve jagtesilu ve jelbesu exhmelath-thijab. Juhrixhu ebuhu zekatel fitri — sa‘an minel kamhi an kul-li ferdin minel usre — kable salatil ‘id. Thumme jedhhebune xhemian ilel mesxhidi li salatil ‘id, ve ba‘delkhutbeti jubarikune li ba‘dihimul ba‘d: «Tekabbelallahu minna ve minkum». Ve fi idil ad-ha jedhbehul ebul ud-hijete ve jaksimul lahme lil usre vel xhirani vel fukara. Jakdune utletel idi fi mezra‘atil xheddi kurben nehr, jerewnel xhibale vel bahrel ba‘id, ve jezurune methafen fil asime. Vel eshhurul hixhrijjetu ithna ashare shehra: el-muharrem, safer, rebi‘ul evvel, rebi‘ul ahir, xhumadel ula, xhumadel ahire, rexheb, sha‘ban, ramadan, shevval, dhul ka‘de, ve dhul hixhxhe — shehrul haxhxh.",
+        variants: [
+          {
+            albanian:
+              'Në ditën e Fitër Bajramit Musa zgjohet herët dhe i afrohet Namazit të Bajramit së bashku me babanë. Para namazit babai i jep zekatul-fitrin — një sa grurë për secilin nga familja — të varfërve të lagjes. Pas Namazit të Bajramit dëgjojnë hytben dhe urojnë njëri-tjetrin. Në Kurban Bajram presin kurbanin dhe ndajnë mishin për familjen, komshinjtë dhe të varfrit. Pushimet i kalojnë në fermën e gjyshit pranë lumit, shohin malet e largëta dhe vizitojnë një muze në kryeqytet. Viti hixhri i ka dymbëdhjetë muaj: Muharrem, Sefer, Rebiul Evvel, Rebiul Ahir, Xhumadel Ula, Xhumadel Ahire, Rexheb, Shaban, Ramazan, Shewal, Dhul Ka‘de e Dhul Hixhxhe — muaji i Haxhit.',
+            arabic:
+              'فِي يَوْمِ عِيدِ الْفِطْرِ يَسْتَيْقِظُ مُوسَى مُبَكِّراً وَيَقْتَرِبُ مِنْ صَلَاةِ الْعِيدِ مَعَ أَبِيهِ. قَبْلَ الصَّلَاةِ يُعْطِي الأَبُ زَكَاةَ الْفِطْرِ — صَاعاً مِنَ الْقَمْحِ عَنْ كُلِّ فَرْدٍ مِنَ الأُسْرَةِ — لِلْفُقَرَاءِ فِي الْحَيِّ. بَعْدَ صَلَاةِ الْعِيدِ يَسْمَعُونَ الْخُطْبَةَ وَيُبَارِكُونَ لِبَعْضِهِمُ الْبَعْضَ. وَفِي عِيدِ الأَضْحَى يَذْبَحُونَ الأُضْحِيَةَ وَيَقْسِمُونَ اللَّحْمَ لِلْأُسْرَةِ وَالْجِيرَانِ وَالْفُقَرَاءِ. يَقْضُونَ الْعُطْلَةَ فِي مَزْرَعَةِ الْجَدِّ قُرْبَ النَّهْرِ، يَرَوْنَ الْجِبَالَ الْبَعِيدَةَ وَيَزُورُونَ مَتْحَفاً فِي الْعَاصِمَةِ. وَالسَّنَةُ الْهِجْرِيَّةُ فِيهَا اِثْنَا عَشَرَ شَهْراً: الْمُحَرَّم، صَفَر، رَبِيعٌ الأَوَّل، رَبِيعٌ الآخِر، جُمَادَى الأُولَى، جُمَادَى الآخِرَة، رَجَب، شَعْبَان، رَمَضَان، شَوَّال، ذُو الْقَعْدَة وَذُو الْحِجَّة — شَهْرُ الْحَجِّ.',
+            transliteration:
+              "Fi jewmi idil fitri jestejkizu Musa mubekkiren ve jakteribu min salatil ‘idi mea ebih. Kables-salati ju‘til ebu zekatel fitri — sa‘an minel kamhi an kul-li ferdin minel usre — lil fukarai fil hejj. Ba‘de salatil ‘idi jesme‘unel khutbete ve jubarikune li ba‘dihimul ba‘d. Ve fi idil ad-ha jedhbehunel ud-hijete ve jaksimunel lahme lil usre vel xhirani vel fukara. Jakdunel utlete fi mezra‘atil xheddi kurben nehr, jerewnel xhibalel baide ve jezurune methafen fil asime. Ves-senetul hixhrijjetu fiha ithna ashare shehra: el-muharrem, safer, rebi‘ul evvel, rebi‘ul ahir, xhumadel ula, xhumadel ahire, rexheb, sha‘ban, ramadan, shevval, dhul ka‘de ve dhul hixhxhe — shehrul haxhxh.",
+          },
+          {
+            albanian:
+              'Musa e pret me gëzim ditën e Bajramit: lahet, vesh rrobat e reja dhe shkon me babanë në xhami për Namazin e Bajramit. Babai e jep zekatul-fitrin — një sa grurë për çdo anëtar të familjes — para namazit. Në Kurban Bajram ata e presin kurbanin dhe i ndihmojnë të varfrit duke u dhënë mish. Bashkë me familjen i kalojnë pushimet pranë lumit, në fermën e gjyshit; shohin malet, detin e largët dhe vizitojnë edhe një muze në kryeqytet. Në Islam muajt hixhri janë dymbëdhjetë: Muharrem, Sefer, Rebiul Evvel, Rebiul Ahir, Xhumadel Ula, Xhumadel Ahire, Rexheb, Shaban, Ramazan, Shewal, Dhul Ka‘de dhe Dhul Hixhxhe, muaji i Haxhit.',
+            arabic:
+              'يَسْتَقْبِلُ مُوسَى يَوْمَ الْعِيدِ بِالْفَرَحِ: يَغْتَسِلُ وَيَلْبَسُ الثِّيَابَ الْجَدِيدَةَ وَيَذْهَبُ مَعَ أَبِيهِ إِلَى الْمَسْجِدِ لِصَلَاةِ الْعِيدِ. يُعْطِي الأَبُ زَكَاةَ الْفِطْرِ — صَاعاً مِنَ الْقَمْحِ عَنْ كُلِّ فَرْدٍ مِنَ الأُسْرَةِ — قَبْلَ الصَّلَاةِ. وَفِي عِيدِ الأَضْحَى يَذْبَحُونَ الأُضْحِيَةَ وَيُسَاعِدُونَ الْفُقَرَاءَ بِإِعْطَاءِ اللَّحْمِ. يَقْضُونَ الْعُطْلَةَ مَعَ الأُسْرَةِ قُرْبَ النَّهْرِ فِي مَزْرَعَةِ الْجَدِّ؛ يَرَوْنَ الْجِبَالَ وَالْبَحْرَ الْبَعِيدَ وَيَزُورُونَ مَتْحَفاً فِي الْعَاصِمَةِ. وَفِي الإِسْلَامِ الأَشْهُرُ الْهِجْرِيَّةُ اِثْنَا عَشَرَ: الْمُحَرَّم، صَفَر، رَبِيعٌ الأَوَّل، رَبِيعٌ الآخِر، جُمَادَى الأُولَى، جُمَادَى الآخِرَة، رَجَب، شَعْبَان، رَمَضَان، شَوَّال، ذُو الْقَعْدَة وَذُو الْحِجَّة — شَهْرُ الْحَجِّ.',
+            transliteration:
+              "Jestekbilu Musa jewmel ‘idi bil ferah: jagtesilu ve jelbesuth-thijabel xhedide ve jedhhebu mea ebihi ilel mesxhidi li salatil ‘id. Ju‘til ebu zekatel fitri — sa‘an minel kamhi an kul-li ferdin minel usre — kables-sala. Ve fi idil ad-ha jedhbehunel ud-hijete ve jusa‘idunel fukarae bi i‘tail lahm. Jakdunel utlete meal usreti kurben nehri fi mezra‘atil xheddi; jerewnel xhibale vel bahrel ba‘id ve jezurune methafen fil asime. Ve fil islami el-eshhurul hixhrijjetu ithna ashar: el-muharrem, safer, rebi‘ul evvel, rebi‘ul ahir, xhumadel ula, xhumadel ahire, rexheb, sha‘ban, ramadan, shevval, dhul ka‘de ve dhul hixhxhe — shehrul haxhxh.",
+          },
+        ],
       },
     ],
     ayat: [
