@@ -1,40 +1,76 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
+export interface Take {
+  id: string;
+  url: string;
+  createdAt: number;
+  /** Recording length in milliseconds — measured start→stop. */
+  durationMs: number;
+}
+
 export interface VoiceRecorderApi {
   isRecording: boolean;
+  /** Newest-first list of completed recordings in this session. */
+  takes: Take[];
+  /** Convenience alias for the most recent take's url (or null). */
   audioURL: string | null;
   error: string | null;
   startRecording: () => Promise<void>;
   stopRecording: () => void;
+  /** Remove a single take by id. */
+  removeTake: (id: string) => void;
+  /** Clear every take. Kept as `clearRecording` so older callers keep working. */
   clearRecording: () => void;
 }
 
 /**
- * Thin wrapper around the MediaRecorder API.
- * - Requests microphone only when startRecording is called.
- * - Cleans up object URLs + streams on unmount or clearRecording.
- * - Falls back gracefully if the browser denies access.
+ * Wrapper around the MediaRecorder API that keeps a *stack* of takes
+ * rather than a single blob. Users who want to compare attempt #1 to
+ * attempt #3 can — and the common "oh no I hit record again and lost
+ * my take" footgun disappears, because starting a new take no longer
+ * wipes the previous one.
+ *
+ * Cleans up object URLs + mic streams on unmount.
  */
 export function useVoiceRecorder(): VoiceRecorderApi {
   const [isRecording, setIsRecording] = useState(false);
-  const [audioURL, setAudioURL] = useState<string | null>(null);
+  const [takes, setTakes] = useState<Take[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   const recorderRef = useRef<MediaRecorder | null>(null);
   const chunksRef = useRef<Blob[]>([]);
   const streamRef = useRef<MediaStream | null>(null);
+  const startedAtRef = useRef<number>(0);
+  // We keep the live takes array in a ref too so the `onstop` handler,
+  // which closes over the first render's state, can still append to the
+  // current list instead of clobbering it.
+  const takesRef = useRef<Take[]>([]);
+  takesRef.current = takes;
 
   const stopStream = useCallback(() => {
     streamRef.current?.getTracks().forEach((t) => t.stop());
     streamRef.current = null;
   }, []);
 
+  const removeTake = useCallback((id: string) => {
+    setTakes((list) => {
+      const next = list.filter((t) => {
+        if (t.id !== id) return true;
+        URL.revokeObjectURL(t.url);
+        return false;
+      });
+      return next;
+    });
+  }, []);
+
   const clearRecording = useCallback(() => {
-    if (audioURL) URL.revokeObjectURL(audioURL);
-    setAudioURL(null);
+    setTakes((list) => {
+      list.forEach((t) => URL.revokeObjectURL(t.url));
+      return [];
+    });
     setError(null);
     chunksRef.current = [];
-  }, [audioURL]);
+  }, []);
 
   const startRecording = useCallback(async () => {
     setError(null);
@@ -45,19 +81,15 @@ export function useVoiceRecorder(): VoiceRecorderApi {
     }
 
     try {
-      // Clean any previous take before starting a new one.
-      if (audioURL) {
-        URL.revokeObjectURL(audioURL);
-        setAudioURL(null);
-      }
-
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       streamRef.current = stream;
 
       const mime = MediaRecorder.isTypeSupported('audio/webm')
         ? 'audio/webm'
         : '';
-      const recorder = mime ? new MediaRecorder(stream, { mimeType: mime }) : new MediaRecorder(stream);
+      const recorder = mime
+        ? new MediaRecorder(stream, { mimeType: mime })
+        : new MediaRecorder(stream);
       chunksRef.current = [];
 
       recorder.ondataavailable = (e) => {
@@ -69,11 +101,19 @@ export function useVoiceRecorder(): VoiceRecorderApi {
           type: mime || 'audio/webm',
         });
         const url = URL.createObjectURL(blob);
-        setAudioURL(url);
+        const take: Take = {
+          id: `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+          url,
+          createdAt: Date.now(),
+          durationMs: Date.now() - startedAtRef.current,
+        };
+        // Newest on top — matches the UI stack.
+        setTakes((list) => [take, ...list]);
         stopStream();
       };
 
       recorderRef.current = recorder;
+      startedAtRef.current = Date.now();
       recorder.start();
       setIsRecording(true);
     } catch (err) {
@@ -85,7 +125,7 @@ export function useVoiceRecorder(): VoiceRecorderApi {
       stopStream();
       setIsRecording(false);
     }
-  }, [audioURL, stopStream]);
+  }, [stopStream]);
 
   const stopRecording = useCallback(() => {
     const r = recorderRef.current;
@@ -99,17 +139,19 @@ export function useVoiceRecorder(): VoiceRecorderApi {
     return () => {
       recorderRef.current?.state !== 'inactive' && recorderRef.current?.stop();
       stopStream();
-      if (audioURL) URL.revokeObjectURL(audioURL);
+      takesRef.current.forEach((t) => URL.revokeObjectURL(t.url));
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {
     isRecording,
-    audioURL,
+    takes,
+    audioURL: takes[0]?.url ?? null,
     error,
     startRecording,
     stopRecording,
+    removeTake,
     clearRecording,
   };
 }

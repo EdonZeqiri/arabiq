@@ -1,4 +1,4 @@
-import { Eye, Check, ArrowRight, Shuffle } from 'lucide-react';
+import { Eye, EyeOff, Check, ArrowRight, Shuffle } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import type { Dialogue } from '@/data/curriculum';
 import { useStore } from '@/store/useStore';
@@ -9,6 +9,8 @@ interface FlashcardProps {
   dialogue: Dialogue;
   revealed: boolean;
   onReveal: () => void;
+  /** Collapse the Arabic reference card again (parent owns reveal state). */
+  onHide: () => void;
   /** Called on voice-pass to advance + record session. */
   onKnown: () => void;
   /** Kept in props for API parity with PracticeArena, but no longer
@@ -22,6 +24,7 @@ export function Flashcard({
   dialogue,
   revealed,
   onReveal,
+  onHide,
   onKnown,
   index,
   total,
@@ -131,21 +134,39 @@ export function Flashcard({
           PronunciationCheck readout so it stays a reference, not the
           visual centerpiece — the voice drill is the main event now. */}
       {showArabicCard ? (
-        <div className="rounded-lg border border-brand-100 bg-brand-50/70 px-4 py-4 text-center">
-          <div className="text-[10px] uppercase tracking-wide text-brand-700/70 font-semibold mb-3">
-            Përgjigjja
-          </div>
-          <p
-            dir="rtl"
-            className="font-amiri text-xl md:text-2xl leading-relaxed text-slate-900"
-          >
-            {arabic}
-          </p>
-          {showTransliteration && (
-            <p className="text-xs italic text-brand-700">
-              {active.transliteration}
+        <div className="space-y-2 animate-[fadeSlideDown_200ms_ease-out]">
+          <div className="rounded-lg border border-brand-100 bg-brand-50/70 px-4 py-4 text-center">
+            <div className="text-[10px] uppercase tracking-wide text-brand-700/70 font-semibold mb-3">
+              Përgjigjja
+            </div>
+            <p
+              key={`${dialogue.id}-${variantIndex}`}
+              dir="rtl"
+              className="font-amiri text-xl md:text-2xl leading-relaxed text-slate-900 animate-[fadeIn_200ms_ease-out]"
+            >
+              {arabic}
             </p>
-          )}
+            {showTransliteration && (
+              <p className="text-xs italic text-brand-700">
+                {active.transliteration}
+              </p>
+            )}
+          </div>
+          {/* Let the reader collapse the answer again. Hiding it does
+              NOT undo the mastery mark — only the visual reveal state.
+              We ask the parent to flip `revealed` off and also reset the
+              local voice-pass latch so the card truly disappears. */}
+          <div className="flex justify-center">
+            <button
+              onClick={() => {
+                onHide();
+                setVoicePassed(false);
+              }}
+              className="inline-flex items-center gap-1 text-xs text-slate-500 hover:text-brand-700 underline-offset-2 hover:underline"
+            >
+              <EyeOff size={12} /> Fshih përgjigjen
+            </button>
+          </div>
         </div>
       ) : (
         // Text-link sized — voice-first, so the reveal is a fallback,

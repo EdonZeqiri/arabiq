@@ -188,18 +188,20 @@ export function PronunciationCheck({
 
   return (
     <div
-      className={`rounded-xl border ${
+      className={`rounded-2xl border ${
         listening
-          ? 'border-red-200 bg-red-50/30'
+          ? 'border-red-200 bg-gradient-to-br from-red-50/60 to-white'
           : passed
-            ? 'border-emerald-200 bg-emerald-50/30'
+            ? 'border-emerald-200 bg-gradient-to-br from-emerald-50/60 to-white'
             : diff
-              ? 'border-amber-200 bg-amber-50/30'
-              : 'border-slate-200 bg-slate-50/50'
-      } ${compact ? 'p-2' : 'p-3'} transition-colors`}
+              ? 'border-amber-200 bg-gradient-to-br from-amber-50/60 to-white'
+              : 'border-slate-200 bg-gradient-to-br from-white to-slate-50'
+      } ${compact ? 'p-3' : 'p-3 sm:p-4'} transition-colors`}
     >
-      {/* Controls row */}
-      <div className="flex items-center gap-2 flex-wrap">
+      {/* Controls row — sized to match StoryCard's RecordButton so the
+          mic affordance is visually identical across dialogue and story
+          surfaces. */}
+      <div className="flex items-center gap-3 flex-wrap">
         <button
           type="button"
           onClick={listening ? stop : start}
@@ -207,14 +209,24 @@ export function PronunciationCheck({
           aria-label={
             listening ? 'Ndal regjistrimin' : 'Shqipto dhe kontrollo'
           }
-          className={`h-8 w-8 rounded-full flex items-center justify-center transition shrink-0
+          className={`relative shrink-0 inline-flex items-center justify-center w-12 h-12 rounded-full text-white transition-all active:scale-95 motion-reduce:active:scale-100
             ${
               listening
-                ? 'bg-red-500 text-white shadow-md hover:bg-red-600'
-                : 'bg-white border border-slate-300 text-slate-600 hover:bg-brand-50 hover:text-brand-700 hover:border-brand-300'
+                ? 'bg-gradient-to-br from-red-500 to-red-600 shadow-lg shadow-red-500/30'
+                : 'bg-gradient-to-br from-emerald-500 to-emerald-600 shadow-md shadow-emerald-500/25 hover:shadow-lg hover:shadow-emerald-500/40 hover:-translate-y-0.5 motion-reduce:hover:translate-y-0'
             }`}
         >
-          {listening ? <Mic size={14} /> : <Mic size={14} />}
+          {listening ? (
+            <>
+              <span className="absolute inset-0 rounded-full bg-red-400/50 animate-ping motion-reduce:hidden" />
+              <Mic size={18} className="relative" />
+            </>
+          ) : (
+            <>
+              <span className="absolute inset-0 rounded-full ring-2 ring-emerald-400/30 ring-offset-2 ring-offset-white" />
+              <Mic size={18} className="relative" />
+            </>
+          )}
         </button>
 
         {/* Status text / mini equalizer */}
@@ -222,16 +234,17 @@ export function PronunciationCheck({
           <span className="inline-flex items-center gap-2 text-xs text-red-600 font-medium">
             <span
               aria-hidden="true"
-              className="inline-flex items-center gap-[2px]"
+              className="inline-flex items-end gap-[3px] h-4"
             >
               {[0, 1, 2, 3].map((i) => (
                 <span
                   key={i}
-                  className="block w-[2px] rounded-full bg-red-500/80"
+                  className="block w-[3px] rounded-full bg-red-500"
                   style={{
                     animation: `mic-equalizer 0.9s ease-in-out ${
-                      i * 0.12
+                      i * 0.15
                     }s infinite`,
+                    height: '6px',
                   }}
                 />
               ))}

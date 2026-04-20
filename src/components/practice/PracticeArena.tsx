@@ -5,7 +5,6 @@ import {
   ChevronDown,
   ChevronLeft,
   ChevronRight,
-  ChevronUp,
   MessageCircle,
   PencilLine,
   Sparkles,
@@ -224,6 +223,7 @@ export function PracticeArena() {
               dialogue={current}
               revealed={revealed}
               onReveal={() => setRevealed(true)}
+              onHide={() => setRevealed(false)}
               onKnown={handleKnown}
               onRetry={handleRetry}
               index={index}
@@ -435,20 +435,31 @@ function AccordionCard({
     <div className="card overflow-hidden">
       <button
         onClick={onToggle}
-        className={`w-full flex items-center justify-between gap-3 px-5 py-3 border-b border-slate-100 bg-gradient-to-r ${a.from} to-white ${a.hover} transition-colors`}
+        aria-expanded={open}
+        className={`w-full flex items-center justify-between gap-3 px-5 py-3 border-b border-slate-100 bg-gradient-to-r ${a.from} to-white ${a.hover} transition-colors ${open ? '' : 'border-b-transparent'}`}
       >
         <div className="flex items-center gap-2 text-sm font-semibold text-slate-700 min-w-0">
           {icon}
           <span className="truncate">{title}</span>
           {meta}
         </div>
-        {open ? (
-          <ChevronUp size={16} className="text-slate-500 shrink-0" />
-        ) : (
-          <ChevronDown size={16} className="text-slate-500 shrink-0" />
-        )}
+        {/* Single chevron that rotates — smoother than swapping icons */}
+        <ChevronDown
+          size={16}
+          className={`text-slate-500 shrink-0 transition-transform duration-300 ease-out ${open ? 'rotate-180' : ''}`}
+        />
       </button>
-      {open && <div>{children}</div>}
+      {/* Grid-rows height trick: animates from 0fr → 1fr so any content
+          height transitions cleanly without JS measurement. The inner
+          wrapper needs `overflow-hidden` + `min-h-0` so the clip follows
+          the animated row. */}
+      <div
+        className={`grid transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none ${
+          open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+        }`}
+      >
+        <div className="overflow-hidden min-h-0">{children}</div>
+      </div>
     </div>
   );
 }

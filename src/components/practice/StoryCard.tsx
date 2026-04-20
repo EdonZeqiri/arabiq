@@ -1,7 +1,7 @@
 import { AlertCircle, Eye, EyeOff, Mic, RotateCcw, Shuffle, Square, Trash2 } from 'lucide-react';
 import type { Story } from '@/data/curriculum';
-import { useVoiceRecorder } from '@/hooks/useVoiceRecorder';
-import { useEffect, useMemo, useState } from 'react';
+import { useVoiceRecorder, type Take } from '@/hooks/useVoiceRecorder';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { stripHarakat } from '@/lib/arabicText';
 
 interface StoryCardProps {
@@ -25,12 +25,14 @@ export function StoryCard({ story, showHarakat }: StoryCardProps) {
   const [revealed, setRevealed] = useState(false);
   const {
     isRecording,
-    audioURL,
+    takes,
     error,
     startRecording,
     stopRecording,
+    removeTake,
     clearRecording,
   } = useVoiceRecorder();
+  const hasTakes = takes.length > 0;
 
   // Canonical phrasing plus curated re-tellings. Cycling resets both
   // reveal state and any in-progress recording so the user re-reads
@@ -84,7 +86,7 @@ export function StoryCard({ story, showHarakat }: StoryCardProps) {
               <Shuffle size={11} /> Variant {variantIndex + 1}/{phrasings.length}
             </button>
           )}
-          {(revealed || audioURL) && (
+          {(revealed || hasTakes) && (
             <button
               onClick={reset}
               className="btn-ghost !px-2 !py-1 text-xs"
@@ -101,52 +103,54 @@ export function StoryCard({ story, showHarakat }: StoryCardProps) {
         {active.albanian}
       </p>
 
-      {/* Voice recorder row */}
-      <div className="flex flex-wrap items-center gap-3">
-        {!isRecording ? (
-          <button
-            onClick={startRecording}
-            className="btn-primary !rounded-full !w-12 !h-12 !p-0"
-            aria-label="Fillo regjistrimin"
-            title="Regjistro përkthimin tënd në arabisht"
-          >
-            <Mic size={18} />
-          </button>
-        ) : (
-          <button
-            onClick={stopRecording}
-            className="btn !rounded-full !w-12 !h-12 !p-0 bg-red-600 text-white hover:bg-red-700 animate-pulse"
-            aria-label="Ndal regjistrimin"
-          >
-            <Square size={18} />
-          </button>
-        )}
-
-        {audioURL && !isRecording && (
-          <>
-            <audio controls src={audioURL} className="h-10 max-w-full">
-              <track kind="captions" />
-            </audio>
+      {/* Voice recorder — fancier pill layout. The big mic is the clear
+          action, hint text sits beside it, and each recording gets its
+          own row below so a second take never eats the first one. */}
+      <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-white to-slate-50 p-3 sm:p-4 space-y-3">
+        <div className="flex items-center gap-3">
+          <RecordButton
+            isRecording={isRecording}
+            onStart={startRecording}
+            onStop={stopRecording}
+          />
+          <div className="text-xs text-slate-500 min-w-0 flex-1">
+            {isRecording && (
+              <span className="inline-flex items-center gap-2 text-red-600 font-medium">
+                <LiveBars /> Duke regjistruar… shtyp për të ndaluar.
+              </span>
+            )}
+            {!isRecording && !hasTakes &&
+              'Përkthe tregimin me zë në arabisht, pastaj krahaso.'}
+            {!isRecording && hasTakes && !revealed &&
+              'Dëgjo provat tua, pastaj shtyp "Trego arabishten" për të kontrolluar.'}
+            {!isRecording && hasTakes && revealed &&
+              'Krahaso provat tua me tekstin arabisht më poshtë.'}
+          </div>
+          {hasTakes && !isRecording && takes.length > 1 && (
             <button
               onClick={clearRecording}
-              className="btn-ghost !px-2 !py-2"
-              aria-label="Fshi regjistrimin"
-              title="Fshi"
+              className="btn-ghost !px-2 !py-1 text-[11px] shrink-0"
+              title="Fshi të gjitha"
             >
-              <Trash2 size={16} />
+              <Trash2 size={12} /> Fshi
             </button>
-          </>
-        )}
-
-        <div className="text-xs text-slate-500 min-w-0">
-          {isRecording && 'Duke regjistruar… shtyp 🟥 për të ndaluar.'}
-          {!isRecording && !audioURL &&
-            'Përkthe tregimin me zë në arabisht, pastaj krahaso.'}
-          {!isRecording && audioURL && !revealed &&
-            'Dëgjo regjistrimin tënd, pastaj shtyp "Trego arabishten" për të kontrolluar.'}
-          {!isRecording && audioURL && revealed &&
-            'Krahaso regjistrimin me tekstin arabisht më poshtë.'}
+          )}
         </div>
+
+        {/* Stacked takes list — newest on top, each numbered so the user
+            can talk about "Prova 3" without having to rewind mentally. */}
+        {hasTakes && (
+          <ul className="space-y-2 animate-[fadeSlideDown_200ms_ease-out]">
+            {takes.map((t, i) => (
+              <TakeRow
+                key={t.id}
+                take={t}
+                label={`Prova ${takes.length - i}`}
+                onRemove={() => removeTake(t.id)}
+              />
+            ))}
+          </ul>
+        )}
       </div>
 
       {/* Reveal / Arabic text */}
@@ -189,4 +193,121 @@ export function StoryCard({ story, showHarakat }: StoryCardProps) {
       )}
     </article>
   );
+}
+
+// ─────────────────────────────────────────────────────────────────────
+// RecordButton — the big tactile mic. Idle state is an emerald circle
+// with a soft halo ring (drawing the eye); recording state is red with
+// a pulsing outer ring so there's no way to miss that the mic is hot.
+// Kept as its own component so future surfaces (Flashcard, VocabWord
+// speaker) can drop it in without copy-pasting the styling.
+// ─────────────────────────────────────────────────────────────────────
+function RecordButton({
+  isRecording,
+  onStart,
+  onStop,
+}: {
+  isRecording: boolean;
+  onStart: () => void;
+  onStop: () => void;
+}) {
+  if (isRecording) {
+    return (
+      <button
+        onClick={onStop}
+        aria-label="Ndal regjistrimin"
+        className="relative shrink-0 inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-red-500 to-red-600 text-white shadow-lg shadow-red-500/30 transition-transform active:scale-95"
+      >
+        <span className="absolute inset-0 rounded-full bg-red-400/50 animate-ping motion-reduce:hidden" />
+        <Square size={18} className="relative" />
+      </button>
+    );
+  }
+  return (
+    <button
+      onClick={onStart}
+      aria-label="Fillo regjistrimin"
+      title="Regjistro përkthimin tënd në arabisht"
+      className="relative shrink-0 inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 text-white shadow-md shadow-emerald-500/25 transition-all hover:shadow-lg hover:shadow-emerald-500/40 hover:-translate-y-0.5 active:scale-95 motion-reduce:hover:translate-y-0"
+    >
+      <span className="absolute inset-0 rounded-full ring-2 ring-emerald-400/30 ring-offset-2 ring-offset-white" />
+      <Mic size={18} className="relative" />
+    </button>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────
+// LiveBars — small equalizer-style indicator shown next to the status
+// text while the mic is hot. Reuses the `mic-equalizer` keyframes from
+// index.css that the transform-exercise input already uses.
+// ─────────────────────────────────────────────────────────────────────
+function LiveBars() {
+  return (
+    <span className="inline-flex items-end gap-[3px] h-4" aria-hidden>
+      {[0, 0.15, 0.3, 0.45].map((d, i) => (
+        <span
+          key={i}
+          className="w-[3px] rounded-full bg-red-500 motion-reduce:h-3"
+          style={{
+            animation: 'mic-equalizer 900ms ease-in-out infinite',
+            animationDelay: `${d}s`,
+            height: '6px',
+          }}
+        />
+      ))}
+    </span>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────
+// TakeRow — one recording in the stacked list. Wraps the native audio
+// element in a themed pill so it reads as "part of the card" instead
+// of a raw browser widget. Also shows a small "Prova N · 0:07" label
+// so multiple takes are distinguishable at a glance.
+// ─────────────────────────────────────────────────────────────────────
+function TakeRow({
+  take,
+  label,
+  onRemove,
+}: {
+  take: Take;
+  label: string;
+  onRemove: () => void;
+}) {
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  return (
+    <li className="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-2.5 py-2 shadow-sm animate-[fadeSlideDown_180ms_ease-out]">
+      <div className="flex flex-col min-w-0 shrink-0">
+        <span className="text-[10px] uppercase tracking-wide font-semibold text-emerald-700">
+          {label}
+        </span>
+        <span className="text-[10px] text-slate-400 tabular-nums">
+          {formatDuration(take.durationMs)}
+        </span>
+      </div>
+      <audio
+        ref={audioRef}
+        controls
+        src={take.url}
+        className="h-9 flex-1 min-w-0 max-w-full"
+      >
+        <track kind="captions" />
+      </audio>
+      <button
+        onClick={onRemove}
+        className="btn-ghost !px-1.5 !py-1.5 shrink-0 text-slate-400 hover:text-red-600"
+        aria-label="Fshi këtë provë"
+        title="Fshi këtë provë"
+      >
+        <Trash2 size={14} />
+      </button>
+    </li>
+  );
+}
+
+function formatDuration(ms: number): string {
+  const s = Math.max(0, Math.round(ms / 1000));
+  const m = Math.floor(s / 60);
+  const rem = s % 60;
+  return `${m}:${rem.toString().padStart(2, '0')}`;
 }

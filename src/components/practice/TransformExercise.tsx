@@ -6,7 +6,6 @@ import {
   Eye,
   Lightbulb,
   Mic,
-  MicOff,
   RotateCcw,
   XCircle,
 } from 'lucide-react';
@@ -310,22 +309,33 @@ export function TransformExercise({
               }`}
           />
 
-          {/* Mic button — positioned inside the input on the LTR side
-              (left in RTL text), so it doesn't collide with the text. */}
+          {/* Mic button — gradient styling matching StoryCard's
+              RecordButton and PronunciationCheck, sized down slightly
+              so it fits comfortably inside the input. */}
           {speechSupported && (
             <button
               type="button"
               onClick={listening ? stopListening : startListening}
               title={listening ? 'Ndal regjistrimin' : 'Fol në arabisht'}
               aria-label={listening ? 'Ndal regjistrimin' : 'Fol në arabisht'}
-              className={`absolute left-2 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full flex items-center justify-center transition
+              className={`absolute left-2 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full inline-flex items-center justify-center text-white transition-all active:scale-95 motion-reduce:active:scale-100
                 ${
                   listening
-                    ? 'bg-red-500 text-white shadow-md hover:bg-red-600'
-                    : 'bg-slate-100 text-slate-600 hover:bg-brand-100 hover:text-brand-700'
+                    ? 'bg-gradient-to-br from-red-500 to-red-600 shadow-lg shadow-red-500/30'
+                    : 'bg-gradient-to-br from-emerald-500 to-emerald-600 shadow-md shadow-emerald-500/25 hover:shadow-lg hover:shadow-emerald-500/40'
                 }`}
             >
-              {listening ? <MicOff size={16} /> : <Mic size={16} />}
+              {listening ? (
+                <>
+                  <span className="absolute inset-0 rounded-full bg-red-400/50 animate-ping motion-reduce:hidden" />
+                  <Mic size={16} className="relative" />
+                </>
+              ) : (
+                <>
+                  <span className="absolute inset-0 rounded-full ring-2 ring-emerald-400/30 ring-offset-2 ring-offset-white" />
+                  <Mic size={16} className="relative" />
+                </>
+              )}
             </button>
           )}
 
