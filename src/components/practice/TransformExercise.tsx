@@ -10,6 +10,7 @@ import {
   XCircle,
 } from 'lucide-react';
 import type { Exercise } from '@/data/curriculum';
+import { track } from '@/lib/analytics';
 
 // Strip Arabic diacritics so a student who types without harakat
 // still gets credit — the rule being drilled is morphology, not
@@ -131,6 +132,10 @@ export function TransformExercise({
     if (!candidate.trim()) return;
     if (normalize(candidate) === normalize(exercise.answer)) {
       setStatus('correct');
+      track({
+        name: 'exercise_correct',
+        props: { chapter: 0, exercise: exercise.id },
+      });
       // Swap the bare consonants the student typed/spoke with the
       // fully-vocalized reference answer. Web Speech API never
       // returns harakat, and most learners also skip them while
@@ -148,6 +153,10 @@ export function TransformExercise({
   const reveal = () => {
     setValue(exercise.answer);
     setStatus('revealed');
+    track({
+      name: 'exercise_revealed',
+      props: { chapter: 0, exercise: exercise.id },
+    });
   };
 
   const reset = () => {
@@ -172,6 +181,7 @@ export function TransformExercise({
   // "speak, then tap Kontrollo" friction that would break the flow.
   const startListening = () => {
     if (!SRCtor) return;
+    track({ name: 'voice_record_started', props: { context: 'exercise' } });
     setSpeechError(null);
     setValue('');
     setStatus('idle');

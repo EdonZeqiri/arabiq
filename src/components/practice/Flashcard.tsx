@@ -4,6 +4,7 @@ import type { Dialogue } from '@/data/curriculum';
 import { useStore } from '@/store/useStore';
 import { PronunciationCheck } from './PronunciationCheck';
 import { stripHarakat } from '@/lib/arabicText';
+import { track } from '@/lib/analytics';
 
 interface FlashcardProps {
   dialogue: Dialogue;
@@ -94,7 +95,14 @@ export function Flashcard({
           {phrasings.length > 1 && (
             <button
               onClick={() => {
-                setVariantIndex((i) => (i + 1) % phrasings.length);
+                setVariantIndex((i) => {
+                  const next = (i + 1) % phrasings.length;
+                  track({
+                    name: 'dialogue_variant_cycled',
+                    props: { dialogue: dialogue.id, variant: next },
+                  });
+                  return next;
+                });
                 setVoicePassed(false);
               }}
               className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-2 py-0.5 text-[10px] normal-case tracking-normal text-slate-600 hover:border-brand-300 hover:text-brand-700"

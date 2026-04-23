@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Mic, MicOff, RotateCcw, CheckCircle2, XCircle } from 'lucide-react';
 import { computeDiff, DiffResult } from '@/lib/pronunciationDiff';
+import { track } from '@/lib/analytics';
 
 // Reusable "say this phrase in Arabic and I'll tell you where you
 // stumbled" widget. Used under dialogue lines and story sentences.
@@ -102,14 +103,27 @@ export function PronunciationCheck({
   const evaluate = (transcript: string) => {
     const result = computeDiff(expected, transcript);
     setDiff(result);
+    // Round accuracy to the nearest 10% so the Umami dashboard can
+    // bucket outcomes without needing a histogram plugin.
+    const bucket = Math.round(result.accuracy * 10) * 10;
     if (!passedRef.current && result.accuracy >= passThreshold) {
       passedRef.current = true;
+      track({
+        name: 'pronunciation_passed',
+        props: { accuracy: bucket, context: resultLabel },
+      });
       onPass?.();
+    } else if (result.accuracy < passThreshold) {
+      track({
+        name: 'pronunciation_failed',
+        props: { accuracy: bucket, context: resultLabel },
+      });
     }
   };
 
   const start = () => {
     if (!SRCtor) return;
+    track({ name: 'voice_record_started', props: { context: 'dialogue' } });
     setError(null);
     setHeard('');
     setDiff(null);

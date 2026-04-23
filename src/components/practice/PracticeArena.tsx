@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { getChapter } from '@/data/curriculum';
 import { useStore } from '@/store/useStore';
+import { track } from '@/lib/analytics';
 import { Flashcard } from './Flashcard';
 import { StoryCard } from './StoryCard';
 import { ChapterVocabulary } from './ChapterVocabulary';
@@ -63,10 +64,18 @@ export function PracticeArena() {
     ayat: false,
   });
   const toggle = (key: SectionKey) =>
-    setSections((s) => ({ ...s, [key]: !s[key] }));
+    setSections((s) => {
+      const next = !s[key];
+      // Only fire on open — a close is the inverse of an open we
+      // already tracked, so counting it would double-report engagement.
+      if (next) track({ name: 'section_expanded', props: { section: key, chapter: currentChapterId } });
+      return { ...s, [key]: next };
+    });
 
-  // Reset whenever the chapter changes.
+  // Reset whenever the chapter changes. Also ping analytics so we can
+  // see which chapters get the most engagement in aggregate.
   useEffect(() => {
+    track({ name: 'chapter_opened', props: { chapter: currentChapterId } });
     setIndex(0);
     setRevealed(false);
     setSessionStarted(false);
@@ -104,6 +113,10 @@ export function PracticeArena() {
 
   const handleKnown = () => {
     markDialogueMastered(current.id);
+    track({
+      name: 'dialogue_mastered',
+      props: { chapter: currentChapterId, dialogue: current.id },
+    });
     if (!sessionStarted) {
       recordSession();
       setSessionStarted(true);

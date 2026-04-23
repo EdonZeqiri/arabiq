@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ExternalLink, Sparkles } from 'lucide-react';
 import type { ChapterAyah } from '@/data/curriculum';
+import { track } from '@/lib/analytics';
 
 // Quran.com deep-link — clicking the reference pill opens the ayah
 // in its canonical online Mus·haf with recitation + tafsir. We use
@@ -165,9 +166,15 @@ export function AyatSection({ ayat }: AyatSectionProps) {
                 "progress" moment — "I know THESE specific words". */}
             <div>
               <button
-                onClick={() =>
-                  setOpenGloss(isOpen ? null : a.reference)
-                }
+                onClick={() => {
+                  if (!isOpen) {
+                    track({
+                      name: 'ayah_revealed',
+                      props: { chapter: 0, reference: a.reference },
+                    });
+                  }
+                  setOpenGloss(isOpen ? null : a.reference);
+                }}
                 className="text-[11px] text-emerald-700 hover:text-emerald-800 font-medium inline-flex items-center gap-1"
               >
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />

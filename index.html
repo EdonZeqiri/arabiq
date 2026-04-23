@@ -15,6 +15,16 @@
     />
 
     <title>Arabiq — بَيْنَ يَدَيْكَ</title>
+
+    <!-- Umami analytics — privacy-friendly, no cookies, no PII. Tracks
+         page views automatically and exposes window.umami.track() for
+         the custom events we fire from lib/analytics.ts. Loads async +
+         defer so it never blocks first paint. -->
+    <script
+      defer
+      src="https://cloud.umami.is/script.js"
+      data-website-id="53227a7b-cf6c-42eb-9d5f-c3b2fb11860f"
+    ></script>
   </head>
   <body class="antialiased">
     <div id="root"></div>

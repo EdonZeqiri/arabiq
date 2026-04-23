@@ -3,6 +3,7 @@ import type { Story } from '@/data/curriculum';
 import { useVoiceRecorder, type Take } from '@/hooks/useVoiceRecorder';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { stripHarakat } from '@/lib/arabicText';
+import { track } from '@/lib/analytics';
 
 interface StoryCardProps {
   story: Story;
@@ -60,7 +61,14 @@ export function StoryCard({ story, showHarakat }: StoryCardProps) {
   };
 
   const cycleVariant = () => {
-    setVariantIndex((i) => (i + 1) % phrasings.length);
+    setVariantIndex((i) => {
+      const next = (i + 1) % phrasings.length;
+      track({
+        name: 'story_variant_cycled',
+        props: { story: story.id, variant: next },
+      });
+      return next;
+    });
     setRevealed(false);
     clearRecording();
   };
@@ -110,7 +118,10 @@ export function StoryCard({ story, showHarakat }: StoryCardProps) {
         <div className="flex items-center gap-3">
           <RecordButton
             isRecording={isRecording}
-            onStart={startRecording}
+            onStart={() => {
+              track({ name: 'voice_record_started', props: { context: 'story' } });
+              startRecording();
+            }}
             onStop={stopRecording}
           />
           <div className="text-xs text-slate-500 min-w-0 flex-1">
