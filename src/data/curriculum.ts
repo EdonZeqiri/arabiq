@@ -247,6 +247,153 @@ export const CHAPTERS: Chapter[] = [
           },
         ],
       },
+      // ── Dialogjet kanonike nga libri (f. 3-5, 17) ───────────────
+      // d1-8 …d1-15 are the lesson dialogues from Al-Arabiya Bayna Yadayk
+      // Vol 1, Unit 1. We keep the book's original names so a learner
+      // using the printed book alongside the app hears the same voices.
+      {
+        id: 'd1-8',
+        // Khalid & Khalil, f. 3 — reply turn to "Si je?". The app had the
+        // greeting already, but not the canonical response formula, which
+        // is what carries the "el-hamdu lillah" the learner needs to internalize.
+        albanian: 'Mirë, falënderimi i takon Allahut. E ti si je?',
+        arabic: 'بِخَيْرٍ، وَالْحَمْدُ لِلَّهِ. وَكَيْفَ حَالُكَ أَنْتَ؟',
+        transliteration: 'Bikhajrin, wel-hamdu lilah. We kejfe haluke ente?',
+        variants: [
+          {
+            albanian: 'Mirë, lavdi Allahut. Po ti?',
+            arabic: 'بِخَيْرٍ، الْحَمْدُ لِلَّهِ. وَأَنْتَ؟',
+            transliteration: 'Bikhajrin, el-hamdu lilah. We ente?',
+          },
+        ],
+      },
+      {
+        id: 'd1-9',
+        // Muhammed & Sherif, f. 4 — nationality yes/no pattern.
+        albanian: 'A je pakistanez? — Po, unë jam pakistanez.',
+        arabic: 'هَلْ أَنْتَ بَاكِسْتَانِيٌّ؟ — نَعَمْ، أَنَا بَاكِسْتَانِيٌّ.',
+        transliteration: 'Hel ente bakistanij? — Ne‘am, ene bakistanij.',
+        variants: [
+          {
+            albanian: 'A je turk? — Po, unë jam turk, nga Turqia.',
+            arabic: 'هَلْ أَنْتَ تُرْكِيٌّ؟ — نَعَمْ، أَنَا تُرْكِيٌّ، مِنْ تُرْكِيَا.',
+            transliteration: 'Hel ente turkij? — Ne‘am, ene turkij, min Turkija.',
+          },
+          {
+            albanian: 'A është ai egjiptian? — Jo, ai është sirian.',
+            arabic: 'هَلْ هُوَ مِصْرِيٌّ؟ — لَا، هُوَ سُورِيٌّ.',
+            transliteration: 'Hel huwe misrij? — La, huwe surij.',
+          },
+        ],
+      },
+      {
+        id: 'd1-10',
+        // Merjem & Zejneb, f. 4 — same nationality drill in feminine.
+        albanian: 'A je egjiptiane? — Po, unë jam egjiptiane, nga Egjipti.',
+        arabic: 'هَلْ أَنْتِ مِصْرِيَّةٌ؟ — نَعَمْ، أَنَا مِصْرِيَّةٌ، مِنْ مِصْر.',
+        transliteration: 'Hel enti misrijje? — Ne‘am, ene misrijje, min Misr.',
+        variants: [
+          {
+            albanian: 'Unë jam siriane. Nga cila kombësi je ti?',
+            arabic: 'أَنَا سُورِيَّةٌ. وَمَا جِنْسِيَّتُكِ أَنْتِ؟',
+            transliteration: 'Ene surijje. We ma xhinsijjetuki enti?',
+          },
+        ],
+      },
+      {
+        id: 'd1-11',
+        // Ahmed & Bedr, f. 5 — introducing a male relative plus occupation.
+        albanian: 'Ky është vëllai im. Ai është mësues.',
+        arabic: 'هَذَا أَخِي. هُوَ مُدَرِّسٌ.',
+        transliteration: 'Hadha akhi. Huwe mudarris.',
+        variants: [
+          {
+            albanian: 'Ky është shoku im, ai është inxhinier.',
+            arabic: 'هَذَا صَدِيقِي، هُوَ مُهَنْدِسٌ.',
+            transliteration: 'Hadha sadiki, huwe muhendis.',
+          },
+          {
+            albanian: 'Ky është babai im — ai punon si mësues.',
+            arabic: 'هَذَا أَبِي — هُوَ يَعْمَلُ مُدَرِّساً.',
+            transliteration: "Hadha ebi — huwe ja'melu mudarrisen.",
+          },
+        ],
+      },
+      {
+        id: 'd1-12',
+        // Nede & Hude, f. 5 — feminine mirror: introducing a sister + job.
+        albanian: 'Kjo është motra ime. Ajo është mjeke.',
+        arabic: 'هَذِهِ أُخْتِي. هِيَ طَبِيبَةٌ.',
+        transliteration: 'Hadhihi ukhti. Hije tabibe.',
+        variants: [
+          {
+            albanian: 'Kjo është shoqja ime, ajo është studente.',
+            arabic: 'هَذِهِ صَدِيقَتِي، هِيَ طَالِبَةٌ.',
+            transliteration: 'Hadhihi sadikati, hije talibe.',
+          },
+          {
+            albanian: 'Kjo motra ime, ajo punon si mjeke.',
+            arabic: 'هَذِهِ أُخْتِي، هِيَ تَعْمَلُ طَبِيبَةً.',
+            transliteration: "Hadhihi ukhti, hije ta'melu tabibeten.",
+          },
+        ],
+      },
+      {
+        id: 'd1-13',
+        // Me farewell — the book closes each intro with مع السلامة.
+        // The greeting is already covered by d1-5 but the isolated
+        // farewell is worth its own card because the student needs to
+        // recognize it even without the أهلاً وسهلاً prefix.
+        albanian: 'Me shëndet! (përshëndetje ndarjeje)',
+        arabic: 'مَعَ السَّلامَةِ!',
+        transliteration: "Ma‘a es-selame!",
+        variants: [
+          {
+            albanian: 'Mirupafshim, o shok. Me shëndet!',
+            arabic: 'إِلَى اللِّقَاءِ يَا صَدِيقِي. مَعَ السَّلامَةِ!',
+            transliteration: "Ila el-lika ja sadiki. Ma‘a es-selame!",
+          },
+        ],
+      },
+      {
+        id: 'd1-14',
+        // Pattern drill from f. 11 grammar summary — "Unë jam nga X".
+        // We anchor it on a non-Kosovo country so the student meets the
+        // 4 book countries (باكستان/تركيا/مصر/سوريا) at least once as a
+        // phrase they must produce.
+        albanian: 'Unë jam nga Turqia; ti nga ke?',
+        arabic: 'أَنَا مِنْ تُرْكِيَا؛ وَأَنْتَ مِنْ أَيْنَ؟',
+        transliteration: 'Ene min Turkija; we ente min ejne?',
+        variants: [
+          {
+            albanian: 'Unë jam nga Egjipti. Ku jeton ti?',
+            arabic: 'أَنَا مِنْ مِصْر. أَيْنَ تَسْكُنُ أَنْتَ؟',
+            transliteration: 'Ene min Misr. Ejne teskunu ente?',
+          },
+          {
+            albanian: 'Ne jemi nga Siria, dhe ju nga cili vend?',
+            arabic: 'نَحْنُ مِنْ سُورِيَا، وَأَنْتُمْ مِنْ أَيِّ بَلَدٍ؟',
+            transliteration: 'Nahnu min Surija, we entum min ejji beledin?',
+          },
+        ],
+      },
+      {
+        id: 'd1-15',
+        // Numbers 1–5 dialogue — drawn from dars 2 extra vocab f. 8.
+        // The book drills them with pencils-in-a-row images; we turn
+        // that into a micro-conversation so the learner hears the
+        // numbers live, not just as a chart.
+        albanian: 'Sa janë? — Tre. — Jo, pesë.',
+        arabic: 'كَمْ هِيَ؟ — ثَلاثَةٌ. — لَا، خَمْسَةٌ.',
+        transliteration: 'Kem hije? — Thelathe. — La, khamse.',
+        variants: [
+          {
+            albanian: 'Një, dy, tre, katër, pesë — falënderimi i takon Allahut!',
+            arabic: 'وَاحِدٌ، اثْنَانِ، ثَلاثَةٌ، أَرْبَعَةٌ، خَمْسَةٌ — الْحَمْدُ لِلَّهِ!',
+            transliteration: 'Wahid, ithnan, thelathe, erbe‘a, khamse — el-hamdu lilah!',
+          },
+        ],
+      },
     ],
     vocabulary: [
       { id: 'v1-1', arabic: 'اِسْم', albanian: 'Emër', root: 'س-م-و', type: 'noun', gender: 'M' },
@@ -297,6 +444,61 @@ export const CHAPTERS: Chapter[] = [
       { id: 'v1-46', arabic: 'مِثَال', albanian: 'Shembull', root: 'م-ث-ل', type: 'noun', gender: 'M', plural: 'أَمْثِلَة' },
       { id: 'v1-47', arabic: 'رَقْم', albanian: 'Numër (shifër)', root: 'ر-ق-م', type: 'noun', gender: 'M', plural: 'أَرْقَام' },
       { id: 'v1-48', arabic: 'عَلَامَة', albanian: 'Shenjë', root: 'ع-ل-م', type: 'noun', gender: 'F', plural: 'عَلَامَات' },
+
+      // ── Shtetet nga libri, f. 4-11 ──────────────────────────────
+      // Arabic country names behave as feminine in MSA even when they
+      // end in alif, so gender is F. بَاكِسْتَان ends in consonant but the
+      // grammar still treats it feminine (all country names default to F
+      // unless the name itself is a male figure, which none of these are).
+      { id: 'v1-49', arabic: 'بَاكِسْتَان', albanian: 'Pakistani', root: '-', type: 'noun', gender: 'F' },
+      { id: 'v1-50', arabic: 'تُرْكِيَا', albanian: 'Turqia', root: '-', type: 'noun', gender: 'F' },
+      { id: 'v1-51', arabic: 'مِصْر', albanian: 'Egjipti', root: '-', type: 'noun', gender: 'F' },
+      { id: 'v1-52', arabic: 'سُورِيَا', albanian: 'Siria', root: '-', type: 'noun', gender: 'F' },
+
+      // ── Kombësitë M/F (nisba) nga libri, f. 6, 9, 11 ────────────
+      // The four book pairs. We tag them as adjectives because that is
+      // their grammatical role ("I am Turkish"), even though Albanian
+      // glosses them as nouns. Pink/blue grouping in VocabVault respects
+      // the gender field, so these mirror the book's M/F drill layout.
+      { id: 'v1-53', arabic: 'بَاكِسْتَانِيّ', albanian: 'Pakistanez', root: '-', type: 'adjective', gender: 'M' },
+      { id: 'v1-54', arabic: 'بَاكِسْتَانِيَّة', albanian: 'Pakistaneze', root: '-', type: 'adjective', gender: 'F' },
+      { id: 'v1-55', arabic: 'تُرْكِيّ', albanian: 'Turk', root: '-', type: 'adjective', gender: 'M' },
+      { id: 'v1-56', arabic: 'تُرْكِيَّة', albanian: 'Turke', root: '-', type: 'adjective', gender: 'F' },
+      { id: 'v1-57', arabic: 'مِصْرِيّ', albanian: 'Egjiptian', root: '-', type: 'adjective', gender: 'M' },
+      { id: 'v1-58', arabic: 'مِصْرِيَّة', albanian: 'Egjiptiane', root: '-', type: 'adjective', gender: 'F' },
+      { id: 'v1-59', arabic: 'سُورِيّ', albanian: 'Sirian', root: '-', type: 'adjective', gender: 'M' },
+      { id: 'v1-60', arabic: 'سُورِيَّة', albanian: 'Siriane', root: '-', type: 'adjective', gender: 'F' },
+
+      // ── Numrat 1-5 nga dars 2, f. 8 ─────────────────────────────
+      // Cardinal numbers 1-5 as stand-alone counting words (the form
+      // used when just counting: wahid, ithnan…). Full agreement rules
+      // come later in the book; here we just match the pencil-row drill.
+      { id: 'v1-61', arabic: 'وَاحِد', albanian: 'Një', root: 'و-ح-د', type: 'noun', gender: 'M' },
+      { id: 'v1-62', arabic: 'اِثْنَان', albanian: 'Dy', root: 'ث-ن-ي', type: 'noun', gender: 'M' },
+      { id: 'v1-63', arabic: 'ثَلاثَة', albanian: 'Tre', root: 'ث-ل-ث', type: 'noun', gender: 'F' },
+      { id: 'v1-64', arabic: 'أَرْبَعَة', albanian: 'Katër', root: 'ر-ب-ع', type: 'noun', gender: 'F' },
+      { id: 'v1-65', arabic: 'خَمْسَة', albanian: 'Pesë', root: 'خ-م-س', type: 'noun', gender: 'F' },
+
+      // ── Fjalë të tjera thelbësore nga dialogjet e librit ────────
+      { id: 'v1-66', arabic: 'أَهْلاً وَسَهْلاً', albanian: 'Mirë se erdhe', root: 'أ-ه-ل', type: 'particle' },
+      { id: 'v1-67', arabic: 'مَعَ السَّلامَة', albanian: 'Mirupafshim', root: 'س-ل-م', type: 'particle' },
+      { id: 'v1-68', arabic: 'بِخَيْر', albanian: 'Mirë (me mirësi)', root: 'خ-ي-ر', type: 'particle' },
+      { id: 'v1-69', arabic: 'الْحَمْدُ لِلَّه', albanian: 'Falënderimi i takon Allahut', root: 'ح-م-د', type: 'particle' },
+      { id: 'v1-70', arabic: 'نَعَم', albanian: 'Po', root: '-', type: 'particle' },
+      { id: 'v1-71', arabic: 'لا', albanian: 'Jo', root: '-', type: 'particle' },
+      { id: 'v1-72', arabic: 'مَا', albanian: 'Çfarë / Cili', root: '-', type: 'particle' },
+      { id: 'v1-73', arabic: 'أَيْن', albanian: 'Ku', root: '-', type: 'particle' },
+      { id: 'v1-74', arabic: 'كَم', albanian: 'Sa', root: '-', type: 'particle' },
+      // Pronouns — met in every dialogue but never added as vocab yet.
+      // Listing them here so they appear in the Fjalori view, filterable
+      // under "particle".
+      { id: 'v1-75', arabic: 'أَنَا', albanian: 'Unë', root: '-', type: 'particle' },
+      { id: 'v1-76', arabic: 'أَنْتَ', albanian: 'Ti (mashkull)', root: '-', type: 'particle' },
+      { id: 'v1-77', arabic: 'أَنْتِ', albanian: 'Ti (femër)', root: '-', type: 'particle' },
+      { id: 'v1-78', arabic: 'هُوَ', albanian: 'Ai', root: '-', type: 'particle' },
+      { id: 'v1-79', arabic: 'هِيَ', albanian: 'Ajo', root: '-', type: 'particle' },
+      { id: 'v1-80', arabic: 'هَذَا', albanian: 'Ky', root: '-', type: 'particle' },
+      { id: 'v1-81', arabic: 'هَذِهِ', albanian: 'Kjo', root: '-', type: 'particle' },
     ],
     grammarFocus: [
       'Përemrat vetorë: أَنَا (Ene), أَنْتَ (Ente), أَنْتِ (Enti), هُوَ (Huwe), هِيَ (Hije)',
@@ -359,6 +561,83 @@ export const CHAPTERS: Chapter[] = [
         hint: 'ـيّ → ـيَّة për femëroren.',
         grammarPoint: 'Nisba',
       },
+      // ── Ushtrime shtesë nga tabela e strukturave, f. 12 ─────────
+      // These mirror the "ملخص التراكيب" substitution drills directly:
+      // the book tabulates which word can sit in each slot, and these
+      // exercises walk the student through one representative swap per
+      // row so the pattern becomes muscle memory, not just a chart.
+      {
+        id: 'ex1-7',
+        type: 'transform',
+        prompt: 'Zëvendëso هُوَ me هِيَ dhe kombësinë me formën femërore',
+        source: { arabic: 'هُوَ بَاكِسْتَانِيٌّ.', albanian: 'Ai është pakistanez.' },
+        answer: 'هِيَ بَاكِسْتَانِيَّةٌ.',
+        hint: 'Huwe → Hije; ـيّ → ـيَّة.',
+        grammarPoint: 'Nisba M→F',
+      },
+      {
+        id: 'ex1-8',
+        type: 'transform',
+        prompt: 'Përgjigju "po" pyetjes për kombësinë',
+        source: { arabic: 'هَلْ أَنْتَ مِصْرِيٌّ؟', albanian: 'A je egjiptian?' },
+        answer: 'نَعَمْ، أَنَا مِصْرِيٌّ.',
+        hint: 'Skema: نَعَمْ + أَنَا + kombësia.',
+        grammarPoint: 'Pyetje me هَلْ',
+      },
+      {
+        id: 'ex1-9',
+        type: 'transform',
+        prompt: 'Përgjigju "jo" duke thënë se je sirian',
+        source: { arabic: 'هَلْ أَنْتَ تُرْكِيٌّ؟', albanian: 'A je turk?' },
+        answer: 'لا، أَنَا سُورِيٌّ.',
+        hint: 'لا + أَنَا + kombësinë e vërtetë.',
+        grammarPoint: 'Pyetje me هَلْ',
+      },
+      {
+        id: 'ex1-10',
+        type: 'transform',
+        prompt: 'Plotëso me shtetin që i përshtatet kombësisë',
+        source: { arabic: 'أَنَا تُرْكِيّ، أَنَا مِنْ …', albanian: 'Unë jam turk, unë jam nga …' },
+        answer: 'أَنَا تُرْكِيّ، أَنَا مِنْ تُرْكِيَا.',
+        hint: 'تُرْكِيّ → تُرْكِيَا (nisba → vendi).',
+        grammarPoint: 'Kombësia + vendi',
+      },
+      {
+        id: 'ex1-11',
+        type: 'transform',
+        prompt: 'Prezanto motrën tënde si mjeke',
+        source: { arabic: 'أُخْت + طَبِيبَة', albanian: 'motra + mjeke' },
+        answer: 'هَذِهِ أُخْتِي، هِيَ طَبِيبَةٌ.',
+        hint: 'Modeli: هَذِهِ ___ــي، هِيَ ___ــة.',
+        grammarPoint: 'Hadhihi + poseviv + profesion',
+      },
+      {
+        id: 'ex1-12',
+        type: 'transform',
+        prompt: 'Prezanto shokun tënd si inxhinier',
+        source: { arabic: 'صَدِيق + مُهَنْدِس', albanian: 'shoku + inxhinier' },
+        answer: 'هَذَا صَدِيقِي، هُوَ مُهَنْدِسٌ.',
+        hint: 'Modeli: هَذَا ___ــي، هُوَ ___.',
+        grammarPoint: 'Hadha + poseviv + profesion',
+      },
+      {
+        id: 'ex1-13',
+        type: 'transform',
+        prompt: 'Ndërro gjininë e folësit në femërore',
+        source: { arabic: 'أَنَا سُورِيٌّ.', albanian: 'Unë (m.) jam sirian.' },
+        answer: 'أَنَا سُورِيَّةٌ.',
+        hint: 'Kombësia merr ـَة kur folësja është femër.',
+        grammarPoint: 'Nisba M→F',
+      },
+      {
+        id: 'ex1-14',
+        type: 'transform',
+        prompt: 'Ndërro tregesen nga femërore në mashkullore',
+        source: { arabic: 'هَذِهِ أُخْتِي.', albanian: 'Kjo është motra ime.' },
+        answer: 'هَذَا أَخِي.',
+        hint: 'هَذِهِ → هَذَا; أُخْت → أَخ.',
+        grammarPoint: 'Emrat tregues F→M',
+      },
     ],
     stories: [
       {
@@ -394,38 +673,78 @@ export const CHAPTERS: Chapter[] = [
             transliteration:
               "Es-selamu alejkum ja sadiki! Ismi Musa we ene talib. Hadha kitabi. Hadha Ahmed, huwe sadiki min Misr; huwe ejden talib. Ene min Kosofo. Ma'a es-selame!",
           },
+          {
+            // Female-perspective retelling: the narrator is now "Mona",
+            // a studente (طَالِبَة) from Kosova, introducing her friend
+            // Aisha from Egypt. Pronouns flip to هِيَ / أَنْتِ and the
+            // profession/noun endings take ة (صَدِيقَة, طَالِبَة).
+            albanian:
+              'Es-selamu alejkum! Emri im është Mona. Unë jam nga Kosova, jam studente. Kjo është libri im i ri dhe ajo është shoqja ime Aisha. Aisha është nga Egjipti, ajo gjithashtu është studente. Mirë se ju gjeta! Mirupafshim!',
+            arabic:
+              'السَّلامُ عَلَيْكُم! اِسْمِي مُنَى. أَنَا مِنْ كُوسُوفُو، أَنَا طَالِبَةٌ. هَذَا كِتَابِي الْجَدِيد وَتِلْكَ صَدِيقَتِي عَائِشَة. عَائِشَة مِنْ مِصْر، هِيَ أَيْضاً طَالِبَةٌ. أَهْلاً وَسَهْلاً! مَعَ السَّلامَة!',
+            transliteration:
+              "Es-selamu alejkum! Ismi Muna. Ene min Kosofo, ene talibe. Hadha kitabil xhedid ve tilke sadikati Aishe. Aishe min Misr, hije ejden talibe. Ehlen we sehlen! Ma'a es-selame!",
+          },
+          {
+            // Vocabulary-rich version: weaves in extra chapter-1 entries
+            // the original didn't use — مُدَرِّس (v1-6), لُغَة (v1-32),
+            // دَرْس (v1-35), زَمِيل (v1-38), جِنْسِيَّة (v1-10), قَالَ (v1-23).
+            // Same Musa story, just denser vocabulary.
+            albanian:
+              'Es-selamu alejkum! Emri im është Musa, unë jam student dhe kolegu im Ahmedi është gjithashtu student. Kombësia ime është shqiptare, kurse Ahmedi është nga Egjipti. Mësuesi ynë na mëson gjuhën arabe; mësimi është i ri dhe interesant. Ahmedi tha: «Libri yt është i bukur». Mirë se erdhët, shokë!',
+            arabic:
+              'السَّلامُ عَلَيْكُم! اِسْمِي مُوسَى، أَنَا طَالِبٌ وَزَمِيلِي أَحْمَدُ أَيْضاً طَالِبٌ. جِنْسِيَّتِي أَلْبَانِيَّةٌ، وَأَحْمَدُ مِنْ مِصْرَ. مُدَرِّسُنَا يُعَلِّمُنَا اللُّغَةَ الْعَرَبِيَّةَ؛ الدَّرْسُ جَدِيدٌ وَمُمْتِعٌ. قَالَ أَحْمَدُ: «كِتَابُكَ جَمِيلٌ». أَهْلاً وَسَهْلاً يَا أَصْدِقَاء!',
+            transliteration:
+              "Es-selamu alejkum! Ismi Musa, ene talibun ve zemili Ahmedu ejden talib. Xhinsijjeti albanijje, ve Ahmedu min Misr. Mudarrisuna ju‘al-limunal lugatel ‘arebijje; ed-dersu xhedid ve mumti‘. Kale Ahmedu: «Kitabuke xhemil». Ehlen we sehlen ja asdika!",
+          },
+          {
+            // Complex-sentence version: compound/complex MSA with عِنْدَمَا,
+            // الَّذِي, لِأَنَّ, بَعْدَ أَنْ, ثُمَّ. Same meaning, richer syntax —
+            // the "one-step-ahead" register.
+            albanian:
+              'Kur prezantohem, them: emri im është Musa dhe unë jam studenti që vjen nga Kosova. Ky është libri im i ri, të cilin e mora sot, ndërsa ai atje është shoku im Ahmedi, i cili është nga Egjipti. Pasi ne u takuam, u bëmë shokë, sepse të dy jemi studentë. Mirë se erdhët dhe mirupafshim!',
+            arabic:
+              'عِنْدَمَا أَتَعَارَفُ أَقُولُ: اِسْمِي مُوسَى وَأَنَا الطَّالِبُ الَّذِي يَأْتِي مِنْ كُوسُوفُو. هَذَا كِتَابِي الْجَدِيدُ الَّذِي أَخَذْتُهُ الْيَوْمَ، بَيْنَمَا ذَلِكَ صَدِيقِي أَحْمَدُ الَّذِي هُوَ مِنْ مِصْرَ. بَعْدَ أَنْ تَقَابَلْنَا صِرْنَا صَدِيقَيْنِ، لِأَنَّنَا كِلَانَا طَالِبَانِ. أَهْلاً وَسَهْلاً ثُمَّ مَعَ السَّلامَة!',
+            transliteration:
+              "‘Indema ete‘arefu ekulu: Ismi Musa ve enet-talibul-ledhi je’ti min Kosofo. Hadha kitabijel xhedidul-ledhi ekhadhtuhul jewme, bejnema dhalike sadikijel Ahmedul-ledhi huwe min Misr. Ba‘de en tekabelna sirna sadikajni, li ennena kilana talibani. Ehlen we sehlen thumme ma‘a es-selame!",
+          },
         ],
       },
     ],
     ayat: [
       {
-        // The shortest, most famous verse in the Mus·haf — and it opens
-        // with هُوَ, a chapter-1 pronoun. A beginner reading "Ai, Allahu
-        // është Një" and recognizing هُوَ from their very first lesson
-        // feels the whole project click into place.
+        // Al-Ikhlas stays — it's the one pure-pronoun ayah we keep, both
+        // because it's the shortest surah in the Mus·haf and because the
+        // opening imperative قُلْ is directly from v1-23 (قَالَ → قُلْ).
+        // So even the "easy" ayah now doubles as a content-word hit.
         reference: '112:1',
         surahNameAr: 'الإِخْلاص',
         surahNameAl: 'El-Ihlas',
         arabic: 'قُلْ هُوَ اللَّهُ أَحَدٌ',
         albanian: 'Thuaj: Ai, Allahu është Një!',
-        knownWords: [{ surface: 'هُوَ', gloss: 'Ai' }],
+        knownWords: [
+          { surface: 'قُلْ', gloss: 'thuaj (urdhërorja e قَالَ)' },
+          { surface: 'هُوَ', gloss: 'Ai' },
+        ],
       },
       {
-        // Allah speaking in the first person — أَنَا appears twice in
-        // this short passage, exactly the pronoun the student met in
-        // dialogue d1-2 ("Emri im është Ahmed… أَنَا مِنْ …").
-        reference: '20:14',
-        surahNameAr: 'طه',
-        surahNameAl: 'Taha',
-        arabic: 'إِنَّنِي أَنَا اللَّهُ لَا إِلَٰهَ إِلَّا أَنَا',
-        albanian: 'Vërtet, Unë jam Allahu, s\'ka zot tjetër përveç Meje.',
-        knownWords: [{ surface: 'أَنَا', gloss: 'Unë' }],
+        // The very first wahy — ties v1-1 (اِسْم) and v1-28 (قَرَأَ) to
+        // the moment Jibril came to the Prophet ﷺ in Hira. Two chapter
+        // words in the first four words of the Revelation.
+        reference: '96:1',
+        surahNameAr: 'العَلَق',
+        surahNameAl: 'El-Alak',
+        arabic: 'اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ',
+        albanian: 'Lexo në emër të Zotit tënd, që të krijoi!',
+        knownWords: [
+          { surface: 'اقْرَأْ', gloss: 'lexo (urdhërorja e قَرَأَ)' },
+          { surface: 'بِاسْمِ', gloss: 'në emër të (← اِسْم)' },
+        ],
       },
       {
-        // Plural of اِسْم — the very first vocabulary entry of the
-        // curriculum. The student learned "emër" in the singular on
-        // page one; here the Qur'an shows Allah teaching Adam ALL the
-        // names. The vocabulary-to-scripture bridge is direct.
+        // Plural of اِسْم, kept from the original — Allah teaching
+        // Adam "all the names" remains one of the clearest vocabulary
+        // → scripture bridges in the book.
         reference: '2:31',
         surahNameAr: 'البَقَرَة',
         surahNameAl: 'El-Bekare',
@@ -436,47 +755,76 @@ export const CHAPTERS: Chapter[] = [
         ],
       },
       {
-        // Opening of Sūrat al-A'lā — a verse most learners have heard
-        // recited countless times, built around the word اسْم. Lands
-        // after v1-1 clicks into place: "wait, I already know this
-        // first word of that surah."
-        reference: '87:1',
-        surahNameAr: 'الأَعْلَى',
-        surahNameAl: 'El-A\'la',
-        arabic: 'سَبِّحِ اسْمَ رَبِّكَ الْأَعْلَى',
-        albanian: 'Madhëro emrin e Zotit tënd, Më të Lartit!',
-        knownWords: [{ surface: 'اسْمَ', gloss: 'emrin' }],
+        // Opening of Al-Baqara, second only to Al-Fatiha in recitation
+        // frequency. Hits v1-31 (كِتَاب) head-on — a student who just
+        // learned "libër" discovers the Qur'an itself describes itself
+        // with that word.
+        reference: '2:2',
+        surahNameAr: 'البَقَرَة',
+        surahNameAl: 'El-Bekare',
+        arabic: 'ذَٰلِكَ الْكِتَابُ لَا رَيْبَ فِيهِ',
+        albanian: 'Ky është Libri në të cilin nuk ka dyshim.',
+        knownWords: [{ surface: 'الْكِتَابُ', gloss: 'Libri (← كِتَاب)' }],
       },
       {
-        // Surat al-Hadid 57:3 — هُوَ appears TWICE, bookending the
-        // verse. Short, rhythmic, and famous. Perfect reinforcement
-        // for the هُوَ the student already met in d1-1.
-        reference: '57:3',
-        surahNameAr: 'الحَدِيد',
-        surahNameAl: 'El-Hadid',
-        arabic:
-          'هُوَ الْأَوَّلُ وَالْآخِرُ وَالظَّاهِرُ وَالْبَاطِنُ ۖ وَهُوَ بِكُلِّ شَيْءٍ عَلِيمٌ',
-        albanian:
-          'Ai është i Pari dhe i Fundit, i Dukshmi dhe i Padukshmi; dhe Ai di çdo gjë.',
-        knownWords: [{ surface: 'هُوَ', gloss: 'Ai' }],
+        // Musa's famous du'a at the beginning of his mission — opens
+        // with قَالَ (v1-23), the single most frequent verb in Qur'anic
+        // narrative. Recognizing "قَالَ رَبِّ…" unlocks a huge chunk
+        // of scripture for the learner.
+        reference: '20:25',
+        surahNameAr: 'طه',
+        surahNameAl: 'Taha',
+        arabic: 'قَالَ رَبِّ اشْرَحْ لِي صَدْرِي',
+        albanian: 'Ai tha: O Zoti im, ma zgjero gjoksin!',
+        knownWords: [{ surface: 'قَالَ', gloss: 'tha' }],
       },
       {
-        // Sad 38:49 opens with هَٰذَا — the Mus·haf spelling uses the
-        // alif khanjariyya (superscript alif) instead of the textbook
-        // هَذَا. Functionally the same pronoun; we call that out in
-        // the gloss so the learner isn't confused by the visual diff.
-        reference: '38:49',
-        surahNameAr: 'ص',
-        surahNameAl: 'Sad',
-        arabic: 'هَٰذَا ذِكْرٌ ۚ وَإِنَّ لِلْمُتَّقِينَ لَحُسْنَ مَآبٍ',
-        albanian:
-          'Ky është një përkujtim; e vërtet, të devotshmit kanë kthim të mrekullueshëm.',
+        // Plural of أَخ (v1-33) — the verse every Muslim knows as the
+        // textual proof that the believers are brothers. Immediate
+        // emotional payoff for a brand-new learner.
+        reference: '49:10',
+        surahNameAr: 'الحُجُرَات',
+        surahNameAl: 'El-Huxhurat',
+        arabic: 'إِنَّمَا الْمُؤْمِنُونَ إِخْوَةٌ',
+        albanian: 'Me të vërtetë, besimtarët janë vëllezër.',
+        knownWords: [{ surface: 'إِخْوَةٌ', gloss: 'vëllezër (shumësi i أَخ)' }],
+      },
+      {
+        // كَلِمَة (v1-40) — the idiom "kelimetullah hijel ulya" is
+        // etched in Muslim memory. Lets the learner pick out their
+        // chapter-1 word from a famous declaration.
+        reference: '9:40',
+        surahNameAr: 'التَوْبَة',
+        surahNameAl: 'Et-Tewbe',
+        arabic: 'وَكَلِمَةُ اللَّهِ هِيَ الْعُلْيَا',
+        albanian: 'Ndërsa fjala e Allahut, ajo është më e larta.',
+        knownWords: [{ surface: 'وَكَلِمَةُ', gloss: 'dhe fjala (← كَلِمَة)' }],
+      },
+      {
+        // يَسْأَلُونَكَ is a recurring Qur'anic construction and the
+        // mudari' form of سَأَلَ (v1-26). Once the learner sees
+        // "يَسْأَلُونَكَ عَنِ …" they will start recognizing it in dozens
+        // of ayat across the Mus·haf.
+        reference: '17:85',
+        surahNameAr: 'الإِسْرَاء',
+        surahNameAl: 'El-Israa',
+        arabic: 'وَيَسْأَلُونَكَ عَنِ الرُّوحِ',
+        albanian: 'Dhe të pyesin ty për shpirtin.',
         knownWords: [
-          {
-            surface: 'هَٰذَا',
-            gloss: 'ky (drejtshkrimi kuranor i هَذَا)',
-          },
+          { surface: 'وَيَسْأَلُونَكَ', gloss: 'dhe të pyesin ty (← سَأَلَ)' },
         ],
+      },
+      {
+        // Practical rule about reciting the Qur'an — uses قَرَأْتَ
+        // (past, 2nd person) so the learner sees قَرَأَ conjugated
+        // differently than the imperative اقْرَأْ they just met above.
+        reference: '16:98',
+        surahNameAr: 'النَحْل',
+        surahNameAl: 'En-Nahl',
+        arabic: 'فَإِذَا قَرَأْتَ الْقُرْآنَ فَاسْتَعِذْ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ',
+        albanian:
+          'Kur ta lexosh Kur\'anin, kërko mbrojtjen e Allahut prej djallit të mallkuar.',
+        knownWords: [{ surface: 'قَرَأْتَ', gloss: 'lexove (← قَرَأَ)' }],
       },
     ],
   },
@@ -819,6 +1167,68 @@ export const CHAPTERS: Chapter[] = [
           },
         ],
       },
+      {
+        // El-Isra 17:23 — ajeti më i cituar për nderimin e prindërve:
+        // "silluni mirë me prindërit". بِالْوَالِدَيْنِ është dualja e
+        // وَالِد (v2-2) — nxënësi sheh fjalorin familjar në trajtën
+        // që përmbledh babain dhe nënën në një fjalë.
+        reference: '17:23',
+        surahNameAr: 'الإِسْرَاء',
+        surahNameAl: 'El-Israa',
+        arabic:
+          'وَقَضَىٰ رَبُّكَ أَلَّا تَعْبُدُوا إِلَّا إِيَّاهُ وَبِالْوَالِدَيْنِ إِحْسَانًا',
+        albanian:
+          'Zoti yt ka urdhëruar të mos adhuroni askënd tjetër veç Atij, dhe të silleni mirë me prindërit.',
+        knownWords: [
+          { surface: 'وَبِالْوَالِدَيْنِ', gloss: 'dhe me prindërit (dual i وَالِد)' },
+        ],
+      },
+      {
+        // Lukman 31:14 — vazhdim i këshillës prindërore: "nëna e barti
+        // me mund pas mundi". أُمُّهُ është fjalori v2-5 (أُمّ) me
+        // përemrin ـهُ. Foto më e qartë pse ndaj nënës ka hak të madh.
+        reference: '31:14',
+        surahNameAr: 'لُقْمَان',
+        surahNameAl: 'Lukman',
+        arabic:
+          'وَوَصَّيْنَا الْإِنسَانَ بِوَالِدَيْهِ حَمَلَتْهُ أُمُّهُ وَهْنًا عَلَىٰ وَهْنٍ',
+        albanian:
+          'Ne e porositëm njeriun për prindërit e tij — nëna e tij e bart me mund pas mundi.',
+        knownWords: [
+          { surface: 'بِوَالِدَيْهِ', gloss: 'për prindërit e tij (dual i وَالِد)' },
+          { surface: 'أُمُّهُ', gloss: 'nëna e tij (nga أُمّ)' },
+        ],
+      },
+      {
+        // Et-Teube 9:18 — "Xhamitë e Allahut i mirëmbajnë vetëm ata që
+        // besojnë…". مَسَاجِدَ është shumësi i مَسْجِد (v2-29), fjalori
+        // që nxënësi ka mësuar si vendi ku familja shkon për namaz.
+        reference: '9:18',
+        surahNameAr: 'التَّوْبَة',
+        surahNameAl: 'Et-Tewbe',
+        arabic:
+          'إِنَّمَا يَعْمُرُ مَسَاجِدَ اللَّهِ مَنْ آمَنَ بِاللَّهِ وَالْيَوْمِ الْآخِرِ',
+        albanian:
+          'Xhamitë e Allahut i mirëmbajnë vetëm ata që besojnë Allahun dhe Ditën e fundit.',
+        knownWords: [
+          { surface: 'مَسَاجِدَ', gloss: 'xhamitë (shumësi i مَسْجِد)' },
+        ],
+      },
+      {
+        // El-Bekare 2:133 — skenë familjare: Jakubit i vjen vdekja dhe
+        // pyet "bijtë e tij". لِبَنِيهِ është shumësi i اِبْن (v2-8) me
+        // përemër — dialog pa kohë mes babës dhe djemve rreth besimit.
+        reference: '2:133',
+        surahNameAr: 'البَقَرَة',
+        surahNameAl: 'El-Bekare',
+        arabic:
+          'أَمْ كُنتُمْ شُهَدَاءَ إِذْ حَضَرَ يَعْقُوبَ الْمَوْتُ إِذْ قَالَ لِبَنِيهِ مَا تَعْبُدُونَ مِن بَعْدِي',
+        albanian:
+          'A ishit ju të pranishëm kur Jakubit i erdhi vdekja, atëherë kur u tha bijve të tij: "Çfarë do të adhuroni pas meje?"',
+        knownWords: [
+          { surface: 'لِبَنِيهِ', gloss: 'bijve të tij (shumësi i اِبْن)' },
+        ],
+      },
     ],
   },
 
@@ -1150,6 +1560,55 @@ export const CHAPTERS: Chapter[] = [
           },
         ],
       },
+      {
+        // Ez-Zumer 39:20 — përshkrimi i Xhenetit me "dhoma mbi dhoma".
+        // غُرَفٌ është shumësi i غُرْفَة (v3-3) — fjala që nxënësi ka
+        // mësuar për dhomën e shtëpisë shfaqet këtu si arkitekturë e
+        // Xhenetit. Banesa tokësore → banesa e përjetshme.
+        reference: '39:20',
+        surahNameAr: 'الزُّمَر',
+        surahNameAl: 'Ez-Zumer',
+        arabic:
+          'لَٰكِنِ الَّذِينَ اتَّقَوْا رَبَّهُمْ لَهُمْ غُرَفٌ مِّن فَوْقِهَا غُرَفٌ مَّبْنِيَّةٌ',
+        albanian:
+          'Por ata që i frikësohen Zotit të tyre, për ta ka dhoma mbi dhoma të ndërtuara.',
+        knownWords: [
+          { surface: 'غُرَفٌ', gloss: 'dhoma (shumësi i غُرْفَة)' },
+        ],
+      },
+      {
+        // En-Nur 24:27 — etika e hyrjes në shtëpi: "mos hyni në shtëpi
+        // të tjera pa kërkuar leje". Bashkon tre fjalë të kapitullit:
+        // تَدْخُلُوا (nga دَخَلَ, v3-20), بُيُوتًا (shumësi i بَيْت, v3-1).
+        reference: '24:27',
+        surahNameAr: 'النُّور',
+        surahNameAl: 'En-Nur',
+        arabic:
+          'يَا أَيُّهَا الَّذِينَ آمَنُوا لَا تَدْخُلُوا بُيُوتًا غَيْرَ بُيُوتِكُمْ حَتَّىٰ تَسْتَأْنِسُوا وَتُسَلِّمُوا عَلَىٰ أَهْلِهَا',
+        albanian:
+          'O ju që besuat, mos hyni në shtëpi të tjera pa kërkuar leje dhe pa përshëndetur banuesit e tyre.',
+        knownWords: [
+          { surface: 'لَا تَدْخُلُوا', gloss: 'mos hyni (nga دَخَلَ)' },
+          { surface: 'بُيُوتًا', gloss: 'shtëpi (shumësi i بَيْت)' },
+        ],
+      },
+      {
+        // Ez-Zumer 39:73 — skena e hyrjes në Xhenet: "dyert e tij u
+        // hapën" dhe rojtarët thonë "hyni". أَبْوَابُهَا është shumësi
+        // i بَاب (v3-8); ادْخُلُوهَا është urdhërorja shumës e دَخَلَ.
+        // Dy fjalë banese tokësore që tregojnë futjen në parajsë.
+        reference: '39:73',
+        surahNameAr: 'الزُّمَر',
+        surahNameAl: 'Ez-Zumer',
+        arabic:
+          'حَتَّىٰ إِذَا جَاءُوهَا وَفُتِحَتْ أَبْوَابُهَا وَقَالَ لَهُمْ خَزَنَتُهَا سَلَامٌ عَلَيْكُمْ طِبْتُمْ فَادْخُلُوهَا خَالِدِينَ',
+        albanian:
+          'Derisa të arrijnë aty dhe dyert e tij të hapen; rojtarët do t\'u thonë: "Paqe mbi ju! U bëtë të pastër, pra hyni në të, të përjetshëm".',
+        knownWords: [
+          { surface: 'أَبْوَابُهَا', gloss: 'dyert e tij (shumësi i بَاب)' },
+          { surface: 'فَادْخُلُوهَا', gloss: 'pra hyni në të (nga دَخَلَ)' },
+        ],
+      },
     ],
   },
 
@@ -1478,6 +1937,53 @@ export const CHAPTERS: Chapter[] = [
         albanian: 'Sunduesit të Ditës së Gjykimit.',
         knownWords: [
           { surface: 'يَوْمِ', gloss: 'Ditës (nga يَوْم)' },
+        ],
+      },
+      {
+        // El-Furkan 25:47 — Allahu përshkruan ciklin ditor si dhuratë:
+        // nata si mbulesë, gjumi si prehje, dita si ringjallje. نَوْم
+        // dhe نَهَار janë rrënjë ن-و-م dhe ن-ه-ر — fjala نَوْم lidhet
+        // drejt me foljen نَامَ (v4-15).
+        reference: '25:47',
+        surahNameAr: 'الفُرْقَان',
+        surahNameAl: 'El-Furkan',
+        arabic:
+          'وَهُوَ الَّذِي جَعَلَ لَكُمُ اللَّيْلَ لِبَاسًا وَالنَّوْمَ سُبَاتًا وَجَعَلَ النَّهَارَ نُشُورًا',
+        albanian:
+          'Ai është që natën jua bëri mbulesë, gjumin prehje, dhe ditën ringjallje.',
+        knownWords: [
+          { surface: 'وَالنَّوْمَ', gloss: 'dhe gjumin (emër nga rrënja ن-و-م, si نَامَ)' },
+        ],
+      },
+      {
+        // Ez-Zelzele 99:7 — ajeti i peshës së veprave: "kush bën grimcë
+        // të mirë…". يَعْمَلْ është mudari e فَعَلَ/عَمِلَ, nga e njëjta
+        // rrënje si عَمَل (v4-10, "punë"). Punë e përditshme → punë
+        // që peshohet në Ditën e Gjykimit.
+        reference: '99:7',
+        surahNameAr: 'الزَّلْزَلَة',
+        surahNameAl: 'Ez-Zelzele',
+        arabic: 'فَمَن يَعْمَلْ مِثْقَالَ ذَرَّةٍ خَيْرًا يَرَهُ',
+        albanian:
+          'E kush të bëjë sa grimca e atomit të mirë, do ta shohë atë.',
+        knownWords: [
+          { surface: 'يَعْمَلْ', gloss: 'të bëjë / të punojë (nga rrënja ع-م-ل, si عَمَل)' },
+        ],
+      },
+      {
+        // Jusuf 12:17 — fjala e vëllezërve të Jusufit: "Ne shkuam duke
+        // garuar…". ذَهَبْنَا është madi shumës i ذَهَبَ (v4-16), folja
+        // që nxënësi ka mësuar për "shkoi në shkollë". Skena familjare
+        // që gjallëron fjalorin.
+        reference: '12:17',
+        surahNameAr: 'يُوسُف',
+        surahNameAl: 'Jusuf',
+        arabic:
+          'قَالُوا يَا أَبَانَا إِنَّا ذَهَبْنَا نَسْتَبِقُ وَتَرَكْنَا يُوسُفَ عِندَ مَتَاعِنَا',
+        albanian:
+          'Ata thanë: "O baba ynë! Ne shkuam duke garuar dhe e lamë Jusufin te plaçkat tona…"',
+        knownWords: [
+          { surface: 'ذَهَبْنَا', gloss: 'shkuam (nga ذَهَبَ)' },
         ],
       },
     ],
@@ -1813,6 +2319,55 @@ export const CHAPTERS: Chapter[] = [
           { surface: 'فَاكِهَةٍ', gloss: 'frutë (nga فَاكِهَة)' },
         ],
       },
+      {
+        // Jusuf 12:36 — ëndrra e njërit prej shokëve të burgut: "po
+        // mbaj mbi kokë bukë prej së cilës hanin zogjtë". خُبْزًا (v5-6)
+        // dhe تَأْكُلُ (nga أَكَلَ, v5-21) në të njëjtin ajet — skenë
+        // ushqimi në një tregim të dashur.
+        reference: '12:36',
+        surahNameAr: 'يُوسُف',
+        surahNameAl: 'Jusuf',
+        arabic:
+          'وَقَالَ الْآخَرُ إِنِّي أَرَانِي أَحْمِلُ فَوْقَ رَأْسِي خُبْزًا تَأْكُلُ الطَّيْرُ مِنْهُ',
+        albanian:
+          'E tjetri tha: "Unë shoh në ëndërr se po mbaj mbi kokë bukë, nga e cila hanin zogjtë."',
+        knownWords: [
+          { surface: 'خُبْزًا', gloss: 'bukë (nga خُبْز)' },
+          { surface: 'تَأْكُلُ', gloss: 'ha (nga أَكَلَ)' },
+        ],
+      },
+      {
+        // Et-Tur 52:22 — përshkrim i Xhenetit: "Ne u shtojmë atyre nga
+        // frutat dhe mishi që dëshirojnë". Dy fjalë kyçe të kapitullit
+        // në një ajet: فَاكِهَة (v5-12) dhe لَحْم (v5-8).
+        reference: '52:22',
+        surahNameAr: 'الطُّور',
+        surahNameAl: 'Et-Tur',
+        arabic: 'وَأَمْدَدْنَاهُم بِفَاكِهَةٍ وَلَحْمٍ مِّمَّا يَشْتَهُونَ',
+        albanian:
+          'Dhe ua shtojmë atyre fruta dhe mish nga ai që dëshirojnë.',
+        knownWords: [
+          { surface: 'بِفَاكِهَةٍ', gloss: 'me fruta (nga فَاكِهَة)' },
+          { surface: 'وَلَحْمٍ', gloss: 'dhe mish (nga لَحْم)' },
+        ],
+      },
+      {
+        // En-Nahl 16:14 — Allahu ka nënshtruar detin "që të hani prej
+        // tij mish të freskët". لِتَأْكُلُوا është mudari shumës i أَكَلَ
+        // (v5-21), dhe لَحْمًا është v5-8. Ushqimi ditor → dhuratë
+        // kozmike.
+        reference: '16:14',
+        surahNameAr: 'النَّحْل',
+        surahNameAl: 'En-Nahl',
+        arabic:
+          'وَهُوَ الَّذِي سَخَّرَ الْبَحْرَ لِتَأْكُلُوا مِنْهُ لَحْمًا طَرِيًّا',
+        albanian:
+          'Ai është që ua nënshtroi detin, që të hani prej tij mish të freskët.',
+        knownWords: [
+          { surface: 'لِتَأْكُلُوا', gloss: 'që të hani (nga أَكَلَ)' },
+          { surface: 'لَحْمًا', gloss: 'mish (nga لَحْم)' },
+        ],
+      },
     ],
   },
 
@@ -2146,6 +2701,49 @@ export const CHAPTERS: Chapter[] = [
           },
         ],
       },
+      {
+        // El-Alek 96:19 — "bje në sexhde dhe afrohu". اسْجُدْ është
+        // urdhërorja e foljes سَجَدَ, rrënja س-ج-د nga e cila buron
+        // vetë fjala مَسْجِد (v6-2) — "vendi i sexhdes". Nxënësi sheh
+        // lidhjen organike: xhami = vendi ku bie sexhde.
+        reference: '96:19',
+        surahNameAr: 'العَلَق',
+        surahNameAl: 'El-Alek',
+        arabic: 'كَلَّا لَا تُطِعْهُ وَاسْجُدْ وَاقْتَرِبْ',
+        albanian:
+          'Kurrsesi, mos iu bind atij; bjer në sexhde dhe afrohu (te Allahu).',
+        knownWords: [
+          { surface: 'وَاسْجُدْ', gloss: 'dhe bjer në sexhde (rrënja س-ج-د, si مَسْجِد)' },
+        ],
+      },
+      {
+        // El-Kadr 97:5 — sureja e Natës së Kadrit. الْفَجْر (v6-4, sabah)
+        // është fjala kyçe e kapitullit; këtu shfaqet si kufiri i natës
+        // së bekuar. Nxënësi që mëson "Fexhr" si koha e namazit të parë,
+        // këtu e sheh si kohë e paqes hyjnore.
+        reference: '97:5',
+        surahNameAr: 'القَدْر',
+        surahNameAl: 'El-Kadr',
+        arabic: 'سَلَامٌ هِيَ حَتَّىٰ مَطْلَعِ الْفَجْرِ',
+        albanian: 'Ajo (natë) është paqe deri në lindjen e agimit (sabahut).',
+        knownWords: [
+          { surface: 'الْفَجْرِ', gloss: 'sabahut / agimit (nga فَجْر)' },
+        ],
+      },
+      {
+        // El-Muzzemmil 73:6 — ngritja natën për adhurim. اللَّيْل (v6-31,
+        // natë) është kuadri kohor i namazeve vullnetare (teravi, tehexhud).
+        // Ajet i fuqishëm që lidh kohën (natën) me ibadetin e kapitullit.
+        reference: '73:6',
+        surahNameAr: 'المُزَّمِّل',
+        surahNameAl: 'El-Muzzemmil',
+        arabic: 'إِنَّ نَاشِئَةَ اللَّيْلِ هِيَ أَشَدُّ وَطْئًا وَأَقْوَمُ قِيلًا',
+        albanian:
+          'Vërtet, ngritja e natës është më ndikuese dhe më e saktë në të shprehur.',
+        knownWords: [
+          { surface: 'اللَّيْلِ', gloss: 'natës (nga لَيْل)' },
+        ],
+      },
     ],
   },
 
@@ -2475,6 +3073,51 @@ export const CHAPTERS: Chapter[] = [
             surface: 'الْكِتَابُ',
             gloss: 'Libri (nga rrënja ك-ت-ب si كَتَبَ)',
           },
+        ],
+      },
+      {
+        // El-Bekare 2:282 — ajeti më i gjatë në Kuran, për kontratat:
+        // "ai që di të shkruajë, le të shkruajë". كَتَبَ (v7-23) shfaqet
+        // si urdhër drejtpërdrejt — folja "shkroi" që nxënësi mësoi,
+        // këtu bëhet detyrim shoqëror hyjnor.
+        reference: '2:282',
+        surahNameAr: 'البَقَرَة',
+        surahNameAl: 'El-Bekare',
+        arabic: 'وَلْيَكْتُب بَّيْنَكُمْ كَاتِبٌ بِالْعَدْلِ',
+        albanian:
+          'Dhe një shkrues le të shkruajë midis jush me drejtësi.',
+        knownWords: [
+          { surface: 'وَلْيَكْتُب', gloss: 'dhe le të shkruajë (nga كَتَبَ)' },
+          { surface: 'كَاتِبٌ', gloss: 'shkrues (nga rrënja ك-ت-ب)' },
+        ],
+      },
+      {
+        // El-Gashije 88:17 — "a nuk shikojnë ne devetë…". يَنْظُرُ është
+        // e tashmja e نَظَرَ (v7-26, "shikoi"). Ftesë kuranore për të
+        // vëzhguar krijimin — pikërisht ajo që bën nxënësi në laborator
+        // dhe në lëndët shkencore të kapitullit.
+        reference: '88:17',
+        surahNameAr: 'الغَاشِيَة',
+        surahNameAl: 'El-Gashije',
+        arabic: 'أَفَلَا يَنظُرُونَ إِلَى الْإِبِلِ كَيْفَ خُلِقَتْ',
+        albanian: 'A nuk shikojnë devetë, se si janë krijuar?',
+        knownWords: [
+          { surface: 'يَنظُرُونَ', gloss: 'shikojnë (nga نَظَرَ)' },
+        ],
+      },
+      {
+        // El-Bekare 2:185 — ajeti i Ramazanit. شَهْر (v7-15, muaj)
+        // shfaqet dy herë si fjalë e njëjtë, në ajetin më të lexuar për
+        // agjërim. Nxënësi që mësoi "muaj" në kapitullin e studimit,
+        // këtu e sheh si kornizë e ibadetit vjetor.
+        reference: '2:185',
+        surahNameAr: 'البَقَرَة',
+        surahNameAl: 'El-Bekare',
+        arabic: 'شَهْرُ رَمَضَانَ الَّذِي أُنزِلَ فِيهِ الْقُرْآنُ',
+        albanian:
+          'Muaji i Ramazanit është ai në të cilin u zbrit Kurani.',
+        knownWords: [
+          { surface: 'شَهْرُ', gloss: 'muaji (nga شَهْر)' },
         ],
       },
     ],
@@ -2816,6 +3459,54 @@ export const CHAPTERS: Chapter[] = [
           { surface: 'يَا أَبَتِ', gloss: 'o babai im (nga أَب)' },
         ],
       },
+      {
+        // Ali Imran 3:31 — "nëse e doni Allahun, më ndiqni mua". تُحِبُّونَ
+        // është e tashmja e أَحَبَّ (v8-22, "deshi"). Foljen e dashurisë
+        // që nxënësi mësoi te "e dua punën time" (exercise 8-3), këtu e
+        // sheh si bazë e lidhjes së besimtarit me Allahun.
+        reference: '3:31',
+        surahNameAr: 'آل عِمْرَان',
+        surahNameAl: 'Ali Imran',
+        arabic:
+          'قُلْ إِن كُنتُمْ تُحِبُّونَ اللَّهَ فَاتَّبِعُونِي يُحْبِبْكُمُ اللَّهُ',
+        albanian:
+          'Thuaj: nëse e doni Allahun, më ndiqni mua — Allahu do t\'ju dojë juve.',
+        knownWords: [
+          { surface: 'تُحِبُّونَ', gloss: 'e doni (nga أَحَبَّ)' },
+          { surface: 'يُحْبِبْكُمُ', gloss: 'do t\'ju dojë (nga أَحَبَّ)' },
+        ],
+      },
+      {
+        // Esh-Shuara 26:80 — Ibrahimi (a.s.) për Zotin: "kur sëmurem, Ai
+        // më shëron". يَشْفِينِ nga rrënja ش-ف-ي, e njëjtë me مُسْتَشْفَى
+        // (v8-4, spital — "vendi i shërimit"). Nxënësi sheh se spitali
+        // modern emërohet nga folja hyjnore e shërimit.
+        reference: '26:80',
+        surahNameAr: 'الشُّعَرَاء',
+        surahNameAl: 'Esh-Shuara',
+        arabic: 'وَإِذَا مَرِضْتُ فَهُوَ يَشْفِينِ',
+        albanian: 'Dhe kur sëmurem, Ai më shëron.',
+        knownWords: [
+          { surface: 'يَشْفِينِ', gloss: 'më shëron (rrënja ش-ف-ي, si مُسْتَشْفَى)' },
+        ],
+      },
+      {
+        // El-Ankebut 29:14 — Nuhu (a.s.) qëndroi mes popullit "një mijë
+        // vjet minus pesëdhjetë". سَنَة (v8-24) shfaqet dy herë — njëjës
+        // سَنَةٍ dhe shumës عَامًا. Një ajet numerik që fikson njësinë
+        // kohore të karrierës e të jetës.
+        reference: '29:14',
+        surahNameAr: 'العَنْكَبُوت',
+        surahNameAl: 'El-Ankebut',
+        arabic:
+          'وَلَقَدْ أَرْسَلْنَا نُوحًا إِلَىٰ قَوْمِهِ فَلَبِثَ فِيهِمْ أَلْفَ سَنَةٍ إِلَّا خَمْسِينَ عَامًا',
+        albanian:
+          'Ne e dërguam Nuhun te populli i tij, dhe ai qëndroi ndër ta njëmijë vjet pa pesëdhjetë.',
+        knownWords: [
+          { surface: 'سَنَةٍ', gloss: 'vit (nga سَنَة)' },
+          { surface: 'عَامًا', gloss: 'vjet (sinonim nga عَام)' },
+        ],
+      },
     ],
   },
 
@@ -3153,6 +3844,48 @@ export const CHAPTERS: Chapter[] = [
           { surface: 'تِجَارَةً', gloss: 'tregti (nga تِجَارَة)' },
         ],
       },
+      {
+        // El-Kewther 108:1 — sureja më e shkurtër, e mësuar përmendsh
+        // nga çdo fëmijë musliman. أَعْطَى (v9-24, "dha") shfaqet si
+        // forma أَعْطَيْنَا — "Ne të dhamë". Folja e shitësit që i jep
+        // klientit mallin, këtu bëhet veprim hyjnor dhurimi.
+        reference: '108:1',
+        surahNameAr: 'الكَوْثَر',
+        surahNameAl: 'El-Kewther',
+        arabic: 'إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ',
+        albanian: 'Vërtet, Ne të dhamë ty Keutherin.',
+        knownWords: [
+          { surface: 'أَعْطَيْنَاكَ', gloss: 'të dhamë ty (nga أَعْطَى)' },
+        ],
+      },
+      {
+        // El-Kalem 68:1 — sureja hapet me betim mbi lapsin: "Nun. Pasha
+        // lapsin dhe çfarë shkruajnë". القَلَم (v9-32, laps) është mjeti
+        // që nxënësi blen në librari — këtu Allahu betohet me të, duke
+        // ngritur sendin e thjeshtë në nivel hyjnor.
+        reference: '68:1',
+        surahNameAr: 'القَلَم',
+        surahNameAl: 'El-Kalem',
+        arabic: 'ن وَالْقَلَمِ وَمَا يَسْطُرُونَ',
+        albanian: 'Nun. Pasha lapsin dhe atë që shkruajnë!',
+        knownWords: [
+          { surface: 'وَالْقَلَمِ', gloss: 'dhe pasha lapsin (nga قَلَم)' },
+        ],
+      },
+      {
+        // El-Bekare 2:63 — Allahu ngriti malin Tur "mbi" bijtë e Izraelit.
+        // فَوْقَكُمُ — فَوْقَ (v9-16, "mbi / lart") + përemri ـكُم. Drejtimi
+        // që nxënësi mësoi te rafti i librit ("mbi raft"), këtu bëhet
+        // drejtim kozmik me malin pezull.
+        reference: '2:63',
+        surahNameAr: 'البَقَرَة',
+        surahNameAl: 'El-Bekare',
+        arabic: 'وَإِذْ أَخَذْنَا مِيثَاقَكُمْ وَرَفَعْنَا فَوْقَكُمُ الطُّورَ',
+        albanian: 'Kur morëm besën tuaj dhe ngritëm mbi ju malin (Tur).',
+        knownWords: [
+          { surface: 'فَوْقَكُمُ', gloss: 'mbi ju (nga فَوْق)' },
+        ],
+      },
     ],
   },
 
@@ -3485,6 +4218,49 @@ export const CHAPTERS: Chapter[] = [
           },
         ],
       },
+      {
+        // Nuh 71:11 — "Ai ju dërgon nga qielli shi të bollshëm".
+        // مِدْرَاراً rrjedh nga rrënja م-ط-ر e مَطَر (v10-10) dhe e
+        // foljes أَمْطَرَ (v10-16). Duaja e Nuhut (a.s.) si premtim
+        // i reshjeve.
+        reference: '71:11',
+        surahNameAr: 'نُوح',
+        surahNameAl: 'Nuh',
+        arabic: 'يُرْسِلِ السَّمَاءَ عَلَيْكُم مِّدْرَارًا',
+        albanian: 'Ai ju dërgon nga qielli shi të bollshëm.',
+        knownWords: [
+          { surface: 'مِّدْرَارًا', gloss: 'shi të bollshëm (← rrënja م-ط-ر si مَطَر)' },
+        ],
+      },
+      {
+        // El-Furkan 25:47 — "Ai bëri natën veshje dhe gjumin pushim".
+        // اللَّيْل (← لَيْلَة v10-31) dhe لِبَاس (← rrënja ل-ب-س e
+        // foljes لَبِسَ v10-17) takohen në një ajet të vetëm.
+        reference: '25:47',
+        surahNameAr: 'الفُرْقَان',
+        surahNameAl: 'El-Furkan',
+        arabic:
+          'وَهُوَ الَّذِي جَعَلَ لَكُمُ اللَّيْلَ لِبَاسًا وَالنَّوْمَ سُبَاتًا',
+        albanian:
+          'Ai është që natën e bëri për ju veshje dhe gjumin pushim.',
+        knownWords: [
+          { surface: 'اللَّيْلَ', gloss: 'natën (← لَيْلَة)' },
+          { surface: 'لِبَاسًا', gloss: 'veshje (← rrënja ل-ب-س si لَبِسَ)' },
+        ],
+      },
+      {
+        // En-Nebe 78:13 — "Ne bëmë një llambë ndezëse" — epitet i
+        // diellit. وَهَّاجًا do të thotë "shumë i nxehtë/ndezur",
+        // duke lidhur شَمْس (v10-12) me حَارّ (v10-8).
+        reference: '78:13',
+        surahNameAr: 'النَّبَأ',
+        surahNameAl: 'En-Nebe',
+        arabic: 'وَجَعَلْنَا سِرَاجًا وَهَّاجًا',
+        albanian: 'Dhe bëmë (diellin) një llambë ndezëse.',
+        knownWords: [
+          { surface: 'وَهَّاجًا', gloss: 'i nxehtë, ndezur (afër kuptimit të حَارّ)' },
+        ],
+      },
     ],
   },
 
@@ -3812,6 +4588,53 @@ export const CHAPTERS: Chapter[] = [
           'Pra hapu atyre një rrugë të thatë në det.',
         knownWords: [
           { surface: 'طَرِيقًا', gloss: 'rrugë (nga طَرِيق)' },
+        ],
+      },
+      {
+        // El-Ankebut 29:20 — urdhri klasik për udhëtim: "Ecni në tokë".
+        // سِيرُوا është nga rrënja س-ي-ر e njëjtë me سَيَّارَة (v11-6,
+        // "makinë" — fjalë për fjalë "ajo që ecën"). Udhëtimi si
+        // meditim mbi krijimin.
+        reference: '29:20',
+        surahNameAr: 'العَنْكَبُوت',
+        surahNameAl: 'El-Ankebut',
+        arabic:
+          'قُلْ سِيرُوا فِي الْأَرْضِ فَانظُرُوا كَيْفَ بَدَأَ الْخَلْقَ',
+        albanian:
+          'Thuaj: Ecni në tokë dhe shikoni si filloi Allahu krijimin.',
+        knownWords: [
+          { surface: 'سِيرُوا', gloss: 'ecni/udhëtoni (← rrënja س-ي-ر si سَيَّارَة)' },
+        ],
+      },
+      {
+        // El-Kasas 28:22 — Musai (a.s.) gjatë arratisjes arrin te
+        // Medjeni. مَدْيَن si emër qyteti lidhet drejtpërdrejt me
+        // مَدِينَة (v11-8, "qytet"). Ajet-model për udhëtimin drejt
+        // një qyteti të huaj.
+        reference: '28:22',
+        surahNameAr: 'القَصَص',
+        surahNameAl: 'El-Kasas',
+        arabic:
+          'وَلَمَّا تَوَجَّهَ تِلْقَاءَ مَدْيَنَ قَالَ عَسَىٰ رَبِّي أَن يَهْدِيَنِي سَوَاءَ السَّبِيلِ',
+        albanian:
+          'Kur u drejtua nga Medjeni, tha: Shpresoj që Zoti im të më udhëzojë në rrugë të drejtë.',
+        knownWords: [
+          { surface: 'مَدْيَنَ', gloss: 'Medjen (qytet, lidhet me مَدِينَة)' },
+        ],
+      },
+      {
+        // El-Kehf 18:77 — Musai (a.s.) dhe Khidri "arritën te banorët e
+        // një fshati dhe u kërkuan ushqim". قَرْيَة është saktësisht
+        // v11-9. Skenë klasike e udhëtarit që kërkon mikpritje.
+        reference: '18:77',
+        surahNameAr: 'الكَهْف',
+        surahNameAl: 'El-Kehf',
+        arabic:
+          'فَانطَلَقَا حَتَّىٰ إِذَا أَتَيَا أَهْلَ قَرْيَةٍ اسْتَطْعَمَا أَهْلَهَا',
+        albanian:
+          'Pastaj u nisën, derisa arritën te banorët e një fshati dhe u kërkuan ushqim.',
+        knownWords: [
+          { surface: 'قَرْيَةٍ', gloss: 'fshati (← قَرْيَة v11-9)' },
         ],
       },
     ],
@@ -4142,6 +4965,55 @@ export const CHAPTERS: Chapter[] = [
             surface: 'فَاكْتُبُوهُ',
             gloss: 'shkruajeni atë (urdhër shumës, nga كَتَبَ)',
           },
+        ],
+      },
+      {
+        // El-Enbija 21:33 — "dielli dhe hëna, secili noton në orbitën
+        // e vet". يَسْبَحُون vjen nga rrënja س-ب-ح, e njëjtë me سِبَاحَة
+        // (v12-4, "not"). Folje e njëjtë kuptimore — noti si hobi
+        // tokësor; notimi i trupave qiellorë si shenjë e Allahut.
+        reference: '21:33',
+        surahNameAr: 'الأَنْبِيَاء',
+        surahNameAl: 'El-Enbija',
+        arabic:
+          'وَهُوَ الَّذِي خَلَقَ اللَّيْلَ وَالنَّهَارَ وَالشَّمْسَ وَالْقَمَرَ كُلٌّ فِي فَلَكٍ يَسْبَحُونَ',
+        albanian:
+          'Ai është që krijoi natën dhe ditën, diellin dhe hënën; secili noton në një orbitë.',
+        knownWords: [
+          { surface: 'يَسْبَحُونَ', gloss: 'notojnë (← rrënja س-ب-ح si سِبَاحَة v12-4)' },
+        ],
+      },
+      {
+        // El-Araf 7:144 — "Unë të zgjodha ty mbi njerëzit". اصْطَفَيْتُكَ
+        // është formë e avancuar e rrënjës ص-ف-و, kuptimore me اِخْتَارَ
+        // (v12-21 "zgjodhi"). Zgjedhja e Musait si model i zgjedhjes —
+        // nxënësi mëson foljen "zgjedh" që përdor kur flet për hobi.
+        reference: '7:144',
+        surahNameAr: 'الأَعْرَاف',
+        surahNameAl: 'El-Araf',
+        arabic:
+          'قَالَ يَا مُوسَىٰ إِنِّي اصْطَفَيْتُكَ عَلَى النَّاسِ بِرِسَالَاتِي وَبِكَلَامِي فَخُذْ مَا آتَيْتُكَ',
+        albanian:
+          'Tha: O Musa! Unë të zgjodha ty mbi njerëzit me shpalljet e Mia dhe me fjalën Time; pranoje atë që të dhashë.',
+        knownWords: [
+          { surface: 'اصْطَفَيْتُكَ', gloss: 'të zgjodha (kuptim i afërt me اِخْتَارَ v12-21)' },
+        ],
+      },
+      {
+        // El-Enfal 8:41 — "dijeni se çfarëdo që fitoni, një e pesta
+        // është e Allahut…" — por fokus: غَنِمْتُم nga rrënja غ-ن-م;
+        // jo e dobishme. Përdorim në vend të kësaj آل-ع-م-ر-ا-ن 3:200:
+        // "duroni dhe qëndroni të durueshëm" ku اصْبِرُوا + رَابِطُوا —
+        // jo prioritet. Përdorim هذا القرآن يجمع: Sad 38:29 — "Ky libër
+        // që ta kemi zbritur" me فِعْل "lexojnë" — nga rrënja ج-م-ع si
+        // جَمَعَ (v12-22).
+        reference: '54:45',
+        surahNameAr: 'القَمَر',
+        surahNameAl: 'El-Kamer',
+        arabic: 'سَيُهْزَمُ الْجَمْعُ وَيُوَلُّونَ الدُّبُرَ',
+        albanian: 'Grupi do të mposhtet dhe do të kthehen mbrapsht.',
+        knownWords: [
+          { surface: 'الْجَمْعُ', gloss: 'grupi/mbledhja (← rrënja ج-م-ع si جَمَعَ v12-22)' },
         ],
       },
     ],
@@ -4479,6 +5351,54 @@ export const CHAPTERS: Chapter[] = [
             surface: 'الْمَسْجِدَ الْحَرَامَ',
             gloss: 'Mesxhidin e Shenjtë (Qabes, Kap. 6)',
           },
+        ],
+      },
+      {
+        // El-Bekare 2:127 — Ibrahimi dhe Ismaili ngrenë themelet e
+        // Qabesë. الْبَيْت (Qabja, destinacioni i Umres). Ajeti që
+        // rrok vetë themelin e rrugëtimit të pelegrinit.
+        reference: '2:127',
+        surahNameAr: 'البَقَرَة',
+        surahNameAl: 'El-Bekare',
+        arabic:
+          'وَإِذْ يَرْفَعُ إِبْرَاهِيمُ الْقَوَاعِدَ مِنَ الْبَيْتِ وَإِسْمَاعِيلُ رَبَّنَا تَقَبَّلْ مِنَّا',
+        albanian:
+          'Dhe kur Ibrahimi dhe Ismaili ngrinin themelet e Shtëpisë: "Zoti ynë, pranoje prej nesh!"',
+        knownWords: [
+          { surface: 'الْبَيْتِ', gloss: 'Shtëpisë (Qabes, destinacioni i Umres)' },
+          { surface: 'تَقَبَّلْ', gloss: 'prano (← rrënja ق-ب-ل si مَقْبُولَة v13-22)' },
+        ],
+      },
+      {
+        // El-Haxh 22:29 — urdhri për tavaf rreth Qabesë së Lashtë.
+        // وَلْيَطَّوَّفُوا nga rrënja ط-و-ف e njëjtë me طَوَاف — ritual
+        // kyç i Umres së Kap. 13.
+        reference: '22:29',
+        surahNameAr: 'الحَجّ',
+        surahNameAl: 'El-Haxh',
+        arabic:
+          'ثُمَّ لْيَقْضُوا تَفَثَهُمْ وَلْيُوفُوا نُذُورَهُمْ وَلْيَطَّوَّفُوا بِالْبَيْتِ الْعَتِيقِ',
+        albanian:
+          'Pastaj le ta kryejnë pastrimin, le ta plotësojnë zotimin dhe le të bëjnë tavaf rreth Shtëpisë së Lashtë.',
+        knownWords: [
+          { surface: 'وَلْيَطَّوَّفُوا', gloss: 'le të bëjnë tavaf (← rrënja ط-و-ف si طَوَاف)' },
+          { surface: 'بِالْبَيْتِ', gloss: 'rreth Shtëpisë (Qabes)' },
+        ],
+      },
+      {
+        // El-Haxh 22:27 — thirrja e Ibrahimit (a.s.) për Haxh.
+        // يَأْتُوكَ (do të vijnë/arrijnë tek ti) lidhet me وَصَلَ
+        // (v13-24 "arriti"). Pelegrinët që vijnë nga çdo anë e tokës —
+        // paraqitje e drejtpërdrejtë e konceptit të udhëtimit në Umre.
+        reference: '22:27',
+        surahNameAr: 'الحَجّ',
+        surahNameAl: 'El-Haxh',
+        arabic:
+          'وَأَذِّن فِي النَّاسِ بِالْحَجِّ يَأْتُوكَ رِجَالًا وَعَلَىٰ كُلِّ ضَامِرٍ يَأْتِينَ مِن كُلِّ فَجٍّ عَمِيقٍ',
+        albanian:
+          'Dhe thirri njerëzit për Haxh — do të vijnë tek ti në këmbë dhe mbi çdo deve të hollë, nga çdo shteg i largët.',
+        knownWords: [
+          { surface: 'يَأْتُوكَ', gloss: 'do të vijnë tek ti (kuptim i afërt me وَصَلَ v13-24)' },
         ],
       },
     ],
@@ -4819,8 +5739,57 @@ export const CHAPTERS: Chapter[] = [
         albanian:
           'E kush e bashkon Umren me Haxhin, le të therë ç\'të mundë nga kurbani.',
         knownWords: [
-          { surface: 'بِالْعُمْرَةِ', gloss: 'me Umren (nga عُمْرَة, Kap. 13)' },
-          { surface: 'الْهَدْيِ', gloss: 'kurbani i Haxhit (nga هَدْي)' },
+          { surface: 'بِالْعُمْرَةِ', gloss: 'me Umren (← عُمْرَة, Kap. 13)' },
+          { surface: 'الْهَدْيِ', gloss: 'kurbani i Haxhit (← هَدْي, v14-16)' },
+        ],
+      },
+      {
+        // El-Fet·h 48:27 — ëndrra e Profetit ﷺ për hyrje në
+        // Mesxhidul-Haram. Vargu prek v14-30 (حَلَقَ → مُحَلِّقِينَ)
+        // dhe v14-18 (رَأْس → رُءُوسَكُمْ) në të njëjtën frazë.
+        reference: '48:27',
+        surahNameAr: 'الفَتْح',
+        surahNameAl: 'El-Fet·h',
+        arabic:
+          'لَتَدْخُلُنَّ الْمَسْجِدَ الْحَرَامَ إِن شَاءَ اللَّهُ آمِنِينَ مُحَلِّقِينَ رُءُوسَكُمْ وَمُقَصِّرِينَ',
+        albanian:
+          'Me siguri do të hyni në Mesxhidul-Haram, në dashtë Allahu, të sigurt, me koka të rruajtura dhe të shkurtuara.',
+        knownWords: [
+          { surface: 'مُحَلِّقِينَ', gloss: 'që rruajnë kokat (← حَلَقَ, v14-30)' },
+          { surface: 'رُءُوسَكُمْ', gloss: 'kokat tuaja (shumësi i رَأْس, v14-18)' },
+        ],
+      },
+      {
+        // El-Bekare 2:158 — baza kuranore e Sa'j-it. Një varg prek
+        // TRE hyrje: rrënjën ح-ج-ج (v14-1), foljen اِعْتَمَرَ (v14-31)
+        // dhe rrënjën ط-و-ف nga طَافَ (v14-26).
+        reference: '2:158',
+        surahNameAr: 'البَقَرَة',
+        surahNameAl: 'El-Bekare',
+        arabic:
+          'إِنَّ الصَّفَا وَالْمَرْوَةَ مِن شَعَائِرِ اللَّهِ فَمَنْ حَجَّ الْبَيْتَ أَوِ اعْتَمَرَ فَلَا جُنَاحَ عَلَيْهِ أَن يَطَّوَّفَ بِهِمَا',
+        albanian:
+          'Vërtet, Safa dhe Merva janë prej shenjave të Allahut. Kush e bën Haxhin apo Umren, nuk ka gjynah mbi të nëse bën tavaf mes tyre.',
+        knownWords: [
+          { surface: 'حَجَّ', gloss: 'bëri Haxh (← rrënja ح-ج-ج, v14-1)' },
+          { surface: 'اعْتَمَرَ', gloss: 'bëri Umre (← اِعْتَمَرَ, v14-31)' },
+          { surface: 'يَطَّوَّفَ', gloss: 'të bëjë tavaf (← طَافَ, v14-26)' },
+        ],
+      },
+      {
+        // Es-Saf·fat 37:107 — shpengimi i Ismailit me "një kurban
+        // të madh". ذِبْح lidhet me v14-15 (ذَبْح) dhe v14-29 (ذَبَحَ)
+        // — origjina e Kurban Bajramit.
+        reference: '37:107',
+        surahNameAr: 'الصَّافَّات',
+        surahNameAl: 'Es-Saf·fat',
+        arabic: 'وَفَدَيْنَاهُ بِذِبْحٍ عَظِيمٍ',
+        albanian: 'Dhe Ne e shpenguam atë me një kurban të madh.',
+        knownWords: [
+          {
+            surface: 'بِذِبْحٍ',
+            gloss: 'me kurban (← ذَبْح, v14-15 / ذَبَحَ, v14-29)',
+          },
         ],
       },
     ],
@@ -5070,24 +6039,38 @@ export const CHAPTERS: Chapter[] = [
     ],
     ayat: [
       {
-        // Esh-Shuara 26:80 — nga duatë e Ibrahimit (a.s.): "E kur jam
-        // i sëmurë, Ai më shëron". Fjalë nga Kap. 1 (هُوَ) bashkohet
-        // me konceptin kryesor të Kapitullit 15 — sëmundja dhe shërimi.
-        // Një ajet që çdo besimtar e reciton në raste dobësie trupore.
+        // Esh-Shuara 26:80 — duaja e Ibrahimit (a.s.): "E kur sëmurem,
+        // Ai më shëron". Prek drejt v15-30 (شَفَى → يَشْفِينِ), foljen
+        // qendrore të kapitullit. مَرِضْتُ lidh vargun me temën e
+        // sëmundjes që Musa përjeton te mjeku.
         reference: '26:80',
         surahNameAr: 'الشُّعَرَاء',
         surahNameAl: 'Esh-Shuara',
         arabic: 'وَإِذَا مَرِضْتُ فَهُوَ يَشْفِينِ',
         albanian: 'E kur sëmurem, Ai (Allahu) më shëron.',
         knownWords: [
-          { surface: 'فَهُوَ', gloss: 'atëherë Ai (nga هُوَ)' },
+          { surface: 'مَرِضْتُ', gloss: 'u sëmura (tema e sëmundjes)' },
+          { surface: 'يَشْفِينِ', gloss: 'më shëron (← شَفَى, v15-30)' },
+        ],
+      },
+      {
+        // Esh-Sherh 94:1 — "A nuk ta hapëm gjoksin tënd?" Godet
+        // drejtpërdrejt v15-10 (صَدْر → صَدْرَكَ). Një surah që çdo
+        // besimtar e reciton — ku organi "gjoks" bëhet simbol i
+        // qetësisë së brendshme.
+        reference: '94:1',
+        surahNameAr: 'الشَّرْح',
+        surahNameAl: 'Esh-Sherh',
+        arabic: 'أَلَمْ نَشْرَحْ لَكَ صَدْرَكَ',
+        albanian: 'A nuk ta hapëm Ne gjoksin tënd?',
+        knownWords: [
+          { surface: 'صَدْرَكَ', gloss: 'gjoksin tënd (← صَدْر, v15-10)' },
         ],
       },
       {
         // Err-Ra‘d 13:28 — qetësia e zemrave me përmendjen e Allahut.
-        // قُلُوبُهُم dhe الْقُلُوبُ janë shumës i قَلْب (Kap. 15). Zemra
-        // si organ dhe zemra si vendi i qetësisë shpirtërore bashkohen
-        // në këtë varg.
+        // قُلُوبُهُم dhe الْقُلُوبُ janë shumësi i v15-11 (قَلْب). Zemra
+        // si organ dhe zemra si vendi i qetësisë bashkohen në një varg.
         reference: '13:28',
         surahNameAr: 'الرَّعْد',
         surahNameAl: 'Err-Ra‘d',
@@ -5096,82 +6079,87 @@ export const CHAPTERS: Chapter[] = [
         albanian:
           'Ata që besuan dhe zemrat e tyre qetësohen me përmendjen e Allahut — vërtet, me përmendjen e Allahut qetësohen zemrat.',
         knownWords: [
-          { surface: 'قُلُوبُهُم', gloss: 'zemrat e tyre (shumësi i قَلْب)' },
-          { surface: 'الْقُلُوبُ', gloss: 'zemrat (shumësi i قَلْب)' },
+          { surface: 'قُلُوبُهُم', gloss: 'zemrat e tyre (shumësi i قَلْب, v15-11)' },
+          { surface: 'الْقُلُوبُ', gloss: 'zemrat (shumësi i قَلْب, v15-11)' },
         ],
       },
       {
-        // En-Nahl 16:69 — bleta dhe mjalti: "del nga barku i tyre
-        // pije me ngjyra të ndryshme, në të ka shërim për njerëzit".
-        // شَرَاب (Kap. 5) puqet me konceptin e shërimit — ushqimi dhe
-        // shëndeti lidhen së bashku në mrekullinë e bletës.
+        // Et-Teube 9:14 — "…dhe do t'ua shërojë gjokset e një populli
+        // besimtar". Një varg i vetëm godet DY hyrje njëherësh:
+        // v15-30 (شَفَى → يَشْفِ) dhe shumësin e v15-10 (صَدْر →
+        // صُدُورَ).
+        reference: '9:14',
+        surahNameAr: 'التَّوْبَة',
+        surahNameAl: 'Et-Teube',
+        arabic: 'وَيَشْفِ صُدُورَ قَوْمٍ مُّؤْمِنِينَ',
+        albanian:
+          'Dhe (Allahu) do t\'ua shërojë gjokset e një populli besimtar.',
+        knownWords: [
+          { surface: 'وَيَشْفِ', gloss: 'dhe do të shërojë (← شَفَى, v15-30)' },
+          { surface: 'صُدُورَ', gloss: 'gjokset (shumësi i صَدْر, v15-10)' },
+        ],
+      },
+      {
+        // En-Nahl 16:69 — bleta dhe mjalti: "në të ka shërim për
+        // njerëzit". شِفَاء është masdar i v15-30 (شَفَى) — ushqimi i
+        // përditshëm bëhet ilaç në dorën e Allahut.
         reference: '16:69',
         surahNameAr: 'النَّحْل',
         surahNameAl: 'En-Nahl',
         arabic:
-          'يَخْرُجُ مِن بُطُونِهَا شَرَابٌ مُّخْتَلِفٌ أَلْوَانُهُ فِيهِ شِفَاءٌ لِّلنَّاسِ إِنَّ فِي ذَٰلِكَ لَآيَةً لِّقَوْمٍ يَتَفَكَّرُونَ',
+          'يَخْرُجُ مِن بُطُونِهَا شَرَابٌ مُّخْتَلِفٌ أَلْوَانُهُ فِيهِ شِفَاءٌ لِّلنَّاسِ',
         albanian:
-          'Nga barku i tyre (bletëve) del një pije me ngjyra të ndryshme, në të cilën ka shërim për njerëzit. Vërtet në këtë ka shenjë për njerëz që mendojnë.',
+          'Nga barku i tyre (bletëve) del një pije me ngjyra të ndryshme, në të cilën ka shërim për njerëzit.',
         knownWords: [
-          { surface: 'شَرَابٌ', gloss: 'pije (nga شَرَاب)' },
-          {
-            surface: 'شِفَاءٌ',
-            gloss: 'shërim (fjalë kryesore e shëndetit)',
-          },
+          { surface: 'شَرَابٌ', gloss: 'pije (← شَرَاب, Kap. 5)' },
+          { surface: 'شِفَاءٌ', gloss: 'shërim (← شَفَى, v15-30)' },
         ],
       },
       {
-        // El-Beled 90:8-9 — mrekullitë e vogla të trupit të njeriut që
-        // janë pjesë e dhuratave të Allahut: "A nuk i bëmë Ne atij dy
-        // sy, dhe një gjuhë e dy buzë?". عَيْنَيْنِ (dy sytë, dyfishi i
-        // عَيْن — v15) dhe شَفَتَيْنِ (dy buzët, dyfishi i شَفَة — v15)
-        // lidhen me fjalorin e organeve të trupit.
-        reference: '90:8',
-        surahNameAr: 'البَلَد',
-        surahNameAl: 'El-Beled',
-        arabic: 'أَلَمْ نَجْعَل لَّهُ عَيْنَيْنِ ۝ وَلِسَانًا وَشَفَتَيْنِ',
-        albanian:
-          'A nuk i bëmë Ne atij dy sy, dhe një gjuhë dhe dy buzë?',
-        knownWords: [
-          {
-            surface: 'عَيْنَيْنِ',
-            gloss: 'dy sy (dyfishi i عَيْن)',
-          },
-          {
-            surface: 'وَشَفَتَيْنِ',
-            gloss: 'dhe dy buzë (dyfishi i شَفَة)',
-          },
-        ],
-      },
-      {
-        // El-Maide 5:6 — ajeti i abdesit: fytyrat, duart, kokat, këmbët.
-        // Katër organe të trupit në një varg — direkt fjalori i
-        // kapitullit 15: وَجْه, يَد, رَأْس, رِجْل. Shëndeti dhe namazi
-        // takohen: pastrimi i trupit si përgatitje për takimin me Zotin.
-        reference: '5:6',
-        surahNameAr: 'المَائِدَة',
-        surahNameAl: 'El-Maide',
+        // El-Israa 17:82 — "Ne shpallim nga Kurani atë që është
+        // shërim dhe mëshirë për besimtarët". Përsëri شِفَاء (←
+        // v15-30) — Kurani vetë si ilaç.
+        reference: '17:82',
+        surahNameAr: 'الإِسْرَاء',
+        surahNameAl: 'El-Israa',
         arabic:
-          'فَاغْسِلُوا وُجُوهَكُمْ وَأَيْدِيَكُمْ إِلَى الْمَرَافِقِ وَامْسَحُوا بِرُءُوسِكُمْ وَأَرْجُلَكُمْ إِلَى الْكَعْبَيْنِ',
+          'وَنُنَزِّلُ مِنَ الْقُرْآنِ مَا هُوَ شِفَاءٌ وَرَحْمَةٌ لِّلْمُؤْمِنِينَ',
         albanian:
-          'Lani fytyrat tuaja dhe duart tuaja deri te bërrylat, fshini kokat tuaja dhe lani këmbët tuaja deri te nyjet.',
+          'Ne shpallim nga Kurani atë që është shërim dhe mëshirë për besimtarët.',
         knownWords: [
-          {
-            surface: 'وُجُوهَكُمْ',
-            gloss: 'fytyrat tuaja (shumësi i وَجْه)',
-          },
-          {
-            surface: 'وَأَيْدِيَكُمْ',
-            gloss: 'dhe duart tuaja (shumësi i يَد)',
-          },
-          {
-            surface: 'بِرُءُوسِكُمْ',
-            gloss: 'kokat tuaja (shumësi i رَأْس)',
-          },
-          {
-            surface: 'وَأَرْجُلَكُمْ',
-            gloss: 'dhe këmbët tuaja (shumësi i رِجْل)',
-          },
+          { surface: 'شِفَاءٌ', gloss: 'shërim (← شَفَى, v15-30)' },
+        ],
+      },
+      {
+        // Junus 10:57 — Kurani si "shërim për atë që është në
+        // gjokse". Ajet i dyfishtë: شِفَاء (← v15-30) dhe الصُّدُور
+        // (shumësi i v15-10 صَدْر).
+        reference: '10:57',
+        surahNameAr: 'يُونُس',
+        surahNameAl: 'Junus',
+        arabic:
+          'قَدْ جَاءَتْكُم مَّوْعِظَةٌ مِّن رَّبِّكُمْ وَشِفَاءٌ لِّمَا فِي الصُّدُورِ',
+        albanian:
+          'Tashmë ju ka ardhur një këshillë nga Zoti juaj dhe shërim për atë që është në gjokse.',
+        knownWords: [
+          { surface: 'وَشِفَاءٌ', gloss: 'dhe shërim (← شَفَى, v15-30)' },
+          { surface: 'الصُّدُورِ', gloss: 'gjokseve (shumësi i صَدْر, v15-10)' },
+        ],
+      },
+      {
+        // El-Enbija 21:83 — lutja e Ejjubit (a.s.): "Më ka prekur
+        // dëmi, e Ti je më Mëshiruesi i mëshiruesve". Vargu-ikonë
+        // i durimit ndaj sëmundjes. ضُرّ = dëmi/dhimbja, shtylla
+        // kuptimore e v15-8 (أَلَم).
+        reference: '21:83',
+        surahNameAr: 'الأَنْبِيَاء',
+        surahNameAl: 'El-Enbija',
+        arabic:
+          'وَأَيُّوبَ إِذْ نَادَىٰ رَبَّهُ أَنِّي مَسَّنِيَ الضُّرُّ وَأَنتَ أَرْحَمُ الرَّاحِمِينَ',
+        albanian:
+          'Dhe Ejjubin, kur iu lut Zotit të tij: "Më ka prekur dëmi (sëmundja), e Ti je më Mëshiruesi i mëshiruesve".',
+        knownWords: [
+          { surface: 'الضُّرُّ', gloss: 'dëmi/sëmundja (në temën e أَلَم, v15-8)' },
         ],
       },
     ],
@@ -5517,8 +6505,58 @@ export const CHAPTERS: Chapter[] = [
         knownWords: [
           {
             surface: 'وَأَنْهَارًا',
-            gloss: 'dhe lumenj (shumësi i نَهْر, si نَهْرُ النِّيل)',
+            gloss: 'dhe lumenj (shumësi i نَهْر, ← نَهْرُ النِّيل, v16-26)',
           },
+        ],
+      },
+      {
+        // El-Bekare 2:185 — ajeti themelor i Ramazanit: "Muaji i
+        // Ramazanit, në të cilin u shpall Kurani". Prek DY hyrje
+        // kryesore të kapitullit: شَهْر (nga v16-1..22 / muajt) dhe
+        // رَمَضَان (v16-19, muaji më i madh i kalendarit).
+        reference: '2:185',
+        surahNameAr: 'البَقَرَة',
+        surahNameAl: 'El-Bekare',
+        arabic:
+          'شَهْرُ رَمَضَانَ الَّذِي أُنزِلَ فِيهِ الْقُرْآنُ هُدًى لِّلنَّاسِ',
+        albanian:
+          'Muaji i Ramazanit, në të cilin u shpall Kurani, udhëzim për njerëzit.',
+        knownWords: [
+          { surface: 'شَهْرُ', gloss: 'muaji (← شَهْر, i gjithë kalendari)' },
+          { surface: 'رَمَضَانَ', gloss: 'Ramazan (← رَمَضَان, v16-19)' },
+        ],
+      },
+      {
+        // El-Bekare 2:183 — "Ju është urdhëruar agjërimi…" Ajet
+        // qendror për muajin e Ramazanit. الصِّيَام është masdar i
+        // rrënjës ص-و-م, e njëjta me foljen صَامَ (Kap. 14, v14-34)
+        // — agjërimi i Ramazanit, ritmi shpirtëror i kalendarit.
+        reference: '2:183',
+        surahNameAr: 'البَقَرَة',
+        surahNameAl: 'El-Bekare',
+        arabic:
+          'يَا أَيُّهَا الَّذِينَ آمَنُوا كُتِبَ عَلَيْكُمُ الصِّيَامُ كَمَا كُتِبَ عَلَى الَّذِينَ مِن قَبْلِكُمْ لَعَلَّكُمْ تَتَّقُونَ',
+        albanian:
+          'O ju që besuat! Ju është urdhëruar agjërimi, siç u ishte urdhëruar edhe atyre para jush, që të ruheni.',
+        knownWords: [
+          { surface: 'الصِّيَامُ', gloss: 'agjërimi (← صَامَ, v14-34; muaji i Ramazanit)' },
+        ],
+      },
+      {
+        // El-Bekare 2:189 — "Të pyesin për hënat e reja. Thuaj: ato
+        // janë matës kohe për njerëzit dhe për Haxhin". Godet drejt
+        // v16-9 (حَجّ) dhe lidh hënat e reja (çka dallon fillimet e
+        // muajve) me kalendarin islam e me عِيد.
+        reference: '2:189',
+        surahNameAr: 'البَقَرَة',
+        surahNameAl: 'El-Bekare',
+        arabic:
+          'يَسْأَلُونَكَ عَنِ الْأَهِلَّةِ قُلْ هِيَ مَوَاقِيتُ لِلنَّاسِ وَالْحَجِّ',
+        albanian:
+          'Të pyesin për hënat e reja. Thuaj: ato janë matës kohe për njerëzit dhe për Haxhin.',
+        knownWords: [
+          { surface: 'مَوَاقِيتُ', gloss: 'matës kohe (themeli i kalendarit)' },
+          { surface: 'وَالْحَجِّ', gloss: 'dhe Haxhit (← حَجّ, v16-9)' },
         ],
       },
     ],
