@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Mic, MicOff, RotateCcw, CheckCircle2, XCircle } from 'lucide-react';
 import { computeDiff, DiffResult } from '@/lib/pronunciationDiff';
 import { track } from '@/lib/analytics';
+import { playPass, playFail } from '@/lib/sfx';
 
 // Reusable "say this phrase in Arabic and I'll tell you where you
 // stumbled" widget. Used under dialogue lines and story sentences.
@@ -108,12 +109,14 @@ export function PronunciationCheck({
     const bucket = Math.round(result.accuracy * 10) * 10;
     if (!passedRef.current && result.accuracy >= passThreshold) {
       passedRef.current = true;
+      playPass();
       track({
         name: 'pronunciation_passed',
         props: { accuracy: bucket, context: resultLabel },
       });
       onPass?.();
     } else if (result.accuracy < passThreshold) {
+      playFail();
       track({
         name: 'pronunciation_failed',
         props: { accuracy: bucket, context: resultLabel },

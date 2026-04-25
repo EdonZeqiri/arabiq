@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import type { Exercise } from '@/data/curriculum';
 import { track } from '@/lib/analytics';
+import { playPass, playFail } from '@/lib/sfx';
 
 // Strip Arabic diacritics so a student who types without harakat
 // still gets credit — the rule being drilled is morphology, not
@@ -132,6 +133,7 @@ export function TransformExercise({
     if (!candidate.trim()) return;
     if (normalize(candidate) === normalize(exercise.answer)) {
       setStatus('correct');
+      playPass();
       track({
         name: 'exercise_correct',
         props: { chapter: 0, exercise: exercise.id },
@@ -147,6 +149,7 @@ export function TransformExercise({
       onCorrect?.(exercise.id);
     } else {
       setStatus('wrong');
+      playFail();
     }
   };
 

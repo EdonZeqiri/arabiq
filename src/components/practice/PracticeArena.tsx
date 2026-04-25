@@ -1,32 +1,45 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
-  BookA,
+  ArrowLeft,
   BookOpen,
-  ChevronDown,
   ChevronLeft,
   ChevronRight,
+  Info,
   MessageCircle,
   PencilLine,
   Sparkles,
-  Target,
 } from 'lucide-react';
 import { getChapter } from '@/data/curriculum';
 import { useStore } from '@/store/useStore';
 import { track } from '@/lib/analytics';
 import { Flashcard } from './Flashcard';
 import { StoryCard } from './StoryCard';
-import { ChapterVocabulary } from './ChapterVocabulary';
 import { TransformExercise } from './TransformExercise';
-import { GrammarBullet } from './GrammarBullet';
 import { AyatSection } from './AyatSection';
+import { ActivityCard } from './ActivityCard';
 
-type SectionKey =
-  | 'goals'
-  | 'vocab'
-  | 'dialogues'
-  | 'exercises'
-  | 'stories'
-  | 'ayat';
+// The chapter view is now a two-state surface:
+//
+//   1. Hub view — a goals strip + 2x2 grid of "activity cards"
+//      (Dialogues / Exercises / Stories / Ayat). Vocabulary lives in
+//      the right-rail panel and is NOT a card here, by design: the
+//      learner sees vocab as a permanent surface, not an activity to
+//      "complete".
+//
+//   2. Activity view — once a card is tapped, the chosen activity
+//      takes over the canvas with a back link to return to the hub.
+//      The four activity components were already battle-tested under
+//      the previous accordion layout, so we keep them as-is and just
+//      change the framing.
+//
+// This replaces the earlier 6-accordion / 6-tab layouts. The deep
+// problem with both was that the chapter view was a *catalog* — a
+// list of "things you could do". The hub layout makes it a *menu*
+// with one clear next step (the recommended card carries a "Fillo
+// këtu" badge), and the focused activity view eliminates the visual
+// clutter of competing surfaces.
+
+type Activity = 'dialogues' | 'exercises' | 'stories' | 'ayat';
 
 export function PracticeArena() {
   const currentChapterId = useStore((s) => s.currentChapterId);
@@ -40,55 +53,57 @@ export function PracticeArena() {
   const chapter = getChapter(currentChapterId);
   const dialogues = useMemo(() => chapter?.dialogues ?? [], [chapter]);
   const stories = useMemo(() => chapter?.stories ?? [], [chapter]);
-  const vocabulary = useMemo(() => chapter?.vocabulary ?? [], [chapter]);
   const exercises = useMemo(() => chapter?.exercises ?? [], [chapter]);
   const ayat = useMemo(() => chapter?.ayat ?? [], [chapter]);
 
+  const [active, setActive] = useState<Activity | null>(null);
   const [index, setIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
   const [sessionStarted, setSessionStarted] = useState(false);
   const [exerciseIndex, setExerciseIndex] = useState(0);
+  const [storyIndex, setStoryIndex] = useState(0);
 
-  // Accordion state — goals is collapsed by default (reference info),
-  // while vocab and dialogues are open so the reader lands straight on
-  // the work. Stories also expand so they are visible after scrolling.
-  // Every accordion is collapsed by default — the reader opens the
-  // section they want to work on. Keeps the page short and scannable
-  // on first landing, especially on mobile.
-  const [sections, setSections] = useState<Record<SectionKey, boolean>>({
-    goals: false,
-    vocab: false,
-    dialogues: false,
-    exercises: false,
-    stories: false,
-    ayat: false,
-  });
-  const toggle = (key: SectionKey) =>
-    setSections((s) => {
-      const next = !s[key];
-      // Only fire on open — a close is the inverse of an open we
-      // already tracked, so counting it would double-report engagement.
-      if (next) track({ name: 'section_expanded', props: { section: key, chapter: currentChapterId } });
-      return { ...s, [key]: next };
-    });
-
-  // Reset whenever the chapter changes. Also ping analytics so we can
-  // see which chapters get the most engagement in aggregate.
+  // Reset when the chapter changes — drop back to the hub and clear
+  // any per-activity state. We track the chapter view (not the
+  // activity entries) so the dashboard reflects "chapters visited".
   useEffect(() => {
     track({ name: 'chapter_opened', props: { chapter: currentChapterId } });
+    setActive(null);
     setIndex(0);
     setRevealed(false);
     setSessionStarted(false);
     setExerciseIndex(0);
-    setSections({
-      goals: false,
-      vocab: false,
-      dialogues: false,
-      exercises: false,
-      stories: false,
-      ayat: false,
-    });
+    setStoryIndex(0);
   }, [currentChapterId]);
+
+  const dialoguesDone = useMemo(
+    () => dialogues.filter((d) => completedDialogues.includes(d.id)).length,
+    [dialogues, completedDialogues],
+  );
+  const exercisesDone = useMemo(
+    () => exercises.filter((e) => completedExercises.includes(e.id)).length,
+    [exercises, completedExercises],
+  );
+
+  // Recommended next activity — the first one that still has work.
+  // Stories and ayat have no completion model yet, so they get the
+  // "recommended" badge once the trackable activities are done.
+  const recommended = useMemo<Activity | null>(() => {
+    if (dialogues.length > 0 && dialoguesDone < dialogues.length)
+      return 'dialogues';
+    if (exercises.length > 0 && exercisesDone < exercises.length)
+      return 'exercises';
+    if (stories.length > 0) return 'stories';
+    if (ayat.length > 0) return 'ayat';
+    return null;
+  }, [
+    dialogues.length,
+    dialoguesDone,
+    exercises.length,
+    exercisesDone,
+    stories.length,
+    ayat.length,
+  ]);
 
   if (!chapter) {
     return (
@@ -98,380 +113,527 @@ export function PracticeArena() {
     );
   }
 
-  const current = dialogues[index];
-  const isLast = index === dialogues.length - 1;
-
-  const goNext = () => {
-    setRevealed(false);
-    setIndex((i) => (i + 1 < dialogues.length ? i + 1 : 0));
-  };
-
-  const goPrev = () => {
-    setRevealed(false);
-    setIndex((i) => (i - 1 >= 0 ? i - 1 : dialogues.length - 1));
-  };
-
-  const handleKnown = () => {
-    markDialogueMastered(current.id);
+  const enter = (a: Activity) => {
+    setActive(a);
     track({
-      name: 'dialogue_mastered',
-      props: { chapter: currentChapterId, dialogue: current.id },
+      name: 'section_expanded',
+      props: { section: a, chapter: currentChapterId },
     });
-    if (!sessionStarted) {
-      recordSession();
-      setSessionStarted(true);
-    }
-    goNext();
   };
 
-  const handleRetry = () => {
-    if (!sessionStarted) {
-      recordSession();
-      setSessionStarted(true);
-    }
-    goNext();
-  };
+  const leave = () => setActive(null);
 
-  return (
-    <div className="max-w-3xl mx-auto space-y-5">
-      {/* ── Chapter header ───────────────────────────────────────── */}
-      <div className="min-w-0">
-        <div className="text-xs uppercase tracking-wide text-brand-600 font-semibold">
-          Kapitulli {chapter.id}
-        </div>
-        <h1
-          dir="rtl"
-          className="font-amiri text-2xl sm:text-3xl md:text-4xl text-slate-900 leading-tight break-words"
+  // ── Activity view ─────────────────────────────────────────────────
+  if (active) {
+    return (
+      <div className="max-w-3xl mx-auto">
+        <ActivityHeader
+          chapterId={chapter.id}
+          chapterTitleAl={chapter.titleAl}
+          activeLabel={LABEL[active]}
+          onBack={leave}
+        />
+
+        <div
+          key={active}
+          className="card p-5 animate-[fadeIn_180ms_ease-out] motion-reduce:animate-none"
         >
-          {chapter.titleAr}
-        </h1>
-        <div className="text-sm text-slate-500 break-words">
-          {chapter.titleAl}
-        </div>
-      </div>
-
-      {/* ── Section 1: Learning goals ────────────────────────────── */}
-      <AccordionCard
-        open={sections.goals}
-        onToggle={() => toggle('goals')}
-        accent="brand"
-        icon={<Target size={16} className="text-brand-600" />}
-        title="Çfarë do të mësojmë në këtë kapitull"
-        meta={
-          <span className="hidden sm:inline text-[11px] text-slate-500">
-            Objektiva & përmbajtje
-          </span>
-        }
-      >
-        <div className="p-5 grid gap-4 sm:grid-cols-2">
-          <div>
-            <div className="text-xs uppercase tracking-wide text-slate-400 font-semibold mb-2">
-              Pika gramatikore
-            </div>
-            <ul className="space-y-2">
-              {chapter.grammarFocus.map((g) => (
-                <GrammarBullet key={g} text={g} />
-              ))}
-            </ul>
-          </div>
-          <div>
-            <div className="text-xs uppercase tracking-wide text-slate-400 font-semibold mb-2">
-              Përmbajtja
-            </div>
-            <div className="flex flex-wrap gap-2">
-              <span className="pill border border-slate-200 bg-slate-50 text-slate-600">
-                {dialogues.length} dialogje
-              </span>
-              {stories.length > 0 && (
-                <span className="pill border border-amber-200 bg-amber-50 text-amber-700">
-                  {stories.length}{' '}
-                  {stories.length === 1 ? 'tregim' : 'tregime'}
-                </span>
-              )}
-              <span className="pill border border-blue-200 bg-blue-50 text-blue-700">
-                {vocabulary.length} fjalë
-              </span>
-              {exercises.length > 0 && (
-                <span className="pill border border-indigo-200 bg-indigo-50 text-indigo-700">
-                  {exercises.length} ushtrime
-                </span>
-              )}
-            </div>
-          </div>
-        </div>
-      </AccordionCard>
-
-      {/* ── Section 2: Vocabulary ────────────────────────────────── */}
-      <AccordionCard
-        open={sections.vocab}
-        onToggle={() => toggle('vocab')}
-        accent="blue"
-        icon={<BookA size={16} className="text-blue-600" />}
-        title="Fjalori i kapitullit"
-        meta={
-          <span className="pill bg-blue-100 text-blue-700 border border-blue-200">
-            {vocabulary.length}
-          </span>
-        }
-      >
-        <ChapterVocabulary words={vocabulary} />
-      </AccordionCard>
-
-      {/* ── Section 3: Dialogues (flashcards) ────────────────────── */}
-      <AccordionCard
-        open={sections.dialogues}
-        onToggle={() => toggle('dialogues')}
-        accent="emerald"
-        icon={<MessageCircle size={16} className="text-emerald-600" />}
-        title="Dialogjet"
-        meta={
-          <span className="pill bg-emerald-100 text-emerald-700 border border-emerald-200">
-            {index + 1}/{dialogues.length}
-          </span>
-        }
-      >
-        <div className="p-5 space-y-4">
-          {current && (
-            <Flashcard
-              dialogue={current}
-              revealed={revealed}
-              onReveal={() => setRevealed(true)}
-              onHide={() => setRevealed(false)}
-              onKnown={handleKnown}
-              onRetry={handleRetry}
+          {active === 'dialogues' && dialogues.length > 0 && (
+            <DialoguesView
+              dialogues={dialogues}
               index={index}
-              total={dialogues.length}
+              setIndex={setIndex}
+              revealed={revealed}
+              setRevealed={setRevealed}
+              onKnown={() => {
+                const current = dialogues[index];
+                markDialogueMastered(current.id);
+                track({
+                  name: 'dialogue_mastered',
+                  props: { chapter: currentChapterId, dialogue: current.id },
+                });
+                if (!sessionStarted) {
+                  recordSession();
+                  setSessionStarted(true);
+                }
+                setRevealed(false);
+                setIndex((i) => (i + 1 < dialogues.length ? i + 1 : 0));
+              }}
+              onRetry={() => {
+                if (!sessionStarted) {
+                  recordSession();
+                  setSessionStarted(true);
+                }
+                setRevealed(false);
+                setIndex((i) => (i + 1 < dialogues.length ? i + 1 : 0));
+              }}
+              completedDialogues={completedDialogues}
             />
           )}
 
-          {/* Manual nav */}
-          <div className="flex items-center justify-between">
-            <button onClick={goPrev} className="btn-outline">
-              <ChevronLeft size={16} /> Para
-            </button>
-            <div className="flex items-center gap-1">
-              {dialogues.map((d, i) => {
-                const done = completedDialogues.includes(d.id);
-                const active = i === index;
-                // Green takes priority over brand when a dialogue is
-                // already marked mastered, so progress stays visible
-                // even after the reader moves on.
-                const cls = active
-                  ? done
-                    ? 'bg-emerald-500 w-6'
-                    : 'bg-brand-600 w-6'
-                  : done
-                    ? 'bg-emerald-500 w-2 hover:bg-emerald-600'
-                    : 'bg-slate-300 w-2 hover:bg-slate-400';
-                return (
-                  <button
-                    key={d.id}
-                    onClick={() => {
-                      setIndex(i);
-                      setRevealed(false);
-                    }}
-                    className={`h-2 rounded-full transition-all ${cls}`}
-                    aria-label={`Dialogu ${i + 1}${done ? ' — i mësuar' : ''}`}
-                    title={done ? 'I mësuar' : undefined}
-                  />
-                );
-              })}
-            </div>
-            {/* Forward nav is gated on mastering the current dialogue —
-                either via a voice-check pass in this session, or from
-                a previous session already in `completedDialogues`.
-                This makes the voice drill the only valid exit, which
-                is what we want now that "E dita" has been retired.
-                "← Para" remains free so the reader can always review. */}
-            <button
-              onClick={goNext}
-              className="btn-outline"
-            >
-              {isLast ? 'Nga fillimi' : 'Pas'} <ChevronRight size={16} />
-            </button>
-          </div>
-        </div>
-      </AccordionCard>
-
-      {/* ── Section 4: Exercises (transform drills) ──────────────── */}
-      {exercises.length > 0 && (
-        <AccordionCard
-          open={sections.exercises}
-          onToggle={() => toggle('exercises')}
-          accent="indigo"
-          icon={<PencilLine size={16} className="text-indigo-600" />}
-          title="Ushtrime të kapitullit"
-          meta={
-            <span className="pill bg-indigo-100 text-indigo-700 border border-indigo-200">
-              {exerciseIndex + 1}/{exercises.length}
-            </span>
-          }
-        >
-          <div className="p-5">
-            <TransformExercise
-              exercise={exercises[exerciseIndex]}
+          {active === 'exercises' && exercises.length > 0 && (
+            <ExercisesView
+              exercises={exercises}
               index={exerciseIndex}
-              total={exercises.length}
-              onNext={() =>
-                setExerciseIndex((i) =>
-                  i + 1 < exercises.length ? i + 1 : 0,
-                )
-              }
-              onPrev={() =>
-                setExerciseIndex((i) =>
-                  i - 1 >= 0 ? i - 1 : exercises.length - 1,
-                )
-              }
+              setIndex={setExerciseIndex}
+              completedExercises={completedExercises}
               onCorrect={markExerciseCompleted}
             />
+          )}
 
-            {/* Dots navigation — same logic as dialogues, but the
-                active-and-unsolved dot picks up the indigo accent of
-                the exercises section. */}
-            <div className="mt-5 flex items-center justify-center gap-1">
-              {exercises.map((ex, i) => {
-                const done = completedExercises.includes(ex.id);
-                const active = i === exerciseIndex;
-                const cls = active
-                  ? done
-                    ? 'bg-emerald-500 w-6'
-                    : 'bg-indigo-600 w-6'
-                  : done
-                    ? 'bg-emerald-500 w-2 hover:bg-emerald-600'
-                    : 'bg-slate-300 w-2 hover:bg-slate-400';
-                return (
-                  <button
-                    key={ex.id}
-                    onClick={() => setExerciseIndex(i)}
-                    className={`h-2 rounded-full transition-all ${cls}`}
-                    aria-label={`Ushtrimi ${i + 1}${done ? ' — i plotësuar' : ''}`}
-                    title={done ? 'I plotësuar' : undefined}
-                  />
-                );
-              })}
-            </div>
-          </div>
-        </AccordionCard>
-      )}
+          {active === 'stories' && stories.length > 0 && (
+            <StoriesView
+              stories={stories}
+              index={storyIndex}
+              setIndex={setStoryIndex}
+              showHarakat={showHarakat}
+            />
+          )}
 
-      {/* ── Section 5: Stories (long-form reading) ───────────────── */}
-      {stories.length > 0 && (
-        <AccordionCard
-          open={sections.stories}
-          onToggle={() => toggle('stories')}
-          accent="amber"
-          icon={<BookOpen size={16} className="text-amber-600" />}
-          title="Tregime të kapitullit"
-          meta={
-            <span className="pill bg-amber-100 text-amber-700 border border-amber-200">
-              {stories.length}
-            </span>
-          }
-        >
-          <div className="divide-y divide-slate-100">
-            {stories.map((story) => (
-              <StoryCard
-                key={story.id}
-                story={story}
-                showHarakat={showHarakat}
-              />
-            ))}
-          </div>
-        </AccordionCard>
-      )}
-
-      {/* ── Section 6: Qur'anic ayat reachable with this vocabulary ─
-          Placed at the end so it reads as a reward after the working
-          sections above, not as a homework item. Only rendered when
-          the chapter has curated verses — other chapters will get it
-          as the dataset grows. */}
-      {ayat.length > 0 && (
-        <AccordionCard
-          open={sections.ayat}
-          onToggle={() => toggle('ayat')}
-          accent="emerald"
-          icon={<Sparkles size={16} className="text-emerald-600" />}
-          title="Fjalët që i kupton nga ajetet e Kuranit"
-          meta={
-            <span className="pill bg-emerald-100 text-emerald-700 border border-emerald-200">
-              {ayat.length}
-            </span>
-          }
-        >
-          <div className="p-5">
+          {active === 'ayat' && ayat.length > 0 && (
             <AyatSection ayat={ayat} />
-          </div>
-        </AccordionCard>
-      )}
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  // ── Hub view (default) ────────────────────────────────────────────
+  return (
+    <div className="max-w-3xl mx-auto space-y-5">
+      {/* Chapter header — slim, no decorative panel. The dropdown in
+          the TopBar already names the chapter, so here we just echo
+          it for orientation when the user lands deep on the page.
+          Grammar focus points used to live in a banner below the
+          header; they're now tucked behind an info icon next to
+          "Kapitulli N" so the hub stays visually quiet. */}
+      {/* Chapter header: chapter chip + ornamental Arabic title.
+          The Arabic title sits on a parchment-tone slab with a thin
+          gold rule above and below — the visual cue that says "this
+          is the page of a book", not "this is a row of metadata". */}
+      <header className="min-w-0 text-center pt-2">
+        <div className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-[0.18em] text-brand-700 font-semibold bg-brand-50 border border-brand-100 rounded-full px-3 py-1 shadow-sm">
+          <Sparkles size={11} className="text-brand-500" />
+          <span>Kapitulli {chapter.id}</span>
+          {chapter.grammarFocus.length > 0 && (
+            <GrammarFocusInfo points={chapter.grammarFocus} />
+          )}
+        </div>
+        <div className="mt-3 flex items-center justify-center gap-3">
+          <span className="hidden sm:block flex-1 max-w-[80px] h-px gold-rule" />
+          <h1
+            dir="rtl"
+            className="font-amiri text-3xl sm:text-4xl text-slate-900 leading-tight break-words"
+          >
+            {chapter.titleAr}
+          </h1>
+          <span className="hidden sm:block flex-1 max-w-[80px] h-px gold-rule" />
+        </div>
+        <div className="mt-1.5 text-sm text-slate-500 break-words italic">
+          {chapter.titleAl}
+        </div>
+      </header>
+
+      {/* 2x2 activity grid — the hub. Vocabulary intentionally NOT a
+          card here: it lives in the always-visible right rail. */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+        <ActivityCard
+          accent="emerald"
+          icon={<MessageCircle size={22} />}
+          title="Dialogjet"
+          description="Fraza të zakonshme me kontroll shqiptimi."
+          progress={
+            dialogues.length > 0
+              ? `${dialoguesDone} / ${dialogues.length}`
+              : undefined
+          }
+          progressRatio={
+            dialogues.length > 0 ? dialoguesDone / dialogues.length : 0
+          }
+          done={
+            dialogues.length > 0 && dialoguesDone === dialogues.length
+          }
+          recommended={recommended === 'dialogues'}
+          disabled={dialogues.length === 0}
+          onClick={() => enter('dialogues')}
+        />
+
+        <ActivityCard
+          accent="indigo"
+          icon={<PencilLine size={22} />}
+          title="Ushtrime"
+          description="Transformime gjinie, numri dhe kohe."
+          progress={
+            exercises.length > 0
+              ? `${exercisesDone} / ${exercises.length}`
+              : 'Pa ushtrime'
+          }
+          progressRatio={
+            exercises.length > 0 ? exercisesDone / exercises.length : 0
+          }
+          done={
+            exercises.length > 0 && exercisesDone === exercises.length
+          }
+          recommended={recommended === 'exercises'}
+          disabled={exercises.length === 0}
+          onClick={() => enter('exercises')}
+        />
+
+        <ActivityCard
+          accent="amber"
+          icon={<BookOpen size={22} />}
+          title="Tregime"
+          description="Tekste të shkurtra për dëgjim dhe leximin me zë."
+          progress={
+            stories.length > 0
+              ? `${stories.length} ${stories.length === 1 ? 'tregim' : 'tregime'}`
+              : 'Pa tregime'
+          }
+          recommended={recommended === 'stories'}
+          disabled={stories.length === 0}
+          onClick={() => enter('stories')}
+        />
+
+        <ActivityCard
+          accent="emerald"
+          icon={<Sparkles size={22} />}
+          title="Ajete të Kuranit"
+          description="Vargjet ku kupton fjalët e mësuara."
+          progress={
+            ayat.length > 0
+              ? `${ayat.length} ${ayat.length === 1 ? 'ajet' : 'ajete'}`
+              : 'Pa ajete'
+          }
+          recommended={recommended === 'ayat'}
+          disabled={ayat.length === 0}
+          onClick={() => enter('ayat')}
+        />
+      </div>
+    </div>
+  );
+}
+
+// Per-activity labels used in the back-link header.
+const LABEL: Record<Activity, string> = {
+  dialogues: 'Dialogjet',
+  exercises: 'Ushtrime',
+  stories: 'Tregime',
+  ayat: 'Ajete të Kuranit',
+};
+
+// ─────────────────────────────────────────────────────────────────────
+// ActivityHeader — slim breadcrumb-style header shown above an active
+// activity. The "Kthehu" link uses the browser back-button affordance
+// learners already understand.
+// ─────────────────────────────────────────────────────────────────────
+
+function ActivityHeader({
+  chapterId,
+  chapterTitleAl,
+  activeLabel,
+  onBack,
+}: {
+  chapterId: number;
+  chapterTitleAl: string;
+  activeLabel: string;
+  onBack: () => void;
+}) {
+  return (
+    <div className="mb-4 flex items-center justify-between gap-2 min-w-0">
+      <button
+        onClick={onBack}
+        className="inline-flex items-center gap-1.5 text-sm text-slate-600 hover:text-slate-900 transition-colors"
+      >
+        <ArrowLeft size={16} />
+        <span>Kthehu te kapitulli</span>
+      </button>
+      <div className="text-[11px] text-slate-400 truncate">
+        Kap. {chapterId} · {chapterTitleAl} ·{' '}
+        <span className="text-slate-600 font-medium">{activeLabel}</span>
+      </div>
     </div>
   );
 }
 
 // ─────────────────────────────────────────────────────────────────────
-// AccordionCard — one reusable collapsible panel used for every
-// section on the page. Supports a colored accent gradient for the
-// header so each section stays visually distinct.
+// GrammarFocusInfo — tiny "ⓘ" affordance next to the chapter label
+// that opens a popover listing the chapter's grammar focus points.
+// Replaces the wider banner that used to sit under the header.
+// Behaviour: click toggles, click-outside or Escape closes, hover
+// is intentionally not used so the popover is mobile-friendly.
 // ─────────────────────────────────────────────────────────────────────
 
-const ACCENTS: Record<
-  'brand' | 'blue' | 'emerald' | 'amber' | 'indigo',
-  { from: string; hover: string }
-> = {
-  brand: { from: 'from-brand-50', hover: 'hover:from-brand-100/70' },
-  blue: { from: 'from-blue-50', hover: 'hover:from-blue-100/70' },
-  emerald: { from: 'from-emerald-50', hover: 'hover:from-emerald-100/70' },
-  amber: { from: 'from-amber-50', hover: 'hover:from-amber-100/70' },
-  indigo: { from: 'from-indigo-50', hover: 'hover:from-indigo-100/70' },
-};
+function GrammarFocusInfo({ points }: { points: string[] }) {
+  const [open, setOpen] = useState(false);
+  const wrapRef = useRef<HTMLDivElement>(null);
 
-interface AccordionCardProps {
-  open: boolean;
-  onToggle: () => void;
-  accent: keyof typeof ACCENTS;
-  icon: React.ReactNode;
-  title: string;
-  meta?: React.ReactNode;
-  children: React.ReactNode;
+  useEffect(() => {
+    if (!open) return;
+    const onClick = (e: MouseEvent) => {
+      if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false);
+    document.addEventListener('mousedown', onClick);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('mousedown', onClick);
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [open]);
+
+  return (
+    <span ref={wrapRef} className="relative inline-flex">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-label="Pikat gramatikore të kapitullit"
+        aria-expanded={open}
+        className="inline-flex items-center justify-center w-4 h-4 rounded-full text-brand-500 hover:text-brand-700 hover:bg-brand-50 transition-colors"
+      >
+        <Info size={13} />
+      </button>
+      {open && (
+        <div
+          role="dialog"
+          className="absolute left-0 top-full mt-1.5 w-[min(85vw,320px)] rounded-xl border border-brand-100 bg-white shadow-xl z-40 p-3 animate-[fadeSlideDown_180ms_ease-out] motion-reduce:animate-none normal-case tracking-normal"
+        >
+          <div className="flex items-center gap-1.5 text-xs font-semibold text-brand-700 mb-2">
+            <Sparkles size={12} />
+            <span>Pikat gramatikore të këtij kapitulli</span>
+          </div>
+          <ul className="space-y-1.5">
+            {points.map((p) => (
+              <li
+                key={p}
+                className="flex items-start gap-2 text-xs text-slate-700"
+              >
+                <span className="mt-1 inline-block w-1.5 h-1.5 rounded-full bg-brand-500 shrink-0" />
+                <span className="leading-snug">{p}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </span>
+  );
 }
 
-function AccordionCard({
-  open,
-  onToggle,
-  accent,
-  icon,
-  title,
-  meta,
-  children,
-}: AccordionCardProps) {
-  const a = ACCENTS[accent];
+// ─────────────────────────────────────────────────────────────────────
+// DialoguesView / ExercisesView — extracted so the parent component
+// stays readable. Both keep the prev/next + dot navigation patterns
+// from the previous layout because they tested well.
+// ─────────────────────────────────────────────────────────────────────
+
+interface DialoguesViewProps {
+  dialogues: import('@/data/curriculum').Dialogue[];
+  index: number;
+  setIndex: (i: number | ((prev: number) => number)) => void;
+  revealed: boolean;
+  setRevealed: (v: boolean) => void;
+  onKnown: () => void;
+  onRetry: () => void;
+  completedDialogues: string[];
+}
+
+function DialoguesView({
+  dialogues,
+  index,
+  setIndex,
+  revealed,
+  setRevealed,
+  onKnown,
+  onRetry,
+  completedDialogues,
+}: DialoguesViewProps) {
+  const current = dialogues[index];
+  const isLast = index === dialogues.length - 1;
   return (
-    <div className="card overflow-hidden">
-      <button
-        onClick={onToggle}
-        aria-expanded={open}
-        className={`w-full flex items-center justify-between gap-3 px-5 py-3 border-b border-slate-100 bg-gradient-to-r ${a.from} to-white ${a.hover} transition-colors ${open ? '' : 'border-b-transparent'}`}
-      >
-        <div className="flex items-center gap-2 text-sm font-semibold text-slate-700 min-w-0">
-          {icon}
-          <span className="truncate">{title}</span>
-          {meta}
-        </div>
-        {/* Single chevron that rotates — smoother than swapping icons */}
-        <ChevronDown
-          size={16}
-          className={`text-slate-500 shrink-0 transition-transform duration-300 ease-out ${open ? 'rotate-180' : ''}`}
+    <div className="space-y-4">
+      {current && (
+        <Flashcard
+          dialogue={current}
+          revealed={revealed}
+          onReveal={() => setRevealed(true)}
+          onHide={() => setRevealed(false)}
+          onKnown={onKnown}
+          onRetry={onRetry}
+          index={index}
+          total={dialogues.length}
         />
-      </button>
-      {/* Grid-rows height trick: animates from 0fr → 1fr so any content
-          height transitions cleanly without JS measurement. The inner
-          wrapper needs `overflow-hidden` + `min-h-0` so the clip follows
-          the animated row. */}
-      <div
-        className={`grid transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none ${
-          open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
-        }`}
-      >
-        <div className="overflow-hidden min-h-0">{children}</div>
+      )}
+
+      <div className="flex items-center justify-between">
+        <button
+          onClick={() => {
+            setRevealed(false);
+            setIndex((i) => (i - 1 >= 0 ? i - 1 : dialogues.length - 1));
+          }}
+          className="btn-outline"
+        >
+          <ChevronLeft size={16} /> Para
+        </button>
+        <div className="flex items-center gap-1">
+          {dialogues.map((d, i) => {
+            const done = completedDialogues.includes(d.id);
+            const active = i === index;
+            const cls = active
+              ? done
+                ? 'bg-emerald-500 w-6'
+                : 'bg-brand-600 w-6'
+              : done
+                ? 'bg-emerald-500 w-2 hover:bg-emerald-600'
+                : 'bg-slate-300 w-2 hover:bg-slate-400';
+            return (
+              <button
+                key={d.id}
+                onClick={() => {
+                  setIndex(i);
+                  setRevealed(false);
+                }}
+                className={`h-2 rounded-full transition-all ${cls}`}
+                aria-label={`Dialogu ${i + 1}${done ? ' — i mësuar' : ''}`}
+                title={done ? 'I mësuar' : undefined}
+              />
+            );
+          })}
+        </div>
+        <button
+          onClick={() => {
+            setRevealed(false);
+            setIndex((i) => (i + 1 < dialogues.length ? i + 1 : 0));
+          }}
+          className="btn-outline"
+        >
+          {isLast ? 'Nga fillimi' : 'Pas'} <ChevronRight size={16} />
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────
+// StoriesView — same prev/next + dot navigation as DialoguesView.
+// Stories used to render as a stacked list, but mixing 3 long
+// recordable stories on one page made the surface noisy and broke
+// consistency with the other activities. Single-card view gives the
+// learner one clear target at a time, just like the dialogue cards.
+// ─────────────────────────────────────────────────────────────────────
+
+interface StoriesViewProps {
+  stories: import('@/data/curriculum').Story[];
+  index: number;
+  setIndex: (i: number | ((prev: number) => number)) => void;
+  showHarakat: boolean;
+}
+
+function StoriesView({
+  stories,
+  index,
+  setIndex,
+  showHarakat,
+}: StoriesViewProps) {
+  const current = stories[index];
+  const isLast = index === stories.length - 1;
+  return (
+    <div className="space-y-4 -m-5">
+      <div key={current.id}>
+        <StoryCard story={current} showHarakat={showHarakat} />
+      </div>
+
+      {stories.length > 1 && (
+        <div className="flex items-center justify-between px-5 pb-5">
+          <button
+            onClick={() =>
+              setIndex((i) => (i - 1 >= 0 ? i - 1 : stories.length - 1))
+            }
+            className="btn-outline"
+          >
+            <ChevronLeft size={16} /> Para
+          </button>
+          <div className="flex items-center gap-1">
+            {stories.map((s, i) => {
+              const active = i === index;
+              const cls = active
+                ? 'bg-amber-600 w-6'
+                : 'bg-slate-300 w-2 hover:bg-slate-400';
+              return (
+                <button
+                  key={s.id}
+                  onClick={() => setIndex(i)}
+                  className={`h-2 rounded-full transition-all ${cls}`}
+                  aria-label={`Tregimi ${i + 1}: ${s.titleAl}`}
+                  title={s.titleAl}
+                />
+              );
+            })}
+          </div>
+          <button
+            onClick={() =>
+              setIndex((i) => (i + 1 < stories.length ? i + 1 : 0))
+            }
+            className="btn-outline"
+          >
+            {isLast ? 'Nga fillimi' : 'Pas'} <ChevronRight size={16} />
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+interface ExercisesViewProps {
+  exercises: import('@/data/curriculum').Exercise[];
+  index: number;
+  setIndex: (i: number | ((prev: number) => number)) => void;
+  completedExercises: string[];
+  onCorrect: (id: string) => void;
+}
+
+function ExercisesView({
+  exercises,
+  index,
+  setIndex,
+  completedExercises,
+  onCorrect,
+}: ExercisesViewProps) {
+  return (
+    <div>
+      <TransformExercise
+        exercise={exercises[index]}
+        index={index}
+        total={exercises.length}
+        onNext={() =>
+          setIndex((i) => (i + 1 < exercises.length ? i + 1 : 0))
+        }
+        onPrev={() =>
+          setIndex((i) => (i - 1 >= 0 ? i - 1 : exercises.length - 1))
+        }
+        onCorrect={onCorrect}
+      />
+
+      <div className="mt-5 flex items-center justify-center gap-1">
+        {exercises.map((ex, i) => {
+          const done = completedExercises.includes(ex.id);
+          const active = i === index;
+          const cls = active
+            ? done
+              ? 'bg-emerald-500 w-6'
+              : 'bg-indigo-600 w-6'
+            : done
+              ? 'bg-emerald-500 w-2 hover:bg-emerald-600'
+              : 'bg-slate-300 w-2 hover:bg-slate-400';
+          return (
+            <button
+              key={ex.id}
+              onClick={() => setIndex(i)}
+              className={`h-2 rounded-full transition-all ${cls}`}
+              aria-label={`Ushtrimi ${i + 1}${done ? ' — i plotësuar' : ''}`}
+              title={done ? 'I plotësuar' : undefined}
+            />
+          );
+        })}
       </div>
     </div>
   );
