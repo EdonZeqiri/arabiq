@@ -1,4 +1,13 @@
-import { AlertCircle, Eye, EyeOff, Mic, RotateCcw, Shuffle, Square, Trash2 } from 'lucide-react';
+import {
+  AlertCircle,
+  Eye,
+  EyeOff,
+  Mic,
+  RotateCcw,
+  Shuffle,
+  Square,
+  Trash2,
+} from 'lucide-react';
 import type { Story } from '@/data/curriculum';
 import { useVoiceRecorder, type Take } from '@/hooks/useVoiceRecorder';
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -35,34 +44,69 @@ export function StoryCard({ story, showHarakat }: StoryCardProps) {
   } = useVoiceRecorder();
   const hasTakes = takes.length > 0;
 
-  // Canonical phrasing plus curated re-tellings. Cycling resets both
-  // reveal state and any in-progress recording so the user re-reads
-  // the new Albanian prompt with fresh eyes.
-  const phrasings = useMemo(
-    () => [
-      {
-        albanian: story.albanian,
-        arabic: story.arabic,
-        transliteration: story.transliteration,
-      },
-      ...(story.variants ?? []),
-    ],
-    [story],
+  // Two display models live here, both behind the same `active` value:
+  //
+  //   1. New (preferred) — `story.feminine` is set: we show a [♂ M ↔ F ♀]
+  //      segmented toggle. Each tap is a *gender flip* of the same scene
+  //      so the learner sees the ـة / pronoun pattern they just drilled.
+  //
+  //   2. Legacy — `story.variants` is set (no `feminine`): we keep the
+  //      old "Variant N/M" cycle button so chapters not yet migrated
+  //      still behave as before. Will be removed once every chapter
+  //      is split into distinct M/F stories.
+  const hasFeminine = !!story.feminine;
+  const legacyPhrasings = useMemo(
+    () =>
+      hasFeminine
+        ? null
+        : [
+            {
+              albanian: story.albanian,
+              arabic: story.arabic,
+              transliteration: story.transliteration,
+            },
+            ...(story.variants ?? []),
+          ],
+    [story, hasFeminine],
   );
+
+  const [gender, setGender] = useState<'M' | 'F'>('M');
   const [variantIndex, setVariantIndex] = useState(0);
   useEffect(() => {
+    setGender('M');
     setVariantIndex(0);
   }, [story.id]);
-  const active = phrasings[variantIndex] ?? phrasings[0];
+
+  const active = hasFeminine
+    ? gender === 'F' && story.feminine
+      ? story.feminine
+      : {
+          albanian: story.albanian,
+          arabic: story.arabic,
+          transliteration: story.transliteration,
+        }
+    : (legacyPhrasings?.[variantIndex] ?? legacyPhrasings![0]);
 
   const reset = () => {
     setRevealed(false);
     clearRecording();
   };
 
+  const flipGender = (g: 'M' | 'F') => {
+    if (g === gender) return;
+    setGender(g);
+    track({
+      name: 'story_variant_cycled',
+      props: { story: story.id, variant: g === 'F' ? 1 : 0 },
+    });
+    setRevealed(false);
+    clearRecording();
+  };
+
   const cycleVariant = () => {
+    if (!legacyPhrasings) return;
     setVariantIndex((i) => {
-      const next = (i + 1) % phrasings.length;
+      const next = (i + 1) % legacyPhrasings.length;
       track({
         name: 'story_variant_cycled',
         props: { story: story.id, variant: next },
@@ -85,14 +129,56 @@ export function StoryCard({ story, showHarakat }: StoryCardProps) {
           </h3>
         </div>
         <div className="flex items-center gap-2">
-          {phrasings.length > 1 && (
-            <button
-              onClick={cycleVariant}
-              className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-2 py-0.5 text-[11px] text-slate-600 hover:border-amber-300 hover:text-amber-700"
-              title="Provo një formulim tjetër me të njëjtat fjalë"
+          {hasFeminine ? (
+            // Pronoun toggle — uses هُوَ / هِيَ themselves as the labels
+            // instead of "M / F" symbols. The toggle becomes a tiny
+            // grammar lesson in its own right: tap هِيَ and watch the
+            // ـة endings sprout. Sky = هُوَ, rose = هِيَ, mirroring the
+            // gender colors in the right vocab panel.
+            <div
+              className="inline-flex rounded-md border border-slate-200 bg-slate-50 p-0.5 shadow-inner"
+              role="group"
+              aria-label="Ndërro përemrin e tregimit"
             >
-              <Shuffle size={11} /> Variant {variantIndex + 1}/{phrasings.length}
-            </button>
+              <button
+                onClick={() => flipGender('M')}
+                className={`leading-none rounded px-2.5 py-1 transition-all ${
+                  gender === 'M'
+                    ? 'bg-sky-600 text-white shadow-sm'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-white'
+                }`}
+                title="Mashkullor — هُوَ"
+              >
+                <span dir="rtl" className="font-amiri text-base">
+                  هُوَ
+                </span>
+              </button>
+              <button
+                onClick={() => flipGender('F')}
+                className={`leading-none rounded px-2.5 py-1 transition-all ${
+                  gender === 'F'
+                    ? 'bg-rose-600 text-white shadow-sm'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-white'
+                }`}
+                title="Femëror — هِيَ"
+              >
+                <span dir="rtl" className="font-amiri text-base">
+                  هِيَ
+                </span>
+              </button>
+            </div>
+          ) : (
+            legacyPhrasings &&
+            legacyPhrasings.length > 1 && (
+              <button
+                onClick={cycleVariant}
+                className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-2 py-0.5 text-[11px] text-slate-600 hover:border-amber-300 hover:text-amber-700"
+                title="Provo një formulim tjetër me të njëjtat fjalë"
+              >
+                <Shuffle size={11} /> Variant {variantIndex + 1}/
+                {legacyPhrasings.length}
+              </button>
+            )
           )}
           {(revealed || hasTakes) && (
             <button

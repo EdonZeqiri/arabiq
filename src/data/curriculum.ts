@@ -43,10 +43,23 @@ export interface VocabWord {
 export interface Story {
   id: string;
   titleAl: string;
+  /** Masculine version (or the only version) of the story. Pronouns
+   *  default to هُوَ / أَنْتَ, names skew male, profession-nouns are bare
+   *  (طَالِب, مُدَرِّس). */
   albanian: string;
   arabic: string;
   transliteration: string;
-  /** Alternative re-tellings using the same vocabulary. See `Dialogue.variants`. */
+  /** Optional feminine retelling — same scene with هِيَ / أَنْتِ pronouns,
+   *  ـة endings on profession nouns, and gender-flipped names. When set,
+   *  the StoryCard renders a [♂ M ↔ F ♀] segmented toggle so the learner
+   *  can put both forms side by side and *see* the gender pattern they
+   *  just studied in the exercises. Replaces the previous "Variant N/M"
+   *  cycle which mixed gender flips with rhetorical paraphrases. */
+  feminine?: { albanian: string; arabic: string; transliteration: string };
+  /** @deprecated — older chapters still use this for rhetorical
+   *  paraphrases. New chapters should split paraphrases into separate
+   *  Story entries and use `feminine` only for the M↔F flip. Kept here
+   *  so chapters not yet migrated still render their cycle button. */
   variants?: TextVariant[];
 }
 
@@ -639,76 +652,69 @@ export const CHAPTERS: Chapter[] = [
         grammarPoint: 'Emrat tregues F→M',
       },
     ],
+    // Three distinct stories instead of one with 5 paraphrases. Each
+    // ships with both a masculine canonical and a feminine retelling so
+    // the learner can flip [♂ ↔ ♀] and *see* the gender pattern (هُوَ/هِيَ,
+    // ـة endings) live. Pedagogically much closer to how the textbook
+    // teaches Book 1.
     stories: [
       {
         id: 's1-1',
         titleAl: 'Musa prezantohet',
+        // Canonical (M) — the original chapter-1 story, kept verbatim.
         albanian:
           'Es-selamu alejkum! Emri im është Musa. Unë jam nga Kosova, jam student. Ky është libri im i ri dhe ai është shoku im Ahmedi. Ahmedi është nga Egjipti, ai gjithashtu është student. Mirë se të gjeta! Mirupafshim!',
         arabic:
           'السَّلامُ عَلَيْكُم! اِسْمِي مُوسَى. أَنَا مِنْ كُوسُوفُو، أَنَا طَالِب. هَذَا كِتَابِي الْجَدِيد وَذَلِكَ صَدِيقِي أَحْمَد. أَحْمَد مِنْ مِصْر، هُوَ أَيْضاً طَالِب. أَهْلاً وَسَهْلاً! مَعَ السَّلامَة!',
         transliteration:
           "Es-selamu alejkum! Ismi Musa. Ene min Kosofo, ene talib. Hadha kitabil xhedid ve dhalike sadiki Ahmed. Ahmed min Misr, huwe ejden talib. Ehlen we sehlen! Ma'a es-selame!",
-        variants: [
-          {
-            // Same "Musa prezanton veten dhe një shok nga Egjipti" — core
-            // vocab (ism, talib, kitab, sadik, min, hadha/dhalike) retained,
-            // but sentence structure flipped and ordering reshuffled so
-            // the student hears the same meaning with different scaffolding.
-            albanian:
-              'Përshëndetje! Unë quhem Musa, jam student nga Kosova. Shoku im Ahmedi është gjithashtu student; ai vjen nga Egjipti. Ky është libri i tij, ndërsa ai atje është libri im. Mirë se erdhët!',
-            arabic:
-              'السَّلامُ عَلَيْكُم! اِسْمِي مُوسَى، أَنَا طَالِب مِنْ كُوسُوفُو. صَدِيقِي أَحْمَد طَالِب أَيْضاً؛ هُوَ مِنْ مِصْر. هَذَا كِتَابُهُ، وَذَلِكَ كِتَابِي. أَهْلاً وَسَهْلاً!',
-            transliteration:
-              'Es-selamu alejkum! Ismi Musa, ene talib min Kosofo. Sadiki Ahmed talib ejden; huwe min Misr. Hadha kitabuhu, we dhalike kitabi. Ehlen we sehlen!',
-          },
-          {
-            // Third retelling, dialogue-leaning: Musa addresses the reader
-            // directly with questions. Reuses the same vocab set but
-            // introduces the learner to a conversational rhythm.
-            albanian:
-              'Përshëndetje shoku im! Emri im është Musa dhe unë jam student. Ky është libri im. Ky është Ahmedi, ai është shoku im nga Egjipti; edhe ai është student. Unë jam nga Kosova. Mirupafshim!',
-            arabic:
-              'السَّلامُ عَلَيْكُم يَا صَدِيقِي! اِسْمِي مُوسَى وَأَنَا طَالِب. هَذَا كِتَابِي. هَذَا أَحْمَد، هُوَ صَدِيقِي مِنْ مِصْر؛ هُوَ أَيْضاً طَالِب. أَنَا مِنْ كُوسُوفُو. مَعَ السَّلامَة!',
-            transliteration:
-              "Es-selamu alejkum ja sadiki! Ismi Musa we ene talib. Hadha kitabi. Hadha Ahmed, huwe sadiki min Misr; huwe ejden talib. Ene min Kosofo. Ma'a es-selame!",
-          },
-          {
-            // Female-perspective retelling: the narrator is now "Mona",
-            // a studente (طَالِبَة) from Kosova, introducing her friend
-            // Aisha from Egypt. Pronouns flip to هِيَ / أَنْتِ and the
-            // profession/noun endings take ة (صَدِيقَة, طَالِبَة).
-            albanian:
-              'Es-selamu alejkum! Emri im është Mona. Unë jam nga Kosova, jam studente. Kjo është libri im i ri dhe ajo është shoqja ime Aisha. Aisha është nga Egjipti, ajo gjithashtu është studente. Mirë se ju gjeta! Mirupafshim!',
-            arabic:
-              'السَّلامُ عَلَيْكُم! اِسْمِي مُنَى. أَنَا مِنْ كُوسُوفُو، أَنَا طَالِبَةٌ. هَذَا كِتَابِي الْجَدِيد وَتِلْكَ صَدِيقَتِي عَائِشَة. عَائِشَة مِنْ مِصْر، هِيَ أَيْضاً طَالِبَةٌ. أَهْلاً وَسَهْلاً! مَعَ السَّلامَة!',
-            transliteration:
-              "Es-selamu alejkum! Ismi Muna. Ene min Kosofo, ene talibe. Hadha kitabil xhedid ve tilke sadikati Aishe. Aishe min Misr, hije ejden talibe. Ehlen we sehlen! Ma'a es-selame!",
-          },
-          {
-            // Vocabulary-rich version: weaves in extra chapter-1 entries
-            // the original didn't use — مُدَرِّس (v1-6), لُغَة (v1-32),
-            // دَرْس (v1-35), زَمِيل (v1-38), جِنْسِيَّة (v1-10), قَالَ (v1-23).
-            // Same Musa story, just denser vocabulary.
-            albanian:
-              'Es-selamu alejkum! Emri im është Musa, unë jam student dhe kolegu im Ahmedi është gjithashtu student. Kombësia ime është shqiptare, kurse Ahmedi është nga Egjipti. Mësuesi ynë na mëson gjuhën arabe; mësimi është i ri dhe interesant. Ahmedi tha: «Libri yt është i bukur». Mirë se erdhët, shokë!',
-            arabic:
-              'السَّلامُ عَلَيْكُم! اِسْمِي مُوسَى، أَنَا طَالِبٌ وَزَمِيلِي أَحْمَدُ أَيْضاً طَالِبٌ. جِنْسِيَّتِي أَلْبَانِيَّةٌ، وَأَحْمَدُ مِنْ مِصْرَ. مُدَرِّسُنَا يُعَلِّمُنَا اللُّغَةَ الْعَرَبِيَّةَ؛ الدَّرْسُ جَدِيدٌ وَمُمْتِعٌ. قَالَ أَحْمَدُ: «كِتَابُكَ جَمِيلٌ». أَهْلاً وَسَهْلاً يَا أَصْدِقَاء!',
-            transliteration:
-              "Es-selamu alejkum! Ismi Musa, ene talibun ve zemili Ahmedu ejden talib. Xhinsijjeti albanijje, ve Ahmedu min Misr. Mudarrisuna ju‘al-limunal lugatel ‘arebijje; ed-dersu xhedid ve mumti‘. Kale Ahmedu: «Kitabuke xhemil». Ehlen we sehlen ja asdika!",
-          },
-          {
-            // Complex-sentence version: compound/complex MSA with عِنْدَمَا,
-            // الَّذِي, لِأَنَّ, بَعْدَ أَنْ, ثُمَّ. Same meaning, richer syntax —
-            // the "one-step-ahead" register.
-            albanian:
-              'Kur prezantohem, them: emri im është Musa dhe unë jam studenti që vjen nga Kosova. Ky është libri im i ri, të cilin e mora sot, ndërsa ai atje është shoku im Ahmedi, i cili është nga Egjipti. Pasi ne u takuam, u bëmë shokë, sepse të dy jemi studentë. Mirë se erdhët dhe mirupafshim!',
-            arabic:
-              'عِنْدَمَا أَتَعَارَفُ أَقُولُ: اِسْمِي مُوسَى وَأَنَا الطَّالِبُ الَّذِي يَأْتِي مِنْ كُوسُوفُو. هَذَا كِتَابِي الْجَدِيدُ الَّذِي أَخَذْتُهُ الْيَوْمَ، بَيْنَمَا ذَلِكَ صَدِيقِي أَحْمَدُ الَّذِي هُوَ مِنْ مِصْرَ. بَعْدَ أَنْ تَقَابَلْنَا صِرْنَا صَدِيقَيْنِ، لِأَنَّنَا كِلَانَا طَالِبَانِ. أَهْلاً وَسَهْلاً ثُمَّ مَعَ السَّلامَة!',
-            transliteration:
-              "‘Indema ete‘arefu ekulu: Ismi Musa ve enet-talibul-ledhi je’ti min Kosofo. Hadha kitabijel xhedidul-ledhi ekhadhtuhul jewme, bejnema dhalike sadikijel Ahmedul-ledhi huwe min Misr. Ba‘de en tekabelna sirna sadikajni, li ennena kilana talibani. Ehlen we sehlen thumme ma‘a es-selame!",
-          },
-        ],
+        // Feminine retelling: narrator is "Muna" introducing her friend
+        // Aisha from Egypt. Pronouns flip to هِيَ / تِلْكَ and profession
+        // nouns take ـة (صَدِيقَة, طَالِبَة).
+        feminine: {
+          albanian:
+            'Es-selamu alejkum! Emri im është Muna. Unë jam nga Kosova, jam studente. Ky është libri im i ri dhe ajo është shoqja ime Aisha. Aisha është nga Egjipti, ajo gjithashtu është studente. Mirë se ju gjeta! Mirupafshim!',
+          arabic:
+            'السَّلامُ عَلَيْكُم! اِسْمِي مُنَى. أَنَا مِنْ كُوسُوفُو، أَنَا طَالِبَةٌ. هَذَا كِتَابِي الْجَدِيد وَتِلْكَ صَدِيقَتِي عَائِشَة. عَائِشَة مِنْ مِصْر، هِيَ أَيْضاً طَالِبَةٌ. أَهْلاً وَسَهْلاً! مَعَ السَّلامَة!',
+          transliteration:
+            "Es-selamu alejkum! Ismi Muna. Ene min Kosofo, ene talibe. Hadha kitabil xhedid ve tilke sadikati Aishe. Aishe min Misr, hije ejden talibe. Ehlen we sehlen! Ma'a es-selame!",
+        },
+      },
+      {
+        id: 's1-2',
+        titleAl: 'Në klasën e arabishtes',
+        albanian:
+          'Hyra në klasë. Mësuesi im quhet Halid, ai është nga Saudia. Shoku im përballë meje është Jusufi nga Maroku. Libri im është mbi tavolinë. Mësimi i ri është interesant.',
+        arabic:
+          'دَخَلْتُ الفَصْلَ. مُدَرِّسِي اِسْمُهُ خَالِد، هُوَ مِنَ السُّعُودِيَّةِ. صَدِيقِي أَمَامِي اِسْمُهُ يُوسُفُ مِنَ الْمَغْرِبِ. كِتَابِي عَلَى الطَّاوِلَةِ. الدَّرْسُ الْجَدِيدُ مُمْتِعٌ.',
+        transliteration:
+          'Dakhaltul-fasl. Mudarrisi ismuhu Khalid, huwe minas-su‘udijjeh. Sadiki emami ismuhu Jusufu minel-Mağrib. Kitabi ‘alat-tawile. Ed-dersul xhedidu mumti‘.',
+        feminine: {
+          albanian:
+            'Hyra në klasë. Mësuesja ime quhet Hadixhe, ajo është nga Saudia. Shoqja ime përballë meje është Mariam nga Maroku. Libri im është mbi tavolinë. Mësimi i ri është interesant.',
+          arabic:
+            'دَخَلْتُ الفَصْلَ. مُدَرِّسَتِي اِسْمُهَا خَدِيجَة، هِيَ مِنَ السُّعُودِيَّةِ. صَدِيقَتِي أَمَامِي اِسْمُهَا مَرْيَمُ مِنَ الْمَغْرِبِ. كِتَابِي عَلَى الطَّاوِلَةِ. الدَّرْسُ الْجَدِيدُ مُمْتِعٌ.',
+          transliteration:
+            'Dakhaltul-fasl. Mudarriseti ismuha Khadixhe, hije minas-su‘udijjeh. Sadikati emami ismuha Merjemu minel-Mağrib. Kitabi ‘alat-tawile. Ed-dersul xhedidu mumti‘.',
+        },
+      },
+      {
+        id: 's1-3',
+        titleAl: 'Shoku im i ri',
+        albanian:
+          'Sot u njoha me një shok të ri. Emri i tij është Omar, ai është nga Turqia. Omari është student i ri në universitet. I thashë: «Ahlen we sehlen!» dhe ai m\'u përgjigj: «Ahlen!».',
+        arabic:
+          'الْيَوْمَ تَعَرَّفْتُ عَلَى صَدِيقٍ جَدِيدٍ. اِسْمُهُ عُمَر، هُوَ مِنْ تُرْكِيَا. عُمَر طَالِبٌ جَدِيدٌ فِي الْجَامِعَةِ. قُلْتُ لَهُ: «أَهْلاً وَسَهْلاً!» فَأَجَابَنِي: «أَهْلاً!».',
+        transliteration:
+          'El-jewme te‘arreftu ‘ala sadikin xhedid. Ismuhu Omer, huwe min Turkija. Omer talibun xhedidun fil-xhami‘a. Kultu lehu: «Ehlen we sehlen!» fe exhabeni: «Ehlen!».',
+        feminine: {
+          albanian:
+            'Sot u njoha me një shoqe të re. Emri i saj është Fatima, ajo është nga Turqia. Fatima është studente e re në universitet. I thashë: «Ahlen we sehlen!» dhe ajo m\'u përgjigj: «Ahlen!».',
+          arabic:
+            'الْيَوْمَ تَعَرَّفْتُ عَلَى صَدِيقَةٍ جَدِيدَةٍ. اِسْمُهَا فَاطِمَة، هِيَ مِنْ تُرْكِيَا. فَاطِمَة طَالِبَةٌ جَدِيدَةٌ فِي الْجَامِعَةِ. قُلْتُ لَهَا: «أَهْلاً وَسَهْلاً!» فَأَجَابَتْنِي: «أَهْلاً!».',
+          transliteration:
+            'El-jewme te‘arreftu ‘ala sadiketin xhedide. Ismuha Fatima, hije min Turkija. Fatima talibetun xhedidetun fil-xhami‘a. Kultu leha: «Ehlen we sehlen!» fe exhabetni: «Ehlen!».',
+        },
       },
     ],
     ayat: [
