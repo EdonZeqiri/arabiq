@@ -397,7 +397,13 @@ function GrammarFocusInfo({ points }: { points: string[] }) {
       {open && (
         <div
           role="dialog"
-          className="absolute left-0 top-full mt-1.5 w-[min(85vw,320px)] rounded-xl border border-brand-100 bg-white shadow-xl z-40 p-3 animate-[fadeSlideDown_180ms_ease-out] motion-reduce:animate-none normal-case tracking-normal"
+          // Position-strategy: anchor under the icon, but center the
+          // popover on its own midpoint. On a wide page that lands it
+          // straight below the chip; on a narrow phone it stays
+          // visually anchored to the icon without spilling off either
+          // edge of the viewport. `max-w-[calc(100vw-1rem)]` is the
+          // safety net for the truly narrow screens.
+          className="absolute left-1/2 top-full mt-1.5 -translate-x-1/2 w-[min(88vw,320px)] max-w-[calc(100vw-1rem)] rounded-xl border border-brand-100 bg-white shadow-xl z-40 p-3 animate-[fadeSlideDown_180ms_ease-out] motion-reduce:animate-none normal-case tracking-normal"
         >
           <div className="flex items-center gap-1.5 text-xs font-semibold text-brand-700 mb-2">
             <Sparkles size={12} />

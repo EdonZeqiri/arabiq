@@ -1,8 +1,9 @@
 import { useMemo, useState } from 'react';
-import { ChevronLeft, ChevronRight, Search, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Search, Volume2, X } from 'lucide-react';
 import type { VocabWord } from '@/data/curriculum';
 import { getChapter } from '@/data/curriculum';
 import { useStore } from '@/store/useStore';
+import { speakArabic } from '@/lib/arabicSpeech';
 
 // Right-side panel showing the active chapter's vocabulary, always
 // in reach while the user works on dialogues / exercises / stories.
@@ -46,43 +47,72 @@ type GenderFilter = 'all' | 'M' | 'F';
 
 function VocabRow({ word }: { word: VocabWord }) {
   const [open, setOpen] = useState(false);
+  const [speaking, setSpeaking] = useState(false);
   const accent = TYPE_ACCENT[word.type];
+
+  const handleSpeak = () => {
+    if (speaking) return;
+    setSpeaking(true);
+    speakArabic(word.arabic, () => setSpeaking(false));
+  };
+
   return (
     <li
       className={`rounded-lg border border-slate-200/70 border-l-[3px] ${accent.ring} bg-white hover:border-slate-300 hover:shadow-sm transition-all overflow-hidden`}
     >
-      <button
-        onClick={() => setOpen((v) => !v)}
-        className={`w-full flex items-center justify-between gap-3 px-3 py-2.5 text-left ${open ? accent.soft : 'hover:bg-slate-50/60'}`}
-      >
-        <div className="flex items-center gap-2 min-w-0 flex-1">
-          <span
-            className={`shrink-0 w-1.5 h-1.5 rounded-full ${TYPE_DOT[word.type]}`}
-          />
-          <span
-            dir="rtl"
-            className="font-amiri text-lg text-slate-900 truncate leading-none"
-          >
-            {word.arabic}
-          </span>
-          {word.gender && (
+      {/* Two side-by-side controls instead of one big button:
+          (a) the toggle area (Arabic + meaning) and
+          (b) a compact speaker. Nesting buttons isn't valid HTML, so
+          we render them as siblings sharing one row. */}
+      <div className={`flex items-stretch ${open ? accent.soft : ''}`}>
+        <button
+          onClick={() => setOpen((v) => !v)}
+          className={`flex-1 min-w-0 flex items-center justify-between gap-3 px-3 py-3 text-left ${open ? '' : 'hover:bg-slate-50/60'}`}
+        >
+          <div className="flex items-center gap-2 min-w-0 flex-1">
             <span
-              className={`shrink-0 inline-flex items-center justify-center text-[9px] font-bold w-4 h-4 rounded-full ${
-                word.gender === 'M'
-                  ? 'bg-sky-100 text-sky-700'
-                  : 'bg-rose-100 text-rose-700'
-              }`}
-              title={word.gender === 'M' ? 'Mashkullor' : 'Femëror'}
-              aria-label={word.gender === 'M' ? 'Mashkullor' : 'Femëror'}
+              className={`shrink-0 w-1.5 h-1.5 rounded-full ${TYPE_DOT[word.type]}`}
+            />
+            {/* Drop `truncate` + `leading-none` — both clipped the
+                kasra/fatha glyphs that hang below/above the baseline.
+                Vocab words are short, so truncation isn't needed. */}
+            <span
+              dir="rtl"
+              className="font-amiri text-lg text-slate-900 leading-[1.6]"
             >
-              {word.gender}
+              {word.arabic}
             </span>
-          )}
-        </div>
-        <span className="text-xs text-slate-600 truncate max-w-[40%] text-right">
-          {word.albanian}
-        </span>
-      </button>
+            {word.gender && (
+              <span
+                className={`shrink-0 inline-flex items-center justify-center text-[9px] font-bold w-4 h-4 rounded-full ${
+                  word.gender === 'M'
+                    ? 'bg-sky-100 text-sky-700'
+                    : 'bg-rose-100 text-rose-700'
+                }`}
+                title={word.gender === 'M' ? 'Mashkullor' : 'Femëror'}
+                aria-label={word.gender === 'M' ? 'Mashkullor' : 'Femëror'}
+              >
+                {word.gender}
+              </span>
+            )}
+          </div>
+          <span className="text-xs text-slate-600 truncate max-w-[40%] text-right">
+            {word.albanian}
+          </span>
+        </button>
+        <button
+          onClick={handleSpeak}
+          aria-label={`Dëgjo shqiptimin e fjalës ${word.arabic}`}
+          title="Dëgjo shqiptimin"
+          className={`shrink-0 border-l border-slate-200/70 px-2.5 flex items-center justify-center transition-colors ${
+            speaking
+              ? 'bg-blue-100 text-blue-600'
+              : 'text-slate-400 hover:text-blue-600 hover:bg-blue-50'
+          }`}
+        >
+          <Volume2 size={14} />
+        </button>
+      </div>
       {open && (
         <div className="px-3 pb-3 pt-0.5 text-[11px] text-slate-600 space-y-0.5 animate-[fadeIn_180ms_ease-out] motion-reduce:animate-none border-t border-slate-100">
           <div className="pt-2">
