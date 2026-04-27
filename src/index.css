@@ -29,9 +29,76 @@
     overscroll-behavior-y: contain;
   }
 
+  /* Every Arabic block in the app is marked with `dir="rtl"`, so we
+     attach OpenType + bidi defaults here once instead of repeating
+     them in 20+ components. The most important features are `mark`
+     and `mkmk` — these tell the font engine to use anchor-based
+     positioning for harakat (so a ḍamma sits ON TOP of the letter,
+     not beside it, and a shadda + ḍamma stack correctly without
+     overlap). `unicode-bidi: isolate` stops neutral chars (commas,
+     parens, slashes) from bleeding the bidi run into surrounding
+     LTR text — the classic "the period jumped to the wrong end"
+     bug in mixed Albanian/Arabic sentences.
+
+     We deliberately *don't* set line-height or padding here: those
+     vary by context (a 5xl headline vs an inline word in a list),
+     and a one-size-fits-all value would either crowd small text or
+     waste space on big text. Use `.arabic-text` for headlines that
+     need the extra breathing room. */
   [dir='rtl'] {
     letter-spacing: 0;
+    font-feature-settings: 'calt' 1, 'liga' 1, 'kern' 1, 'mark' 1, 'mkmk' 1;
+    unicode-bidi: isolate;
   }
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   Arabic typography utilities.
+
+   Why this exists: Arabic with full tashkeel (harakat) is one of the
+   harder typesetting jobs on the web. fatḥa/ḍamma/sukūn sit *above*
+   the letter; kasra sits *below*. Default browser line-heights stamp
+   them onto the previous/next line. Tailwind's `tracking-*` utilities
+   silently break ligatures. And mixing Arabic inline with Albanian
+   pulls the bidi algorithm into territory it gets wrong half the time.
+
+   We solve this once, here, with two classes:
+
+   - `.arabic-text` — the headline form. Generous line-height + safety
+     padding so nothing gets clipped, with OpenType `mark`/`mkmk`
+     features turned on so harakat positioning uses the font's anchors
+     instead of advance metrics.
+   - `.arabic-inline` — for Arabic words mid-Albanian sentence. Same
+     features but no padding (would double-space the line).
+
+   ───────────────────────────────────────────────────────────────── */
+.arabic-text {
+  font-family: 'Amiri', 'Scheherazade New', 'Noto Naskh Arabic', serif;
+  line-height: 1.9;
+  letter-spacing: 0;
+  /* `mark` and `mkmk` enable mark-to-base and mark-to-mark anchoring
+     — the OpenType features that put harakat in the right place above
+     a letter (and shadda + harakat together without overlap). `calt`
+     and `liga` keep contextual ligatures (lām-alif etc.) correct. */
+  font-feature-settings: 'calt' 1, 'liga' 1, 'kern' 1, 'mark' 1, 'mkmk' 1;
+  /* Belt-and-braces top/bottom padding: even with mkmk on, some fonts
+     still place the highest stack (shadda + ḍamma) right at the line
+     box edge. The extra ~0.15em prevents touch with adjacent rows. */
+  padding-top: 0.15em;
+  padding-bottom: 0.1em;
+  /* `isolate` keeps the bidi algorithm from leaking neutral chars
+     (commas, parens) into the Arabic run — fixes the classic
+     "punctuation jumps to the wrong end" bug. */
+  unicode-bidi: isolate;
+}
+
+.arabic-inline {
+  font-family: 'Amiri', 'Scheherazade New', 'Noto Naskh Arabic', serif;
+  letter-spacing: 0;
+  font-feature-settings: 'calt' 1, 'liga' 1, 'kern' 1, 'mark' 1, 'mkmk' 1;
+  unicode-bidi: isolate;
+  /* Inline contexts don't get padding — the surrounding line-height
+     already grants the breathing room. */
 }
 
 @layer components {

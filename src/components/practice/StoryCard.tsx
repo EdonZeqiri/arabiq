@@ -274,7 +274,7 @@ export function StoryCard({ story, showHarakat }: StoryCardProps) {
           </div>
           <p
             dir="rtl"
-            className="font-amiri text-2xl md:text-[28px] text-slate-900"
+            className="arabic-text text-2xl md:text-[28px] text-slate-900"
             style={{ lineHeight: 2.4 }}
           >
             {showHarakat ? active.arabic : stripHarakat(active.arabic)}

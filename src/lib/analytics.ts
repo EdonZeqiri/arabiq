@@ -47,6 +47,11 @@ export type TrackEvent =
   | { name: 'vocab_speaker_played'; props: { word: string } }
   // ── Ayat ──
   | { name: 'ayah_revealed'; props: { chapter: number; reference: string } }
+  // ── SRS / Dictation ──
+  | { name: 'srs_session_opened'; props: { queue: number } }
+  | { name: 'srs_card_graded'; props: { grade: number; isNew: boolean } }
+  | { name: 'dictation_question_shown'; props: { wordId: string } }
+  | { name: 'dictation_answered'; props: { wordId: string; firstTry: boolean } }
   // ── Settings ──
   | { name: 'setting_toggled'; props: { setting: string; value: boolean } };
 

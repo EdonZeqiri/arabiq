@@ -150,7 +150,7 @@ export function Flashcard({
             <p
               key={`${dialogue.id}-${variantIndex}`}
               dir="rtl"
-              className="font-amiri text-xl md:text-2xl leading-relaxed text-slate-900 animate-[fadeIn_200ms_ease-out]"
+              className="arabic-text text-xl md:text-2xl text-slate-900 animate-[fadeIn_200ms_ease-out]"
             >
               {arabic}
             </p>

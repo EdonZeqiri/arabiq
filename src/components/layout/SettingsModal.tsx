@@ -1,4 +1,4 @@
-import { CaseSensitive, FileType, X } from 'lucide-react';
+import { Brain, CaseSensitive, FileType, X } from 'lucide-react';
 import { useStore } from '@/store/useStore';
 import { ProgressDashboard } from '@/components/progress/ProgressDashboard';
 
@@ -18,6 +18,8 @@ export function SettingsModal({ open, onClose }: SettingsModalProps) {
   const showTransliteration = useStore((s) => s.showTransliteration);
   const toggleHarakat = useStore((s) => s.toggleHarakat);
   const toggleTransliteration = useStore((s) => s.toggleTransliteration);
+  const srsDailyNewCap = useStore((s) => s.srsDailyNewCap);
+  const setSrsDailyNewCap = useStore((s) => s.setSrsDailyNewCap);
 
   if (!open) return null;
 
@@ -67,6 +69,15 @@ export function SettingsModal({ open, onClose }: SettingsModalProps) {
                 value={showTransliteration}
                 onToggle={toggleTransliteration}
               />
+              <SliderRow
+                icon={<Brain size={16} />}
+                label="Fjalë të reja në përsëritje / ditë"
+                description="Sa fjalë të reja shtohen në radhën e përsëritjes çdo ditë. Më shumë = mëson më shpejt, por kërkon kohë më të gjatë çdo ditë."
+                value={srsDailyNewCap}
+                min={1}
+                max={20}
+                onChange={setSrsDailyNewCap}
+              />
             </div>
           </div>
 
@@ -77,6 +88,56 @@ export function SettingsModal({ open, onClose }: SettingsModalProps) {
             </div>
             <ProgressDashboard />
           </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SliderRow({
+  icon,
+  label,
+  description,
+  value,
+  min,
+  max,
+  onChange,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  description: string;
+  value: number;
+  min: number;
+  max: number;
+  onChange: (v: number) => void;
+}) {
+  return (
+    <div className="w-full flex items-start gap-3 rounded-lg border border-slate-200 bg-white p-3">
+      <div className="shrink-0 w-9 h-9 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center">
+        {icon}
+      </div>
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center justify-between gap-2">
+          <div className="text-sm font-medium text-slate-800">{label}</div>
+          <span className="inline-flex items-center justify-center min-w-[28px] h-6 rounded-md bg-brand-50 text-brand-700 text-xs font-semibold tabular-nums px-2 border border-brand-100">
+            {value}
+          </span>
+        </div>
+        <div className="text-xs text-slate-500 leading-snug mt-0.5">
+          {description}
+        </div>
+        <input
+          type="range"
+          min={min}
+          max={max}
+          value={value}
+          onChange={(e) => onChange(parseInt(e.target.value, 10))}
+          className="w-full mt-2.5 accent-brand-600"
+          aria-label={label}
+        />
+        <div className="flex justify-between text-[10px] text-slate-400 -mt-0.5">
+          <span>{min}</span>
+          <span>{max}</span>
         </div>
       </div>
     </div>

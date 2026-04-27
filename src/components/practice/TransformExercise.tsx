@@ -273,7 +273,7 @@ export function TransformExercise({
         </div>
         <div
           dir="rtl"
-          className="font-amiri text-2xl text-slate-900 leading-relaxed"
+          className="arabic-text text-2xl text-slate-900"
         >
           {exercise.source.arabic}
         </div>

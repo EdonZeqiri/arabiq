@@ -35,7 +35,9 @@ export default function App() {
   // shrinks to a 44px rail with a vertical "Fjalori" label so the
   // main canvas re-centers and the page breathes. State lives at
   // the top level so we can read it from inside the panel itself.
-  const [vocabRailOpen, setVocabRailOpen] = useState(true);
+  // Default = closed: the hub is the primary surface, the vocab
+  // rail is reference material the learner pulls in on demand.
+  const [vocabRailOpen, setVocabRailOpen] = useState(false);
 
   // ⌘K / Ctrl+K opens the global vocab search from anywhere. We bind
   // at the document level so the shortcut works regardless of where

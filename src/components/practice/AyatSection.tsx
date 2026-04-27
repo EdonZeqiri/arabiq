@@ -138,7 +138,7 @@ export function AyatSection({ ayat }: AyatSectionProps) {
                 stay native to the browser's Arabic shaper. */}
             <p
               dir="rtl"
-              className="font-amiri text-2xl md:text-[28px] text-slate-900 leading-loose text-right"
+              className="arabic-text text-2xl md:text-[28px] text-slate-900 text-right"
             >
               {chunks.map((c, i) =>
                 c.known ? (

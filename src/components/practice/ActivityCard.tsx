@@ -113,7 +113,7 @@ export function ActivityCard({
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`group relative card text-left p-5 md:p-6 border overflow-hidden ${a.ring} ${a.glow} disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:-translate-y-1 motion-reduce:hover:translate-y-0 active:scale-[0.99]`}
+      className={`group relative card text-left p-5 md:p-6 border overflow-hidden flex flex-col min-h-[156px] ${a.ring} ${a.glow} disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:-translate-y-1 motion-reduce:hover:translate-y-0 active:scale-[0.99]`}
     >
       {/* Soft accent wash in the top-right corner — adds tint without
           fighting the content. Hidden on disabled state via opacity. */}
@@ -150,7 +150,7 @@ export function ActivityCard({
       </div>
 
       {(progress || pct !== null) && (
-        <div className="relative mt-5 flex items-center gap-3">
+        <div className="relative mt-auto pt-5 flex items-center gap-3">
           {pct !== null && (
             <div className="flex-1 h-1.5 rounded-full bg-slate-100 overflow-hidden">
               <div

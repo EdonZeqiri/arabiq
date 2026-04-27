@@ -116,8 +116,18 @@ export interface ChapterAyah {
 export interface Chapter {
   id: number;
   titleAr: string;
+  /** Albanian transliteration of titleAr — shown in parentheses on the
+   *  chapter hero ("Kapitulli 2 — Familja (arb. El Usra)") so learners
+   *  can pronounce the chapter's Arabic name without needing to read
+   *  the script yet. Optional — falls back to omitting the parens. */
+  titleArTranslit?: string;
   titleAl: string;
   titleEn: string;
+  /** Optional one-line learning-outcome shown on the chapter hero on
+   *  the hub. Should fit on a single line at hero width — roughly 90
+   *  characters. When omitted the hub falls back to a counts-based
+   *  sentence built from the chapter's contents. */
+  summary?: string;
   dialogues: Dialogue[];
   vocabulary: VocabWord[];
   grammarFocus: string[];
@@ -131,8 +141,10 @@ export const CHAPTERS: Chapter[] = [
   {
     id: 1,
     titleAr: 'التحية والتعارف',
-    titleAl: 'Përshëndetjet dhe Prezantimi',
+    titleArTranslit: 'Et-Tehijje wet-Tearuf',
+    titleAl: 'Përshëndetjet dhe Prezantimet',
     titleEn: 'Greetings & Introductions',
+    summary: 'Si të përshëndesësh, të prezantosh veten dhe të kuptosh përemrat themelorë.',
     dialogues: [
       {
         id: 'd1-1',
@@ -839,8 +851,10 @@ export const CHAPTERS: Chapter[] = [
   {
     id: 2,
     titleAr: 'الأُسْرَة',
+    titleArTranslit: 'El Usra',
     titleAl: 'Familja',
     titleEn: 'The Family',
+    summary: 'Anëtarët e familjes, mbaresat pronëzuese dhe lidhja idafa (babai i Musait).',
     dialogues: [
       {
         id: 'd2-1',
@@ -1242,8 +1256,10 @@ export const CHAPTERS: Chapter[] = [
   {
     id: 3,
     titleAr: 'السَّكَن',
+    titleArTranslit: 'Es-Sekën',
     titleAl: 'Banesa',
     titleEn: 'Housing',
+    summary: 'Dhomat e shtëpisë, parafjala në dhe mënyra për të thënë «kam» (lede).',
     dialogues: [
       {
         id: 'd3-1',
@@ -1622,8 +1638,10 @@ export const CHAPTERS: Chapter[] = [
   {
     id: 4,
     titleAr: 'الحَيَاةُ اليَوْمِيَّة',
+    titleArTranslit: 'El Hajatul Jewmijje',
     titleAl: 'Jeta e përditshme',
     titleEn: 'Daily Life',
+    summary: 'Rutina ditore — folja mudari‘, ora, dhe kohët e ditës.',
     dialogues: [
       {
         id: 'd4-1',
@@ -1999,8 +2017,10 @@ export const CHAPTERS: Chapter[] = [
   {
     id: 5,
     titleAr: 'الطَّعَامُ وَالشَّرَاب',
+    titleArTranslit: 'Et-Taamu wesh-Sharab',
     titleAl: 'Ushqimi dhe Pijet',
     titleEn: 'Food & Drink',
+    summary: 'Ushqimet, pijet, koha e shkuar (madi) dhe lidhëzat e zgjedhjes.',
     dialogues: [
       {
         id: 'd5-1',
@@ -2381,8 +2401,10 @@ export const CHAPTERS: Chapter[] = [
   {
     id: 6,
     titleAr: 'الصَّلَاة',
+    titleArTranslit: 'Es-Salat',
     titleAl: 'Namazi',
     titleEn: 'The Prayer',
+    summary: 'Pesë namazet, abdesi dhe foljet që përdoren rreth adhurimit.',
     dialogues: [
       {
         id: 'd6-1',
@@ -2757,8 +2779,10 @@ export const CHAPTERS: Chapter[] = [
   {
     id: 7,
     titleAr: 'الدِّرَاسَة',
+    titleArTranslit: 'Ed-Dirase',
     titleAl: 'Studimi',
     titleEn: 'Study',
+    summary: 'Shkolla, lëndët, foljet modale dhe shprehjet për mendimin.',
     dialogues: [
       {
         id: 'd7-1',
@@ -3133,8 +3157,10 @@ export const CHAPTERS: Chapter[] = [
   {
     id: 8,
     titleAr: 'العَمَلُ وَالمِهَن',
+    titleArTranslit: 'El Amelu wel Mihen',
     titleAl: 'Puna dhe Profesionet',
     titleEn: 'Work & Professions',
+    summary: 'Profesionet, vendet e punës dhe foljet e kohës së ardhme.',
     dialogues: [
       {
         id: 'd8-1',
@@ -3520,8 +3546,10 @@ export const CHAPTERS: Chapter[] = [
   {
     id: 9,
     titleAr: 'التَّسَوُّق',
+    titleArTranslit: 'Et-Tesewwuk',
     titleAl: 'Tregu dhe Blerjet',
     titleEn: 'Shopping',
+    summary: 'Tregu, çmimet, numrat dhe shprehjet e bisedës me shitësin.',
     dialogues: [
       {
         id: 'd9-1',
@@ -3899,8 +3927,10 @@ export const CHAPTERS: Chapter[] = [
   {
     id: 10,
     titleAr: 'الفصول والطقس',
+    titleArTranslit: 'El Fusul wet-Takës',
     titleAl: 'Stinët dhe Moti',
     titleEn: 'Seasons & Weather',
+    summary: 'Stinët, moti, drejtimet dhe shprehjet rreth temperaturës.',
     dialogues: [
       {
         id: 'd10-1',
@@ -4274,6 +4304,7 @@ export const CHAPTERS: Chapter[] = [
   {
     id: 11,
     titleAr: 'السَّفَرُ وَالتَّنَقُّل',
+    titleArTranslit: 'Es-Seferu wet-Tenakkul',
     titleAl: 'Udhëtimi dhe Transporti',
     titleEn: 'Travel & Transportation',
     dialogues: [
@@ -4650,6 +4681,7 @@ export const CHAPTERS: Chapter[] = [
   {
     id: 12,
     titleAr: 'الْهِوَايَات',
+    titleArTranslit: 'El Hiwajat',
     titleAl: 'Hobitë',
     titleEn: 'Hobbies',
     dialogues: [
@@ -5029,6 +5061,7 @@ export const CHAPTERS: Chapter[] = [
   {
     id: 13,
     titleAr: 'السَّفَرُ لِلْعُمْرَة',
+    titleArTranslit: 'Es-Seferu lil-Umre',
     titleAl: 'Udhëtimi për Umre',
     titleEn: 'Travel for Umrah',
     dialogues: [
@@ -5414,6 +5447,7 @@ export const CHAPTERS: Chapter[] = [
   {
     id: 14,
     titleAr: 'الْحَجّ',
+    titleArTranslit: 'El Haxh',
     titleAl: 'Haxhi',
     titleEn: 'Hajj',
     dialogues: [
@@ -5805,6 +5839,7 @@ export const CHAPTERS: Chapter[] = [
   {
     id: 15,
     titleAr: 'الصِّحَّة',
+    titleArTranslit: 'Es-Sihha',
     titleAl: 'Shëndeti',
     titleEn: 'Health',
     dialogues: [
@@ -6175,6 +6210,7 @@ export const CHAPTERS: Chapter[] = [
   {
     id: 16,
     titleAr: 'الأَعْيَادُ وَالتَّقْوِيم',
+    titleArTranslit: 'El A’jadu wet-Tekwim',
     titleAl: 'Festat dhe Kalendari',
     titleEn: 'Holidays & Calendar',
     dialogues: [
